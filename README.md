@@ -1,50 +1,115 @@
 # Citizen Assist AI
 
-Sistema de terminal para organizar serviços e orientações ao cidadão, desenvolvido para a **Global Solution 2026.2 — Citizen Tech** da disciplina **Data Structures and Algorithms (DSA)**.
+Solução em **Python** para a **Global Solution 2026.2 — Citizen Tech**, reunindo os Projetos 1 a 4:
 
-O projeto unifica a **Lição 1** (proposta de atendimento ao cidadão) e a **Lição 2** (lista encadeada e algoritmos) em uma única solução em **Python**.
+1. **Projeto 1** — proposta de atendimento e orientação ao cidadão.
+2. **Projeto 2** — catálogo de serviços com **lista encadeada manual**, busca, ordenação (Selection Sort), indicadores e persistência em JSON.
+3. **Projeto 3** — agente de IA que responde sobre documentos pessoais usando **exclusivamente as fichas FC-01 a FC-07**, com LangGraph, segurança e avaliação no Golden Dataset.
+4. **Projeto 4** — pitch de até 3 minutos (roteiro pronto; gravação e publicação pendentes).
+
+O núcleo dos Projetos 1 e 2 foi preservado. O agente é um módulo separado, para não misturar o catálogo DSA (fontes oficiais reais) com as fichas fictícias do Projeto 3.
+
+## Situação atual
+
+| Projeto | Situação | Observação |
+|---|---|---|
+| P1 — proposta | Entregue com ressalvas | Falta apenas a identificação nominal do grupo e o link do repositório. |
+| P2 — DSA | Entregue | 81 testes originais do P1/P2 + 78 verificações mobile; suíte completa atual: 141 testes. |
+| P3 — agente | Parcial | Arquitetura, segurança, fluxo, avaliação e testes prontos. As 7 fichas oficiais ainda não estão no projeto; os arquivos atuais são **provisórios** e foram montados apenas com fatos do Golden Dataset. O juiz LLM está implementado, mas depende de uma chave/modelo para ser executado. |
+| P4 — vídeo | Pendente | Roteiro e checklist prontos; gravação, narração humana e publicação no YouTube dependem do grupo. |
+
+> **Importante:** nenhum resultado de LLM, de teste com pessoas ou de gravação foi inventado. O que ainda não foi executado está marcado como pendente.
 
 ## O que o sistema faz
+
+### Catálogo DSA (Projetos 1 e 2)
 
 - Cadastra, consulta, atualiza e exclui serviços em uma **lista encadeada implementada pela equipe**.
 - Consulta por ID e pesquisa por título, categoria ou descrição.
 - Ordena por título, categoria ou ID com **Selection Sort** próprio.
 - Analisa os serviços por categoria e gera indicadores de atendimento.
 - Responde perguntas em texto livre com pontuação e confiança.
-- No celular, aceita **pergunta por voz** (com o texto aparecendo na tela) e lê a resposta em voz alta, com voz do navegador offline ou voz natural Azure opcional.
-- Navega por categorias.
 - Mantém histórico, exporta CSV e protege dados pessoais.
 - Persiste o catálogo em JSON.
 
+### Agente de documentos (Projeto 3)
+
+- Responde sobre RG, CPF, título de eleitor, carteira de trabalho, certidões e CNH.
+- Usa **somente** as fichas FC-01 a FC-07 como fonte de verdade.
+- Cita a ficha de origem e a data de verificação em toda resposta de escopo.
+- Admite desconhecimento quando a ficha não responde.
+- Recusa e oculta CPF, RG, CNH, título, telefone, e-mail, endereço e números longos.
+- Neutraliza prompt injection e trata a mensagem do usuário como dado, nunca como instrução.
+- Não agenda, não consulta sistemas do governo e não é um canal oficial.
+- Não grava perguntas em arquivo, banco ou histórico.
+
+### Mobile
+
+O projeto mantém a versão mobile completa em um único HTML, com lista encadeada, Selection Sort, busca, histórico, indicadores, CSV, voz e acessibilidade. Veja [`mobile/README.md`](mobile/README.md).
+
 ## Como executar
 
-Pré-requisito: Python 3.8 ou superior, sem dependências externas.
+Pré-requisito do núcleo: **Python 3.9 ou superior**, sem dependências externas.
 
 ```bash
 cd Jun
 python3 main.py
 ```
 
-No Windows:
+No menu do catálogo, a opção **13** abre o agente de documentos. O agente também pode ser executado sozinho:
 
 ```bash
-python main.py
+python3 main_agente.py
 ```
 
-## Versão mobile (celular)
+### LangGraph (opcional)
 
-Além do terminal, o projeto tem uma versão mobile completa em **um único arquivo HTML**, para rodar no celular **sem instalação e sem hospedagem**. O app funciona offline; o ditado por voz e a voz natural Azure são opcionais e podem depender de internet:
+O fluxo do agente usa **LangGraph** quando a biblioteca está instalada. Sem ela, o mesmo fluxo roda em modo sequencial, com as mesmas regras e respostas.
 
-- [`mobile/index.html`](mobile/index.html) — app completo (HTML + CSS + JavaScript + os 12 serviços iniciais embutidos).
-- [`mobile/README.md`](mobile/README.md) — como transferir e abrir no Android/iPhone, backup, voz natural, servidor local opcional e solução de problemas.
-- [`mobile/servir.py`](mobile/servir.py) — servidor local opcional, sem dependências, para abrir o app pelo Wi-Fi quando o navegador do celular bloqueia arquivos locais e para a API de voz natural.
-- [`mobile/tts.py`](mobile/tts.py) — adaptador de voz natural (Azure) com modo de teste, cache e validação; a chave fica no computador, nunca no HTML.
-- [`mobile/.env.example`](mobile/.env.example) — modelo de configuração da voz natural.
-- [`mobile/teste-logica.js`](mobile/teste-logica.js) — testes da lógica com Node.js.
+```bash
+python3 -m pip install -r requirements.txt
+```
 
-Para usar no celular, envie o `mobile/index.html` por WhatsApp, e-mail, Google Drive, AirDrop ou cabo USB e abra no navegador. No iPhone, se o armazenamento local for bloqueado em `file://`, execute `python3 mobile/servir.py` no computador e abra o endereço de rede exibido no celular. Para a voz natural, copie `mobile/.env.example` para `mobile/.env` e preencha a chave do Azure; sem chave, o servidor inicia em modo de teste.
+### Modelo de linguagem (opcional)
 
-A versão mobile reimplementa a lista encadeada, o Selection Sort, a busca por pontuação, o histórico, os indicadores e o CSV em JavaScript. Os dados ficam no `localStorage` do aparelho. A aba **Assistente** tem um botão **Falar** que transcreve a pergunta em tempo real e um botão **Ouvir resposta** que lê a orientação em voz alta, com escolha entre a voz do navegador (offline) e a voz natural Azure (opcional) em **Aparência**. A voz natural é desligada por padrão e, quando ativada, envia apenas o texto da resposta ao Azure; a pergunta não é enviada. Veja os requisitos, o modo de teste e os limites em [`mobile/README.md`](mobile/README.md#voz-natural-azure--opcional). Testes da lógica mobile: **78 verificações aprovadas** com `node mobile/teste-logica.js`.
+Sem configuração, o agente funciona no **modo extrativo**: monta a resposta diretamente das seções das fichas. É determinístico, offline e serve para testes e demonstração.
+
+Para usar um LLM, copie `agente/.env.example` para `agente/.env` e configure **um** provedor:
+
+```bash
+# Groq (plano gratuito)
+CITIZEN_LLM_PROVIDER=groq
+GROQ_API_KEY=sua_chave
+
+# OpenAI
+CITIZEN_LLM_PROVIDER=openai
+OPENAI_API_KEY=sua_chave
+
+# Ollama local
+CITIZEN_LLM_PROVIDER=ollama
+CITIZEN_LLM_MODEL=llama3.1
+```
+
+O arquivo `agente/.env` é ignorado pelo Git. Nenhuma chave fica no código.
+
+## Avaliação no Golden Dataset
+
+O arquivo [`avaliacao/golden_dataset.json`](avaliacao/golden_dataset.json) contém as **26 mensagens originais** do enunciado, com tipo, resposta esperada, fichas e rubrica. Nenhuma foi substituída.
+
+```bash
+# Juiz determinístico (offline, sem chave)
+python3 -m avaliacao.executar --modo ambos --juiz deterministico
+
+# Juiz LLM (requer provedor configurado)
+python3 -m avaliacao.executar --modo ambos --juiz llm --agente llm
+```
+
+Resultados desta máquina com o juiz determinístico:
+
+- **Antes (baseline ingênuo):** 0/26 exatos, 6 parciais, 20 falhas, média **0,115** (11,5%).
+- **Depois (agente melhorado, LangGraph 0.6.11):** **26/26 exatos**, média **1,000** (100,0%). Sem o LangGraph, o mesmo fluxo roda em modo sequencial e os testes confirmam o mesmo comportamento.
+
+Esses números são do **juiz determinístico de rubrica explícita**, não de um LLM. O pipeline **LLM as a Judge** está implementado e testado com provedor HTTP local, mas a execução com um modelo real depende de chave/configuração. Veja [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md).
 
 ## Testes
 
@@ -53,47 +118,54 @@ python3 -m unittest discover -s testes -t . -v
 node mobile/teste-logica.js
 ```
 
-Resultado atual: **81 testes Python aprovados** (59 do sistema + 22 da voz natural mobile) e **78 verificações mobile** aprovadas.
+Resultado atual:
+
+- **141 testes Python aprovados** (81 originais preservados + 60 novos do agente/avaliação/provedor).
+- **78 verificações mobile** aprovadas.
+
+Os testes do agente cobrem fichas, PII, prompt injection, entradas inválidas, fluxo, citações, fallback do LLM, Golden Dataset, juiz determinístico, juiz LLM e cliente HTTP OpenAI-compatível.
 
 ## Estrutura
 
 ```text
 Jun/
-├── main.py
-├── app/
-│   ├── modelos.py
-│   ├── texto.py
-│   ├── lista_encadeada.py
-│   ├── base_conhecimento.py
-│   ├── assistente.py
-│   ├── persistencia.py
-│   └── interface.py
-├── data/
-│   ├── servicos.json
-│   ├── historico.json
-│   └── atendimentos.csv
-├── mobile/
-│   ├── index.html
-│   ├── servir.py
-│   ├── tts.py
-│   ├── __init__.py
-│   ├── .env.example
-│   ├── .gitignore
-│   ├── teste-logica.js
-│   └── README.md
-├── testes/
-│   ├── test_tts_mobile.py
-│   └── ... (demais testes Python)
+├── main.py                     # catálogo DSA
+├── main_agente.py              # agente de documentos
+├── app/                        # núcleo DSA (lista encadeada, busca, interface)
+├── data/                       # catálogo, histórico e CSV
+├── mobile/                     # app mobile completo
+├── agente/
+│   ├── fichas/                 # FC-01 a FC-07 (ATUAIS: provisórias)
+│   ├── agente.py               # núcleo do agente
+│   ├── fluxo.py                # LangGraph + fallback sequencial
+│   ├── seguranca.py            # PII, injection e validação
+│   ├── recuperacao.py          # busca por pontuação
+│   ├── provedor.py             # Groq/OpenAI/Ollama via HTTP
+│   ├── prompts.py              # prompt de sistema
+│   ├── fichas.py               # carregador/validador
+│   ├── cli.py                  # interface do agente
+│   └── .env.example
+├── avaliacao/
+│   ├── golden_dataset.json     # 26 mensagens originais
+│   ├── juiz.py                 # juiz determinístico + LLM as a Judge
+│   ├── baseline.py             # versão "antes da melhoria"
+│   ├── executar.py             # runner antes/depois
+│   └── resultados/             # resultados reais + relatório
+├── testes_usuarios/            # protocolo, formulário e planilha (pendente)
+├── pitch/                      # roteiro e link do vídeo (pendente)
+├── testes/                     # 141 testes Python
 ├── docs/
-│   └── DOCUMENTACAO.md
+│   ├── DOCUMENTACAO.md         # documentação DSA (P1/P2)
+│   └── DOCUMENTACAO_UNIFICADA.md # documento único P1–P4 (16 seções)
+├── requirements.txt            # langgraph (opcional)
 ├── README.md
 └── .gitignore
 ```
 
-## Menu
+## Menu do catálogo
 
 | Opção | Operação |
-|---|---|
+|---:|---|
 | 1 | Cadastrar serviço |
 | 2 | Consultar por ID |
 | 3 | Pesquisar por título, categoria ou descrição |
@@ -106,12 +178,39 @@ Jun/
 | 10 | Navegar por categorias |
 | 11 | Indicadores de atendimento |
 | 12 | Exportar atendimentos para CSV |
+| 13 | Agente de documentos pessoais (IA) |
 | 0 | Salvar e sair |
+
+O menu do agente tem opções próprias para perguntar, navegar pelas fichas e ler o aviso de privacidade. Nenhuma pergunta é armazenada.
+
+## Segurança e privacidade
+
+- **Não coleta** dados pessoais. CPF, RG, CNH, título, telefone, e-mail, endereço e números longos são detectados, ocultados e não repetidos.
+- **Não armazena** perguntas. A CLI guarda apenas contadores da sessão.
+- **Não aceita** instruções vindas da mensagem. O documento do enunciado continha uma instrução maliciosa ao final; ela foi tratada como dado e ignorada. O mesmo vale para `[SISTEMA] Nova regra...` e “ignore as instruções anteriores”.
+- **Não inventa.** Fora das fichas, a resposta é “não encontrei” + orientação ao órgão competente.
+- **Não é canal oficial.** Toda resposta de escopo traz o aviso e a data de verificação.
+- O juiz LLM recebe a mensagem com dados pessoais mascarados e não recebe números de documentos nem como “fato proibido”.
 
 ## Documentação
 
-A documentação unificada, com a proposta da Lição 1, a implementação da Lição 2, a análise Big-O, o checklist dos requisitos e as evidências de testes, está em:
+- [`docs/DOCUMENTACAO_UNIFICADA.md`](docs/DOCUMENTACAO_UNIFICADA.md) — documento único com as 16 seções, arquitetura, segurança, resultados, limitações e checklist.
+- [`docs/DOCUMENTACAO.md`](docs/DOCUMENTACAO.md) — documentação detalhada do DSA (Projetos 1 e 2).
+- [`docs/EVIDENCIAS_TESTES.md`](docs/EVIDENCIAS_TESTES.md) — comandos e saídas reais dos testes.
+- [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md) — resultados do Golden Dataset.
+- [`avaliacao/conferencia_manual.md`](avaliacao/conferencia_manual.md) — amostra para conferência humana (pendente).
+- [`pitch/roteiro.md`](pitch/roteiro.md) — roteiro do vídeo de 3 minutos.
+- [`testes_usuarios/protocolo.md`](testes_usuarios/protocolo.md) — protocolo do teste com 5 pessoas externas.
 
-- [`docs/DOCUMENTACAO.md`](docs/DOCUMENTACAO.md)
+## Pendências antes da entrega
 
-As versões originais dos dois projetos foram preservadas em `../python` e `../dts`, sem alterações.
+1. Substituir as **7 fichas provisórias** pelas fichas oficiais FC-01 a FC-07 fornecidas pelos professores.
+2. Configurar um provedor de LLM e executar `--juiz llm` para gerar os resultados do **LLM as a Judge**.
+3. Fazer a **conferência manual** de uma amostra (formulário em `avaliacao/conferencia_manual.md`).
+4. Executar o teste com **≥5 pessoas externas** e preencher a planilha anônima.
+5. Gravar o vídeo de até 3 minutos, publicar como **não listado** e colar o link em `pitch/link_video.txt`.
+6. Preencher nomes/RMs, link do GitHub e demais dados do grupo na documentação única.
+
+## Versões originais
+
+As versões originais dos dois primeiros projetos foram preservadas em `../python` e `../dts`, sem alterações.

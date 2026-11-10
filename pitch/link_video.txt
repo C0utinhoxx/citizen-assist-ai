@@ -1,0 +1,20 @@
+# Link do vídeo pitch
+
+**Status:** PENDENTE — o vídeo ainda não foi gravado/publicado.
+
+Cole abaixo o link do YouTube **não listado** depois da publicação:
+
+```text
+COLE_AQUI_O_LINK_DO_YOUTUBE_NAO_LISTADO
+```
+
+Checklist antes de colar:
+
+- [ ] Duração de até 3 minutos.
+- [ ] Narração humana (sem voz de IA).
+- [ ] Vídeo publicado como **não listado**.
+- [ ] Link testado em janela anônima.
+- [ ] Nomes/RMs e link do GitHub na descrição.
+- [ ] Nenhum dado pessoal real ou chave de API aparece no vídeo.
+
+Depois de colar o link, atualize também o `README.md` e a documentação única.

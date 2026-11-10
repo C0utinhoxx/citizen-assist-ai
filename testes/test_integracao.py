@@ -274,14 +274,27 @@ class TestMenuUnificado(unittest.TestCase):
 
     def test_menu_recusa_opcao_inexistente(self):
         saida = io.StringIO()
-        with patch("builtins.input", side_effect=["13", "0", "5"]):
+        with patch("builtins.input", side_effect=["14", "0", "5"]):
             with redirect_stdout(saida):
                 executar_menu(
                     self.lista, self.assistente, self.caminho_servicos
                 )
 
-        self.assertIn("Entrada inválida. Digite um número de 0 a 12.",
+        self.assertIn("Entrada inválida. Digite um número de 0 a 13.",
                       saida.getvalue())
+
+    def test_menu_abre_o_agente_de_documentos(self):
+        saida = io.StringIO()
+        with patch("builtins.input", side_effect=["13", "0", "0", "5"]):
+            with redirect_stdout(saida):
+                executar_menu(
+                    self.lista, self.assistente, self.caminho_servicos
+                )
+
+        texto = saida.getvalue()
+        self.assertIn("Agente de Documentos Pessoais", texto)
+        self.assertIn("Sessão encerrada", texto)
+        self.assertIn("Nenhuma pergunta foi armazenada", texto)
 
 
 if __name__ == "__main__":

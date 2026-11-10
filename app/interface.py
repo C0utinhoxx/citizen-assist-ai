@@ -327,6 +327,7 @@ def mostrar_menu(lista, assistente):
     print("10 - Navegar por categorias")
     print("11 - Indicadores de atendimento")
     print("12 - Exportar atendimentos para CSV")
+    print("13 - Agente de documentos pessoais (IA)")
     print("0 - Salvar e sair")
     print("=" * 60)
 
@@ -335,7 +336,7 @@ def executar_menu(lista, assistente, caminho_servicos):
     """Executa o menu interativo até a opção 0."""
     while True:
         mostrar_menu(lista, assistente)
-        opcao = ler_inteiro("Escolha uma opção: ", 0, 12)
+        opcao = ler_inteiro("Escolha uma opção: ", 0, 13)
 
         if opcao == 0:
             if salvar_servicos(caminho_servicos, lista):
@@ -369,6 +370,12 @@ def executar_menu(lista, assistente, caminho_servicos):
             assistente.indicadores()
         elif opcao == 12:
             assistente.exportar_csv()
+        elif opcao == 13:
+            # Importação tardia: o DSA continua funcionando mesmo se as
+            # dependências opcionais do agente não estiverem instaladas.
+            from agente.cli import executar_menu_agente
+
+            executar_menu_agente()
 
         if alterou:
             salvar_servicos(caminho_servicos, lista)

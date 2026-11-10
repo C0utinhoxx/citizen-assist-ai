@@ -1,4 +1,6 @@
-# Citizen Assist AI — Documentação Unificada
+# Citizen Assist AI — Documentação do Catálogo DSA (Projetos 1 e 2)
+
+> **Nota:** este documento detalha o catálogo DSA dos Projetos 1 e 2. A documentação única dos Projetos 1 a 4, com o agente de IA, a avaliação e o checklist de entrega, está em [`DOCUMENTACAO_UNIFICADA.md`](DOCUMENTACAO_UNIFICADA.md).
 
 **Global Solution 2026.2 — Citizen Tech**
 **Disciplina:** Data Structures and Algorithms (DSA)
@@ -225,6 +227,7 @@ A remoção trata três casos: primeiro nó, nó do meio e último nó. Em todos
 | 10 | Navegar por categorias |
 | 11 | Indicadores de atendimento |
 | 12 | Exportar atendimentos para CSV |
+| 13 | Agente de documentos pessoais (IA) |
 | 0 | Salvar e sair |
 
 O menu mostra a quantidade de serviços e as categorias carregadas. Opções inválidas não encerram o programa.
@@ -395,7 +398,9 @@ Ran 81 tests in 0.058s
 OK
 ```
 
-Distribuição dos 81 testes:
+> **Atualização (2026-11-10):** este bloco registra a suíte original dos Projetos 1 e 2. Depois da inclusão do agente, `python3 -m unittest discover -s testes -t .` passou a executar **141 testes**: 82 do catálogo/mobile e 59 do agente/avaliação/provedor. O `test_integracao.py` ganhou 1 teste da opção 13 (17 → 18). Veja [`EVIDENCIAS_TESTES.md`](EVIDENCIAS_TESTES.md).
+
+Distribuição dos 81 testes originais:
 
 | Arquivo | Testes | Cobertura |
 |---|---:|---|
@@ -430,7 +435,7 @@ Resultado atual: **78 verificações aprovadas**, cobrindo lista encadeada, orde
 | Exclusão confirmada | ID 99, `s` | Registro removido | `Serviço excluído.` |
 | Exclusão cancelada | ID 99, `n` | Nada alterado | `Operação cancelada.` |
 | Exclusão inexistente | ID 999 | Não encontrado | `Serviço não encontrado.` |
-| Opção inválida | `13` | Pedir novamente | `Entrada inválida. Digite um número de 0 a 12.` |
+| Opção inválida | `14` | Pedir novamente | `Entrada inválida. Digite um número de 0 a 13.` |
 | Texto vazio | Enter | Pedir novamente | `Este campo não pode ficar vazio.` |
 | Lista vazia | ordenar/listar/analisar | Sem erro | Avisos específicos |
 | Pergunta encontrada | `Como faço o cartão do SUS?` | Confiança ALTA | 7 pontos |
@@ -570,12 +575,12 @@ node mobile/teste-logica.js
 | Modelagem em Python com classes e referências | `Servico`, `No`, `ListaEncadeada` | Atendido |
 | Atualização e exclusão preservando a lista | menus 4 e 5 | Atendido |
 | Informação útil de processamento | menus 8 e 11 | Atendido |
-| Menu interativo com todas as operações | menu 0 a 12 | Atendido |
+| Menu interativo com todas as operações | menu 0 a 13 (12 do catálogo + agente) | Atendido |
 | Validação de entradas e opções inexistentes | `ler_inteiro()`, `ler_texto()`, `confirmar()` | Atendido |
 | IDs duplicados | recusa no cadastro | Atendido |
 | Consultas sem resultado | mensagens específicas | Atendido |
 | Análise Big-O | seção 13 | Atendido |
-| Testes normais, inexistentes, inválidos e lista vazia | 81 testes automatizados | Atendido |
+| Testes normais, inexistentes, inválidos e lista vazia | 81 testes originais do P1/P2 (141 na suíte atual) | Atendido |
 | Persistência em arquivos (opcional) | JSON e CSV | Atendido |
 | Relatórios/indicadores (opcional) | menus 8 e 11 | Atendido |
 | Documentação técnica | este documento | Atendido |
@@ -590,9 +595,9 @@ node mobile/teste-logica.js
 | Lista encadeada e recursos específicos da linguagem | 3,0 | `No`, `ListaEncadeada`, referências, percurso e remoção |
 | Algoritmos de busca e ordenação implementados | 2,0 | busca linear por ID/texto, pontuação e Selection Sort |
 | Organização do código, documentação e Big-O | 1,0 | módulos separados, esta documentação e seção 13 |
-| Evidências de testes e demonstração | 1,0 | 81 testes automatizados, teste manual e roteiro de demonstração |
+| Evidências de testes e demonstração | 1,0 | 81 testes do P1/P2 + 59 do agente (141 no total), teste manual e roteiro de demonstração |
 
-O único item que ainda depende da equipe é a **gravação da demonstração em vídeo**; o roteiro está pronto na seção 19.
+O único item deste recorte P1/P2 que ainda depende da equipe é a **gravação da demonstração em vídeo**; o roteiro está pronto na seção 19. As pendências do Projeto 3 e do Projeto 4 estão na documentação única.
 
 ---
 
