@@ -88,7 +88,8 @@ def _privacidade() -> None:
     print(
         "\n--- Privacidade, fontes e limitações ---\n"
         "- O agente usa apenas as fichas FC-01 a FC-07 como fonte de verdade.\n"
-        "- As fichas atuais são provisórias e serão substituídas pelas oficiais.\n"
+        "- As fichas são material didático fictício do exercício, "
+        "versão de 01/10/2026.\n"
         "- Nenhuma pergunta é gravada em arquivo, banco ou histórico.\n"
         "- CPF, RG, CNH, título, telefone, e-mail e endereço são recusados e "
         "ocultados.\n"

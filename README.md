@@ -1,7 +1,7 @@
 # Citizen Assist AI
 
 **Equipe:** Bruno Riquelme Coutinho Pereira (RM 569619) · Eduardo Bigoli Portela (RM 569897) · Gustavo Fondato de Souza (RM 573651)  
-**Turma:** _preencher_ · **Repositório:** _preencher link do GitHub_
+**Turma:** 1CCPX · **Repositório:** _preencher link do GitHub_
 
 Solução em **Python** para a **Global Solution 2026.2 — Citizen Tech**, reunindo os Projetos 1 a 4:
 
@@ -16,12 +16,12 @@ O núcleo dos Projetos 1 e 2 foi preservado. O agente é um módulo separado, pa
 
 | Projeto | Situação | Observação |
 |---|---|---|
-| P1 — proposta | Entregue com ressalvas | Falta apenas a identificação nominal do grupo e o link do repositório. |
+| P1 — proposta | Entregue | Nomes/RMs preenchidos; falta apenas publicar o link do repositório. |
 | P2 — DSA | Entregue | 81 testes originais do P1/P2 + 78 verificações mobile; suíte completa atual: 141 testes. |
-| P3 — agente | Parcial | Arquitetura, segurança, fluxo, avaliação e testes prontos. As 7 fichas oficiais ainda não estão no projeto; os arquivos atuais são **provisórios** e foram montados apenas com fatos do Golden Dataset. O juiz LLM está implementado, mas depende de uma chave/modelo para ser executado. |
+| P3 — agente | Entregue com pendências de validação humana | As 7 fichas oficiais (versão 01/10/2026) estão importadas. Arquitetura, segurança, LangGraph, avaliação determinística e LLM as a Judge executados. Faltam a conferência manual e o teste com 5 pessoas. |
 | P4 — vídeo | Pendente | Roteiro e checklist prontos; gravação, narração humana e publicação no YouTube dependem do grupo. |
 
-> **Importante:** nenhum resultado de LLM, de teste com pessoas ou de gravação foi inventado. O que ainda não foi executado está marcado como pendente.
+> **Importante:** os resultados de LLM abaixo são reais e foram produzidos com OpenAI `gpt-4o-mini`. Nenhum resultado de teste com pessoas ou de gravação foi inventado. O que ainda não foi executado está marcado como pendente.
 
 ## O que o sistema faz
 
@@ -107,12 +107,20 @@ python3 -m avaliacao.executar --modo ambos --juiz deterministico
 python3 -m avaliacao.executar --modo ambos --juiz llm --agente llm
 ```
 
-Resultados desta máquina com o juiz determinístico:
+Resultados reais desta máquina:
+
+**Juiz determinístico (offline, reproduzível):**
+
+- **Antes (baseline ingênuo):** 0/26 exatos, 7 parciais, 19 falhas, média **0,135** (13,5%).
+- **Depois (agente melhorado):** **26/26 exatos**, média **1,000** (100,0%).
+
+**Juiz LLM (OpenAI `gpt-4o-mini`) com LangGraph 0.6.11:**
 
 - **Antes (baseline ingênuo):** 0/26 exatos, 6 parciais, 20 falhas, média **0,115** (11,5%).
-- **Depois (agente melhorado, LangGraph 0.6.11):** **26/26 exatos**, média **1,000** (100,0%). Sem o LangGraph, o mesmo fluxo roda em modo sequencial e os testes confirmam o mesmo comportamento.
+- **Depois (agente melhorado):** **25/26 exatos**, 1 parcial, 0 falhas, média **0,981** (98,1%).
+- O único parcial é o caso 24 (recusa de prompt injection sem citar uma ficha específica). A resposta esperada não exige ficha nesse caso; o juiz LLM marcou a citação como critério secundário. O juiz determinístico considera o caso correto.
 
-Esses números são do **juiz determinístico de rubrica explícita**, não de um LLM. O pipeline **LLM as a Judge** está implementado e testado com provedor HTTP local, mas a execução com um modelo real depende de chave/configuração. Veja [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md).
+Relatórios: [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md) (determinístico), [`avaliacao/resultados/llm_langgraph/relatorio.md`](avaliacao/resultados/llm_langgraph/relatorio.md) (LLM + LangGraph) e [`avaliacao/resultados/llm_sequencial/relatorio.md`](avaliacao/resultados/llm_sequencial/relatorio.md) (LLM + fallback sequencial).
 
 ## Testes
 
@@ -123,7 +131,7 @@ node mobile/teste-logica.js
 
 Resultado atual:
 
-- **141 testes Python aprovados** (81 originais preservados + 60 novos do agente/avaliação/provedor).
+- **141 testes Python aprovados** (81 originais preservados + 1 teste de integração da opção 13 + 59 do agente/avaliação/provedor).
 - **78 verificações mobile** aprovadas.
 
 Os testes do agente cobrem fichas, PII, prompt injection, entradas inválidas, fluxo, citações, fallback do LLM, Golden Dataset, juiz determinístico, juiz LLM e cliente HTTP OpenAI-compatível.
@@ -138,7 +146,7 @@ Jun/
 ├── data/                       # catálogo, histórico e CSV
 ├── mobile/                     # app mobile completo
 ├── agente/
-│   ├── fichas/                 # FC-01 a FC-07 (ATUAIS: provisórias)
+│   ├── fichas/                 # FC-01 a FC-07 (oficiais, versão 01/10/2026)
 │   ├── agente.py               # núcleo do agente
 │   ├── fluxo.py                # LangGraph + fallback sequencial
 │   ├── seguranca.py            # PII, injection e validação
@@ -153,9 +161,9 @@ Jun/
 │   ├── juiz.py                 # juiz determinístico + LLM as a Judge
 │   ├── baseline.py             # versão "antes da melhoria"
 │   ├── executar.py             # runner antes/depois
-│   └── resultados/             # resultados reais + relatório
-├── testes_usuarios/            # protocolo, formulário e planilha (pendente)
-├── pitch/                      # roteiro e link do vídeo (pendente)
+│   └── resultados/             # determinístico + llm_langgraph + llm_sequencial
+├── testes_usuarios/            # protocolo e planilha (execução pendente)
+├── pitch/                      # roteiro pronto; link do vídeo pendente
 ├── testes/                     # 141 testes Python
 ├── docs/
 │   ├── DOCUMENTACAO.md         # documentação DSA (P1/P2)
@@ -200,8 +208,9 @@ O menu do agente tem opções próprias para perguntar, navegar pelas fichas e l
 - [`docs/DOCUMENTACAO_UNIFICADA.md`](docs/DOCUMENTACAO_UNIFICADA.md) — documento único com as 16 seções, arquitetura, segurança, resultados, limitações e checklist.
 - [`docs/DOCUMENTACAO.md`](docs/DOCUMENTACAO.md) — documentação detalhada do DSA (Projetos 1 e 2).
 - [`docs/EVIDENCIAS_TESTES.md`](docs/EVIDENCIAS_TESTES.md) — comandos e saídas reais dos testes.
-- [`docs/PEDIDO_FICHAS.md`](docs/PEDIDO_FICHAS.md) — texto pronto para pedir as fichas oficiais ao professor.
-- [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md) — resultados do Golden Dataset.
+- [`docs/PEDIDO_FICHAS.md`](docs/PEDIDO_FICHAS.md) — registro da importação das fichas oficiais.
+- [`agente/fichas/LEIA-ME.md`](agente/fichas/LEIA-ME.md) — origem, versão e formato das fichas oficiais.
+- [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md) — resultados do juiz determinístico.
 - [`avaliacao/conferencia_manual.md`](avaliacao/conferencia_manual.md) — amostra para conferência humana (pendente).
 - [`pitch/roteiro.md`](pitch/roteiro.md) — roteiro do vídeo de 3 minutos.
 - [`testes_usuarios/protocolo.md`](testes_usuarios/protocolo.md) — protocolo completo do teste com 5 pessoas externas.
@@ -209,12 +218,13 @@ O menu do agente tem opções próprias para perguntar, navegar pelas fichas e l
 
 ## Pendências antes da entrega
 
-1. Substituir as **7 fichas provisórias** pelas fichas oficiais FC-01 a FC-07 fornecidas pelos professores.
-2. Configurar um provedor de LLM e executar `--juiz llm` para gerar os resultados do **LLM as a Judge**.
-3. Fazer a **conferência manual** de uma amostra (formulário em `avaliacao/conferencia_manual.md`).
-4. Executar o teste com **≥5 pessoas externas** e preencher a planilha anônima.
-5. Gravar o vídeo de até 3 minutos, publicar como **não listado** e colar o link em `pitch/link_video.txt`.
-6. Preencher a turma e o link do GitHub na documentação única e no README.
+1. Fazer a **conferência manual** de uma amostra (formulário em `avaliacao/conferencia_manual.md`).
+2. Executar o teste com **≥5 pessoas externas** e preencher a planilha anônima.
+3. Gravar o vídeo de até 3 minutos, publicar como **não listado** e colar o link em `pitch/link_video.txt`.
+4. Publicar o repositório no GitHub e preencher o link no README e na documentação única.
+5. Revisar o resultado do juiz LLM (25/26; o parcial é o caso 24) e registrar a análise final.
+
+As fichas oficiais já foram importadas e o juiz LLM já foi executado com `gpt-4o-mini`; esses itens não são mais pendências.
 
 ## Versões originais
 

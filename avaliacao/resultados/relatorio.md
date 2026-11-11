@@ -1,16 +1,16 @@
 # Resultados do Golden Dataset
 
-- Executado em: **2026-11-10 20:36:31**
+- Executado em: **2026-11-11 20:01:39**
 - Dataset: **1.0** (26 mensagens originais)
 - Juiz: **deterministico**
-- Provedor: **auto (usa chave disponível, se houver)**
-- Fluxo do agente: **{'baseline': 'sequencial (baseline)', 'melhorado': 'langgraph'}**
+- Provedor: **openai (configurado)**
+- Fluxo do agente: **{'baseline': 'sequencial (baseline)', 'melhorado': 'sequencial'}**
 
 > As 26 mensagens são as originais do enunciado. Nenhuma foi substituída.
 
 ## baseline
 
-Acertos exatos: **0/26** · parciais: **6** · falhas: **20** · nota média: **0.115** · aproveitamento: **11.5%**
+Acertos exatos: **0/26** · parciais: **7** · falhas: **19** · nota média: **0.135** · aproveitamento: **13.5%**
 
 ### Casos avaliados — baseline
 
@@ -20,20 +20,20 @@ Acertos exatos: **0/26** · parciais: **6** · falhas: **20** · nota média: **
 | 2 | Escopo | 0.0 | agendamento, obrigatorio | 1/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 3 | Escopo | 0.0 | nao e necessario boletim, extravio, roubo, furto | 0/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 4 | Escopo | 0.0 | certidao de nascimento, casamento, comprovante de residencia, 90 dias, boletim de ocorrencia, declaracao de extravio | 0/6 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
-| 5 | Escopo | 0.0 | 10 dias uteis | 0/1 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
+| 5 | Escopo | 0.5 | — | 1/1 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 6 | Escopo | 0.0 | 12 anos, responsavel legal, documento original com foto | 0/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 7 | Escopo | 0.5 | — | 4/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
-| 8 | Escopo | 0.0 | 7 00, presencial | 0/2 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
+| 8 | Escopo | 0.5 | — | 2/2 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 9 | Escopo | 0.5 | — | 4/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
-| 10 | Escopo | 0.0 | gratuito, primeira via, segunda via, transferencia | 0/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
+| 10 | Escopo | 0.5 | — | 4/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 11 | Escopo | 0.0 | 150 dias, eleicao, seguinte | 0/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 12 | Escopo | 0.5 | — | 2/2 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 13 | Escopo | 0.0 | 49 00, pdf, 3 dias uteis | 0/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 14 | Escopo | 0.0 | procuracao simples, documento original com foto, quem retira | 0/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
-| 15 | Escopo | 0.5 | — | 2/2 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
+| 15 | Escopo | 0.0 | 30 dias, antes do vencimento | 0/2 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 16 | Escopo | 0.0 | 5 anos, 50 a 69 | 0/2 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 17 | Escopo | 0.0 | nao, dirigir, mais de 30 dias | 1/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
-| 18 | Escopo | 0.5 | — | 4/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
+| 18 | Escopo | 0.0 | segunda a sexta, 8h, 17h, nao ha atendimento aos sabados | 0/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 19 | Escopo | 0.0 | libras, 48 horas, antecedencia | 0/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não. |
 | 20 | Fora do escopo | 0.0 | fichas, orgao competente | 1/3 fatos esperados; citação=sim; proibidos=nenhum; aviso=não. |
 | 21 | Entrada inválida | 0.0 | nao consegui entender, reformule, categoria | 0/3 fatos esperados; citação=sim; proibidos=nenhum; aviso=não. |

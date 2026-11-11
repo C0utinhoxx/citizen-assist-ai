@@ -15,6 +15,7 @@ Uma seção só entra no resultado se a pergunta tiver uma âncora de assunto
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
@@ -89,6 +90,27 @@ class Recuperador:
             if len(token) >= 3 and token not in PALAVRAS_GENERICAS
         ]
 
+    @staticmethod
+    def _chave_especifica(pergunta: str, chaves: Iterable[str]) -> bool:
+        """True se uma palavra-chave da seção ancora o assunto da pergunta.
+
+        Uma palavra-chave só ancora se tiver ao menos um termo que não seja
+        genérico. Assim "quanto custa" não ancora uma pergunta sobre
+        passaporte, mas "certidão" e "sábados" ancoram.
+        """
+        tokens_pergunta = set(normalizar(pergunta).split())
+        for chave in chaves:
+            if not contem_palavra(pergunta, chave):
+                continue
+            especificos = [
+                token
+                for token in chave.split()
+                if token not in PALAVRAS_GENERICAS
+            ]
+            if any(token in tokens_pergunta for token in especificos):
+                return True
+        return False
+
     def buscar(self, pergunta: str, limite: int = 8) -> List[Ocorrencia]:
         """Devolve as ocorrências mais prováveis, da maior para a menor."""
         if not normalizar(pergunta):
@@ -124,11 +146,13 @@ class Recuperador:
             # Âncora: a pergunta precisa falar de algo que existe nesta ficha.
             # Sem isso, "quanto custa o passaporte?" casaria com "quanto custa"
             # de uma ficha de RG e produziria uma resposta errada.
-            tem_ancora = any(
-                token in ficha.vocabulario() for token in tokens_assunto
-            ) or any(
-                contem_palavra(pergunta, normalizar(palavra))
-                for palavra in ficha.palavras_chave
+            tem_ancora = (
+                any(token in ficha.vocabulario() for token in tokens_assunto)
+                or any(
+                    contem_palavra(pergunta, normalizar(palavra))
+                    for palavra in ficha.palavras_chave
+                )
+                or self._chave_especifica(pergunta, item.chaves)
             )
             if not tem_ancora:
                 continue
@@ -158,22 +182,35 @@ class Recuperador:
     ) -> List[Ocorrencia]:
         """Escolhe as seções que entram na resposta.
 
-        Regra: mantém a melhor seção e as que empataram com ela. Assim a
-        resposta fica curta e não mistura, por exemplo, o preço do RG com o
-        preço da certidão só porque as duas seções falam em "segunda via".
-        Empates acontecem em perguntas que realmente precisam de duas seções,
-        como "perdi o RG: preciso de boletim?".
+        Regra: mantém a melhor seção, seções da mesma ficha com pontuação
+        próxima e fichas citadas no texto da melhor seção (por exemplo,
+        "ver FC-07"). Isso permite completar uma resposta que a ficha oficial
+        dividiu em vários campos, sem misturar assuntos de outras fichas.
+
+        A pontuação de corte é 50% da melhor. Em perguntas simples, como
+        "quanto custa a segunda via do RG?", apenas a seção de custo entra.
+        Em perguntas compostas, como "preciso agendar a segunda via?", a
+        seção de agendamento também entra.
         """
         if not ocorrencias:
             return []
 
         melhor = ocorrencias[0].pontos
+        corte = max(PONTOS_MINIMOS, melhor * 0.5)
+        fichas_permitidas = {ocorrencias[0].ficha.id}
+        for referencia in re.findall(
+            r"FC-\d{2}", ocorrencias[0].secao.texto, re.IGNORECASE
+        ):
+            fichas_permitidas.add(referencia.upper())
+
         escolhidas: List[Ocorrencia] = []
         por_ficha: Dict[str, int] = {}
 
         for ocorrencia in ocorrencias:
-            if ocorrencia.pontos < melhor:
+            if ocorrencia.pontos < corte:
                 break
+            if ocorrencia.ficha.id not in fichas_permitidas:
+                continue
             if por_ficha.get(ocorrencia.ficha.id, 0) >= 2:
                 continue
             escolhidas.append(ocorrencia)

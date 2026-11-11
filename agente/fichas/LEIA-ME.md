@@ -14,11 +14,17 @@ Esta pasta deve conter as **sete fichas oficiais** fornecidas pelos professores:
 
 ## Situação atual
 
-Os sete arquivos desta pasta são **provisórios**. Eles foram montados **somente com os fatos que aparecem nas 26 mensagens do Golden Dataset oficial e com os assuntos das fichas indicados no enunciado**, porque os arquivos originais das fichas não estavam disponíveis no computador no momento da implementação.
+As **sete fichas oficiais** foram localizadas em `~/Downloads/referencia` e importadas em **2026-11-11**. A versão oficial é de **01/10/2026** e a fonte é a **Central do Cidadão de Aurora** (material didático fictício do exercício).
 
-Nenhum valor, prazo, documento ou regra foi inventado. Onde o Golden Dataset não traz um fato, a ficha simplesmente não tem a seção. O agente responde “não encontrei nas fichas” nesses casos.
+Os arquivos desta pasta foram convertidos do formato original (campos em negrito) para o Markdown aceito pelo carregador, **sem resumir nem inventar conteúdo**. O texto de cada campo foi preservado; apenas os campos foram agrupados em seções pesquisáveis e receberam palavras-chave de índice. O aviso original do professor está em [`00_LEIA-ME.md`](00_LEIA-ME.md).
 
-Cada arquivo tem um aviso `STATUS: PROVISÓRIA` e uma data de verificação provisória. **Antes da entrega, substitua os sete arquivos pelas fichas oficiais.** O carregador aceita o mesmo formato Markdown descrito abaixo; não é necessário alterar código.
+O importador usado está em [`ferramentas/importar_fichas.py`](../../ferramentas/importar_fichas.py). Para reimportar outra versão oficial:
+
+```bash
+python3 ferramentas/importar_fichas.py /caminho/para/a/pasta/com/as/FC
+```
+
+O carregador aceita o formato Markdown descrito abaixo; não é necessário alterar o código do agente.
 
 ## Formato aceito
 

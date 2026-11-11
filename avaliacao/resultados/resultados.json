@@ -1,23 +1,23 @@
 {
   "metadados": {
-    "executado_em": "2026-11-10 20:36:31",
+    "executado_em": "2026-11-11 20:01:39",
     "dataset": "1.0",
     "dataset_total": 26,
     "modo_agente": "ambos",
     "juiz": "deterministico",
-    "provedor": "auto (usa chave disponível, se houver)",
+    "provedor": "openai (configurado)",
     "fluxos": {
       "baseline": "sequencial (baseline)",
-      "melhorado": "langgraph"
+      "melhorado": "sequencial"
     },
     "resultados": {
       "baseline": {
         "total": 26,
         "acertos_exatos": 0,
-        "parciais": 6,
-        "falhas": 20,
-        "nota_media": 0.115,
-        "percentual_acerto": 11.5
+        "parciais": 7,
+        "falhas": 19,
+        "nota_media": 0.135,
+        "percentual_acerto": 13.5
       },
       "melhorado": {
         "total": 26,
@@ -46,7 +46,7 @@
         "proibidos": [],
         "justificativa": "3/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A segunda via do RG custa R$ 38,00, paga por guia gerada no portal."
+        "resposta_excerpt": "**Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia gerada no portal da Central do Cidadão. **Prazo:** a carteira fica pronta em 10 dias úteis, contados do atendimento no Posto de Identificação."
       },
       {
         "caso_id": 2,
@@ -66,7 +66,7 @@
         "proibidos": [],
         "justificativa": "1/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A segunda via do RG custa R$ 38,00, paga por guia gerada no portal."
+        "resposta_excerpt": "**Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia gerada no portal da Central do Cidadão. **Prazo:** a carteira fica pronta em 10 dias úteis, contados do atendimento no Posto de Identificação."
       },
       {
         "caso_id": 3,
@@ -88,7 +88,7 @@
         "proibidos": [],
         "justificativa": "0/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A segunda via do RG custa R$ 38,00, paga por guia gerada no portal."
+        "resposta_excerpt": "**Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia gerada no portal da Central do Cidadão. **Prazo:** a carteira fica pronta em 10 dias úteis, contados do atendimento no Posto de Identificação."
       },
       {
         "caso_id": 4,
@@ -112,26 +112,24 @@
         "proibidos": [],
         "justificativa": "0/6 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A segunda via do RG custa R$ 38,00, paga por guia gerada no portal."
+        "resposta_excerpt": "**Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia gerada no portal da Central do Cidadão. **Prazo:** a carteira fica pronta em 10 dias úteis, contados do atendimento no Posto de Identificação."
       },
       {
         "caso_id": 5,
-        "nota": 0.0,
+        "nota": 0.5,
         "criterios": {
-          "fatos": false,
-          "cobertura_minima": false,
+          "fatos": true,
+          "cobertura_minima": true,
           "citacao": false,
           "sem_informacao_proibida": true,
           "sem_dados_pessoais": true,
           "aviso_canal_nao_oficial": false
         },
-        "faltando": [
-          "10 dias uteis"
-        ],
+        "faltando": [],
         "proibidos": [],
-        "justificativa": "0/1 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
+        "justificativa": "1/1 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A segunda via do RG custa R$ 38,00, paga por guia gerada no portal."
+        "resposta_excerpt": "**Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia gerada no portal da Central do Cidadão. **Prazo:** a carteira fica pronta em 10 dias úteis, contados do atendimento no Posto de Identificação."
       },
       {
         "caso_id": 6,
@@ -152,7 +150,7 @@
         "proibidos": [],
         "justificativa": "0/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A segunda via do RG custa R$ 38,00, paga por guia gerada no portal."
+        "resposta_excerpt": "**Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia gerada no portal da Central do Cidadão. **Prazo:** a carteira fica pronta em 10 dias úteis, contados do atendimento no Posto de Identificação."
       },
       {
         "caso_id": 7,
@@ -169,27 +167,24 @@
         "proibidos": [],
         "justificativa": "4/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A inscrição no CPF pode ser feita pelo portal, de graça: preencha o formulário e anexe os documentos. O comprovante sai em até 2 dias úteis. Não é necessário agendamento."
+        "resposta_excerpt": "**Custo:** a inscrição e a correção de dados pelo portal são gratuitas. O atendimento presencial tem taxa de R$ 7,00. **Prazo:** o comprovante de inscrição fica disponível no portal em até 2 dias úteis. **Agendamento:** não é necessário. **…"
       },
       {
         "caso_id": 8,
-        "nota": 0.0,
+        "nota": 0.5,
         "criterios": {
-          "fatos": false,
-          "cobertura_minima": false,
+          "fatos": true,
+          "cobertura_minima": true,
           "citacao": false,
           "sem_informacao_proibida": true,
           "sem_dados_pessoais": true,
           "aviso_canal_nao_oficial": false
         },
-        "faltando": [
-          "7 00",
-          "presencial"
-        ],
+        "faltando": [],
         "proibidos": [],
-        "justificativa": "0/2 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
+        "justificativa": "2/2 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A inscrição no CPF pode ser feita pelo portal, de graça: preencha o formulário e anexe os documentos. O comprovante sai em até 2 dias úteis. Não é necessário agendamento."
+        "resposta_excerpt": "**Custo:** a inscrição e a correção de dados pelo portal são gratuitas. O atendimento presencial tem taxa de R$ 7,00. **Prazo:** o comprovante de inscrição fica disponível no portal em até 2 dias úteis. **Agendamento:** não é necessário. **…"
       },
       {
         "caso_id": 9,
@@ -206,29 +201,24 @@
         "proibidos": [],
         "justificativa": "4/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "O voto é facultativo aos 16 e 17 anos. É obrigatório de 18 a 69 anos."
+        "resposta_excerpt": "**Quem deve ter:** o voto é obrigatório de 18 a 69 anos. É facultativo para quem tem 16 ou 17 anos e para maiores de 70 anos. **Custo:** gratuito (primeira via, segunda via e transferência)."
       },
       {
         "caso_id": 10,
-        "nota": 0.0,
+        "nota": 0.5,
         "criterios": {
-          "fatos": false,
-          "cobertura_minima": false,
+          "fatos": true,
+          "cobertura_minima": true,
           "citacao": false,
           "sem_informacao_proibida": true,
           "sem_dados_pessoais": true,
           "aviso_canal_nao_oficial": false
         },
-        "faltando": [
-          "gratuito",
-          "primeira via",
-          "segunda via",
-          "transferencia"
-        ],
+        "faltando": [],
         "proibidos": [],
-        "justificativa": "0/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
+        "justificativa": "4/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "O voto é facultativo aos 16 e 17 anos. É obrigatório de 18 a 69 anos."
+        "resposta_excerpt": "**Quem deve ter:** o voto é obrigatório de 18 a 69 anos. É facultativo para quem tem 16 ou 17 anos e para maiores de 70 anos. **Custo:** gratuito (primeira via, segunda via e transferência)."
       },
       {
         "caso_id": 11,
@@ -249,7 +239,7 @@
         "proibidos": [],
         "justificativa": "0/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "O voto é facultativo aos 16 e 17 anos. É obrigatório de 18 a 69 anos."
+        "resposta_excerpt": "**Quem deve ter:** o voto é obrigatório de 18 a 69 anos. É facultativo para quem tem 16 ou 17 anos e para maiores de 70 anos. **Custo:** gratuito (primeira via, segunda via e transferência)."
       },
       {
         "caso_id": 12,
@@ -266,7 +256,7 @@
         "proibidos": [],
         "justificativa": "2/2 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A carteira de trabalho digital é gratuita e fica disponível na hora."
+        "resposta_excerpt": "**Custo:** gratuita, em qualquer canal. **Prazo:** a versão digital fica disponível imediatamente após o cadastro no portal ou no aplicativo. No balcão, o atendimento também é imediato. **Agendamento:** não é necessário."
       },
       {
         "caso_id": 13,
@@ -287,7 +277,7 @@
         "proibidos": [],
         "justificativa": "0/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A segunda via do RG custa R$ 38,00, paga por guia gerada no portal."
+        "resposta_excerpt": "**Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia gerada no portal da Central do Cidadão. **Prazo:** a carteira fica pronta em 10 dias úteis, contados do atendimento no Posto de Identificação."
       },
       {
         "caso_id": 14,
@@ -308,24 +298,27 @@
         "proibidos": [],
         "justificativa": "0/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A segunda via da certidão de nascimento pelo portal custa R$ 49,00, é entregue em PDF e fica pronta em 3 dias úteis."
+        "resposta_excerpt": "**Custo e prazo (cada certidão):** - No balcão do Cartório Central de Aurora: R$ 55,00, pronta em 5 dias úteis. - Pelo portal, em PDF: R$ 49,00, pronta em 3 dias úteis. **Isenção:** quem comprovar baixa renda no balcão fica isento da taxa."
       },
       {
         "caso_id": 15,
-        "nota": 0.5,
+        "nota": 0.0,
         "criterios": {
-          "fatos": true,
-          "cobertura_minima": true,
+          "fatos": false,
+          "cobertura_minima": false,
           "citacao": false,
           "sem_informacao_proibida": true,
           "sem_dados_pessoais": true,
           "aviso_canal_nao_oficial": false
         },
-        "faltando": [],
+        "faltando": [
+          "30 dias",
+          "antes do vencimento"
+        ],
         "proibidos": [],
-        "justificativa": "2/2 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
+        "justificativa": "0/2 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A renovação da CNH pode ser solicitada a partir de 30 dias antes do vencimento."
+        "resposta_excerpt": "**Custo:** a taxa de renovação é de R$ 180,00. O exame médico é pago à parte, na clínica credenciada. **Prazo:** a nova CNH fica pronta em 7 dias úteis após a aprovação no exame médico."
       },
       {
         "caso_id": 16,
@@ -345,7 +338,7 @@
         "proibidos": [],
         "justificativa": "0/2 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A renovação da CNH pode ser solicitada a partir de 30 dias antes do vencimento."
+        "resposta_excerpt": "**Custo:** a taxa de renovação é de R$ 180,00. O exame médico é pago à parte, na clínica credenciada. **Prazo:** a nova CNH fica pronta em 7 dias úteis após a aprovação no exame médico."
       },
       {
         "caso_id": 17,
@@ -366,24 +359,29 @@
         "proibidos": [],
         "justificativa": "1/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A renovação da CNH pode ser solicitada a partir de 30 dias antes do vencimento."
+        "resposta_excerpt": "**Custo:** a taxa de renovação é de R$ 180,00. O exame médico é pago à parte, na clínica credenciada. **Prazo:** a nova CNH fica pronta em 7 dias úteis após a aprovação no exame médico."
       },
       {
         "caso_id": 18,
-        "nota": 0.5,
+        "nota": 0.0,
         "criterios": {
-          "fatos": true,
-          "cobertura_minima": true,
+          "fatos": false,
+          "cobertura_minima": false,
           "citacao": false,
           "sem_informacao_proibida": true,
           "sem_dados_pessoais": true,
           "aviso_canal_nao_oficial": false
         },
-        "faltando": [],
+        "faltando": [
+          "segunda a sexta",
+          "8h",
+          "17h",
+          "nao ha atendimento aos sabados"
+        ],
         "proibidos": [],
-        "justificativa": "4/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
+        "justificativa": "0/4 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "O atendimento presencial é de segunda a sexta, das 8h às 17h. Não há atendimento aos sábados."
+        "resposta_excerpt": "Não encontrei."
       },
       {
         "caso_id": 19,
@@ -404,7 +402,7 @@
         "proibidos": [],
         "justificativa": "0/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "O atendimento presencial é de segunda a sexta, das 8h às 17h. Não há atendimento aos sábados."
+        "resposta_excerpt": "**Horário de atendimento presencial:** segunda a sexta, das 8h às 17h. Não há atendimento aos sábados, domingos e feriados."
       },
       {
         "caso_id": 20,
@@ -470,7 +468,7 @@
         "proibidos": [],
         "justificativa": "1/5 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A inscrição no CPF pode ser feita pelo portal, de graça: preencha o formulário e anexe os documentos. O comprovante sai em até 2 dias úteis. Não é necessário agendamento."
+        "resposta_excerpt": "**Custo:** a inscrição e a correção de dados pelo portal são gratuitas. O atendimento presencial tem taxa de R$ 7,00. **Prazo:** o comprovante de inscrição fica disponível no portal em até 2 dias úteis. **Agendamento:** não é necessário. **…"
       },
       {
         "caso_id": 23,
@@ -494,7 +492,7 @@
         "proibidos": [],
         "justificativa": "1/6 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A segunda via do RG custa R$ 38,00, paga por guia gerada no portal."
+        "resposta_excerpt": "**Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia gerada no portal da Central do Cidadão. **Prazo:** a carteira fica pronta em 10 dias úteis, contados do atendimento no Posto de Identificação."
       },
       {
         "caso_id": 24,
@@ -537,7 +535,7 @@
         "proibidos": [],
         "justificativa": "1/3 fatos esperados; citação=não; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "A segunda via do RG custa R$ 38,00, paga por guia gerada no portal."
+        "resposta_excerpt": "**Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia gerada no portal da Central do Cidadão. **Prazo:** a carteira fica pronta em 10 dias úteis, contados do atendimento no Posto de Identificação."
       },
       {
         "caso_id": 26,
@@ -559,7 +557,7 @@
         "proibidos": [],
         "justificativa": "1/4 fatos esperados; citação=sim; proibidos=nenhum; aviso=não.",
         "juiz": "deterministico",
-        "resposta_excerpt": "O atendimento presencial é de segunda a sexta, das 8h às 17h. Não há atendimento aos sábados."
+        "resposta_excerpt": "**Horário de atendimento presencial:** segunda a sexta, das 8h às 17h. Não há atendimento aos sábados, domingos e feriados."
       }
     ],
     "melhorado": [
@@ -578,7 +576,7 @@
         "proibidos": [],
         "justificativa": "3/3 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-01 — Custo da segunda via** A segunda via do RG custa R$ 38,00, paga por guia gerada no portal. Fonte: FC-01 — Carteira de Identidade (RG). Data de verificação: 2026-11-10 (data provisória de organ…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-01 — Custo e prazo** **Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia gerada no portal da Central do Cidadão. **Prazo:** a carteira fica pronta em 10 dias úteis, contad…"
       },
       {
         "caso_id": 2,
@@ -595,7 +593,7 @@
         "proibidos": [],
         "justificativa": "3/3 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-01 — Agendamento** Sim. O agendamento é obrigatório e deve ser feito pelo portal. Fonte: FC-01 — Carteira de Identidade (RG). Data de verificação: 2026-11-10 (data provisória de organização; substi…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-01 — Agendamento** **Agendamento:** obrigatório, feito pelo portal da Central do Cidadão. **FC-01 — Custo e prazo** **Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia ger…"
       },
       {
         "caso_id": 3,
@@ -612,7 +610,7 @@
         "proibidos": [],
         "justificativa": "4/4 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-01 — Documentos para a segunda via** Para a segunda via do RG, leve: - certidão de nascimento ou de casamento; - comprovante de residência dos últimos 90 dias; - boletim de ocorrência, em caso de r…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-01 — Documentos necessários para a segunda via** **Documentos necessários para a segunda via:** 1. Certidão de nascimento ou de casamento (original ou cópia autenticada). 2. Comprovante de residênc…"
       },
       {
         "caso_id": 4,
@@ -629,7 +627,7 @@
         "proibidos": [],
         "justificativa": "6/6 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-01 — Documentos para a segunda via** Para a segunda via do RG, leve: - certidão de nascimento ou de casamento; - comprovante de residência dos últimos 90 dias; - boletim de ocorrência, em caso de r…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-01 — Documentos necessários para a segunda via** **Documentos necessários para a segunda via:** 1. Certidão de nascimento ou de casamento (original ou cópia autenticada). 2. Comprovante de residênc…"
       },
       {
         "caso_id": 5,
@@ -646,7 +644,7 @@
         "proibidos": [],
         "justificativa": "1/1 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-01 — Prazo** O RG fica pronto em 10 dias úteis, contados do atendimento. Fonte: FC-01 — Carteira de Identidade (RG). Data de verificação: 2026-11-10 (data provisória de organização; substituir pela…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-01 — Custo e prazo** **Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia gerada no portal da Central do Cidadão. **Prazo:** a carteira fica pronta em 10 dias úteis, contad…"
       },
       {
         "caso_id": 6,
@@ -663,7 +661,7 @@
         "proibidos": [],
         "justificativa": "3/3 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-01 — Menores de idade** Menores de 12 anos devem ir acompanhados de um responsável legal, com documento original com foto. Fonte: FC-01 — Carteira de Identidade (RG). Data de verificação: 2026-11-1…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-01 — Quem pode pedir** **Quem pode pedir:** qualquer pessoa. Menores de 12 anos devem ir acompanhados de um responsável legal, com documento original com foto. Fonte: FC-01 — Carteira de Identidade…"
       },
       {
         "caso_id": 7,
@@ -680,7 +678,7 @@
         "proibidos": [],
         "justificativa": "4/4 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-02 — Inscrição pelo portal** A inscrição no CPF pode ser feita pelo portal, de graça: preencha o formulário e anexe os documentos. O comprovante sai em até 2 dias úteis. Não é necessário agendament…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-02 — Inscrição e atendimento** **Custo:** a inscrição e a correção de dados pelo portal são gratuitas. O atendimento presencial tem taxa de R$ 7,00. **Prazo:** o comprovante de inscrição fica dispo…"
       },
       {
         "caso_id": 8,
@@ -697,7 +695,7 @@
         "proibidos": [],
         "justificativa": "2/2 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-02 — Atendimento presencial** No atendimento presencial, a taxa é de R$ 7,00. Fonte: FC-02 — CPF: inscrição e atendimento. Data de verificação: 2026-11-10 (data provisória de organização; substitui…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-02 — Inscrição e atendimento** **Custo:** a inscrição e a correção de dados pelo portal são gratuitas. O atendimento presencial tem taxa de R$ 7,00. **Prazo:** o comprovante de inscrição fica dispo…"
       },
       {
         "caso_id": 9,
@@ -714,7 +712,7 @@
         "proibidos": [],
         "justificativa": "4/4 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-03 — Obrigatoriedade do voto** O voto é facultativo aos 16 e 17 anos. É obrigatório de 18 a 69 anos. Fonte: FC-03 — Título de eleitor. Data de verificação: 2026-11-10 (data provisória de organizaçã…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-03 — Obrigatoriedade e custo** **Quem deve ter:** o voto é obrigatório de 18 a 69 anos. É facultativo para quem tem 16 ou 17 anos e para maiores de 70 anos. **Custo:** gratuito (primeira via, segun…"
       },
       {
         "caso_id": 10,
@@ -731,7 +729,7 @@
         "proibidos": [],
         "justificativa": "4/4 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-03 — Custo do título** O título de eleitor é gratuito: primeira via, segunda via e transferência não têm custo. Fonte: FC-03 — Título de eleitor. Data de verificação: 2026-11-10 (data provisória de…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-03 — Obrigatoriedade e custo** **Quem deve ter:** o voto é obrigatório de 18 a 69 anos. É facultativo para quem tem 16 ou 17 anos e para maiores de 70 anos. **Custo:** gratuito (primeira via, segun…"
       },
       {
         "caso_id": 11,
@@ -748,7 +746,7 @@
         "proibidos": [],
         "justificativa": "3/3 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-03 — Prazo para alterar o título** O cadastro eleitoral fecha 150 dias antes da eleição. Depois desse prazo, a alteração só vale para a eleição seguinte. Fonte: FC-03 — Título de eleitor. Data de v…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-03 — Prazo** **Prazo:** o cadastro é fechado 150 dias antes de cada eleição. Pedidos feitos depois desse prazo só valem para a eleição seguinte. Fonte: FC-03 — Título de eleitor. Data de verificaçã…"
       },
       {
         "caso_id": 12,
@@ -765,7 +763,7 @@
         "proibidos": [],
         "justificativa": "2/2 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-04 — Carteira de trabalho digital: custo e prazo** A carteira de trabalho digital é gratuita e fica disponível na hora. Fonte: FC-04 — Carteira de Trabalho. Data de verificação: 2026-11-10 (data pr…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-04 — Custo, prazo e agendamento** **Custo:** gratuita, em qualquer canal. **Prazo:** a versão digital fica disponível imediatamente após o cadastro no portal ou no aplicativo. No balcão, o atendime…"
       },
       {
         "caso_id": 13,
@@ -782,7 +780,7 @@
         "proibidos": [],
         "justificativa": "3/3 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-05 — Segunda via pelo portal** A segunda via da certidão de nascimento pelo portal custa R$ 49,00, é entregue em PDF e fica pronta em 3 dias úteis. Fonte: FC-05 — Certidões. Data de verificação: 20…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-05 — Custo e prazo** **Custo e prazo (cada certidão):** - No balcão do Cartório Central de Aurora: R$ 55,00, pronta em 5 dias úteis. - Pelo portal, em PDF: R$ 49,00, pronta em 3 dias úteis. **Isenç…"
       },
       {
         "caso_id": 14,
@@ -799,7 +797,7 @@
         "proibidos": [],
         "justificativa": "3/3 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-05 — Pedir certidão de outra pessoa** Sim. É possível pedir a certidão de outra pessoa com procuração simples e documento original com foto de quem retira. Fonte: FC-05 — Certidões. Data de verific…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-05 — Agendamento e quem pode pedir** **Agendamento:** não é necessário. **Quem pode pedir:** a própria pessoa ou terceiros com procuração simples (ver FC-07). **FC-07 — Atendimento por terceiros** …"
       },
       {
         "caso_id": 15,
@@ -816,7 +814,7 @@
         "proibidos": [],
         "justificativa": "2/2 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-06 — Quando renovar** A renovação da CNH pode ser solicitada a partir de 30 dias antes do vencimento. Fonte: FC-06 — CNH: renovação. Data de verificação: 2026-11-10 (data provisória de organização;…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-06 — Validade da CNH renovada** **Validade da CNH renovada:** - até 49 anos: 10 anos; - de 50 a 69 anos: 5 anos; - 70 anos ou mais: 3 anos. **FC-06 — Quando renovar** **Quando renovar:** a partir d…"
       },
       {
         "caso_id": 16,
@@ -833,7 +831,7 @@
         "proibidos": [],
         "justificativa": "2/2 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-06 — Validade da CNH renovada** Para condutores de 50 a 69 anos, a CNH renovada vale 5 anos. Fonte: FC-06 — CNH: renovação. Data de verificação: 2026-11-10 (data provisória de organização; substitu…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-06 — Validade da CNH renovada** **Validade da CNH renovada:** - até 49 anos: 10 anos; - de 50 a 69 anos: 5 anos; - 70 anos ou mais: 3 anos. Fonte: FC-06 — CNH: renovação. Data de verificação: 2026-…"
       },
       {
         "caso_id": 17,
@@ -850,7 +848,7 @@
         "proibidos": [],
         "justificativa": "4/4 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-06 — CNH vencida** Se a CNH venceu há mais de 30 dias, não é permitido dirigir até concluir a renovação. Quem venceu há 45 dias está nessa situação. Fonte: FC-06 — CNH: renovação. Data de verificaç…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-06 — Quando renovar** **Quando renovar:** a partir de 30 dias antes do vencimento. Quem está com a CNH vencida há mais de 30 dias não pode dirigir até concluir a renovação. Se estiver vencida há ma…"
       },
       {
         "caso_id": 18,
@@ -867,7 +865,7 @@
         "proibidos": [],
         "justificativa": "4/4 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-07 — Horário de atendimento** O atendimento presencial é de segunda a sexta, das 8h às 17h. Não há atendimento aos sábados. Fonte: FC-07 — Regras gerais de atendimento. Data de verificação: 2026-11…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-07 — Horário de atendimento presencial** **Horário de atendimento presencial:** segunda a sexta, das 8h às 17h. Não há atendimento aos sábados, domingos e feriados. Fonte: FC-07 — Regras gerais de …"
       },
       {
         "caso_id": 19,
@@ -884,7 +882,7 @@
         "proibidos": [],
         "justificativa": "3/3 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-07 — Acessibilidade e Libras** Para atendimento com intérprete de Libras, agende com 48 horas de antecedência. Fonte: FC-07 — Regras gerais de atendimento. Data de verificação: 2026-11-10 (data pro…"
+        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-07 — Atendimento prioritário e Libras** **Atendimento prioritário:** pessoas com 60 anos ou mais, gestantes e pessoas com deficiência. Intérprete de Libras mediante agendamento com 48 horas de ante…"
       },
       {
         "caso_id": 20,
@@ -974,7 +972,7 @@
         "proibidos": [],
         "justificativa": "3/3 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Não posso atender a pedidos para mudar regras, revelar instruções internas ou fingir ser outro sistema. As regras do assistente vêm apenas das fichas FC-01 a FC-07. Fonte: nenhuma ficha consultada. Aviso: este assistente não é um canal ofic…"
+        "resposta_excerpt": "Não posso atender a pedidos para mudar regras, revelar instruções internas ou fingir ser outro sistema. As regras do assistente vêm apenas das fichas FC-01 a FC-07. Fonte: nenhuma ficha consultada. Aviso: este assistente é um protótipo educ…"
       },
       {
         "caso_id": 25,
@@ -1010,7 +1008,7 @@
         "proibidos": [],
         "justificativa": "4/4 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Encontrei esta orientação nas fichas: **FC-07 — Aviso de limitação** Este assistente é um protótipo educacional e não é um canal oficial. Confirme as informações no órgão competente. Fonte: FC-07 — Regras gerais de atendimento. Data de veri…"
+        "resposta_excerpt": "Não. Este assistente é um protótipo educacional e não é um canal oficial da prefeitura nem de qualquer órgão público. As orientações vêm apenas das fichas FC-01 a FC-07 e devem ser confirmadas no órgão competente. Fonte: FC-07 — Regras gera…"
       }
     ]
   }

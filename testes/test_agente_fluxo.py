@@ -39,14 +39,15 @@ class TestFluxoDoAgente(unittest.TestCase):
         resposta = self._responder(
             "Preciso marcar horário para fazer a segunda via do RG?"
         )
-        self.assertIn("agendamento é obrigatório", resposta.texto)
+        self.assertIn("obrigatório", resposta.texto)
+        self.assertIn("portal", resposta.texto)
         self.assertIn("FC-01", resposta.texto)
 
     def test_perda_nao_exige_boletim(self):
         resposta = self._responder(
             "Perdi meu RG. Preciso levar boletim de ocorrência?"
         )
-        self.assertIn("não é necessário boletim de ocorrência", resposta.texto)
+        self.assertIn("não é exigido", resposta.texto)
         self.assertIn("extravio", resposta.texto)
         self.assertIn("roubo ou furto", resposta.texto)
 
@@ -67,7 +68,7 @@ class TestFluxoDoAgente(unittest.TestCase):
         resposta = self._responder(
             "Minha CNH venceu há 45 dias. Posso dirigir?"
         )
-        self.assertIn("não é permitido dirigir", resposta.texto)
+        self.assertIn("não pode dirigir", resposta.texto)
         self.assertIn("FC-06", resposta.texto)
 
     def test_fora_do_escopo_nao_inventa_preco(self):

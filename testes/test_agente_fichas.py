@@ -25,11 +25,11 @@ class TestFichas(unittest.TestCase):
             self.assertTrue(ficha.palavras_chave, ficha.id)
             self.assertGreaterEqual(len(ficha.secoes), 1, ficha.id)
 
-    def test_fichas_atuais_estao_marcadas_como_provisorias(self):
-        # Quando as fichas oficiais forem adicionadas, este teste deve ser
-        # ajustado para refletir o novo material.
+    def test_fichas_oficiais_estao_carregadas(self):
         for ficha in carregar_fichas().values():
-            self.assertTrue(ficha.provisoria, ficha.id)
+            self.assertFalse(ficha.provisoria, ficha.id)
+            self.assertIn("versão de 01/10/2026", ficha.fonte, ficha.id)
+            self.assertTrue(ficha.verificado_em.startswith("2026-10-01"), ficha.id)
 
     def test_nenhuma_ficha_tem_dado_pessoal(self):
         from agente.seguranca import contem_pii

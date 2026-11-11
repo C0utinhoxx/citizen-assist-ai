@@ -4,7 +4,7 @@
 **Disciplina:** Data Structures and Algorithms (DSA)  
 **Instituição:** FIAP
 
-> **Preencher antes da entrega:** turma, link do repositório GitHub e link do vídeo. Os nomes e RMs dos integrantes já estão preenchidos abaixo.
+> **Preencher antes da entrega:** link do repositório GitHub e link do vídeo. A turma (1CCPX) e os nomes/RMs já estão preenchidos abaixo.
 
 ## Sumário
 
@@ -34,7 +34,7 @@
 | Projeto | Citizen Assist AI — assistente digital de orientação ao cidadão |
 | Tema | Documentos pessoais: RG, CPF, título de eleitor, carteira de trabalho, certidões e CNH |
 | Integrantes | Bruno Riquelme Coutinho Pereira — RM 569619<br>Eduardo Bigoli Portela — RM 569897<br>Gustavo Fondato de Souza — RM 573651 |
-| Turma | _preencher_ |
+| Turma | 1CCPX |
 | Repositório | _preencher link do GitHub_ |
 | Vídeo | _preencher link do YouTube não listado_ |
 
@@ -46,7 +46,7 @@ A solução tem três camadas:
 2. **Agente de documentos** — respostas em linguagem simples, com citação da ficha, data de verificação, aviso de limitação e proteção de dados.
 3. **Avaliação** — Golden Dataset com as 26 mensagens originais, juiz determinístico, pipeline LLM as a Judge e comparação antes/depois.
 
-**Estado real da entrega:** o núcleo DSA está concluído e testado; a arquitetura do agente está concluída e testada; as fichas oficiais, a execução do juiz LLM, o teste com pessoas e o vídeo ainda dependem de materiais/decisões externas. Essas pendências estão explicitadas ao longo do documento e no checklist final.
+**Estado real da entrega:** o núcleo DSA está concluído e testado; a arquitetura do agente está concluída e testada; as fichas oficiais foram importadas e o juiz LLM foi executado com OpenAI `gpt-4o-mini` e LangGraph 0.6.11. A conferência manual, o teste com pessoas e o vídeo ainda dependem de execução humana. Essas pendências estão explicitadas ao longo do documento e no checklist final.
 
 ---
 
@@ -278,17 +278,16 @@ As sete fichas:
 
 ### Situação das fichas — leia com atenção
 
-Os arquivos em `agente/fichas/` são **provisórios**. Eles foram montados **somente com os fatos que aparecem nas 26 mensagens do Golden Dataset oficial e com os assuntos das fichas indicados no enunciado**, porque os arquivos FC-01 a FC-07 fornecidos pelos professores não estavam disponíveis no computador no momento da implementação.
+As **sete fichas oficiais** foram localizadas na pasta `referencia` em `~/Downloads` e importadas para `agente/fichas/` em **2026-11-11**. A versão oficial é de **01/10/2026** e a fonte é a **Central do Cidadão de Aurora**, material didático fictício do exercício.
+
+O conteúdo foi convertido do formato original (campos em negrito) para o Markdown do carregador **sem resumir nem inventar fatos**. Cada campo foi preservado; apenas foi agrupado em seções pesquisáveis com palavras-chave de índice. O aviso original do professor está em [`agente/fichas/00_LEIA-ME.md`](../agente/fichas/00_LEIA-ME.md) e o importador em [`ferramentas/importar_fichas.py`](../ferramentas/importar_fichas.py).
 
 Isso significa:
 
 - Nenhum valor, prazo ou documento foi inventado.
-- Onde o Golden Dataset não traz um fato, a ficha não tem a seção.
-- O agente responde “não encontrei” para perguntas que as fichas provisórias não cobrem.
-- Cada arquivo tem o aviso `STATUS: PROVISÓRIA` e uma data de verificação provisória (`2026-11-10`).
-- **Antes da entrega, os sete arquivos devem ser substituídos pelas fichas oficiais.** O carregador aceita o mesmo formato Markdown; não é necessário alterar código.
-
-O formato e as instruções de substituição estão em [`agente/fichas/LEIA-ME.md`](../agente/fichas/LEIA-ME.md).
+- O agente responde “não encontrei” quando a pergunta está fora das fichas.
+- Toda resposta de escopo cita a ficha e a data de verificação `2026-10-01`.
+- O formato e as instruções de reimportação estão em [`agente/fichas/LEIA-ME.md`](../agente/fichas/LEIA-ME.md).
 
 ### O que o agente faz
 
@@ -307,7 +306,7 @@ O formato e as instruções de substituição estão em [`agente/fichas/LEIA-ME.
 - Não emite documentos.
 - Não consulta CPF, RG, CNH ou processos.
 - Não agenda atendimento.
-- Não informa endereço ou telefone de unidade (não estão nas fichas provisórias).
+- Não informa endereço ou telefone de unidade (não estão nas fichas oficiais).
 - Não responde sobre passaporte, previdência, impostos ou outros temas fora das fichas.
 - Não substitui o órgão competente.
 
@@ -325,6 +324,7 @@ Pergunta
    ├── vazia / curta / longa / sem sentido ──► resposta de validação
    ├── dado pessoal ─────────────────────────► resposta de privacidade
    ├── prompt injection ─────────────────────► recusa + resposta segura
+   ├── pergunta sobre canal oficial ─────────► aviso de protótipo educacional
    └── ok
         │
         ▼
@@ -434,11 +434,11 @@ A busca é explicável:
 - palavra do assunto no título da seção: **+3**;
 - palavra do assunto no texto: **+1**.
 
-Uma seção só entra se houver **âncora de assunto**: alguma palavra da pergunta precisa existir de fato na ficha. Isso evita o erro clássico de responder “R$ 38,00” para “quanto custa o passaporte?” só porque “quanto custa” aparece na ficha do RG.
+Uma seção só entra se houver **âncora de assunto**: alguma palavra específica da pergunta precisa existir de fato na ficha ou nas palavras-chave da seção. Termos genéricos como “quanto custa” ou “documentos” não contam sozinhos. Isso evita o erro clássico de responder “R$ 38,00” para “quanto custa o passaporte?”.
 
 ### Seleção do contexto
 
-A resposta usa a melhor seção e as que **empataram** com ela. Empates acontecem em perguntas que realmente precisam de duas seções, como “perdi o RG: preciso de boletim?”. A regra mantém a resposta curta e evita misturar o preço do RG com o preço da certidão.
+A resposta usa a melhor seção e seções **da mesma ficha** com pontuação próxima (corte de 50% da melhor). Se a melhor seção citar outra ficha (por exemplo, “ver FC-07”), a melhor seção dessa ficha também entra. A regra permite completar respostas que a ficha oficial dividiu em vários campos — como custo, prazo e agendamento — sem misturar assuntos de fichas diferentes.
 
 ### Limitação
 
@@ -502,9 +502,11 @@ O juiz LLM recebe:
 
 - a mensagem com PII mascarada;
 - a resposta esperada;
-- a ficha obrigatória;
+- a ficha obrigatória e as fichas relacionadas, com fonte e data de verificação;
 - os fatos esperados;
 - a resposta do agente.
+
+As fichas de referência são enviadas junto para que o juiz não confunda a data de verificação oficial (`2026-10-01`) com invenção e para que aceite informações adicionais verdadeiras da ficha.
 
 Números de documentos não são enviados nem como “fatos proibidos”: eles são substituídos por `[dado pessoal não repetido]`. Um teste automatizado verifica que o CPF do caso 22 não aparece no payload enviado ao provedor.
 
@@ -554,54 +556,62 @@ Nota: **1,0** se todos os critérios; **0,5** se o conteúdo principal está cor
 
 ### LLM as a Judge
 
-O `JuizLLM` usa o mesmo provedor configurado. O prompt define os critérios e pede um JSON com nota e justificativa. O parser aceita JSON puro ou dentro de cerca Markdown. Se o modelo devolver algo inválido, o pipeline levanta erro — não inventa nota.
+O `JuizLLM` usa o mesmo provedor configurado. O prompt define a rubrica, recebe as fichas de referência com fonte e data e pede um JSON com nota e justificativa. O parser aceita JSON puro ou dentro de cerca Markdown. Se o modelo devolver algo inválido, o pipeline levanta erro — não inventa nota.
 
-O juiz LLM **não foi executado com um modelo real** nesta máquina porque não há chave configurada. Ele foi testado com:
+O juiz LLM foi executado com **OpenAI `gpt-4o-mini`**, temperatura 0, e o mesmo provedor do agente.
 
-- um provedor falso (JSON válido, JSON em Markdown, JSON inválido);
-- um servidor HTTP local que simula a API OpenAI;
-- um teste que verifica a ausência de CPF no payload.
+Além da execução real, o juiz LLM continua coberto por testes com provedor falso, JSON em Markdown, JSON inválido, servidor HTTP local e verificação de que o CPF do caso 22 não aparece no payload.
 
 ### Antes e depois
 
 A versão “antes” (`avaliacao/baseline.py`) é um protótipo ingênuo: primeira palavra-chave que casa, primeira seção, sem citação, sem aviso, sem validação e sem proteção de dados. A versão “depois” é o agente completo.
 
-Resultado real com o juiz determinístico:
+**Juiz determinístico (offline, reproduzível):**
+
+| Versão | Exatos | Parciais | Falhas | Nota média | Aproveitamento |
+|---|---:|---:|---:|---:|---:|
+| Baseline ingênuo | 0/26 | 7 | 19 | 0,135 | 13,5% |
+| Agente melhorado | **26/26** | 0 | 0 | **1,000** | **100,0%** |
+
+**Juiz LLM (OpenAI `gpt-4o-mini`) com LangGraph 0.6.11:**
 
 | Versão | Exatos | Parciais | Falhas | Nota média | Aproveitamento |
 |---|---:|---:|---:|---:|---:|
 | Baseline ingênuo | 0/26 | 6 | 20 | 0,115 | 11,5% |
-| Agente melhorado | **26/26** | 0 | 0 | **1,000** | **100,0%** |
+| Agente melhorado | **25/26** | 1 | 0 | **0,981** | **98,1%** |
 
-O agente melhorado rodou com **LangGraph 0.6.11** (fluxo `langgraph`). O baseline rodou em sequência. O resultado não depende do framework: sem o LangGraph, o mesmo fluxo roda em modo sequencial e os testes confirmam o mesmo comportamento. O que muda o resultado são as regras de segurança, busca, citação e revisão — não a biblioteca de orquestração.
+O único parcial no juiz LLM é o **caso 24** (recusa de prompt injection): a resposta recusa corretamente e mantém o papel, mas não cita uma ficha específica. A resposta esperada não exige ficha nesse caso; o juiz LLM tratou a citação como critério secundário. O juiz determinístico considera o caso correto. Esse é um exemplo real de diferença entre uma rubrica determinística e um juiz semântico.
+
+O agente melhorado rodou com **LangGraph 0.6.11** (fluxo `langgraph`). O mesmo fluxo foi executado também no fallback sequencial, com o mesmo resultado. O que muda o resultado são as regras de segurança, busca, citação e revisão — não a biblioteca de orquestração.
 
 ### Análise dos erros do baseline
 
-- **Sem citação, data ou aviso** em todas as respostas → perde critérios obrigatórios.
+- **Sem citação, data ou aviso** em todas as respostas → nunca chega a 1,0, mesmo quando a seção traz o fato.
 - **Primeira seção errada** em perguntas como agendamento, prazo e perdi o RG → 0,0 por fatos ausentes.
 - **Não detecta PII** → responde sem alerta de privacidade.
 - **Não detecta injection** → não recusa a “nova regra”.
 - **Não pede reformulação** em entrada inválida.
 - **Não admite desconhecimento** de forma completa em fora de escopo.
+- Com as fichas oficiais, algumas seções são mais completas; por isso o baseline conquista 7 parciais no juiz determinístico. Ainda assim, não tem citação, data nem aviso.
 
 ### Análise dos acertos do agente melhorado
 
 - Busca com âncora impede resposta de RG para passaporte.
-- Seleção por empate mantém a resposta curta e cobre “perdi o RG”.
+- Seleção por proximidade e referência entre fichas cobre custo, prazo e agendamento sem misturar assuntos.
 - Revisão final garante citação, data e aviso mesmo no modo LLM.
 - Segurança bloqueia PII e injection antes da busca.
 - Modo extrativo é determinístico e reproduzível.
 
 ### O que os números não provam
 
-- Não provam qualidade com um LLM real; o juiz determinístico é uma rubrica, não uma avaliação semântica independente.
+- O juiz LLM é uma avaliação semântica, mas continua sendo um modelo: pode variar entre execuções e não substitui a conferência humana.
 - Não provam generalização para perguntas fora das 26.
 - Não substituem a conferência manual nem o teste com pessoas.
-- O corpus é pequeno e as fichas são provisórias.
+- O corpus é pequeno; as fichas oficiais são material didático fictício.
 
 ### Conferência manual
 
-O formulário `avaliacao/conferencia_manual.md` prepara uma amostra de 9 casos (escopo, fora do escopo, inválida, PII, injection e aviso). Ele pode ser regenerado com `python3 -m avaliacao.gerar_conferencia` e deve ser preenchido por um integrante do grupo, comparando a resposta esperada com a observada. **A conferência humana ainda não foi feita**; o que existe é a conferência técnica automática.
+O formulário `avaliacao/conferencia_manual.md` prepara uma amostra de 9 casos (escopo, fora do escopo, inválida, PII, injection e aviso). Ele foi regenerado com as fichas oficiais e pode ser recriado com `python3 -m avaliacao.gerar_conferencia`. Deve ser preenchido por um integrante do grupo, comparando a resposta esperada com a observada. **A conferência humana ainda não foi feita**; o que existe é a conferência técnica automática.
 
 ---
 
@@ -668,11 +678,14 @@ python3 main_agente.py
 | Suíte Python (sem LangGraph) | **141 testes aprovados** |
 | Suíte Python (com LangGraph 0.6.11) | **141 testes aprovados** |
 | Mobile | **78 verificações aprovadas** |
-| Golden Dataset — baseline | 0/26 exatos, 6 parciais, 20 falhas, 11,5% |
-| Golden Dataset — melhorado | **26/26 exatos, 100,0%** |
+| Golden Dataset — baseline (juiz determinístico) | 0/26 exatos, 7 parciais, 19 falhas, 13,5% |
+| Golden Dataset — melhorado (juiz determinístico) | **26/26 exatos, 100,0%** |
+| Golden Dataset — baseline (juiz LLM) | 0/26 exatos, 6 parciais, 20 falhas, 11,5% |
+| Golden Dataset — melhorado (juiz LLM + LangGraph) | **25/26 exatos, 1 parcial, 98,1%** |
 | Cliente HTTP OpenAI-compatível | teste local aprovado |
-| Juiz LLM | parser e fluxo testados; execução real pendente de chave |
+| Juiz LLM | **executado com OpenAI `gpt-4o-mini`** |
 | Teste com 5 pessoas | pendente |
+| Conferência manual | pendente |
 | Vídeo | pendente |
 
 ### Cobertura dos testes do agente
@@ -702,8 +715,10 @@ python3 main_agente.py
 ### Evidências
 
 - [`EVIDENCIAS_TESTES.md`](EVIDENCIAS_TESTES.md)
-- [`avaliacao/resultados/relatorio.md`](../avaliacao/resultados/relatorio.md)
-- [`avaliacao/resultados/resultados.json`](../avaliacao/resultados/resultados.json)
+- [`avaliacao/resultados/relatorio.md`](../avaliacao/resultados/relatorio.md) — juiz determinístico
+- [`avaliacao/resultados/llm_langgraph/relatorio.md`](../avaliacao/resultados/llm_langgraph/relatorio.md) — juiz LLM + LangGraph
+- [`avaliacao/resultados/llm_sequencial/relatorio.md`](../avaliacao/resultados/llm_sequencial/relatorio.md) — juiz LLM + fallback sequencial
+- [`avaliacao/resultados/resultados.json`](../avaliacao/resultados/resultados.json) — determinístico em JSON
 
 ---
 
@@ -711,22 +726,22 @@ python3 main_agente.py
 
 ### Limitações atuais
 
-1. **Fichas provisórias.** Só contêm fatos do Golden Dataset; não substituem as fichas oficiais.
-2. **Sem LLM real executado.** O juiz LLM e o modo LLM estão implementados, mas faltam chave/modelo.
+1. **Fichas oficiais fictícias.** A “Central do Cidadão de Aurora” é um cenário didático; os valores e prazos não valem para órgãos reais.
+2. **Juiz LLM com um único modelo.** A execução usou `gpt-4o-mini`; outro modelo ou outra execução pode variar a nota.
 3. **Sem teste com pessoas.** O protocolo está pronto; a execução não.
 4. **Sem vídeo.** O roteiro está pronto; a gravação não.
 5. **Busca lexical.** Sinônimos não previstos podem falhar.
 6. **Cobertura de PII por regex.** Formatos incomuns podem passar.
 7. **Um agente só.** Não há multiagente; a separação é por nós.
 8. **Sem integração com sistemas oficiais.** O agente não consulta bases do governo.
-9. **Dados fictícios.** “Central do Cidadão de Aurora” é fictícia; as fichas oficiais definirão os dados reais do exercício.
+9. **Conferência manual pendente.** O formulário foi regenerado com as fichas oficiais, mas ainda não foi preenchido por uma pessoa.
 
 ### Riscos
 
 | Risco | Impacto | Mitigação |
 |---|---|---|
 | LLM inventar valor | Alto | Contexto restrito + revisão + modo extrativo |
-| Ficha desatualizada | Alto | Data de verificação + substituição pelas oficiais |
+| Ficha desatualizada | Alto | Data de verificação + reimportação pela versão oficial |
 | PII vazar para o LLM | Alto | Bloqueio antes do envio + máscara no juiz |
 | Prompt injection | Médio | Padrões + tratamento como dado + recusa |
 | Busca lexical errar | Médio | Palavras-chave + testes com 26 mensagens |
@@ -735,9 +750,9 @@ python3 main_agente.py
 
 ### Trabalhos futuros
 
-- Substituir as fichas provisórias pelas oficiais e reexecutar a avaliação.
-- Rodar o juiz LLM com Groq/OpenAI/Ollama e comparar com o juiz determinístico.
+- Repetir o juiz LLM com outro modelo (Groq/Ollama) para medir variância e comparar com o juiz determinístico.
 - Ampliar o Golden Dataset com perguntas de paráfrase.
+- Automatizar a conferência manual com uma segunda pessoa e registro de divergências.
 - Adicionar busca semântica local (embeddings) sem perder a citação.
 - Criar uma versão web acessível com o mesmo backend.
 - Integrar Libras e leitura em voz alta no agente.
@@ -760,14 +775,14 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 
 | Item | Status |
 |---|---|
-| P1 — problema, público, proposta e jornada | Entregue (faltam nomes/RM e link) |
+| P1 — problema, público, proposta e jornada | Entregue (nomes/RMs preenchidos; falta o link do repositório) |
 | P1 — público ampliado (periferias, jovens, famílias) | Entregue |
 | P2 — lista encadeada manual | Entregue |
 | P2 — busca, Selection Sort, indicadores, CSV, JSON | Entregue |
 | P2 — 13 requisitos | Entregue |
 | P2 — testes Python | 81 originais aprovados |
 | P2 — mobile | 78 verificações aprovadas |
-| P3 — agente com FC-01 a FC-07 | Arquitetura entregue; **fichas oficiais pendentes** |
+| P3 — agente com FC-01 a FC-07 | **Entregue** com as fichas oficiais (versão 01/10/2026) |
 | P3 — citação da ficha e data | Entregue |
 | P3 — linguagem simples e admissão de desconhecimento | Entregue |
 | P3 — validação de entradas | Entregue |
@@ -776,7 +791,7 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 | P3 — framework de agentes (LangGraph) | Entregue (com fallback) |
 | P3 — 26 mensagens originais | Entregue, sem substituição |
 | P3 — antes/depois | Entregue com juiz determinístico |
-| P3 — LLM as a Judge | Implementado; **execução real pendente de chave** |
+| P3 — LLM as a Judge | **Executado** com `gpt-4o-mini` + LangGraph: 25/26 exatos, 98,1% |
 | P3 — análise de erros | Entregue (baseline) |
 | P3 — conferência manual de amostra | Formulário pronto; **execução humana pendente** |
 | P3 — teste com 5 pessoas | Protocolo pronto; **execução pendente** |
@@ -785,18 +800,18 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 | P4 — narração humana | Instrução no roteiro; **gravação pendente** |
 | P4 — YouTube não listado | Instrução no roteiro; **publicação pendente** |
 | P4 — TXT com link | Modelo pronto; **link pendente** |
-| Nomes/RM | Preenchidos | 
-| Turma, GitHub e vídeo | **Pendentes** |
+| Nomes/RM | Preenchidos |
+| Turma | **1CCPX** |
+| GitHub e vídeo | **Pendentes** |
 
 ### Antes de entregar
 
-1. Conferir os nomes/RMs já preenchidos no topo deste documento e no `README.md`; completar a turma.
-2. Substituir as 7 fichas provisórias pelas oficiais.
-3. Configurar o LLM e rodar `python3 -m avaliacao.executar --juiz llm --agente llm`.
-4. Preencher a conferência manual de 9 casos.
-5. Executar o teste com 5 pessoas e preencher a planilha anônima.
-6. Gravar o vídeo, publicar como não listado e colar o link em `pitch/link_video.txt`.
-7. Rodar novamente `python3 -m unittest discover -s testes -t .` e `node mobile/teste-logica.js`.
-8. Publicar o repositório no GitHub e colar o link.
+1. Conferir os nomes/RMs e a turma (**1CCPX**) no topo deste documento e no `README.md`.
+2. Preencher a conferência manual de 9 casos em `avaliacao/conferencia_manual.md`.
+3. Executar o teste com 5 pessoas e preencher a planilha anônima.
+4. Gravar o vídeo, publicar como não listado e colar o link em `pitch/link_video.txt`.
+5. Rodar novamente `python3 -m unittest discover -s testes -t .` e `node mobile/teste-logica.js`.
+6. Publicar o repositório no GitHub e colar o link no README e neste documento.
+7. Revisar o resultado do juiz LLM (25/26; o parcial é o caso 24) e registrar a análise final.
 
-> **Nota final:** este documento não declara concluído o que está pendente. Os resultados de LLM, de teste com pessoas e de vídeo só devem ser preenchidos depois de executados.
+> **Nota final:** este documento não declara concluído o que está pendente. Os resultados de LLM são reais; os resultados de teste com pessoas e de vídeo só devem ser preenchidos depois de executados.

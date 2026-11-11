@@ -1,36 +1,34 @@
-# FC-01 — Carteira de Identidade (RG)
-
-> **STATUS: PROVISÓRIA.** Esta ficha foi montada apenas com fatos do Golden Dataset oficial e com os assuntos das fichas indicados no enunciado, porque os arquivos FC-01 a FC-07 fornecidos pelos professores ainda não foram adicionados ao projeto. Substitua este arquivo pela ficha oficial. Nenhum fato foi inventado.
+# FC-01 — Carteira de Identidade (RG): primeira e segunda via
 
 - **Ficha:** FC-01
-- **Assunto:** Carteira de Identidade (RG), primeira e segunda via
-- **Fonte:** Ficha FC-01 — Central do Cidadão de Aurora (material do professor)
-- **Data de verificação:** 2026-11-10 (data provisória de organização; substituir pela data da ficha oficial)
-- **Palavras-chave:** rg, carteira de identidade, identidade, segunda via, primeira via, extravio, roubo, furto, boletim de ocorrencia, menor de idade, agendamento
+- **Assunto:** Carteira de Identidade (RG): primeira e segunda via
+- **Fonte:** Central do Cidadão de Aurora, ficha FC-01, versão de 01/10/2026.
+- **Data de verificação:** 2026-10-01 (versão oficial da ficha)
+- **Palavras-chave:** rg, identidade, carteira de identidade, segunda via, 2ª via, perdi, roubaram, extravio, posto de identificação
 
-## Custo da segunda via | quanto custa, valor, preco, taxa, pagamento, guia
-A segunda via do RG custa R$ 38,00, paga por guia gerada no portal.
+## Custo e prazo | quanto custa, valor, preco, taxa, gratuita, primeira via, segunda via, prazo, quanto tempo, dias uteis
+**Custo:** primeira via é gratuita. Segunda via custa R$ 38,00, paga por guia gerada no portal da Central do Cidadão.
 
-## Agendamento | preciso marcar, horario, agendar, atendimento, marcacao
-Sim. O agendamento é obrigatório e deve ser feito pelo portal.
+**Prazo:** a carteira fica pronta em 10 dias úteis, contados do atendimento no Posto de Identificação.
 
-## Documentos para a segunda via | documentos, levar, certidao, comprovante, boletim
-Para a segunda via do RG, leve:
-- certidão de nascimento ou de casamento;
-- comprovante de residência dos últimos 90 dias;
-- boletim de ocorrência, em caso de roubo ou furto, ou declaração de extravio, em caso de perda.
+## Quem pode pedir | quem pode, menor de 12, responsavel legal, filho, crianca
+**Quem pode pedir:** qualquer pessoa. Menores de 12 anos devem ir acompanhados de um responsável legal, com documento original com foto.
 
-## Perda, roubo e furto | perdi, perdido, extravio, roubo, furto, boletim de ocorrencia
-Em caso de perda, não é necessário boletim de ocorrência: basta a declaração de extravio, assinada no balcão. O boletim de ocorrência só é exigido em caso de roubo ou furto.
+## Agendamento | agendamento, agendar, marcar, horario, marcar horario, precisa agendar, portal, obrigatorio
+**Agendamento:** obrigatório, feito pelo portal da Central do Cidadão.
 
-## Prazo | quanto tempo, demora, fica pronto, dias uteis
-O RG fica pronto em 10 dias úteis, contados do atendimento.
+## Documentos necessários para a segunda via | documentos, levar, certidao, comprovante, boletim, extravio, roubo, furto, perda
+**Documentos necessários para a segunda via:**
+1. Certidão de nascimento ou de casamento (original ou cópia autenticada).
+2. Comprovante de residência dos últimos 90 dias.
+3. Em caso de **roubo ou furto**: boletim de ocorrência. Em caso de **perda**: declaração de extravio, assinada no próprio balcão (o boletim de ocorrência não é exigido).
 
-## Menores de idade | filho, crianca, menor, responsavel, 8 anos, 12 anos
-Menores de 12 anos devem ir acompanhados de um responsável legal, com documento original com foto.
+## Passo a passo | passo a passo, como, agendar, pagar, guia, comparecer, retirar
+**Passo a passo:**
+1. Agende o atendimento no portal.
+2. Gere e pague a guia de R$ 38,00.
+3. Compareça ao Posto de Identificação no dia marcado, com os documentos originais.
+4. Retire a carteira após 10 dias úteis, com o protocolo.
 
-## Onde fazer | onde, local, posto, portal, unidade
-O agendamento é feito pelo portal. O local de atendimento não consta no material disponível nesta versão provisória.
-
-## Limites desta ficha | nao agenda, endereco, telefone, dados pessoais
-O assistente não agenda o atendimento e não coleta endereço ou telefone. Para agendar, use o portal.
+## Onde | onde, local, posto de identificacao
+**Onde:** Posto de Identificação de Aurora.

@@ -79,16 +79,17 @@
 
 **Narração:**
 
-> “Avaliamos com as 26 mensagens originais do Golden Dataset. Antes da melhoria, o protótipo ingênuo acertou 11,5%. Depois, com busca com âncora, segurança, citação e revisão, o agente acertou 26 de 26 no juiz determinístico. O pipeline de LLM as a Judge também está implementado. As fichas atuais são provisórias; a arquitetura já está pronta para receber as oficiais.”
+> “Avaliamos com as 26 mensagens originais do Golden Dataset. Antes da melhoria, o protótipo ingênuo acertou 11,5%. Depois, com busca com âncora, segurança, citação e revisão, o agente acertou 25 de 26 no juiz LLM com GPT-4o-mini e LangGraph — 98,1%. No juiz determinístico, acertou 26 de 26. O único parcial foi uma recusa de prompt injection sem citar ficha, caso em que a resposta esperada não exige ficha.”
 
 **Slide sugerido:**
 
 | Versão | Acertos exatos | Aproveitamento |
 |---|---:|---:|
 | Antes (baseline) | 0/26 | 11,5% |
-| Depois (agente) | 26/26 | 100,0% |
+| Depois (juiz LLM + LangGraph) | 25/26 | 98,1% |
+| Depois (juiz determinístico) | 26/26 | 100,0% |
 
-> **Importante:** diga “no juiz determinístico”. Não diga “um LLM avaliou” se o juiz LLM não foi executado com modelo real.
+> **Importante:** diga que o juiz LLM foi realmente executado com GPT-4o-mini e LangGraph. O juiz determinístico é a checagem offline reproduzível. Não declare 26/26 no juiz LLM: o resultado real foi 25/26.
 
 ---
 

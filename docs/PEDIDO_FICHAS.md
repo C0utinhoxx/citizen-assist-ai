@@ -1,41 +1,25 @@
-# Pedido das fichas oficiais FC-01 a FC-07
+# Fichas oficiais FC-01 a FC-07 — registro
 
-Use este texto para pedir ao professor/monitor as fichas oficiais do Projeto 3.
+**Status:** resolvido em **2026-11-11**.
 
-**Assunto:** Global Solution 2026.2 — Projeto 3 — acesso às fichas FC-01 a FC-07
+As sete fichas oficiais foram localizadas na pasta `referencia` em `~/Downloads` e importadas para `agente/fichas/`.
 
----
+- **Versão oficial:** 01/10/2026.
+- **Fonte:** Central do Cidadão de Aurora (material didático fictício do exercício).
+- **Arquivos importados:** `FC-01_rg_segunda_via.md` a `FC-07_regras_gerais.md`.
+- **Aviso original:** copiado para `agente/fichas/00_LEIA-ME.md`.
+- **Importador:** `ferramentas/importar_fichas.py`.
 
-Prezado(a) professor(a),
+O conteúdo foi convertido para o formato Markdown do carregador sem resumir nem inventar fatos. A avaliação foi reexecutada com as fichas oficiais.
 
-Estamos desenvolvendo o Projeto 3 da Global Solution 2026.2 (Citizen Assist AI). O enunciado determina que o agente use **exclusivamente as fichas FC-01 a FC-07** e cita os arquivos:
+## Histórico
 
-- `FC-01_rg_segunda_via.md`
-- `FC-02_cpf.md`
-- `FC-03_titulo_de_eleitor.md`
-- `FC-04_carteira_de_trabalho.md`
-- `FC-05_certidoes.md`
-- `FC-06_cnh_renovacao.md`
-- `FC-07_regras_gerais.md`
+Antes da localização, este documento continha uma mensagem pronta para pedir as fichas ao professor. Ela não é mais necessária. O texto antigo partia de fichas provisórias, que já foram substituídas.
 
-Não encontramos esses arquivos nos materiais disponíveis no portal. Poderia disponibilizá-los ou indicar onde podemos acessá-los?
+## Como reimportar
 
-Enquanto isso, estamos usando fichas provisórias claramente marcadas, construídas apenas com fatos do Golden Dataset e com os assuntos indicados no enunciado, sem inventar informações. Assim que as oficiais forem disponibilizadas, vamos substituí-las e reexecutar a avaliação.
+```bash
+python3 ferramentas/importar_fichas.py /caminho/para/a/pasta/com/as/FC
+```
 
-Obrigado.
-
-Bruno Riquelme Coutinho Pereira — RM 569619  
-Eduardo Bigoli Portela — RM 569897  
-Gustavo Fondato de Souza — RM 573651
-
----
-
-## Onde procurar antes de enviar
-
-1. Portal da FIAP → Global Solution 2026.2 → aba **Materiais**, **Arquivos** ou **Anexos**.
-2. Comunicados e avisos da disciplina.
-3. Repositório do professor/monitor, se houver.
-4. Arquivo `.zip` ou pasta separada com nomes `FC-01`, `fichas` ou `base_conhecimento`.
-5. Buscar no computador por `FC-01_rg_segunda_via.md`, `FC-02_cpf.md` etc.
-
-O documento do enunciado lista os nomes e assuntos das fichas, mas **não contém o texto completo** delas. Por isso não é possível extraí-las apenas do `.docx`.
+O script espera os sete arquivos `FC-*.md` e o `00_LEIA-ME.md` na pasta de origem. Ele preserva o texto dos campos e agrupa o conteúdo em seções pesquisáveis.

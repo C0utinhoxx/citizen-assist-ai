@@ -1,12 +1,26 @@
 # FC-04 — Carteira de Trabalho
 
-> **STATUS: PROVISÓRIA.** Esta ficha foi montada apenas com fatos do Golden Dataset oficial e com os assuntos das fichas indicados no enunciado, porque os arquivos FC-01 a FC-07 fornecidos pelos professores ainda não foram adicionados ao projeto. Substitua este arquivo pela ficha oficial. Nenhum fato foi inventado.
-
 - **Ficha:** FC-04
 - **Assunto:** Carteira de Trabalho
-- **Fonte:** Ficha FC-04 — Central do Cidadão de Aurora (material do professor)
-- **Data de verificação:** 2026-11-10 (data provisória de organização; substituir pela data da ficha oficial)
-- **Palavras-chave:** carteira de trabalho, ctps, carteira digital, trabalho, emprego
+- **Fonte:** Central do Cidadão de Aurora, ficha FC-04, versão de 01/10/2026.
+- **Data de verificação:** 2026-10-01 (versão oficial da ficha)
+- **Palavras-chave:** carteira de trabalho, ctps, emprego, digital, trabalho, primeiro emprego
 
-## Carteira de trabalho digital: custo e prazo | quanto custa, demora, carteira digital, gratuita, na hora
-A carteira de trabalho digital é gratuita e fica disponível na hora.
+## Custo, prazo e agendamento | quanto custa, gratuita, prazo, demora, quanto demora, tempo, imediato, na hora, digital, agendamento
+**Custo:** gratuita, em qualquer canal.
+
+**Prazo:** a versão digital fica disponível imediatamente após o cadastro no portal ou no aplicativo. No balcão, o atendimento também é imediato.
+
+**Agendamento:** não é necessário.
+
+## Documentos necessários | documentos, cpf, documento com foto, menor de 18
+**Documentos necessários:**
+1. CPF.
+2. Documento original com foto.
+3. Menores de 18 anos: acompanhados de um responsável legal.
+
+## Passo a passo | passo a passo, portal, aplicativo, dados, identidade
+**Passo a passo:**
+1. Acesse o portal ou o aplicativo da Central do Cidadão.
+2. Informe os dados pedidos e confirme a identidade.
+3. A carteira digital já aparece na sua conta.

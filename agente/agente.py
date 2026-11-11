@@ -29,8 +29,8 @@ from .recuperacao import Ocorrencia, Recuperador
 from .seguranca import AnaliseEntrada, Seguranca, mascarar_pii
 
 AVISO = (
-    "Aviso: este assistente não é um canal oficial. "
-    "Confirme a informação no órgão competente."
+    "Aviso: este assistente é um protótipo educacional e não é um canal "
+    "oficial. Confirme a informação no órgão competente."
 )
 
 EXEMPLOS = (
@@ -182,6 +182,9 @@ class AgenteCidadao:
         if analise.tipo == "dados_pessoais":
             return self._resposta_dados_pessoais(analise)
 
+        if analise.tipo == "limitacao":
+            return self._resposta_limitacao()
+
         return self._resposta_injecao(analise)
 
     def _resposta_dados_pessoais(self, analise: AnaliseEntrada) -> Resposta:
@@ -228,6 +231,26 @@ class AgenteCidadao:
             verificado_em=self._datas(fichas),
             modo=self.modo,
             confianca="alta",
+        )
+
+    def _resposta_limitacao(self) -> Resposta:
+        texto = (
+            "Não. Este assistente é um protótipo educacional e não é um canal "
+            "oficial da prefeitura nem de qualquer órgão público. As orientações "
+            "vêm apenas das fichas FC-01 a FC-07 e devem ser confirmadas no "
+            "órgão competente.\n\n"
+        )
+        fichas = ["FC-07"]
+        texto += self._rodape(fichas)
+        texto = self._revisar(texto, [self.fichas["FC-07"]])
+        return Resposta(
+            texto=texto,
+            tipo="resposta",
+            fichas=fichas,
+            verificado_em=self._datas(fichas),
+            modo=self.modo,
+            confianca="alta",
+            detalhe="aviso de limitação",
         )
 
     def _resposta_injecao(self, analise: AnaliseEntrada) -> Resposta:

@@ -1,21 +1,31 @@
-# FC-05 — Certidões
-
-> **STATUS: PROVISÓRIA.** Esta ficha foi montada apenas com fatos do Golden Dataset oficial e com os assuntos das fichas indicados no enunciado, porque os arquivos FC-01 a FC-07 fornecidos pelos professores ainda não foram adicionados ao projeto. Substitua este arquivo pela ficha oficial. Nenhum fato foi inventado.
+# FC-05 — Certidões de nascimento, casamento e óbito
 
 - **Ficha:** FC-05
 - **Assunto:** Certidões de nascimento, casamento e óbito
-- **Fonte:** Ficha FC-05 — Central do Cidadão de Aurora (material do professor)
-- **Data de verificação:** 2026-11-10 (data provisória de organização; substituir pela data da ficha oficial)
-- **Palavras-chave:** certidao, certidoes, nascimento, casamento, obito, segunda via, registro civil, portal, pdf, procuracao
+- **Fonte:** Central do Cidadão de Aurora, ficha FC-05, versão de 01/10/2026.
+- **Data de verificação:** 2026-10-01 (versão oficial da ficha)
+- **Palavras-chave:** certidão, certidão de nascimento, casamento, óbito, segunda via, cartório
 
-## Segunda via pelo portal | quanto custa, demora, portal, pdf, nascimento, certidao
-A segunda via da certidão de nascimento pelo portal custa R$ 49,00, é entregue em PDF e fica pronta em 3 dias úteis.
+## Custo e prazo | quanto custa, balcao, portal, pdf, 49, 55, 3 dias, 5 dias, isencao, baixa renda
+**Custo e prazo (cada certidão):**
+- No balcão do Cartório Central de Aurora: R$ 55,00, pronta em 5 dias úteis.
+- Pelo portal, em PDF: R$ 49,00, pronta em 3 dias úteis.
 
-## Segunda via no balcão | balcao, presencial, quanto custa, demora, nascimento
-No balcão, a segunda via da certidão de nascimento custa R$ 55,00 e fica pronta em 5 dias úteis.
+**Isenção:** quem comprovar baixa renda no balcão fica isento da taxa.
 
-## Pedir certidão de outra pessoa | outra pessoa, terceiros, procuracao, representante
-Sim. É possível pedir a certidão de outra pessoa com procuração simples e documento original com foto de quem retira.
+## Agendamento e quem pode pedir | agendamento, nao necessario, terceiros, terceiro, procuracao, outra pessoa, pedir, representante, quem retira
+**Agendamento:** não é necessário.
 
-## Escopo desta ficha | casamento, obito, nascimento, tipos
-Esta ficha cobre certidões de nascimento, casamento e óbito. Nesta versão provisória, só há fatos do Golden Dataset sobre a certidão de nascimento.
+**Quem pode pedir:** a própria pessoa ou terceiros com procuração simples (ver FC-07).
+
+## Documentos necessários | documentos, documento com foto, dados do registro
+**Documentos necessários:**
+1. Documento original com foto de quem solicita.
+2. Dados do registro (nome do registrado e data do evento).
+
+## Passo a passo | passo a passo, canal, dados, guia, retirar, pdf
+**Passo a passo:**
+1. Escolha o canal (balcão ou portal).
+2. Informe os dados do registro.
+3. Pague a guia.
+4. Retire no balcão ou baixe o PDF no portal.

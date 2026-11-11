@@ -76,9 +76,22 @@ PADROES_INJECAO = [
     r"\bmodo\s+sem\s+restric",
 ]
 
+# Perguntas sobre o próprio assistente. Elas recebem o aviso de limitação,
+# em vez de uma resposta de ficha que poderia parecer uma confirmação de
+# vínculo oficial.
+PADROES_LIMITACAO = [
+    r"\bcanal\s+oficial\b",
+    r"\bvoce\s+e\s+(o\s+)?canal\b",
+    r"\bassistente\s+oficial\b",
+    r"\bprototipo\b",
+    r"\bquem\s+e\s+voce\b",
+    r"\bvoce\s+e\s+um\s+robo\b",
+]
+
 _RE_PII = [(nome, padrao) for nome, padrao in PADROES_PII]
 _RE_FRASES_PII = [re.compile(padrao, re.IGNORECASE) for padrao in FRASES_PII]
 _RE_INJECAO = [re.compile(padrao, re.IGNORECASE) for padrao in PADROES_INJECAO]
+_RE_LIMITACAO = [re.compile(padrao, re.IGNORECASE) for padrao in PADROES_LIMITACAO]
 
 # Palavras comuns que não contam como "assunto" para a busca.
 PALAVRAS_GENERICAS = {
@@ -104,7 +117,7 @@ PALAVRAS_GENERICAS = {
 class AnaliseEntrada:
     """Resultado da análise de segurança de uma pergunta."""
 
-    tipo: str  # ok | vazia | longa | curta | dados_pessoais | injecao | invalida
+    tipo: str  # ok | vazia | longa | curta | dados_pessoais | injecao | limitacao | invalida
     motivo: str = ""
     texto_seguro: str = ""
     pii: List[str] = field(default_factory=list)
@@ -147,6 +160,14 @@ def contem_injecao(texto: str) -> bool:
         padrao.search(normalizado) or padrao.search(minusculo)
         for padrao in _RE_INJECAO
     )
+
+
+def contem_limitacao(texto: str) -> bool:
+    """True quando a pessoa pergunta se o assistente é um canal oficial."""
+    if not texto:
+        return False
+    normalizado = normalizar(texto)
+    return any(padrao.search(normalizado) for padrao in _RE_LIMITACAO)
 
 
 class Seguranca:
@@ -207,6 +228,13 @@ class Seguranca:
                 "a mensagem tenta alterar as regras do assistente",
                 seguro,
                 injecao=True,
+            )
+
+        if contem_limitacao(original):
+            return AnaliseEntrada(
+                "limitacao",
+                "a mensagem pergunta sobre o papel do assistente",
+                seguro,
             )
 
         if self._parece_sem_sentido(original):

@@ -1,21 +1,28 @@
 # FC-02 — CPF: inscrição e atendimento
 
-> **STATUS: PROVISÓRIA.** Esta ficha foi montada apenas com fatos do Golden Dataset oficial e com os assuntos das fichas indicados no enunciado, porque os arquivos FC-01 a FC-07 fornecidos pelos professores ainda não foram adicionados ao projeto. Substitua este arquivo pela ficha oficial. Nenhum fato foi inventado.
-
 - **Ficha:** FC-02
 - **Assunto:** CPF: inscrição e atendimento
-- **Fonte:** Ficha FC-02 — Central do Cidadão de Aurora (material do professor)
-- **Data de verificação:** 2026-11-10 (data provisória de organização; substituir pela data da ficha oficial)
-- **Palavras-chave:** cpf, inscricao, cadastro de pessoa fisica, receita federal, situacao cadastral, comprovante
+- **Fonte:** Central do Cidadão de Aurora, ficha FC-02, versão de 01/10/2026.
+- **Data de verificação:** 2026-10-01 (versão oficial da ficha)
+- **Palavras-chave:** cpf, inscrição, regularizar, comprovante, cadastro de pessoa física, correção de dados
 
-## Inscrição pelo portal | como faco, inscrever, inscricao, tirar, gratuito, de graca
-A inscrição no CPF pode ser feita pelo portal, de graça: preencha o formulário e anexe os documentos. O comprovante sai em até 2 dias úteis. Não é necessário agendamento.
+## Inscrição e atendimento | cpf, inscricao, inscrever, como faco, portal, gratuito, gratis, taxa, pago, custa, quanto custa, prazo, 2 dias uteis, formulario, agendamento, sem agendamento, nao exige agendamento, documentos, passo a passo, onde, privacidade
+**Custo:** a inscrição e a correção de dados pelo portal são gratuitas. O atendimento presencial tem taxa de R$ 7,00.
 
-## Atendimento presencial | presencial, presencialmente, quanto custa, taxa, valor, pagamento
-No atendimento presencial, a taxa é de R$ 7,00.
+**Prazo:** o comprovante de inscrição fica disponível no portal em até 2 dias úteis.
 
-## Consulta e situação cadastral | consultar, situacao, comprovante, emitir, corrigir
-O assistente não consulta a situação cadastral do CPF. Para consultar a situação ou emitir o comprovante, use o portal oficial indicado nesta ficha.
+**Agendamento:** não é necessário.
 
-## Dados pessoais | cpf, numero, privacidade, dados pessoais
-Nunca informe o número do CPF no chat. O assistente não pede, não guarda e não repete esse dado.
+**Documentos necessários:**
+1. Documento original com foto.
+2. Certidão de nascimento ou de casamento.
+3. Para menores de 12 anos: documento com foto do responsável legal.
+
+**Passo a passo (pelo portal):**
+1. Acesse o portal da Central do Cidadão, na área CPF.
+2. Preencha o formulário e anexe as imagens dos documentos.
+3. Aguarde o comprovante em até 2 dias úteis.
+
+**Onde:** portal da Central do Cidadão ou balcão de atendimento (com taxa).
+
+**Atenção:** a Central do Cidadão não pede o número do seu CPF por chat, telefone ou mensagem.

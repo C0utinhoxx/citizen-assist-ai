@@ -1,18 +1,29 @@
 # FC-03 — Título de eleitor
 
-> **STATUS: PROVISÓRIA.** Esta ficha foi montada apenas com fatos do Golden Dataset oficial e com os assuntos das fichas indicados no enunciado, porque os arquivos FC-01 a FC-07 fornecidos pelos professores ainda não foram adicionados ao projeto. Substitua este arquivo pela ficha oficial. Nenhum fato foi inventado.
-
 - **Ficha:** FC-03
 - **Assunto:** Título de eleitor
-- **Fonte:** Ficha FC-03 — Central do Cidadão de Aurora (material do professor)
-- **Data de verificação:** 2026-11-10 (data provisória de organização; substituir pela data da ficha oficial)
-- **Palavras-chave:** titulo de eleitor, titulo, eleitor, votar, voto, obrigatorio, facultativo, transferencia, cadastro eleitoral
+- **Fonte:** Central do Cidadão de Aurora, ficha FC-03, versão de 01/10/2026.
+- **Data de verificação:** 2026-10-01 (versão oficial da ficha)
+- **Palavras-chave:** título, título de eleitor, votar, voto, transferência, segunda via, zona eleitoral
 
-## Obrigatoriedade do voto | obrigatorio, 17 anos, 16 anos, facultativo, votar
-O voto é facultativo aos 16 e 17 anos. É obrigatório de 18 a 69 anos.
+## Obrigatoriedade e custo | obrigatorio, facultativo, 16, 17, 70, gratuito, gratis, pago, paga, custa, quanto custa, preco, valor, primeira via, segunda via, transferencia
+**Quem deve ter:** o voto é obrigatório de 18 a 69 anos. É facultativo para quem tem 16 ou 17 anos e para maiores de 70 anos.
 
-## Custo do título | pago, custa, gratuito, primeira via, segunda via, transferencia
-O título de eleitor é gratuito: primeira via, segunda via e transferência não têm custo.
+**Custo:** gratuito (primeira via, segunda via e transferência).
 
-## Prazo para alterar o título | ate quando, mudar, alterar, eleicao, 150 dias, cadastro
-O cadastro eleitoral fecha 150 dias antes da eleição. Depois desse prazo, a alteração só vale para a eleição seguinte.
+## Prazo | 150 dias, eleicao, cadastro, prazo
+**Prazo:** o cadastro é fechado 150 dias antes de cada eleição. Pedidos feitos depois desse prazo só valem para a eleição seguinte.
+
+## Agendamento | agendamento, portal, balcao, central eleitoral
+**Agendamento:** pelo portal da Central do Cidadão ou diretamente no balcão da Central Eleitoral de Aurora.
+
+## Documentos necessários | documentos, comprovante de residencia
+**Documentos necessários:**
+1. Documento original com foto.
+2. Comprovante de residência dos últimos 90 dias (obrigatório na transferência).
+
+## Passo a passo | passo a passo, pedido, titulo digital, 5 dias uteis
+**Passo a passo:**
+1. Faça o pedido pelo portal ou vá ao balcão da Central Eleitoral.
+2. Apresente os documentos.
+3. Receba o título digital em até 5 dias úteis.
