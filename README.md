@@ -1,7 +1,7 @@
 # Citizen Assist AI
 
 **Equipe:** Bruno Riquelme Coutinho Pereira (RM 569619) · Eduardo Bigoli Portela (RM 569897) · Gustavo Fondato de Souza (RM 573651)  
-**Turma:** 1CCPX · **Repositório:** _preencher link do GitHub_
+**Turma:** 1CCPX · **Repositório:** https://github.com/C0utinhoxx/citizen-assist-ai
 
 Solução em **Python** para a **Global Solution 2026.2 — Citizen Tech**, reunindo os Projetos 1 a 4:
 

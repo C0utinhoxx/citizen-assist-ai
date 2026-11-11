@@ -605,7 +605,8 @@ O único item deste recorte P1/P2 que ainda depende da equipe é a **gravação 
 
 Itens que dependem da equipe ou não são exigidos:
 
-- preencher nomes, RMs, link do GitHub e link do vídeo;
+- link do GitHub: publicado em https://github.com/C0utinhoxx/citizen-assist-ai; nomes e RMs já preenchidos;
+- link do vídeo: ainda pendente;
 - gravar o vídeo de demonstração;
 - realizar o teste com pelo menos 3 pessoas de fora da equipe e preencher os indicadores (a Lição 1 previa esse teste);
 - preencher o arquivo `.txt` de entrega no portal, se solicitado.

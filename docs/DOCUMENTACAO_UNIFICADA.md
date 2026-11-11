@@ -4,7 +4,7 @@
 **Disciplina:** Data Structures and Algorithms (DSA)  
 **Instituição:** FIAP
 
-> **Preencher antes da entrega:** link do repositório GitHub e link do vídeo. A turma (1CCPX) e os nomes/RMs já estão preenchidos abaixo.
+> **Preencher antes da entrega:** apenas o link do vídeo. A turma (1CCPX), os nomes/RMs e o link do repositório já estão preenchidos abaixo.
 
 ## Sumário
 
@@ -35,7 +35,7 @@
 | Tema | Documentos pessoais: RG, CPF, título de eleitor, carteira de trabalho, certidões e CNH |
 | Integrantes | Bruno Riquelme Coutinho Pereira — RM 569619<br>Eduardo Bigoli Portela — RM 569897<br>Gustavo Fondato de Souza — RM 573651 |
 | Turma | 1CCPX |
-| Repositório | _preencher link do GitHub_ |
+| Repositório | https://github.com/C0utinhoxx/citizen-assist-ai |
 | Vídeo | _preencher link do YouTube não listado_ |
 
 O **Citizen Assist AI** reúne uma proposta de atendimento ao cidadão, um catálogo de serviços implementado com estruturas de dados manuais e um agente de IA restrito a sete fichas de referência. O sistema foi pensado para pessoas que têm dificuldade de encontrar informação pública confiável, especialmente em periferias, famílias de baixa renda, idosos, jovens e cuidadores.
@@ -802,7 +802,7 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 | P4 — TXT com link | Modelo pronto; **link pendente** |
 | Nomes/RM | Preenchidos |
 | Turma | **1CCPX** |
-| GitHub e vídeo | **Pendentes** |
+| GitHub | **Publicado:** https://github.com/C0utinhoxx/citizen-assist-ai |\n| Vídeo | **Pendente** |
 
 ### Antes de entregar
 
