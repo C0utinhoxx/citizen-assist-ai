@@ -129,7 +129,7 @@
 
 1. Faça upload do arquivo `.mp4`.
 2. Título: `Citizen Assist AI — Global Solution 2026.2`.
-3. Descrição: nomes/RMs, link do GitHub, resumo de 3 linhas e créditos.
+3. Descrição: nomes/RMs, link do GitHub (https://github.com/C0utinhoxx/citizen-assist-ai), resumo de 3 linhas e créditos.
 4. Visibilidade: **Não listado**.
 5. Copie o link e cole em `pitch/link_video.txt`.
 6. Teste o link em uma janela anônima.

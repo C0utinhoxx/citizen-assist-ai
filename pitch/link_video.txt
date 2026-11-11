@@ -15,6 +15,7 @@ Checklist antes de colar:
 - [ ] Vídeo publicado como **não listado**.
 - [ ] Link testado em janela anônima.
 - [ ] Nomes/RMs e link do GitHub na descrição.
+  - Link do repositório: https://github.com/C0utinhoxx/citizen-assist-ai
 - [ ] Nenhum dado pessoal real ou chave de API aparece no vídeo.
 
 Depois de colar o link, atualize também o `README.md` e a documentação única.
