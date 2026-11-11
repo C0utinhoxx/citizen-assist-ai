@@ -155,7 +155,8 @@ Além da execução real, o juiz LLM é coberto por:
 | Teste com 5 pessoas externas | Depende de recrutamento e execução presencial/remota pelo grupo. |
 | Conferência manual humana | Formulário regenerado com as fichas oficiais; falta preencher. |
 | Vídeo de 3 minutos | Depende de gravação e publicação pelo grupo. |
-| Link público do GitHub | Depende de autenticação/publicação pelo grupo. |
+
+O repositório público já foi criado e publicado em **https://github.com/C0utinhoxx/citizen-assist-ai**. A chave do provedor fica apenas em `agente/.env`, que é ignorado pelo Git.
 
 ## 10. Como reproduzir
 

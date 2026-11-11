@@ -221,10 +221,9 @@ O menu do agente tem opções próprias para perguntar, navegar pelas fichas e l
 1. Fazer a **conferência manual** de uma amostra (formulário em `avaliacao/conferencia_manual.md`).
 2. Executar o teste com **≥5 pessoas externas** e preencher a planilha anônima.
 3. Gravar o vídeo de até 3 minutos, publicar como **não listado** e colar o link em `pitch/link_video.txt`.
-4. Publicar o repositório no GitHub e preencher o link no README e na documentação única.
-5. Revisar o resultado do juiz LLM (25/26; o parcial é o caso 24) e registrar a análise final.
+4. Revisar o resultado do juiz LLM (25/26; o parcial é o caso 24) e registrar a análise final.
 
-As fichas oficiais já foram importadas e o juiz LLM já foi executado com `gpt-4o-mini`; esses itens não são mais pendências.
+As fichas oficiais já foram importadas, o juiz LLM já foi executado com `gpt-4o-mini` e o repositório público já está em https://github.com/C0utinhoxx/citizen-assist-ai. Esses itens não são mais pendências.
 
 ## Versões originais
 
