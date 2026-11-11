@@ -1,5 +1,7 @@
 # Roteiro do vídeo pitch — Citizen Assist AI
 
+**Equipe:** Bruno Riquelme Coutinho Pereira (RM 569619), Eduardo Bigoli Portela (RM 569897) e Gustavo Fondato de Souza (RM 573651)
+
 **Duração máxima:** 3 minutos  
 **Narração:** humana, feita por um integrante do grupo (sem voz de IA)  
 **Publicação:** YouTube como **não listado**  

@@ -4,7 +4,7 @@
 **Disciplina:** Data Structures and Algorithms (DSA)  
 **Instituição:** FIAP
 
-> **Preencher antes da entrega:** nome completo e RM de cada integrante, turma, link do repositório GitHub e link do vídeo. Nenhum nome foi inventado nesta documentação.
+> **Preencher antes da entrega:** turma, link do repositório GitHub e link do vídeo. Os nomes e RMs dos integrantes já estão preenchidos abaixo.
 
 ## Sumário
 
@@ -33,7 +33,7 @@
 |---|---|
 | Projeto | Citizen Assist AI — assistente digital de orientação ao cidadão |
 | Tema | Documentos pessoais: RG, CPF, título de eleitor, carteira de trabalho, certidões e CNH |
-| Integrantes | _preencher nome completo e RM_ |
+| Integrantes | Bruno Riquelme Coutinho Pereira — RM 569619<br>Eduardo Bigoli Portela — RM 569897<br>Gustavo Fondato de Souza — RM 573651 |
 | Turma | _preencher_ |
 | Repositório | _preencher link do GitHub_ |
 | Vídeo | _preencher link do YouTube não listado_ |
@@ -785,11 +785,12 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 | P4 — narração humana | Instrução no roteiro; **gravação pendente** |
 | P4 — YouTube não listado | Instrução no roteiro; **publicação pendente** |
 | P4 — TXT com link | Modelo pronto; **link pendente** |
-| Nomes/RM, GitHub, vídeo | **Pendentes** |
+| Nomes/RM | Preenchidos | 
+| Turma, GitHub e vídeo | **Pendentes** |
 
 ### Antes de entregar
 
-1. Colocar os nomes completos e RMs no topo deste documento e no `README.md`.
+1. Conferir os nomes/RMs já preenchidos no topo deste documento e no `README.md`; completar a turma.
 2. Substituir as 7 fichas provisórias pelas oficiais.
 3. Configurar o LLM e rodar `python3 -m avaliacao.executar --juiz llm --agente llm`.
 4. Preencher a conferência manual de 9 casos.

@@ -1,5 +1,8 @@
 # Citizen Assist AI
 
+**Equipe:** Bruno Riquelme Coutinho Pereira (RM 569619) · Eduardo Bigoli Portela (RM 569897) · Gustavo Fondato de Souza (RM 573651)  
+**Turma:** _preencher_ · **Repositório:** _preencher link do GitHub_
+
 Solução em **Python** para a **Global Solution 2026.2 — Citizen Tech**, reunindo os Projetos 1 a 4:
 
 1. **Projeto 1** — proposta de atendimento e orientação ao cidadão.
@@ -197,10 +200,12 @@ O menu do agente tem opções próprias para perguntar, navegar pelas fichas e l
 - [`docs/DOCUMENTACAO_UNIFICADA.md`](docs/DOCUMENTACAO_UNIFICADA.md) — documento único com as 16 seções, arquitetura, segurança, resultados, limitações e checklist.
 - [`docs/DOCUMENTACAO.md`](docs/DOCUMENTACAO.md) — documentação detalhada do DSA (Projetos 1 e 2).
 - [`docs/EVIDENCIAS_TESTES.md`](docs/EVIDENCIAS_TESTES.md) — comandos e saídas reais dos testes.
+- [`docs/PEDIDO_FICHAS.md`](docs/PEDIDO_FICHAS.md) — texto pronto para pedir as fichas oficiais ao professor.
 - [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md) — resultados do Golden Dataset.
 - [`avaliacao/conferencia_manual.md`](avaliacao/conferencia_manual.md) — amostra para conferência humana (pendente).
 - [`pitch/roteiro.md`](pitch/roteiro.md) — roteiro do vídeo de 3 minutos.
-- [`testes_usuarios/protocolo.md`](testes_usuarios/protocolo.md) — protocolo do teste com 5 pessoas externas.
+- [`testes_usuarios/protocolo.md`](testes_usuarios/protocolo.md) — protocolo completo do teste com 5 pessoas externas.
+- [`testes_usuarios/protocolo_rapido.md`](testes_usuarios/protocolo_rapido.md) — versão reduzida (5 pessoas, 6 tarefas, 15–20 min).
 
 ## Pendências antes da entrega
 
@@ -209,7 +214,7 @@ O menu do agente tem opções próprias para perguntar, navegar pelas fichas e l
 3. Fazer a **conferência manual** de uma amostra (formulário em `avaliacao/conferencia_manual.md`).
 4. Executar o teste com **≥5 pessoas externas** e preencher a planilha anônima.
 5. Gravar o vídeo de até 3 minutos, publicar como **não listado** e colar o link em `pitch/link_video.txt`.
-6. Preencher nomes/RMs, link do GitHub e demais dados do grupo na documentação única.
+6. Preencher a turma e o link do GitHub na documentação única e no README.
 
 ## Versões originais
 

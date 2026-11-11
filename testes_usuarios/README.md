@@ -5,6 +5,7 @@
 Esta pasta contém:
 
 - [`protocolo.md`](protocolo.md) — objetivo, ética, perfil, roteiro, métricas e critérios.
+- [`protocolo_rapido.md`](protocolo_rapido.md) — versão reduzida: 5 pessoas, 6 tarefas, 15–20 min por pessoa.
 - [`formulario.md`](formulario.md) — formulário imprimível por participante anônimo.
 - [`planilha.csv`](planilha.csv) — planilha para consolidar os resultados.
 
