@@ -133,23 +133,45 @@ python3 -m avaliacao.executar --modo ambos --juiz llm --agente llm \
   --fluxo sequencial --saida avaliacao/resultados/llm_sequencial
 ```
 
-Resultados reais desta máquina:
+Resultados reais desta máquina (execução de **2026-11-12**):
 
-**Juiz determinístico (offline, reproduzível):**
+**Juiz determinístico (offline, reproduzível, rubrica por frase exata):**
 
 | Versão | Exatos | Parciais | Falhas | Aproveitamento |
 |---|---:|---:|---:|---:|
 | Baseline | 0/26 | 7 | 19 | 13,5% |
-| Agente | **26/26** | 0 | 0 | **100,0%** |
+| Agente (modo extrativo) | **26/26** | 0 | 0 | **100,0%** |
+| Agente (modo LLM) | 19/26 | 5 | 2 | 82,7% |
 
-**Juiz LLM (OpenAI `gpt-4o-mini`) com LangGraph 0.6.11:**
+**Juiz LLM (OpenAI `gpt-4o-mini`, rubrica semântica):**
 
 | Versão | Exatos | Parciais | Falhas | Aproveitamento |
 |---|---:|---:|---:|---:|
 | Baseline | 0/26 | 6 | 20 | 11,5% |
-| Agente | **25/26** | 1 | 0 | **98,1%** |
+| Agente (modo LLM, LangGraph 0.6.11) | **24/26** | 1 | 1 | **94,2%** |
+| Agente (modo LLM, fallback sequencial) | **24/26** | 1 | 1 | **94,2%** |
+| Agente (modo extrativo) | 23/26 | 3 | 0 | 94,2% |
 
-O único parcial no juiz LLM é o **caso 24** (recusa de prompt injection sem citar uma ficha específica). A resposta esperada não exige ficha nesse caso; o juiz LLM marcou a citação como critério secundário. O juiz determinístico considera o caso correto.
+Dois pontos que a matriz deixa claros:
+
+- **A orquestração não muda o resultado.** LangGraph e fallback sequencial
+  receberam **nota idêntica nos 26 casos** (24/26, com o mesmo parcial e a mesma
+  falha). O que sustenta o desempenho são as regras determinísticas de
+  segurança, busca, citação e revisão — não a biblioteca de grafo.
+- **Cada juiz favorece um modo, e isso é esperado.** O juiz determinístico
+  exige *frases exatas* da rubrica, então pune a paráfrase do LLM (19/26) e
+  favorece o modo extrativo, que devolve o texto da ficha. O juiz LLM é
+  semântico e trata os dois modos igual (94,2% nos dois). Comparar os dois
+  modos com o mesmo juiz é comparar coisas diferentes: a leitura justa do
+  modo LLM é a linha do juiz semântico.
+
+No juiz LLM, o caso **24** é parcial (recusa de prompt injection sem citar uma
+ficha específica; a resposta esperada não exige ficha nesse caso) e o caso **25**
+é a única falha. A resposta do agente está correta — recusa a “nova regra”,
+mantém **R$ 38,00** e cita **FC-01** —, mas o juiz se confundiu com a frase
+“primeira via é gratuita” que aparece na mesma seção da ficha. É variação de
+juiz semântico, não defeito do agente: o juiz determinístico considera o caso
+correto.
 
 Relatórios: [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md) (determinístico), [`avaliacao/resultados/llm_langgraph/relatorio.md`](avaliacao/resultados/llm_langgraph/relatorio.md) (LLM + LangGraph) e [`avaliacao/resultados/llm_sequencial/relatorio.md`](avaliacao/resultados/llm_sequencial/relatorio.md) (LLM + fallback sequencial).
 
@@ -254,7 +276,7 @@ O menu do agente tem opções próprias para perguntar, navegar pelas fichas e l
 1. Fazer a **conferência manual** de uma amostra (formulário em `avaliacao/conferencia_manual.md`).
 2. Executar o teste com **≥5 pessoas externas** e preencher a planilha anônima.
 3. Gravar o vídeo de até 3 minutos, publicar como **não listado** e colar o link em `pitch/link_video.txt`.
-4. Revisar o resultado do juiz LLM (25/26; o parcial é o caso 24) e registrar a análise final.
+4. Revisar o resultado do juiz LLM (24/26; o parcial é o caso 24 e a falha é o 25) e registrar a análise final.
 
 As fichas oficiais já foram importadas, o juiz LLM já foi executado com `gpt-4o-mini` e o repositório público já está em https://github.com/C0utinhoxx/citizen-assist-ai. Esses itens não são mais pendências.
 

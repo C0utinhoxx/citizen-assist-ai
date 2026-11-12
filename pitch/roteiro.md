@@ -79,17 +79,18 @@
 
 **Narração:**
 
-> “Avaliamos com as 26 mensagens originais do Golden Dataset. Antes da melhoria, o protótipo ingênuo acertou 11,5%. Depois, com busca com âncora, segurança, citação e revisão, o agente acertou 25 de 26 no juiz LLM com GPT-4o-mini e LangGraph — 98,1%. No juiz determinístico, acertou 26 de 26. O único parcial foi uma recusa de prompt injection sem citar ficha, caso em que a resposta esperada não exige ficha.”
+> “Avaliamos com as 26 mensagens originais do Golden Dataset. Antes da melhoria, o protótipo ingênuo acertou 11,5%. Depois, com busca com âncora, segurança, citação e revisão, o agente acertou 26 de 26 no juiz determinístico, que é a checagem offline e reproduzível. No juiz semântico com GPT-4o-mini e LangGraph, foram 24 de 26, ou 94,2%. E rodamos também sem o LangGraph, no fallback sequencial: a nota foi idêntica nos 26 casos. Ou seja, quem acerta é a regra determinística, não o modelo.”
 
 **Slide sugerido:**
 
 | Versão | Acertos exatos | Aproveitamento |
 |---|---:|---:|
 | Antes (baseline) | 0/26 | 11,5% |
-| Depois (juiz LLM + LangGraph) | 25/26 | 98,1% |
-| Depois (juiz determinístico) | 26/26 | 100,0% |
+| Depois (juiz determinístico, offline) | 26/26 | 100,0% |
+| Depois (juiz LLM + LangGraph) | 24/26 | 94,2% |
+| Depois (juiz LLM + fallback sequencial) | 24/26 | 94,2% |
 
-> **Importante:** diga que o juiz LLM foi realmente executado com GPT-4o-mini e LangGraph. O juiz determinístico é a checagem offline reproduzível. Não declare 26/26 no juiz LLM: o resultado real foi 25/26.
+> **Importante:** diga que o juiz LLM foi realmente executado com GPT-4o-mini e LangGraph. O juiz determinístico é a checagem offline reproduzível. Não declare 26/26 no juiz LLM: o resultado real foi 24/26 (94,2%). O juiz semântico pode variar entre execuções — em 2026-11-11 a mesma execução deu 25/26. Mencionar essa variação mostra que os números foram medidos, não decorados.
 
 ---
 

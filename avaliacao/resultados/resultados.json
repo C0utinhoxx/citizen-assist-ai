@@ -1,6 +1,6 @@
 {
   "metadados": {
-    "executado_em": "2026-11-11 20:01:39",
+    "executado_em": "2026-11-12 20:15:12",
     "dataset": "1.0",
     "dataset_total": 26,
     "modo_agente": "ambos",
@@ -8,7 +8,7 @@
     "provedor": "openai (configurado)",
     "fluxos": {
       "baseline": "sequencial (baseline)",
-      "melhorado": "sequencial"
+      "melhorado": "langgraph"
     },
     "resultados": {
       "baseline": {

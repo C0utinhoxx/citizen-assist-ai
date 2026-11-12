@@ -1,10 +1,10 @@
 # Resultados do Golden Dataset
 
-- Executado em: **2026-11-11 20:01:39**
+- Executado em: **2026-11-12 20:15:12**
 - Dataset: **1.0** (26 mensagens originais)
 - Juiz: **deterministico**
 - Provedor: **openai (configurado)**
-- Fluxo do agente: **{'baseline': 'sequencial (baseline)', 'melhorado': 'sequencial'}**
+- Fluxo do agente: **{'baseline': 'sequencial (baseline)', 'melhorado': 'langgraph'}**
 
 > As 26 mensagens são as originais do enunciado. Nenhuma foi substituída.
 
