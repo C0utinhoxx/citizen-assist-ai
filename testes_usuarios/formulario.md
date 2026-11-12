@@ -42,30 +42,39 @@ Para cada tarefa, anotar:
 
 ---
 
-## Perguntas abertas
+## Questionário de facilidade de uso (5 perguntas)
 
-**O que foi mais fácil?**
+Aplicar as **cinco** perguntas ao final da sessão. As respostas 1, 2, 4 e 5 são
+comentários livres; a resposta 3 usa a escala de 1 a 5 e é a que entra na média.
 
-```text
-______________________________________________________________________
-______________________________________________________________________
-```
-
-**O que foi mais difícil?**
+**Q1. O que foi mais fácil?**
 
 ```text
 ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-**Você confiaria na resposta? Por quê?**
+**Q2. O que foi mais difícil?**
 
 ```text
 ______________________________________________________________________
 ______________________________________________________________________
 ```
 
-**O que mudaria?**
+**Q3. As respostas foram claras e fáceis de entender?** — 1 (muito difícil) a 5 (muito fácil)
+
+| 1 | 2 | 3 | 4 | 5 |
+|:--:|:--:|:--:|:--:|:--:|
+| ( ) | ( ) | ( ) | ( ) | ( ) |
+
+**Q4. Você confiaria na resposta? Por quê?**
+
+```text
+______________________________________________________________________
+______________________________________________________________________
+```
+
+**Q5. O que mudaria para facilitar ainda mais?**
 
 ```text
 ______________________________________________________________________

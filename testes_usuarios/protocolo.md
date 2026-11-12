@@ -86,14 +86,16 @@ Para cada tarefa:
 
 ### Fechamento (2 minutos)
 
-Perguntas abertas:
+Aplicar o **questionário curto de cinco perguntas** sobre facilidade de uso:
 
-- “O que foi mais fácil?”
-- “O que foi mais difícil?”
-- “Você confiaria na resposta? Por quê?”
-- “O que mudaria?”
+1. “O que foi mais fácil?”
+2. “O que foi mais difícil?”
+3. “As respostas foram claras e fáceis de entender?” — de 1 (muito difícil) a 5 (muito fácil)
+4. “Você confiaria na resposta? Por quê?”
+5. “O que mudaria para facilitar ainda mais?”
 
-Registrar apenas comentários gerais. Não pedir nome.
+Registrar apenas comentários gerais. Não pedir nome. A resposta da pergunta 3
+vai para `questionario.csv`; as demais são anotadas no formulário.
 
 ---
 

@@ -654,9 +654,25 @@ Medir, com pelo menos **5 pessoas externas** ao grupo:
 - **Facilidade:** 1 (muito difícil) a 5 (muito fácil).
 - **Observações:** apenas comentários sem dados pessoais.
 
+### Questionário de facilidade de uso (5 perguntas)
+
+Aplicado no fechamento de cada sessão, com as mesmas cinco perguntas para
+todos:
+
+1. “O que foi mais fácil?”
+2. “O que foi mais difícil?”
+3. “As respostas foram claras e fáceis de entender?” — de 1 a 5.
+4. “Você confiaria na resposta? Por quê?”
+5. “O que mudaria para facilitar ainda mais?”
+
+As respostas vão para `testes_usuarios/questionario.csv`. A pergunta 3 entra na
+média de clareza; as demais são comentários qualitativos.
+
 ### Status
 
-O protocolo, o formulário e a planilha estão prontos em `testes_usuarios/`. **A execução com 5 pessoas ainda não ocorreu**; nenhum resultado foi inventado.
+O protocolo, o formulário, o questionário, a planilha e o **modelo de relatório**
+(`testes_usuarios/relatorio.md`) estão prontos em `testes_usuarios/`. **A execução
+com 5 pessoas ainda não ocorreu**; nenhum resultado foi inventado.
 
 ---
 
@@ -715,6 +731,7 @@ python3 main_agente.py
 ### Evidências
 
 - [`EVIDENCIAS_TESTES.md`](EVIDENCIAS_TESTES.md)
+- [`testes_usuarios/relatorio.md`](../testes_usuarios/relatorio.md) — modelo do relatório do teste com usuários (pendente)
 - [`avaliacao/resultados/relatorio.md`](../avaliacao/resultados/relatorio.md) — juiz determinístico
 - [`avaliacao/resultados/llm_langgraph/relatorio.md`](../avaliacao/resultados/llm_langgraph/relatorio.md) — juiz LLM + LangGraph
 - [`avaliacao/resultados/llm_sequencial/relatorio.md`](../avaliacao/resultados/llm_sequencial/relatorio.md) — juiz LLM + fallback sequencial
@@ -780,7 +797,7 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 | P2 — lista encadeada manual | Entregue |
 | P2 — busca, Selection Sort, indicadores, CSV, JSON | Entregue |
 | P2 — 13 requisitos | Entregue |
-| P2 — testes Python | 81 originais aprovados |
+| P2 — testes Python | 141 aprovados (60 do DSA + 59 do agente/avaliação + 22 da voz mobile) |
 | P2 — mobile | 78 verificações aprovadas |
 | P3 — agente com FC-01 a FC-07 | **Entregue** com as fichas oficiais (versão 01/10/2026) |
 | P3 — citação da ficha e data | Entregue |
@@ -802,14 +819,15 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 | P4 — TXT com link | Modelo pronto; **link pendente** |
 | Nomes/RM | Preenchidos |
 | Turma | **1CCPX** |
-| GitHub | **Publicado:** https://github.com/C0utinhoxx/citizen-assist-ai |\n| Vídeo | **Pendente** |
+| GitHub | **Publicado:** https://github.com/C0utinhoxx/citizen-assist-ai |
+| Vídeo | **Pendente** |
 
 ### Antes de entregar
 
 1. Conferir os nomes/RMs e a turma (**1CCPX**) no topo deste documento e no `README.md`.
 2. Preencher a conferência manual de 9 casos em `avaliacao/conferencia_manual.md`.
-3. Executar o teste com 5 pessoas e preencher a planilha anônima.
-4. Gravar o vídeo, publicar como não listado e colar o link em `pitch/link_video.txt`.
+3. Executar o teste com 5 pessoas, preencher `planilha.csv` e `questionario.csv` e fechar `testes_usuarios/relatorio.md`.
+4. Gravar o vídeo, publicar como não listado, colar o link em `pitch/link_video.txt` e usar `pitch/descricao_youtube.md` para a descrição e o comentário.
 5. Rodar novamente `python3 -m unittest discover -s testes -t .` e `node mobile/teste-logica.js`.
 6. Publicar o repositório no GitHub e colar o link no README e neste documento.
 7. Revisar o resultado do juiz LLM (25/26; o parcial é o caso 24) e registrar a análise final.

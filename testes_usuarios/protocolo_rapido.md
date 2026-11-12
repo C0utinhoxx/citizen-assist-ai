@@ -54,11 +54,13 @@ Para cada tarefa, anote:
 
 ### Fechamento
 
-Pergunte apenas:
+Pergunte as **cinco** perguntas do questionário de facilidade de uso:
 
-- “O que foi mais fácil?”
-- “O que foi mais difícil?”
-- “Você confiaria na resposta? Por quê?”
+1. “O que foi mais fácil?”
+2. “O que foi mais difícil?”
+3. “As respostas foram claras e fáceis de entender?” — de 1 (muito difícil) a 5 (muito fácil)
+4. “Você confiaria na resposta? Por quê?”
+5. “O que mudaria para facilitar ainda mais?”
 
 ---
 

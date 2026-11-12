@@ -179,8 +179,8 @@ Jun/
 │   ├── baseline.py             # versão de comparação
 │   ├── executar.py             # runner antes/depois
 │   └── resultados/             # determinístico + llm_langgraph + llm_sequencial
-├── testes_usuarios/            # protocolo e planilha (execução pendente)
-├── pitch/                      # roteiro pronto; link do vídeo pendente
+├── testes_usuarios/            # protocolo, questionário, planilha e relatório (execução pendente)
+├── pitch/                      # roteiro, descrição do YouTube; link do vídeo pendente
 ├── testes/                     # 141 testes Python
 ├── docs/
 │   ├── DOCUMENTACAO.md         # documentação do catálogo DSA
@@ -230,8 +230,10 @@ O menu do agente tem opções próprias para perguntar, navegar pelas fichas e l
 - [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md) — resultados do juiz determinístico.
 - [`avaliacao/conferencia_manual.md`](avaliacao/conferencia_manual.md) — amostra para conferência humana (pendente).
 - [`pitch/roteiro.md`](pitch/roteiro.md) — roteiro do vídeo de 3 minutos.
+- [`pitch/descricao_youtube.md`](pitch/descricao_youtube.md) — texto da descrição e do comentário do YouTube, prontos para copiar.
 - [`testes_usuarios/protocolo.md`](testes_usuarios/protocolo.md) — protocolo completo do teste com 5 pessoas externas.
 - [`testes_usuarios/protocolo_rapido.md`](testes_usuarios/protocolo_rapido.md) — versão reduzida (5 pessoas, 6 tarefas, 15–20 min).
+- [`testes_usuarios/relatorio.md`](testes_usuarios/relatorio.md) — modelo do relatório do teste com usuários, pronto para preencher.
 
 ## Pendências antes da entrega
 
