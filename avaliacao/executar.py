@@ -1,14 +1,3 @@
-"""Executa o agente no Golden Dataset e gera os resultados antes/depois.
-
-Uso:
-
-    python3 -m avaliacao.executar --modo ambos --juiz deterministico
-    python3 -m avaliacao.executar --modo ambos --juiz llm --agente llm
-
-O modo determinístico não precisa de internet nem de chave. O modo ``llm``
-exige um provedor configurado em ``agente/.env`` (Groq, OpenAI ou Ollama).
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -127,7 +116,9 @@ def _relatorio(
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
+    parser = argparse.ArgumentParser(
+        description="Executa o agente no Golden Dataset e gera os resultados antes/depois."
+    )
     parser.add_argument(
         "--modo",
         choices=("baseline", "melhorado", "ambos"),
@@ -229,7 +220,6 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     print(f"Resultados salvos em {args.saida}")
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

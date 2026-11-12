@@ -1,16 +1,4 @@
 #!/usr/bin/env python3
-"""Síntese de voz natural para o Citizen Assist AI Mobile.
-
-O navegador continua usando a Web Speech API como voz offline. Este módulo
-adiciona uma voz neural opcional na nuvem, atrás de um pequeno servidor local,
-para que a chave da API nunca apareça no HTML.
-
-Provedores:
-    mock  -> áudio de teste, sem chave (padrão quando não há AZURE_SPEECH_KEY)
-    azure -> Azure Speech, voz neural pt-BR (plano B: Google Chirp 3 HD)
-
-O módulo usa apenas a biblioteca padrão do Python.
-"""
 
 from __future__ import annotations
 
@@ -60,20 +48,17 @@ IDS_VOZES_AZURE = {v["id"] for v in VOZES_AZURE}
 
 
 class TTSError(Exception):
-    """Falha ao gerar ou obter o áudio."""
+    pass
 
 
 class TTSValidationError(TTSError):
-    """Texto inválido para síntese."""
+    pass
 
 
 class TTSConfigError(TTSError):
-    """Provedor sem configuração suficiente."""
-
+    pass
 
 @dataclass
-
-
 class ConfigTTS:
     provedor: str
     modo: str
@@ -95,10 +80,7 @@ class ConfigTTS:
             "aviso": self.aviso,
         }
 
-
 @dataclass
-
-
 class ResultadoTTS:
     audio: bytes
     content_type: str
@@ -110,7 +92,6 @@ class ResultadoTTS:
 
 
 def carregar_env(caminho: Path) -> None:
-    """Lê um .env simples sem sobrescrever variáveis já definidas."""
     try:
         linhas = caminho.read_text(encoding="utf-8").splitlines()
     except OSError:
@@ -217,7 +198,6 @@ def normalizar_voz(voz: Optional[str]) -> str:
 
 
 def _tipo_saida(config: ConfigTTS) -> Tuple[str, str]:
-    """Devolve content-type e extensão coerentes com o formato configurado."""
     if config.provedor == "mock":
         return "audio/wav", "wav"
     formato = (config.formato or "").lower()
@@ -357,12 +337,6 @@ def _sintetizar_azure(config: ConfigTTS, texto: str, voz: str) -> Tuple[bytes, s
 
 
 def _sintetizar_mock(texto: str) -> Tuple[bytes, str, str]:
-    """Gera um áudio de teste.
-
-    No macOS, tenta falar o próprio texto com o comando ``say`` e converter
-    para WAV. Em outros sistemas, ou se a conversão falhar, devolve um tom
-    curto. O modo de teste nunca chama o Azure.
-    """
     if os.environ.get("TTS_MOCK_FORCAR_TOM") == "1":
         return _tom_wav(), "audio/wav", "wav"
 
@@ -413,7 +387,6 @@ def _sintetizar_mock(texto: str) -> Tuple[bytes, str, str]:
 
 
 def _tom_wav() -> bytes:
-    """Tom curto de 0,6 s para validar a reprodução sem chave."""
     buffer = io.BytesIO()
     taxa = 22050
     with wave.open(buffer, "wb") as arquivo:

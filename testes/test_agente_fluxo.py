@@ -1,5 +1,3 @@
-"""Testes de ponta a ponta do agente: fluxo, citações e limites."""
-
 import unittest
 
 from agente import AgenteCidadao
@@ -191,7 +189,6 @@ class TestFallbackDoProvedor(unittest.TestCase):
         resposta = agente.responder("Quanto custa a segunda via do RG?")
         self.assertNotIn("123.456.789-09", resposta.texto)
         self.assertIn("dado pessoal ocultado", resposta.texto)
-
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

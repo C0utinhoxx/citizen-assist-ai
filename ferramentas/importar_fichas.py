@@ -1,20 +1,3 @@
-"""Converte as fichas oficiais (formato do professor) para o formato do agente.
-
-As fichas oficiais usam campos em negrito, por exemplo:
-
-    **Custo:** a segunda via custa R$ 38,00.
-    **Prazo:** fica pronta em 10 dias úteis.
-
-O agente espera seções Markdown com ``## Título | palavras-chave``. Este script
-agrupa os campos em seções coerentes, preserva o texto literal e adiciona os
-metadados de fonte, data e palavras-chave.
-
-Uso:
-    python3 ferramentas/importar_fichas.py ~/Downloads/referencia
-
-O script não inventa conteúdo: apenas reorganiza os campos existentes.
-"""
-
 from __future__ import annotations
 
 import re

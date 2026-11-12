@@ -1,9 +1,3 @@
-"""Prompts do agente.
-
-O prompt de sistema é curto de propósito: as regras críticas também são
-verificadas no código (segurança, citação, aviso e proteção de dados).
-"""
-
 from __future__ import annotations
 
 from typing import Iterable
@@ -26,7 +20,6 @@ REGRAS OBRIGATÓRIAS:
 
 
 def montar_contexto(ocorrencias: Iterable[Ocorrencia]) -> str:
-    """Monta o bloco de contexto com ficha, seção, fonte e verificação."""
     blocos = []
     for ocorrencia in ocorrencias:
         blocos.append(
@@ -41,7 +34,6 @@ def montar_contexto(ocorrencias: Iterable[Ocorrencia]) -> str:
 
 
 def montar_consulta(pergunta: str, ocorrencias: Iterable[Ocorrencia]) -> str:
-    """Monta a mensagem do usuário enviada ao modelo."""
     contexto = montar_contexto(ocorrencias)
     return (
         "CONTEXTO DAS FICHAS (fonte única de verdade):\n"

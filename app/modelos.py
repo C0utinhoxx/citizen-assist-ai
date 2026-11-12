@@ -1,13 +1,4 @@
-"""Modelo de um serviço ou orientação do Citizen Assist AI."""
-
-
 class Servico:
-    """Representa um serviço público com todos os dados do catálogo.
-
-    O mesmo registro atende às duas lições:
-    - campos do catálogo (título, categoria, descrição, documentos, local);
-    - campos da base de conhecimento (palavras-chave, fonte e verificação).
-    """
 
     def __init__(self, id, titulo, categoria, descricao, documentos=None,
                  local="", fonte="", palavras_chave=None, verificado_em=""):
@@ -22,7 +13,6 @@ class Servico:
         self.verificado_em = str(verificado_em).strip()
 
     def para_dict(self):
-        """Converte o serviço em dicionário para gravação no JSON."""
         return {
             "id": self.id,
             "titulo": self.titulo,
@@ -37,12 +27,6 @@ class Servico:
 
     @classmethod
     def de_dict(cls, dados):
-        """Cria um serviço a partir de um dicionário.
-
-        Também aceita os nomes usados pelo catálogo (resposta, documentos,
-        onde) e pelo CRUD (descricao, requisitos, local), facilitando a
-        importação de dados antigos.
-        """
         if not isinstance(dados, dict):
             raise TypeError("o registro deve ser um objeto")
 
@@ -83,7 +67,6 @@ class Servico:
         )
 
     def exibir(self):
-        """Mostra o registro completo no terminal."""
         print(f"\n>> {self.titulo} [{self.categoria}]")
         print(f"ID: {self.id}")
         print(f"Descrição: {self.descricao}")

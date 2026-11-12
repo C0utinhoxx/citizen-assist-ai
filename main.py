@@ -1,8 +1,3 @@
-"""Ponto de entrada do Citizen Assist AI.
-
-Execute com: python3 main.py
-"""
-
 from pathlib import Path
 
 from app.assistente import Assistente
@@ -18,7 +13,6 @@ CAMINHO_CSV = PASTA_DADOS / "atendimentos.csv"
 
 
 def main():
-    """Carrega o catálogo, monta a lista encadeada e abre o menu."""
     lista = ListaEncadeada()
 
     for servico in carregar_servicos(str(CAMINHO_SERVICOS)):

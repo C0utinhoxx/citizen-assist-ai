@@ -1,14 +1,7 @@
-"""Normalização de texto usada pela busca, pela ordenação e pela pontuação."""
-
 import unicodedata
 
 
 def normalizar(texto):
-    """Devolve o texto em minúsculas, sem acentos e sem pontuação.
-
-    O resultado também tem os espaços ajustados, o que permite comparar
-    palavras inteiras (por exemplo, "saude" não encontra "saudavel").
-    """
     if texto is None:
         return ""
 
@@ -24,7 +17,6 @@ def normalizar(texto):
 
 
 def contem_palavra(texto, palavra_normalizada):
-    """Verifica se uma palavra ou expressão aparece inteira no texto."""
     if not palavra_normalizada:
         return False
 

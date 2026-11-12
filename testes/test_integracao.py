@@ -1,5 +1,3 @@
-"""Testes de integração: validações, CRUD e menu unificado."""
-
 import io
 import os
 import tempfile

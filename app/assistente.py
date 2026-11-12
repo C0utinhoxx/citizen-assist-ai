@@ -1,8 +1,3 @@
-"""Atendimento ao cidadão, histórico, indicadores e exportação CSV.
-
-A classe trabalha sobre a mesma lista encadeada usada pelo catálogo.
-"""
-
 import time
 from datetime import datetime
 
@@ -15,7 +10,6 @@ from .persistencia import (
 
 
 class Assistente:
-    """Faz o atendimento, guarda o histórico e gera os indicadores."""
 
     def __init__(self, nome, base, caminho_historico, caminho_csv):
         self.nome = nome
@@ -26,12 +20,10 @@ class Assistente:
         self.nota_facilidade = None
 
     def contem_dado_pessoal(self, texto):
-        """Detecta CPF/telefone (8 ou mais dígitos) e e-mail (contém @)."""
         quantidade_digitos = sum(1 for caractere in texto if caractere.isdigit())
         return quantidade_digitos >= 8 or "@" in texto
 
     def _ler_opcao(self, maximo):
-        """Lê um número de 0 até maximo. Devolve None se for inválido."""
         entrada = input("Opção: ").strip()
 
         if not entrada.isdigit():
@@ -46,7 +38,6 @@ class Assistente:
         return numero
 
     def _ler_sim_nao(self, mensagem, aceitar_zero=False):
-        """Insiste até receber s ou n. Com aceitar_zero, 0 devolve None."""
         while True:
             resposta = input(mensagem).strip().lower()
 
@@ -63,7 +54,6 @@ class Assistente:
                 print("Responda com s (sim) ou n (não).")
 
     def _ler_nota(self):
-        """Pede uma nota de facilidade de 1 a 5."""
         while True:
             entrada = input("Que nota de 1 a 5 você dá para a facilidade de uso? ").strip()
             if entrada.isdigit() and 1 <= int(entrada) <= 5:
@@ -71,7 +61,6 @@ class Assistente:
             print("Entrada inválida. Digite um número de 1 a 5.")
 
     def perguntar(self):
-        """Faz um atendimento usando a busca por pontuação."""
         print("\n--- Fazer uma pergunta ---")
 
         pergunta_original = None
@@ -134,7 +123,6 @@ class Assistente:
                 return
 
     def navegar(self):
-        """Mostra as categorias e permite escolher uma orientação."""
         while True:
             categorias = self.base.categorias()
 
@@ -156,7 +144,6 @@ class Assistente:
             self._navegar_categoria(categorias[opcao - 1])
 
     def _navegar_categoria(self, categoria):
-        """Mostra as orientações de uma categoria escolhida."""
         orientacoes = self.base.por_categoria(categoria)
 
         while True:
@@ -185,7 +172,6 @@ class Assistente:
 
     def registrar(self, origem, pergunta, id_orientacao, encontrou,
                   ajudou, tentativas, tempo):
-        """Cria um registro de atendimento e salva no histórico."""
         registro = {
             "data": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "origem": origem,
@@ -202,7 +188,6 @@ class Assistente:
         return registro
 
     def calcular_indicadores(self):
-        """Calcula os indicadores sem imprimir, facilitando os testes."""
         total = len(self.historico)
 
         encontrados = sum(1 for r in self.historico if r.get("encontrou"))
@@ -253,7 +238,6 @@ class Assistente:
         }
 
     def indicadores(self):
-        """Calcula e mostra os indicadores a partir do histórico."""
         dados = self.calcular_indicadores()
         print("\n--- Indicadores de atendimento ---")
 
@@ -277,11 +261,9 @@ class Assistente:
             print(" - Nenhuma")
 
     def exportar_csv(self):
-        """Exporta todos os atendimentos para o CSV configurado."""
         return exportar_csv(self.caminho_csv, self.historico)
 
     def finalizar(self):
-        """Pede a nota, exporta o CSV e mostra os indicadores ao sair."""
         print("\n--- Encerrando o atendimento ---")
         self.nota_facilidade = self._ler_nota()
 

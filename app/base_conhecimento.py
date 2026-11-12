@@ -1,9 +1,3 @@
-"""Base de conhecimento: categorias e busca por pontuação.
-
-A base não guarda outra cópia dos registros: ela usa a mesma lista
-encadeada do catálogo. Assim, toda consulta percorre os nós de verdade.
-"""
-
 from .texto import contem_palavra, normalizar
 
 PONTOS_ALTA = 6
@@ -11,7 +5,6 @@ PONTOS_MEDIA = 3
 
 
 def _ordenar_categorias(nomes):
-    """Ordena nomes de categoria com Insertion Sort, ignorando acentos."""
     for indice in range(1, len(nomes)):
         atual = nomes[indice]
         posicao = indice - 1
@@ -26,7 +19,6 @@ def _ordenar_categorias(nomes):
 
 
 def _vem_antes(item, outro):
-    """Compara resultados: maior pontuação primeiro; empate pelo menor ID."""
     pontos, servico = item
     outros_pontos, outro_servico = outro
 
@@ -36,7 +28,6 @@ def _vem_antes(item, outro):
 
 
 def _ordenar_resultados(resultados):
-    """Ordena os resultados da busca com Insertion Sort."""
     for indice in range(1, len(resultados)):
         atual = resultados[indice]
         posicao = indice - 1
@@ -51,13 +42,11 @@ def _ordenar_resultados(resultados):
 
 
 class BaseConhecimento:
-    """Oferece categorias e busca por pontuação sobre a lista encadeada."""
 
     def __init__(self, lista):
         self.lista = lista
 
     def categorias(self):
-        """Devolve as categorias sem repetir, em ordem alfabética."""
         vistas = {}
 
         for servico in self.lista.percorrer():
@@ -68,7 +57,6 @@ class BaseConhecimento:
         return _ordenar_categorias(list(vistas.values()))
 
     def por_categoria(self, categoria):
-        """Devolve os serviços de uma categoria, na ordem da lista."""
         chave = normalizar(categoria)
         return [
             servico for servico in self.lista.percorrer()
@@ -76,13 +64,6 @@ class BaseConhecimento:
         ]
 
     def pontuar(self, pergunta, servico):
-        """Calcula quantos pontos um serviço faz para a pergunta.
-
-        Regras de pontuação do catálogo:
-        - +3 para cada palavra-chave que aparece inteira na pergunta;
-        - +1 para cada palavra da pergunta (4 letras ou mais) que
-          aparece inteira no título.
-        """
         pergunta_normalizada = normalizar(pergunta)
         if not pergunta_normalizada:
             return 0
@@ -102,11 +83,6 @@ class BaseConhecimento:
         return pontos
 
     def buscar(self, pergunta):
-        """Devolve tuplas (pontos, servico) da maior para a menor pontuação.
-
-        A busca é linear: percorre todos os nós da lista encadeada.
-        Registros com zero ponto não entram no resultado.
-        """
         if not normalizar(pergunta):
             return []
 

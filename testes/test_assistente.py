@@ -1,5 +1,3 @@
-"""Testes do assistente: pergunta, categorias, indicadores e CSV."""
-
 import csv
 import io
 import json
@@ -196,7 +194,6 @@ class TestAssistente(unittest.TestCase):
             self.assistente.historico[-1]["nota_facilidade"], 5
         )
         self.assertTrue(os.path.exists(self.caminho_csv))
-
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -1,12 +1,9 @@
-"""Menu interativo, validação de entradas e operações do catálogo."""
-
 from .modelos import Servico
 from .persistencia import salvar_servicos
 from .texto import normalizar
 
 
 def ler_inteiro(mensagem, minimo, maximo):
-    """Lê um número inteiro dentro da faixa. Repete enquanto for inválido."""
     while True:
         entrada = input(mensagem).strip()
         try:
@@ -23,7 +20,6 @@ def ler_inteiro(mensagem, minimo, maximo):
 
 
 def ler_texto(mensagem):
-    """Lê um texto não vazio."""
     while True:
         texto = input(mensagem).strip()
         if texto:
@@ -32,13 +28,11 @@ def ler_texto(mensagem):
 
 
 def ler_opcional(mensagem, valor_atual):
-    """Enter mantém o valor atual; qualquer texto substitui."""
     texto = input(f"{mensagem} [{valor_atual}]: ").strip()
     return texto if texto else None
 
 
 def ler_lista(mensagem, separador):
-    """Lê uma lista separada por um caractere. Texto vazio vira lista vazia."""
     texto = input(mensagem).strip()
     if not texto:
         return []
@@ -46,7 +40,6 @@ def ler_lista(mensagem, separador):
 
 
 def ler_lista_opcional(mensagem, valor_atual, separador):
-    """Enter mantém a lista atual; qualquer texto substitui a lista."""
     atual = separador.join(valor_atual)
     texto = input(f"{mensagem} [{atual}]: ").strip()
     if not texto:
@@ -55,7 +48,6 @@ def ler_lista_opcional(mensagem, valor_atual, separador):
 
 
 def confirmar(mensagem):
-    """Lê s ou n, repetindo se a resposta for inválida."""
     while True:
         resposta = input(mensagem).strip().lower()
         if resposta == "s":
@@ -66,7 +58,6 @@ def confirmar(mensagem):
 
 
 def cadastrar(lista):
-    """Cadastra um serviço. Devolve True quando a lista foi alterada."""
     print("\n--- Cadastrar serviço ---")
     id = ler_inteiro("ID (número positivo): ", 1, 999999)
 
@@ -108,7 +99,6 @@ def cadastrar(lista):
 
 
 def consultar(lista):
-    """Consulta um serviço pelo identificador."""
     print("\n--- Consultar por ID ---")
     id = ler_inteiro("ID: ", 1, 999999)
     servico = lista.buscar_por_id(id)
@@ -120,7 +110,6 @@ def consultar(lista):
 
 
 def pesquisar(lista):
-    """Pesquisa por título, categoria ou descrição."""
     print("\n--- Pesquisar por atributo ---")
     texto = ler_texto("Digite título, categoria ou palavra da descrição: ")
     resultados = lista.pesquisar(texto)
@@ -135,7 +124,6 @@ def pesquisar(lista):
 
 
 def atualizar(lista):
-    """Atualiza um serviço. Devolve True quando a lista foi alterada."""
     print("\n--- Atualizar serviço ---")
     id = ler_inteiro("ID do serviço: ", 1, 999999)
     servico = lista.buscar_por_id(id)
@@ -174,7 +162,6 @@ def atualizar(lista):
 
 
 def excluir(lista):
-    """Exclui um serviço. Devolve True quando a lista foi alterada."""
     print("\n--- Excluir serviço ---")
     id = ler_inteiro("ID do serviço: ", 1, 999999)
     servico = lista.buscar_por_id(id)
@@ -193,7 +180,6 @@ def excluir(lista):
 
 
 def listar(lista):
-    """Lista todos os serviços na ordem atual da lista."""
     print("\n--- Todos os serviços ---")
     if lista.vazia():
         print("A lista está vazia.")
@@ -206,7 +192,6 @@ def listar(lista):
 
 
 def ordenar(lista):
-    """Ordena com Selection Sort. Devolve True quando a lista foi alterada."""
     if lista.vazia():
         print("\nA lista está vazia. Não há o que ordenar.")
         return False
@@ -228,7 +213,6 @@ def ordenar(lista):
 
 
 def _ordenar_contagem(itens):
-    """Ordena (categoria, quantidade) por quantidade desc e nome asc."""
     for indice in range(1, len(itens)):
         atual = itens[indice]
         posicao = indice - 1
@@ -256,7 +240,6 @@ def _ordenar_contagem(itens):
 
 
 def analise_servicos(lista):
-    """Apresenta a análise dos dados cadastrados no catálogo."""
     print("\n--- Análise dos serviços cadastrados ---")
     if lista.vazia():
         print("Nenhum registro cadastrado.")
@@ -293,7 +276,6 @@ def analise_servicos(lista):
 
 
 def mostrar_menu(lista, assistente):
-    """Mostra o menu e um resumo do catálogo."""
     categorias = assistente.base.categorias()
 
     print("\n" + "=" * 60)
@@ -324,7 +306,6 @@ def mostrar_menu(lista, assistente):
 
 
 def executar_menu(lista, assistente, caminho_servicos):
-    """Executa o menu interativo até a opção 0."""
     while True:
         mostrar_menu(lista, assistente)
         opcao = ler_inteiro("Escolha uma opção: ", 0, 13)

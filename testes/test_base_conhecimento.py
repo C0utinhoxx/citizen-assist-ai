@@ -1,5 +1,3 @@
-"""Testes da base de conhecimento: categorias, pontuação e ranking."""
-
 import unittest
 from pathlib import Path
 

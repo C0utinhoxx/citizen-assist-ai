@@ -1,18 +1,3 @@
-"""Busca por pontuação nas fichas, sem bibliotecas externas.
-
-A busca é propositalmente simples e explicável:
-
-- palavra-chave da ficha encontrada na pergunta: +6;
-- palavra-chave da seção encontrada na pergunta: +6;
-- palavra do assunto da pergunta no título da seção: +3;
-- palavra do assunto no texto da seção: +1.
-
-Uma seção só entra no resultado se a pergunta tiver uma âncora de assunto
-(uma palavra que realmente aparece nas fichas). Isso evita responder
-"R$ 38,00" para uma pergunta sobre passaporte só porque a palavra
-"quanto custa" aparece em uma ficha.
-"""
-
 from __future__ import annotations
 
 import re
@@ -30,12 +15,8 @@ PONTOS_TITULO = 3
 PONTOS_TEXTO = 1
 PONTOS_MINIMOS = 3
 
-
 @dataclass
-
-
 class Ocorrencia:
-    """Uma seção que pode responder à pergunta."""
 
     ficha: Ficha
     secao: Secao
@@ -45,10 +26,7 @@ class Ocorrencia:
     def referencia(self) -> str:
         return f"{self.ficha.id} — {self.secao.titulo_exibicao}"
 
-
 @dataclass
-
-
 class _SecaoIndexada:
     ficha: Ficha
     secao: Secao
@@ -58,7 +36,6 @@ class _SecaoIndexada:
 
 
 class Recuperador:
-    """Índice em memória das fichas."""
 
     def __init__(self, fichas: Dict[str, Ficha]):
         self.fichas = fichas
@@ -96,12 +73,6 @@ class Recuperador:
 
     @staticmethod
     def _chave_especifica(pergunta: str, chaves: Iterable[str]) -> bool:
-        """True se uma palavra-chave da seção ancora o assunto da pergunta.
-
-        Uma palavra-chave só ancora se tiver ao menos um termo que não seja
-        genérico. Assim "quanto custa" não ancora uma pergunta sobre
-        passaporte, mas "certidão" e "sábados" ancoram.
-        """
         tokens_pergunta = set(normalizar(pergunta).split())
         for chave in chaves:
             if not contem_palavra(pergunta, chave):
@@ -116,7 +87,6 @@ class Recuperador:
         return False
 
     def buscar(self, pergunta: str, limite: int = 8) -> List[Ocorrencia]:
-        """Devolve as ocorrências mais prováveis, da maior para a menor."""
         if not normalizar(pergunta):
             return []
 
@@ -180,18 +150,6 @@ class Recuperador:
     def selecionar_contexto(
         self, ocorrencias: Sequence[Ocorrencia], maximo: int = 3
     ) -> List[Ocorrencia]:
-        """Escolhe as seções que entram na resposta.
-
-        Regra: mantém a melhor seção, seções da mesma ficha com pontuação
-        próxima e fichas citadas no texto da melhor seção (por exemplo,
-        "ver FC-07"). Isso permite completar uma resposta que a ficha oficial
-        dividiu em vários campos, sem misturar assuntos de outras fichas.
-
-        A pontuação de corte é 50% da melhor. Em perguntas simples, como
-        "quanto custa a segunda via do RG?", apenas a seção de custo entra.
-        Em perguntas compostas, como "preciso agendar a segunda via?", a
-        seção de agendamento também entra.
-        """
         if not ocorrencias:
             return []
 

@@ -1,5 +1,3 @@
-"""Testes do Golden Dataset e dos dois juízes."""
-
 import tempfile
 import unittest
 from pathlib import Path
@@ -191,7 +189,6 @@ class TestConferenciaManual(unittest.TestCase):
         self.assertIn("PENDENTE", texto)
         self.assertIn("Conferência humana", texto)
         self.assertIn("python3 -m avaliacao.gerar_conferencia", texto)
-
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

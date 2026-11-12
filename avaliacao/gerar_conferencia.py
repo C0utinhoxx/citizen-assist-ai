@@ -1,13 +1,3 @@
-"""Gera a folha de conferência manual a partir do agente atual.
-
-A folha é pré-preenchida com a resposta observada e a nota do juiz
-determinístico. Ela **não** substitui a conferência humana: os campos de
-marcação e assinatura ficam em branco para um integrante do grupo preencher.
-
-Uso:
-    python3 -m avaliacao.gerar_conferencia
-"""
-
 from __future__ import annotations
 
 import json
@@ -110,7 +100,6 @@ def gerar(saida: Path = SAIDA) -> Path:
 
     saida.write_text("\n".join(linhas), encoding="utf-8")
     return saida
-
 
 if __name__ == "__main__":
     caminho = gerar()

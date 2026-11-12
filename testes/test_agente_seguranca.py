@@ -1,5 +1,3 @@
-"""Testes da camada de segurança: PII, prompt injection e entradas inválidas."""
-
 import unittest
 
 from agente import AgenteCidadao

@@ -1,17 +1,3 @@
-"""Acesso opcional a um modelo de linguagem.
-
-O agente funciona em dois modos:
-
-- ``extrativo`` (padrão sem chave): monta a resposta diretamente das seções
-  das fichas. É determinístico, offline e serve para testes e demonstração.
-- ``llm``: usa um provedor compatível com a API OpenAI (Groq, OpenAI ou
-  Ollama local). O modelo recebe apenas o contexto recuperado das fichas e
-  deve responder exclusivamente com base nele.
-
-Nenhuma chave é gravada no código. A configuração é lida de variáveis de
-ambiente ou do arquivo ``agente/.env`` (ignorado pelo Git).
-"""
-
 from __future__ import annotations
 
 import json
@@ -27,11 +13,10 @@ TEMPO_LIMITE = 60
 
 
 class ErroProvedor(RuntimeError):
-    """Falha de configuração, rede ou resposta do provedor de LLM."""
+    pass
 
 
 def carregar_env(caminho: str = CAMINHO_ENV) -> None:
-    """Carrega pares KEY=VALUE sem sobrescrever variáveis já definidas."""
     if not os.path.exists(caminho):
         return
 
@@ -46,10 +31,7 @@ def carregar_env(caminho: str = CAMINHO_ENV) -> None:
             if chave and chave not in os.environ:
                 os.environ[chave] = valor
 
-
 @dataclass
-
-
 class ConfiguracaoLLM:
     provedor: str
     modelo: str
@@ -62,7 +44,6 @@ class ConfiguracaoLLM:
 
 
 class Provedor:
-    """Interface mínima de um modelo de linguagem."""
 
     nome = "base"
 
@@ -71,7 +52,6 @@ class Provedor:
 
 
 class ProvedorOpenAICompat(Provedor):
-    """Cliente HTTP para APIs compatíveis com ``/chat/completions``."""
 
     def __init__(self, configuracao: ConfiguracaoLLM):
         self.configuracao = configuracao
@@ -159,7 +139,6 @@ def _criar_configuracao(nome: str) -> Optional[ConfiguracaoLLM]:
 
 
 def criar_provedor() -> Optional[Provedor]:
-    """Cria o provedor configurado ou devolve None para o modo extrativo."""
     carregar_env()
 
     escolhido = os.environ.get("CITIZEN_LLM_PROVIDER", "auto").strip().lower()
@@ -187,7 +166,6 @@ def criar_provedor() -> Optional[Provedor]:
 
 
 def descrever_configuracao() -> Dict[str, str]:
-    """Resumo sem segredos, para exibir no terminal e na documentação."""
     carregar_env()
     escolhido = os.environ.get("CITIZEN_LLM_PROVIDER", "auto").strip().lower()
     if escolhido in ("extrativo", "nenhum", "none", "offline"):

@@ -1,21 +1,3 @@
-"""Carregamento e validação das fichas de referência FC-01 a FC-07.
-
-Formato aceito (Markdown simples):
-
-    # FC-01 — Título da ficha
-
-    - **Fonte:** ...
-    - **Data de verificação:** ...
-    - **Palavras-chave:** rg, identidade, segunda via
-
-    ## Nome da seção | palavra-chave 1, palavra-chave 2
-    Texto da seção.
-
-O trecho depois de ``|`` no título é opcional e serve para melhorar a busca.
-A ficha é a única fonte de verdade do agente. O carregador não completa
-lacunas e não inventa conteúdo.
-"""
-
 from __future__ import annotations
 
 import os
@@ -31,12 +13,8 @@ IDS_OBRIGATORIOS = ("FC-01", "FC-02", "FC-03", "FC-04", "FC-05", "FC-06", "FC-07
 _METADADO = re.compile(r"^-\s*\*\*(?P<chave>[^*]+)\*\*\s*:?\s*(?P<valor>.*)$")
 _SECAO = re.compile(r"^##\s+(?P<titulo>.+)$")
 
-
 @dataclass
-
-
 class Secao:
-    """Uma seção temática de uma ficha."""
 
     titulo: str
     texto: str
@@ -46,12 +24,8 @@ class Secao:
     def titulo_exibicao(self) -> str:
         return self.titulo.split("|", 1)[0].strip()
 
-
 @dataclass
-
-
 class Ficha:
-    """Uma ficha de referência completa."""
 
     id: str
     titulo: str
@@ -82,7 +56,7 @@ class Ficha:
 
 
 class ErroFicha(ValueError):
-    """Indica uma ficha ausente ou fora do formato mínimo."""
+    pass
 
 
 def _separar_palavras(valor: str) -> List[str]:
@@ -94,7 +68,6 @@ def _separar_palavras(valor: str) -> List[str]:
 
 
 def _limpar_corpo(linhas: Iterable[str]) -> str:
-    """Remove citações de status e espaços sobrando do corpo da seção."""
     uteis = []
     for linha in linhas:
         if linha.lstrip().startswith(">"):
@@ -106,7 +79,6 @@ def _limpar_corpo(linhas: Iterable[str]) -> str:
 
 
 def carregar_ficha(caminho: str) -> Ficha:
-    """Lê um arquivo Markdown e devolve uma ``Ficha`` validada."""
     with open(caminho, "r", encoding="utf-8") as arquivo:
         linhas = arquivo.read().splitlines()
 
@@ -207,7 +179,6 @@ def carregar_ficha(caminho: str) -> Ficha:
 
 
 def carregar_fichas(pasta: str = PASTA_PADRAO) -> Dict[str, Ficha]:
-    """Carrega todas as fichas da pasta e valida a presença das sete."""
     if not os.path.isdir(pasta):
         raise ErroFicha(f"Pasta de fichas não encontrada: {pasta}")
 

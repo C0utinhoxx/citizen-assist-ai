@@ -1,12 +1,3 @@
-"""Versão "antes da melhoria" usada apenas na comparação do Golden Dataset.
-
-Esta versão é didática: ela simula um primeiro protótipo ingênuo, com busca
-por primeira palavra-chave e sem citação, aviso, validação ou proteção de
-dados. Não é a versão entregue ao usuário.
-
-A versão melhorada é ``agente.AgenteCidadao``.
-"""
-
 from __future__ import annotations
 
 from typing import Dict, List, Optional
@@ -17,7 +8,6 @@ from agente.fichas import Ficha, carregar_fichas
 
 
 class AgenteBaseline:
-    """Protótipo ingênuo: primeira ficha que casa, primeira seção."""
 
     def __init__(self, pasta_fichas: Optional[str] = None):
         self.fichas: Dict[str, Ficha] = (

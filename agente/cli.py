@@ -1,13 +1,3 @@
-"""Interface de terminal do agente de documentos.
-
-O menu é separado do menu do catálogo DSA para deixar claro que são duas
-bases diferentes: o catálogo usa fontes oficiais reais e o agente usa
-exclusivamente as fichas FC-01 a FC-07.
-
-Nenhuma pergunta é gravada. Ao sair, o agente mostra apenas contadores da
-sessão.
-"""
-
 from __future__ import annotations
 
 from typing import Optional
@@ -100,7 +90,6 @@ def _privacidade() -> None:
 
 
 def executar_menu_agente(agente: Optional[AgenteCidadao] = None) -> None:
-    """Executa o menu do agente. Pode ser chamado pelo menu principal."""
     if agente is None:
         try:
             agente = AgenteCidadao()

@@ -1,26 +1,4 @@
 #!/usr/bin/env python3
-"""Servidor local para abrir o Citizen Assist AI Mobile no celular.
-
-O app também funciona abrindo o arquivo index.html diretamente. Este
-servidor existe apenas para os casos em que o navegador do celular bloqueia
-JavaScript ou localStorage em arquivos locais (comum no iPhone/iPad).
-
-Uso:
-    python3 servir.py
-    python3 servir.py --port 8080
-    python3 servir.py --port 0      # escolhe uma porta livre
-
-O servidor escuta somente na rede local. Não é hospedagem e não vai para a
-internet. Feche com Ctrl+C.
-
-Além dos arquivos do app, ele oferece a API opcional de voz natural:
-    GET  /api/tts/status
-    GET  /api/tts/voices
-    POST /api/tts          {"texto": "...", "voz": "pt-BR-ThalitaNeural"}
-
-Sem AZURE_SPEECH_KEY, a API inicia em modo de teste. A chave fica no
-computador (mobile/.env) e nunca é enviada ao navegador.
-"""
 
 from __future__ import annotations
 
@@ -48,7 +26,6 @@ TTS_REQUISICOES_LOCK = threading.Lock()
 
 
 def tts_permitido(ip: str) -> bool:
-    """Limite simples por IP para proteger o plano gratuito do Azure."""
     agora = time.monotonic()
     with TTS_REQUISICOES_LOCK:
         fila = [
@@ -65,10 +42,8 @@ def tts_permitido(ip: str) -> bool:
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):
-    """Entrega os arquivos da pasta mobile e a API opcional de voz."""
 
     def translate_path(self, path: str) -> str:
-        """Impede que .env, .cache e outros arquivos ocultos sejam baixados."""
         caminho = super().translate_path(path)
         try:
             relativo = Path(caminho).resolve().relative_to(RAIZ.resolve())
@@ -171,7 +146,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
 
 def ip_local() -> str:
-    """Descobre o IP da máquina na rede local, sem enviar pacotes."""
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
         sock.connect(("8.8.8.8", 80))

@@ -1,5 +1,3 @@
-"""Testes do módulo de voz natural (mobile/tts.py)."""
-
 import io
 import os
 import tempfile
@@ -266,7 +264,6 @@ class TestCarregarEnv(unittest.TestCase):
                 tts.carregar_env(caminho)
                 self.assertEqual(os.environ["AZURE_SPEECH_KEY"], "do-sistema")
                 self.assertEqual(os.environ["TTS_PROVIDER"], "azure")
-
 
 if __name__ == "__main__":
     unittest.main()

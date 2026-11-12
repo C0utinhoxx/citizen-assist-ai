@@ -1,10 +1,3 @@
-"""Teste do cliente HTTP do provedor LLM com um servidor local falso.
-
-Não usa internet nem chave real. O objetivo é provar que o caminho
-OpenAI-compatível (Groq, OpenAI ou Ollama) está ligado de ponta a ponta:
-requisição, cabeçalhos, JSON, resposta e extração do texto.
-"""
-
 import json
 import threading
 import unittest
@@ -126,7 +119,6 @@ class TestProvedorHTTP(unittest.TestCase):
         avaliacao = juiz.avaliar(caso, "Custa R$ 38,00. (FC-01)")
         self.assertEqual(avaliacao.nota, 0.5)
         self.assertEqual(avaliacao.juiz, "llm")
-
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -1,5 +1,3 @@
-"""Testes de leitura/gravação JSON, compatibilidade e CSV."""
-
 import csv
 import io
 import json
@@ -151,7 +149,6 @@ class TestPersistencia(unittest.TestCase):
         self.assertEqual(len(linhas), 1)
         self.assertEqual(list(linhas[0].keys()), CAMPOS_CSV)
         self.assertEqual(linhas[0]["pergunta"], "Saúde")
-
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

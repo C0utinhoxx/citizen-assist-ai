@@ -1,17 +1,3 @@
-"""Camada de segurança do agente.
-
-Responsabilidades:
-
-- detectar e ocultar dados pessoais (CPF, RG, CNH, título, telefone, e-mail,
-  endereço e números longos);
-- detectar tentativas de prompt injection;
-- recusar entradas vazias, muito longas ou sem sentido;
-- nunca guardar a pergunta original.
-
-A pergunta é tratada como **dado**, nunca como instrução. As regras do
-agente vêm apenas do código e das fichas FC-01 a FC-07.
-"""
-
 from __future__ import annotations
 
 import re
@@ -103,12 +89,8 @@ PALAVRAS_GENERICAS = {
     "informacao", "informacoes", "duvida", "pergunta", "gostaria",
 }
 
-
 @dataclass
-
-
 class AnaliseEntrada:
-    """Resultado da análise de segurança de uma pergunta."""
 
     tipo: str
     motivo: str = ""
@@ -122,7 +104,6 @@ class AnaliseEntrada:
 
 
 def contem_pii(texto: str) -> bool:
-    """True quando o texto contém um dado pessoal reconhecível."""
     if not texto:
         return False
     for _, padrao in _RE_PII:
@@ -132,7 +113,6 @@ def contem_pii(texto: str) -> bool:
 
 
 def mascarar_pii(texto: str) -> str:
-    """Substitui dados pessoais por um marcador, sem repetir o valor."""
     seguro = texto or ""
     for _, padrao in _RE_PII:
         seguro = padrao.sub("[dado pessoal ocultado]", seguro)
@@ -142,7 +122,6 @@ def mascarar_pii(texto: str) -> str:
 
 
 def contem_injecao(texto: str) -> bool:
-    """True quando há indício de prompt injection."""
     if not texto:
         return False
     normalizado = normalizar(texto)
@@ -154,7 +133,6 @@ def contem_injecao(texto: str) -> bool:
 
 
 def contem_limitacao(texto: str) -> bool:
-    """True quando a pessoa pergunta se o assistente é um canal oficial."""
     if not texto:
         return False
     normalizado = normalizar(texto)
@@ -162,7 +140,6 @@ def contem_limitacao(texto: str) -> bool:
 
 
 class Seguranca:
-    """Analisa a entrada antes de qualquer busca ou chamada ao modelo."""
 
     def __init__(self, vocabulario: Optional[Iterable[str]] = None):
         self.vocabulario: Set[str] = set(vocabulario or ())
@@ -188,7 +165,6 @@ class Seguranca:
         return False
 
     def analisar(self, pergunta: str) -> AnaliseEntrada:
-        """Classifica a pergunta e devolve uma versão mascarada."""
         original = (pergunta or "").strip()
         seguro = mascarar_pii(original)
 

@@ -1,5 +1,3 @@
-"""Testes da lista encadeada, da busca, da remoção e do Selection Sort."""
-
 import unittest
 
 from app.lista_encadeada import ListaEncadeada

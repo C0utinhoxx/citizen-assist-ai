@@ -1,17 +1,3 @@
-"""Fluxo do agente com LangGraph (e fallback sequencial).
-
-O grafo tem cinco nós:
-
-    analisar -> (bloqueio) -> responder_bloqueio -> fim
-             -> recuperar -> (sem resultado) -> responder_fora_escopo -> fim
-                          -> responder -> fim
-
-LangGraph é opcional em tempo de execução. Quando a biblioteca não está
-instalada, o mesmo fluxo é executado em sequência, sem mudar as regras nem as
-respostas. Isso mantém o projeto executável em qualquer Python 3.9, ao mesmo
-tempo em que o framework é usado de verdade quando disponível.
-"""
-
 from __future__ import annotations
 
 from typing import Any, Dict, TypedDict
@@ -27,12 +13,6 @@ except ImportError:  # pragma: no cover - caminho sem a dependência
 
 
 class EstadoAgente(TypedDict, total=False):
-    """Estado compartilhado entre os nós do grafo.
-
-    Os campos ``analise`` e ``resposta`` guardam objetos do agente. Usamos
-    ``Any`` para que o LangGraph consiga resolver as anotações em Python 3.9
-    sem importar o pacote ``agente`` de forma circular.
-    """
 
     pergunta: str
     analise: Any
@@ -42,7 +22,6 @@ class EstadoAgente(TypedDict, total=False):
 
 
 class FluxoAgente:
-    """Orquestra a segurança, a busca e a resposta."""
 
     def __init__(self, agente: "AgenteCidadao"):
         self.agente = agente
@@ -118,7 +97,6 @@ class FluxoAgente:
         return grafo.compile()
 
     def executar(self, pergunta: str) -> "Resposta":
-        """Executa o grafo ou o fluxo sequencial equivalente."""
         if self._grafo is not None:
             estado = self._grafo.invoke({"pergunta": pergunta})
             return estado["resposta"]

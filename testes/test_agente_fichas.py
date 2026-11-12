@@ -1,5 +1,3 @@
-"""Testes do carregamento das fichas FC-01 a FC-07."""
-
 import os
 import tempfile
 import unittest
@@ -63,7 +61,6 @@ class TestFichas(unittest.TestCase):
         with tempfile.TemporaryDirectory() as pasta:
             with self.assertRaises(ErroFicha):
                 carregar_fichas(pasta)
-
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

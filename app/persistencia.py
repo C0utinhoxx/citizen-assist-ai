@@ -1,5 +1,3 @@
-"""Leitura e gravação dos arquivos JSON e CSV."""
-
 import csv
 import json
 import os
@@ -18,11 +16,6 @@ def _garantir_pasta(caminho):
 
 
 def carregar_servicos(caminho):
-    """Lê o catálogo JSON e devolve uma lista de Servico.
-
-    Um registro inválido é ignorado com aviso; o restante continua sendo
-    carregado. Arquivo ausente ou corrompido não derruba o programa.
-    """
     if not os.path.exists(caminho):
         print(f"Aviso: arquivo de dados não encontrado: {caminho}")
         return []
@@ -49,7 +42,6 @@ def carregar_servicos(caminho):
 
 
 def salvar_servicos(caminho, lista):
-    """Grava a lista encadeada no JSON, preservando todos os campos."""
     try:
         _garantir_pasta(caminho)
         with open(caminho, "w", encoding="utf-8") as arquivo:
@@ -66,7 +58,6 @@ def salvar_servicos(caminho, lista):
 
 
 def carregar_historico(caminho):
-    """Lê o histórico de atendimentos. Devolve uma lista vazia se falhar."""
     if not os.path.exists(caminho):
         return []
 
@@ -85,7 +76,6 @@ def carregar_historico(caminho):
 
 
 def salvar_historico(caminho, historico):
-    """Grava o histórico de atendimentos no JSON."""
     try:
         _garantir_pasta(caminho)
         with open(caminho, "w", encoding="utf-8") as arquivo:
@@ -97,7 +87,6 @@ def salvar_historico(caminho, historico):
 
 
 def exportar_csv(caminho, historico):
-    """Exporta os atendimentos para CSV e devolve True/False."""
     try:
         _garantir_pasta(caminho)
         with open(caminho, "w", newline="", encoding="utf-8") as arquivo:

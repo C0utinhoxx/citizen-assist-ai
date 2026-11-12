@@ -1,18 +1,3 @@
-"""Avaliação do agente no Golden Dataset.
-
-Há dois juízes:
-
-- ``JuizDeterministico``: aplica a rubrica explicitamente, sem LLM. Serve
-  para testes automatizados, para a demonstração offline e para a conferência
-  manual.
-- ``JuizLLM``: implementa o pipeline **LLM as a Judge**. O modelo recebe a
-  mensagem (com dados pessoais mascarados), a resposta esperada e a resposta
-  do agente, e devolve uma nota com justificativa.
-
-A régua é a mesma nos dois: conteúdo esperado presente, citação da ficha,
-ausência de invenção, aviso de canal não oficial e não uso de dados pessoais.
-"""
-
 from __future__ import annotations
 
 import json
@@ -30,12 +15,8 @@ from agente.seguranca import contem_pii, mascarar_pii
 PASTA = os.path.dirname(__file__)
 CAMINHO_DATASET = os.path.join(PASTA, "golden_dataset.json")
 
-
 @dataclass
-
-
 class Avaliacao:
-    """Resultado da avaliação de um caso."""
 
     caso_id: int
     nota: float
@@ -126,7 +107,6 @@ def _trecho_seguro(texto: str, limite: int = 240) -> str:
 
 
 class JuizDeterministico:
-    """Juiz de rubrica explícita, sem chamada de modelo."""
 
     nome = "deterministico"
 
@@ -250,7 +230,6 @@ Responda APENAS com um objeto JSON:
 
 
 class JuizLLM:
-    """Juiz que usa um modelo de linguagem (LLM as a Judge)."""
 
     nome = "llm"
 

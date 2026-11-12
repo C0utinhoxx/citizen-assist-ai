@@ -1,19 +1,3 @@
-"""Núcleo do agente de documentos pessoais.
-
-O fluxo é intencionalmente curto:
-
-    entrada -> segurança -> busca nas fichas -> resposta -> revisão
-
-A resposta pode ser montada de duas formas:
-
-- ``extrativo``: cópia organizada das seções das fichas (offline);
-- ``llm``: o modelo recebe apenas o contexto recuperado e responde com
-  base nele. A revisão final confere citação, aviso e dados pessoais.
-
-Em nenhum modo a pergunta é gravada. O agente mantém apenas contadores em
-memória para a sessão.
-"""
-
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -42,12 +26,8 @@ EXEMPLOS = (
 
 _AUTO = object()
 
-
 @dataclass
-
-
 class Resposta:
-    """Resposta padronizada do agente."""
 
     texto: str
     tipo: str
@@ -60,7 +40,6 @@ class Resposta:
 
 
 class AgenteCidadao:
-    """Agente que responde exclusivamente com base nas fichas FC-01 a FC-07."""
 
     def __init__(
         self,
@@ -88,7 +67,6 @@ class AgenteCidadao:
         self.fluxo = FluxoAgente(self)
 
     def categorias(self) -> List[Dict[str, object]]:
-        """Lista as fichas disponíveis para navegação."""
         return [
             {
                 "id": ficha.id,
@@ -100,11 +78,6 @@ class AgenteCidadao:
         ]
 
     def responder(self, pergunta: str) -> Resposta:
-        """Responde uma pergunta em texto livre.
-
-        O fluxo real fica em ``agente/fluxo.py`` (LangGraph quando disponível).
-        Aqui só contamos a métrica da sessão e devolvemos a resposta.
-        """
         self.atendimentos += 1
         resposta = self.fluxo.executar(str(pergunta or ""))
         self._registrar_resposta(resposta)
@@ -119,7 +92,6 @@ class AgenteCidadao:
             self.respostas_seguras += 1
 
     def responder_por_ficha(self, ficha_id: str) -> Optional[Resposta]:
-        """Devolve o conteúdo completo de uma ficha, para navegação."""
         ficha = self.fichas.get((ficha_id or "").upper())
         if ficha is None:
             return None
@@ -386,7 +358,6 @@ class AgenteCidadao:
     def _revisar(
         self, texto: str, fichas: Sequence[Ficha], pergunta: str = ""
     ) -> str:
-        """Garante citação, data, aviso e ausência de dados pessoais/segredos."""
         limpo = (texto or "").strip()
 
         if self._vazou_prompt(limpo):
