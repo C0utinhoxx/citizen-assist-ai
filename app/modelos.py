@@ -39,8 +39,8 @@ class Servico:
     def de_dict(cls, dados):
         """Cria um serviço a partir de um dicionário.
 
-        Também aceita os nomes usados pela Lição 1 (resposta, documentos,
-        onde) e pela Lição 2 (descricao, requisitos, local), facilitando a
+        Também aceita os nomes usados pelo catálogo (resposta, documentos,
+        onde) e pelo CRUD (descricao, requisitos, local), facilitando a
         importação de dados antigos.
         """
         if not isinstance(dados, dict):

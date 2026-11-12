@@ -37,8 +37,6 @@ ASSUNTOS = {
     "FC-07": "Atendimento, agendamento, terceiros, pagamento e acessibilidade",
 }
 
-# A FC-07 oficial não traz uma linha "Palavras-chave". Estes termos são
-# apenas índice de busca; não acrescentam fatos ao conteúdo da ficha.
 PALAVRAS_PADRAO = {
     "FC-07": (
         "atendimento, agendamento, horario, sabado, domingo, feriado, "
@@ -47,7 +45,6 @@ PALAVRAS_PADRAO = {
     ),
 }
 
-# (título da seção, palavras-chave, campos oficiais que entram nela)
 SECOES: Dict[str, List[Tuple[str, str, List[str]]]] = {
     "FC-01": [
         (
@@ -362,7 +359,6 @@ def main(origem: Path) -> int:
 
     print(f"Fichas convertidas em {DESTINO}")
     return 0
-
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:

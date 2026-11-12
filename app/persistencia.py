@@ -105,7 +105,6 @@ def exportar_csv(caminho, historico):
             escritor.writeheader()
 
             for registro in historico:
-                # get() evita erro se um registro antigo estiver incompleto.
                 escritor.writerow({
                     campo: registro.get(campo, "") for campo in CAMPOS_CSV
                 })

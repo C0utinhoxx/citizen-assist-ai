@@ -23,7 +23,6 @@ from app.texto import normalizar
 LIMITE_CARACTERES = 500
 MINIMO_CARACTERES = 2
 
-# Dados pessoais. Os padrões são deliberadamente conservadores.
 PADROES_PII = [
     ("email", re.compile(r"\b[\w.+-]+@[\w-]+\.[\w.-]+\b", re.IGNORECASE)),
     ("cpf", re.compile(r"\b\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b")),
@@ -37,9 +36,6 @@ PADROES_PII = [
     )),
 ]
 
-# Frases que indicam intenção de fornecer dado pessoal, mesmo sem número.
-# Não basta dizer "meu RG" ou "minha CNH": isso é o assunto da pergunta,
-# não um dado sendo entregue.
 FRASES_PII = [
     r"\bmeu\s+nome\b",
     r"\bmeu\s+(telefone|endereco|e-?mail|pis|nis)\b",
@@ -49,7 +45,6 @@ FRASES_PII = [
     r"\bmoro\s+na\s+(rua|avenida|travessa|alameda)\b",
 ]
 
-# Prompt injection e tentativas de alterar o papel do agente.
 PADROES_INJECAO = [
     r"\bignore\s+(as\s+)?instru",
     r"\bignore\s+(all\s+)?(previous|above)\s+instructions?\b",
@@ -76,9 +71,6 @@ PADROES_INJECAO = [
     r"\bmodo\s+sem\s+restric",
 ]
 
-# Perguntas sobre o próprio assistente. Elas recebem o aviso de limitação,
-# em vez de uma resposta de ficha que poderia parecer uma confirmação de
-# vínculo oficial.
 PADROES_LIMITACAO = [
     r"\bcanal\s+oficial\b",
     r"\bvoce\s+e\s+(o\s+)?canal\b",
@@ -93,7 +85,6 @@ _RE_FRASES_PII = [re.compile(padrao, re.IGNORECASE) for padrao in FRASES_PII]
 _RE_INJECAO = [re.compile(padrao, re.IGNORECASE) for padrao in PADROES_INJECAO]
 _RE_LIMITACAO = [re.compile(padrao, re.IGNORECASE) for padrao in PADROES_LIMITACAO]
 
-# Palavras comuns que não contam como "assunto" para a busca.
 PALAVRAS_GENERICAS = {
     "a", "o", "as", "os", "um", "uma", "de", "do", "da", "dos", "das",
     "em", "no", "na", "nos", "nas", "por", "para", "pra", "com", "sem",
@@ -114,10 +105,12 @@ PALAVRAS_GENERICAS = {
 
 
 @dataclass
+
+
 class AnaliseEntrada:
     """Resultado da análise de segurança de uma pergunta."""
 
-    tipo: str  # ok | vazia | longa | curta | dados_pessoais | injecao | limitacao | invalida
+    tipo: str
     motivo: str = ""
     texto_seguro: str = ""
     pii: List[str] = field(default_factory=list)
@@ -154,8 +147,6 @@ def contem_injecao(texto: str) -> bool:
         return False
     normalizado = normalizar(texto)
     minusculo = texto.lower()
-    # Os padrões são escritos sem acento. Alguns, como "[SISTEMA]", dependem
-    # dos caracteres originais; por isso testamos as duas versões.
     return any(
         padrao.search(normalizado) or padrao.search(minusculo)
         for padrao in _RE_INJECAO

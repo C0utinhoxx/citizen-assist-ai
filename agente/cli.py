@@ -104,7 +104,7 @@ def executar_menu_agente(agente: Optional[AgenteCidadao] = None) -> None:
     if agente is None:
         try:
             agente = AgenteCidadao()
-        except Exception as erro:  # fichas ausentes ou inválidas
+        except Exception as erro:
             print(f"Não foi possível carregar o agente: {erro}")
             return
 
@@ -149,7 +149,6 @@ def main() -> None:
         executar_menu_agente()
     except (KeyboardInterrupt, EOFError):
         print("\nPrograma encerrado.")
-
 
 if __name__ == "__main__":
     main()

@@ -44,11 +44,13 @@ _AUTO = object()
 
 
 @dataclass
+
+
 class Resposta:
     """Resposta padronizada do agente."""
 
     texto: str
-    tipo: str  # resposta | fora_escopo | seguranca | invalida
+    tipo: str
     fichas: List[str] = field(default_factory=list)
     verificado_em: List[str] = field(default_factory=list)
     usou_llm: bool = False
@@ -85,9 +87,6 @@ class AgenteCidadao:
         self.respostas_sem_resultado = 0
         self.fluxo = FluxoAgente(self)
 
-    # ------------------------------------------------------------------
-    # Consulta pública
-    # ------------------------------------------------------------------
     def categorias(self) -> List[Dict[str, object]]:
         """Lista as fichas disponíveis para navegação."""
         return [
@@ -142,9 +141,6 @@ class AgenteCidadao:
             confianca="alta",
         )
 
-    # ------------------------------------------------------------------
-    # Respostas de segurança e de escopo
-    # ------------------------------------------------------------------
     def _responder_bloqueio(self, analise: AnaliseEntrada) -> Resposta:
         if analise.tipo in ("vazia", "curta"):
             texto = (
@@ -194,7 +190,6 @@ class AgenteCidadao:
             "não foi repetido e não foi armazenado.\n\n"
         )
 
-        # Tenta identificar o assunto sem repetir o dado pessoal.
         ocorrencias = self.recuperador.buscar(analise.texto_seguro)
         selecionadas = self.recuperador.selecionar_contexto(ocorrencias, maximo=2)
         fichas = self.recuperador.fichas_citadas(selecionadas)
@@ -260,8 +255,6 @@ class AgenteCidadao:
             "apenas das fichas FC-01 a FC-07.\n\n"
         )
 
-        # Se a mensagem também contém uma dúvida real, responde só a parte
-        # permitida. A "nova regra" enviada pelo usuário é sempre descartada.
         ocorrencias = self.recuperador.buscar(analise.texto_seguro)
         selecionadas = self.recuperador.selecionar_contexto(ocorrencias, maximo=2)
         fichas = self.recuperador.fichas_citadas(selecionadas)
@@ -309,9 +302,6 @@ class AgenteCidadao:
             confianca="baixa",
         )
 
-    # ------------------------------------------------------------------
-    # Respostas com base nas fichas
-    # ------------------------------------------------------------------
     def _responder_extrativo(self, selecionadas: Sequence[Ocorrencia]) -> Resposta:
         blocos = []
         for ocorrencia in selecionadas:
@@ -362,9 +352,6 @@ class AgenteCidadao:
             confianca="alta",
         )
 
-    # ------------------------------------------------------------------
-    # Revisão final
-    # ------------------------------------------------------------------
     def _datas(self, fichas: Iterable[str]) -> List[str]:
         datas = []
         for ficha_id in fichas:
@@ -409,7 +396,6 @@ class AgenteCidadao:
                 "trabalho, certidões e CNH.\n\n" + AVISO
             )
 
-        # Nunca devolve um dado pessoal que tenha escapado do modelo.
         limpo = mascarar_pii(limpo)
 
         normalizado = normalizar(limpo)

@@ -54,7 +54,7 @@ class TestBaseConhecimento(unittest.TestCase):
         self.assertTrue(resultados)
         pontos, servico = resultados[0]
         self.assertEqual(servico.id, 1)
-        self.assertEqual(pontos, 7)  # 3 + 3 + 1
+        self.assertEqual(pontos, 7)
 
     def test_busca_sem_resultado_e_busca_vazia(self):
         self.assertEqual(self.base.buscar("xyz"), [])
@@ -95,8 +95,7 @@ class TestBaseConhecimento(unittest.TestCase):
         self.assertEqual(self.base.pontuar("cartao", servico), 1)
         self.assertLess(
             self.base.pontuar("cartao", servico), PONTOS_MEDIA
-        )  # fica abaixo da confiança mínima
-
+        )
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

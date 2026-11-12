@@ -35,9 +35,7 @@ def main():
 
     executar_menu(lista, assistente, str(CAMINHO_SERVICOS))
 
-
 if __name__ == "__main__":
-    # Ctrl+C ou Ctrl+D encerram sem mostrar um erro grande no terminal.
     try:
         main()
     except (KeyboardInterrupt, EOFError):

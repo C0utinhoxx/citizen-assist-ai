@@ -5,9 +5,6 @@ from .persistencia import salvar_servicos
 from .texto import normalizar
 
 
-# ----------------------------------------------------------------------
-# Entrada de dados
-# ----------------------------------------------------------------------
 def ler_inteiro(mensagem, minimo, maximo):
     """Lê um número inteiro dentro da faixa. Repete enquanto for inválido."""
     while True:
@@ -68,9 +65,6 @@ def confirmar(mensagem):
         print("Responda com s (sim) ou n (não).")
 
 
-# ----------------------------------------------------------------------
-# Operações do menu
-# ----------------------------------------------------------------------
 def cadastrar(lista):
     """Cadastra um serviço. Devolve True quando a lista foi alterada."""
     print("\n--- Cadastrar serviço ---")
@@ -298,9 +292,6 @@ def analise_servicos(lista):
           f"(média de {media_palavras:.1f} por registro)")
 
 
-# ----------------------------------------------------------------------
-# Menu principal
-# ----------------------------------------------------------------------
 def mostrar_menu(lista, assistente):
     """Mostra o menu e um resumo do catálogo."""
     categorias = assistente.base.categorias()
@@ -371,8 +362,6 @@ def executar_menu(lista, assistente, caminho_servicos):
         elif opcao == 12:
             assistente.exportar_csv()
         elif opcao == 13:
-            # Importação tardia: o DSA continua funcionando mesmo se as
-            # dependências opcionais do agente não estiverem instaladas.
             from agente.cli import executar_menu_agente
 
             executar_menu_agente()

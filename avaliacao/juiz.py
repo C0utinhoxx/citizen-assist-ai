@@ -32,6 +32,8 @@ CAMINHO_DATASET = os.path.join(PASTA, "golden_dataset.json")
 
 
 @dataclass
+
+
 class Avaliacao:
     """Resultado da avaliação de um caso."""
 
@@ -66,11 +68,6 @@ def carregar_dataset(caminho: str = CAMINHO_DATASET) -> Dict[str, object]:
         raise ValueError("O Golden Dataset deve ter exatamente 26 mensagens.")
     return dados
 
-
-# Equivalências de redação aceitas pelo juiz determinístico. Não são fatos
-# novos: são formas diferentes de dizer o mesmo fato da ficha oficial. O juiz
-# LLM continua sendo a avaliação semântica principal; esta tabela só evita
-# que uma paráfrase correta seja contada como erro.
 EQUIVALENCIAS = {
     "graca": (
         "gratuita", "gratuitas", "gratuito", "gratuitos",
@@ -208,7 +205,6 @@ class JuizDeterministico:
             resposta_excerpt=_trecho_seguro(texto),
         )
 
-
 PROMPT_JUIZ = """Você é um juiz de avaliação de um assistente educacional.
 
 Avalie a RESPOSTA DO AGENTE comparando-a com a RESPOSTA ESPERADA, a RUBRICA
@@ -287,8 +283,6 @@ class JuizLLM:
     def avaliar(self, caso: Dict[str, object], resposta: str) -> Avaliacao:
         def _proibido_seguro(valor: object) -> str:
             texto = str(valor)
-            # O juiz não precisa receber de volta um número de documento,
-            # mesmo que ele apareça apenas como "fato proibido".
             if len(re.findall(r"\d", texto)) >= 6:
                 return "[dado pessoal não repetido]"
             return texto

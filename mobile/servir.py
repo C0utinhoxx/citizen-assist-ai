@@ -36,7 +36,7 @@ from pathlib import Path
 
 try:
     from . import tts
-except ImportError:  # execução direta: python3 servir.py
+except ImportError:
     import tts
 
 RAIZ = Path(__file__).resolve().parent
@@ -174,8 +174,6 @@ def ip_local() -> str:
     """Descobre o IP da máquina na rede local, sem enviar pacotes."""
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
-        # O connect UDP não transmite nada; serve para o sistema escolher
-        # a interface que seria usada para sair para a rede.
         sock.connect(("8.8.8.8", 80))
         return sock.getsockname()[0]
     except OSError:
@@ -252,7 +250,6 @@ def main() -> int:
     finally:
         servidor.server_close()
     return 0
-
 
 if __name__ == "__main__":
     raise SystemExit(main())

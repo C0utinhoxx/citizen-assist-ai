@@ -1,15 +1,4 @@
 #!/usr/bin/env node
-/*
- * Testes da lógica do Citizen Assist AI Mobile.
- *
- * O app é um único index.html. Este script extrai o JavaScript do arquivo,
- * simula o mínimo de navegador necessário e verifica as regras principais.
- *
- * Uso:
- *   node teste-logica.js
- *
- * Requer Node.js 18 ou superior.
- */
 
 "use strict";
 
@@ -25,8 +14,6 @@ if (!encontrado) {
   process.exit(1);
 }
 const codigo = encontrado[1];
-
-/* ------------------------- Simulação do navegador ------------------------- */
 
 function criarElemento(tag) {
   const el = {
@@ -129,8 +116,6 @@ const contexto = {
 
 vm.createContext(contexto);
 vm.runInContext(codigo, contexto, { filename: "citizen-assist.js" });
-
-/* -------------------------------- Testes -------------------------------- */
 
 let passaram = 0;
 

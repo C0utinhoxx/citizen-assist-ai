@@ -3,29 +3,32 @@
 **Equipe:** Bruno Riquelme Coutinho Pereira (RM 569619) · Eduardo Bigoli Portela (RM 569897) · Gustavo Fondato de Souza (RM 573651)  
 **Turma:** 1CCPX · **Repositório:** https://github.com/C0utinhoxx/citizen-assist-ai
 
-Solução em **Python** para a **Global Solution 2026.2 — Citizen Tech**, reunindo os Projetos 1 a 4:
+Solução em **Python** para a **Global Solution 2026.2 — Citizen Tech**. O projeto reúne um catálogo de serviços públicos com estruturas de dados implementadas manualmente, um agente de IA para orientação sobre documentos pessoais e uma versão mobile acessível.
 
-1. **Projeto 1** — proposta de atendimento e orientação ao cidadão.
-2. **Projeto 2** — catálogo de serviços com **lista encadeada manual**, busca, ordenação (Selection Sort), indicadores e persistência em JSON.
-3. **Projeto 3** — agente de IA que responde sobre documentos pessoais usando **exclusivamente as fichas FC-01 a FC-07**, com LangGraph, segurança e avaliação no Golden Dataset.
-4. **Projeto 4** — pitch de até 3 minutos (roteiro pronto; gravação e publicação pendentes).
+## Visão geral
 
-O núcleo dos Projetos 1 e 2 foi preservado. O agente é um módulo separado, para não misturar o catálogo DSA (fontes oficiais reais) com as fichas fictícias do Projeto 3.
+O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços públicos e documentos pessoais. A solução combina:
 
-## Situação atual
+- catálogo de serviços com **lista encadeada manual**, busca, ordenação e indicadores;
+- agente que responde **exclusivamente** com base nas fichas FC-01 a FC-07;
+- interface mobile em HTML único, com voz e acessibilidade;
+- avaliação automatizada no Golden Dataset, com juiz determinístico e **LLM as a Judge**.
 
-| Projeto | Situação | Observação |
-|---|---|---|
-| P1 — proposta | Entregue | Nomes/RMs preenchidos; falta apenas publicar o link do repositório. |
-| P2 — DSA | Entregue | 81 testes originais do P1/P2 + 78 verificações mobile; suíte completa atual: 141 testes. |
-| P3 — agente | Entregue com pendências de validação humana | As 7 fichas oficiais (versão 01/10/2026) estão importadas. Arquitetura, segurança, LangGraph, avaliação determinística e LLM as a Judge executados. Faltam a conferência manual e o teste com 5 pessoas. |
-| P4 — vídeo | Pendente | Roteiro e checklist prontos; gravação, narração humana e publicação no YouTube dependem do grupo. |
+## Status
 
-> **Importante:** os resultados de LLM abaixo são reais e foram produzidos com OpenAI `gpt-4o-mini`. Nenhum resultado de teste com pessoas ou de gravação foi inventado. O que ainda não foi executado está marcado como pendente.
+| Módulo | Status |
+|---|---|
+| Catálogo de serviços | Concluído e testado |
+| Agente de documentos | Concluído; fichas oficiais importadas e avaliação LLM executada |
+| Mobile | Concluído e testado |
+| Validação humana | Pendente: conferência manual e teste com 5 pessoas |
+| Vídeo | Pendente: roteiro pronto, gravação e publicação a fazer |
 
-## O que o sistema faz
+> **Importante:** os resultados de LLM são reais e foram produzidos com OpenAI `gpt-4o-mini`. Nenhum resultado de teste com pessoas ou de gravação foi inventado. O que ainda não foi executado está marcado como pendente.
 
-### Catálogo DSA (Projetos 1 e 2)
+## Funcionalidades
+
+### Catálogo de serviços
 
 - Cadastra, consulta, atualiza e exclui serviços em uma **lista encadeada implementada pela equipe**.
 - Consulta por ID e pesquisa por título, categoria ou descrição.
@@ -35,7 +38,7 @@ O núcleo dos Projetos 1 e 2 foi preservado. O agente é um módulo separado, pa
 - Mantém histórico, exporta CSV e protege dados pessoais.
 - Persiste o catálogo em JSON.
 
-### Agente de documentos (Projeto 3)
+### Agente de documentos
 
 - Responde sobre RG, CPF, título de eleitor, carteira de trabalho, certidões e CNH.
 - Usa **somente** as fichas FC-01 a FC-07 como fonte de verdade.
@@ -48,7 +51,16 @@ O núcleo dos Projetos 1 e 2 foi preservado. O agente é um módulo separado, pa
 
 ### Mobile
 
-O projeto mantém a versão mobile completa em um único HTML, com lista encadeada, Selection Sort, busca, histórico, indicadores, CSV, voz e acessibilidade. Veja [`mobile/README.md`](mobile/README.md).
+A versão mobile completa fica em um único HTML, com lista encadeada, Selection Sort, busca, histórico, indicadores, CSV, voz e acessibilidade. Veja [`mobile/README.md`](mobile/README.md).
+
+## Arquitetura
+
+- **Python 3.9+** no núcleo e no agente.
+- **Lista encadeada manual** e **Selection Sort** implementados pela equipe.
+- **JSON** para persistência local do catálogo e do histórico.
+- **LangGraph** para orquestração do agente, com fallback sequencial quando a biblioteca não está instalada.
+- **Provedores compatíveis com OpenAI**: Groq, OpenAI e Ollama local.
+- **HTML, CSS e JavaScript** no app mobile, sem framework.
 
 ## Como executar
 
@@ -111,14 +123,19 @@ Resultados reais desta máquina:
 
 **Juiz determinístico (offline, reproduzível):**
 
-- **Antes (baseline ingênuo):** 0/26 exatos, 7 parciais, 19 falhas, média **0,135** (13,5%).
-- **Depois (agente melhorado):** **26/26 exatos**, média **1,000** (100,0%).
+| Versão | Exatos | Parciais | Falhas | Aproveitamento |
+|---|---:|---:|---:|---:|
+| Baseline | 0/26 | 7 | 19 | 13,5% |
+| Agente | **26/26** | 0 | 0 | **100,0%** |
 
 **Juiz LLM (OpenAI `gpt-4o-mini`) com LangGraph 0.6.11:**
 
-- **Antes (baseline ingênuo):** 0/26 exatos, 6 parciais, 20 falhas, média **0,115** (11,5%).
-- **Depois (agente melhorado):** **25/26 exatos**, 1 parcial, 0 falhas, média **0,981** (98,1%).
-- O único parcial é o caso 24 (recusa de prompt injection sem citar uma ficha específica). A resposta esperada não exige ficha nesse caso; o juiz LLM marcou a citação como critério secundário. O juiz determinístico considera o caso correto.
+| Versão | Exatos | Parciais | Falhas | Aproveitamento |
+|---|---:|---:|---:|---:|
+| Baseline | 0/26 | 6 | 20 | 11,5% |
+| Agente | **25/26** | 1 | 0 | **98,1%** |
+
+O único parcial no juiz LLM é o **caso 24** (recusa de prompt injection sem citar uma ficha específica). A resposta esperada não exige ficha nesse caso; o juiz LLM marcou a citação como critério secundário. O juiz determinístico considera o caso correto.
 
 Relatórios: [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md) (determinístico), [`avaliacao/resultados/llm_langgraph/relatorio.md`](avaliacao/resultados/llm_langgraph/relatorio.md) (LLM + LangGraph) e [`avaliacao/resultados/llm_sequencial/relatorio.md`](avaliacao/resultados/llm_sequencial/relatorio.md) (LLM + fallback sequencial).
 
@@ -131,7 +148,7 @@ node mobile/teste-logica.js
 
 Resultado atual:
 
-- **141 testes Python aprovados** (81 originais preservados + 1 teste de integração da opção 13 + 59 do agente/avaliação/provedor).
+- **141 testes Python aprovados**, cobrindo catálogo, agente, avaliação e provedor.
 - **78 verificações mobile** aprovadas.
 
 Os testes do agente cobrem fichas, PII, prompt injection, entradas inválidas, fluxo, citações, fallback do LLM, Golden Dataset, juiz determinístico, juiz LLM e cliente HTTP OpenAI-compatível.
@@ -140,9 +157,9 @@ Os testes do agente cobrem fichas, PII, prompt injection, entradas inválidas, f
 
 ```text
 Jun/
-├── main.py                     # catálogo DSA
+├── main.py                     # catálogo de serviços
 ├── main_agente.py              # agente de documentos
-├── app/                        # núcleo DSA (lista encadeada, busca, interface)
+├── app/                        # núcleo do catálogo DSA
 ├── data/                       # catálogo, histórico e CSV
 ├── mobile/                     # app mobile completo
 ├── agente/
@@ -159,15 +176,15 @@ Jun/
 ├── avaliacao/
 │   ├── golden_dataset.json     # 26 mensagens originais
 │   ├── juiz.py                 # juiz determinístico + LLM as a Judge
-│   ├── baseline.py             # versão "antes da melhoria"
+│   ├── baseline.py             # versão de comparação
 │   ├── executar.py             # runner antes/depois
 │   └── resultados/             # determinístico + llm_langgraph + llm_sequencial
 ├── testes_usuarios/            # protocolo e planilha (execução pendente)
 ├── pitch/                      # roteiro pronto; link do vídeo pendente
 ├── testes/                     # 141 testes Python
 ├── docs/
-│   ├── DOCUMENTACAO.md         # documentação DSA (P1/P2)
-│   └── DOCUMENTACAO_UNIFICADA.md # documento único P1–P4 (16 seções)
+│   ├── DOCUMENTACAO.md         # documentação do catálogo DSA
+│   └── DOCUMENTACAO_UNIFICADA.md # documento único da solução
 ├── requirements.txt            # langgraph (opcional)
 ├── README.md
 └── .gitignore
@@ -205,8 +222,8 @@ O menu do agente tem opções próprias para perguntar, navegar pelas fichas e l
 
 ## Documentação
 
-- [`docs/DOCUMENTACAO_UNIFICADA.md`](docs/DOCUMENTACAO_UNIFICADA.md) — documento único com as 16 seções, arquitetura, segurança, resultados, limitações e checklist.
-- [`docs/DOCUMENTACAO.md`](docs/DOCUMENTACAO.md) — documentação detalhada do DSA (Projetos 1 e 2).
+- [`docs/DOCUMENTACAO_UNIFICADA.md`](docs/DOCUMENTACAO_UNIFICADA.md) — documento único da solução, com arquitetura, segurança, resultados, limitações e checklist.
+- [`docs/DOCUMENTACAO.md`](docs/DOCUMENTACAO.md) — documentação detalhada do catálogo DSA.
 - [`docs/EVIDENCIAS_TESTES.md`](docs/EVIDENCIAS_TESTES.md) — comandos e saídas reais dos testes.
 - [`docs/PEDIDO_FICHAS.md`](docs/PEDIDO_FICHAS.md) — registro da importação das fichas oficiais.
 - [`agente/fichas/LEIA-ME.md`](agente/fichas/LEIA-ME.md) — origem, versão e formato das fichas oficiais.
@@ -225,6 +242,6 @@ O menu do agente tem opções próprias para perguntar, navegar pelas fichas e l
 
 As fichas oficiais já foram importadas, o juiz LLM já foi executado com `gpt-4o-mini` e o repositório público já está em https://github.com/C0utinhoxx/citizen-assist-ai. Esses itens não são mais pendências.
 
-## Versões originais
+## Licença
 
-As versões originais dos dois primeiros projetos foram preservadas em `../python` e `../dts`, sem alterações.
+Projeto educacional desenvolvido para a Global Solution 2026.2. Uso restrito ao contexto acadêmico.

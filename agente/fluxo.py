@@ -25,6 +25,7 @@ except ImportError:  # pragma: no cover - caminho sem a dependência
     StateGraph = None  # type: ignore[assignment]
     LANGGRAPH_DISPONIVEL = False
 
+
 class EstadoAgente(TypedDict, total=False):
     """Estado compartilhado entre os nós do grafo.
 
@@ -51,9 +52,6 @@ class FluxoAgente:
     def framework(self) -> str:
         return "langgraph" if self._grafo is not None else "sequencial"
 
-    # ------------------------------------------------------------------
-    # Nós
-    # ------------------------------------------------------------------
     def _no_analisar(self, estado: EstadoAgente) -> Dict[str, Any]:
         analise = self.agente.seguranca.analisar(estado.get("pergunta", ""))
         return {"analise": analise}
@@ -95,9 +93,6 @@ class FluxoAgente:
     def _no_sem_resultado(self, estado: EstadoAgente) -> Dict[str, Any]:
         return {"resposta": self.agente._resposta_fora_escopo()}
 
-    # ------------------------------------------------------------------
-    # Grafo
-    # ------------------------------------------------------------------
     def _construir_grafo(self):
         grafo = StateGraph(EstadoAgente)
         grafo.add_node("analisar", self._no_analisar)

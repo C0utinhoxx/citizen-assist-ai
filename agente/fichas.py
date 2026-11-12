@@ -33,6 +33,8 @@ _SECAO = re.compile(r"^##\s+(?P<titulo>.+)$")
 
 
 @dataclass
+
+
 class Secao:
     """Uma seção temática de uma ficha."""
 
@@ -46,6 +48,8 @@ class Secao:
 
 
 @dataclass
+
+
 class Ficha:
     """Uma ficha de referência completa."""
 
@@ -185,7 +189,6 @@ def carregar_ficha(caminho: str) -> Ficha:
 
     provisoria = "provis" in normalizar(titulo + " " + fonte + " " + verificado)
     if not provisoria:
-        # O aviso de status fica no topo, antes da primeira seção.
         provisoria = any(
             "provis" in normalizar(linha)
             for linha in linhas[:12]

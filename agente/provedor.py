@@ -48,6 +48,8 @@ def carregar_env(caminho: str = CAMINHO_ENV) -> None:
 
 
 @dataclass
+
+
 class ConfiguracaoLLM:
     provedor: str
     modelo: str
@@ -120,7 +122,6 @@ class ProvedorOpenAICompat(Provedor):
             raise ErroProvedor("O provedor devolveu uma resposta vazia.")
         return texto
 
-
 PROVEDORES = {
     "groq": {
         "base_url": "https://api.groq.com/openai/v1",
@@ -170,8 +171,6 @@ def criar_provedor() -> Optional[Provedor]:
         for candidato in ("groq", "openai", "ollama"):
             configuracao = _criar_configuracao(candidato)
             if configuracao:
-                # Ollama é local: só é usado quando o modelo foi escolhido
-                # explicitamente, para não tentar rede sem necessidade.
                 if candidato == "ollama" and not os.environ.get("CITIZEN_LLM_MODEL"):
                     continue
                 return ProvedorOpenAICompat(configuracao)

@@ -25,7 +25,7 @@
       }
       var meta = document.querySelector('meta[name="theme-color"]');
       if (meta) meta.setAttribute("content", tema === "dark" ? "#0a121a" : "#f2f6f8");
-    } catch (e) { /* armazenamento bloqueado */ }
+    } catch (e) {   }
   })();
 </script>
 <style>
@@ -121,7 +121,6 @@
     padding-bottom: calc(var(--nav-h) + env(safe-area-inset-bottom) + 22px);
   }
 
-  /* ---------------- Topo ---------------- */
   .topbar {
     position: sticky;
     top: 0;
@@ -177,7 +176,6 @@
   html[data-theme="dark"] .icone-sol { display: inline-flex; }
   html[data-theme="dark"] .icone-lua { display: none; }
 
-  /* ---------------- Estrutura ---------------- */
   .view { padding: 14px 16px 0; animation: fade 0.2s ease; }
 
   .view-head {
@@ -216,7 +214,6 @@
   .muted { color: var(--muted); }
   .hint { font-size: 0.72rem; color: var(--muted); }
 
-  /* ---------------- Hero ---------------- */
   .hero {
     position: relative;
     overflow: hidden;
@@ -260,7 +257,6 @@
   .hero h1 { margin: 6px 0 8px; font-size: 1.55rem; line-height: 1.12; letter-spacing: -0.03em; }
   .hero p { margin: 0 0 18px; font-size: 0.9rem; opacity: 0.92; max-width: 34ch; }
 
-  /* ---------------- Botões ---------------- */
   .btn {
     appearance: none;
     -webkit-appearance: none;
@@ -289,7 +285,6 @@
   .btn-sm { min-height: 38px; padding: 8px 12px; font-size: 0.76rem; border-radius: 11px; }
   .btn-lg { min-height: 54px; padding: 14px 18px; font-size: 0.96rem; border-radius: 16px; }
 
-  /* ---------------- Estatísticas e atalhos ---------------- */
   .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0 4px; }
   .stat {
     background: var(--surface);
@@ -332,7 +327,6 @@
   .quick strong { font-size: 0.84rem; line-height: 1.2; }
   .quick small { font-size: 0.7rem; color: var(--muted); line-height: 1.3; }
 
-  /* ---------------- Cartões de serviço ---------------- */
   .service-card {
     width: 100%;
     display: flex;
@@ -370,7 +364,6 @@
     color: var(--muted);
   }
 
-  /* ---------------- Chips ---------------- */
   .chip {
     display: inline-flex;
     align-items: center;
@@ -390,7 +383,6 @@
   .chip-baixa { background: var(--danger-soft); color: var(--danger); }
   .chip-neutral { background: var(--surface-2); color: var(--muted); }
 
-  /* ---------------- Avisos ---------------- */
   .notice, .aviso {
     display: flex;
     align-items: flex-start;
@@ -419,7 +411,6 @@
   }
   .banner-storage svg { width: 18px; height: 18px; flex: none; color: var(--danger); }
 
-  /* ---------------- Busca e filtros ---------------- */
   .search {
     display: flex;
     align-items: center;
@@ -492,7 +483,6 @@
 
   .count-line { margin: 0 0 10px; font-size: 0.72rem; color: var(--muted); }
 
-  /* ---------------- Botão flutuante ---------------- */
   .fab {
     position: fixed;
     right: 16px;
@@ -517,13 +507,11 @@
     .fab { right: calc(50vw - 300px + 16px); }
   }
 
-  /* ---------------- Estado vazio ---------------- */
   .empty { text-align: center; padding: 36px 18px; color: var(--muted); }
   .empty .big { font-size: 2rem; line-height: 1; margin-bottom: 10px; }
   .empty strong { display: block; color: var(--text); margin-bottom: 4px; font-size: 0.95rem; }
   .empty p { margin: 0 0 16px; font-size: 0.8rem; }
 
-  /* ---------------- Barra inferior ---------------- */
   .tabbar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 40; display: flex; justify-content: center; pointer-events: none; }
   .tabbar-inner {
     width: 100%;
@@ -558,7 +546,6 @@
   .tab.ativo { color: var(--primary); }
   .tab.ativo .tab-icon-wrap { background: var(--primary-soft); }
 
-  /* ---------------- Categorias ---------------- */
   .cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
   .cat-card {
     display: flex;
@@ -597,7 +584,6 @@
   }
   .back-btn svg { width: 17px; height: 17px; }
 
-  /* ---------------- Assistente ---------------- */
   .ask-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -625,7 +611,6 @@
   .ask-foot .hint { display: inline-flex; align-items: center; gap: 5px; max-width: 52%; }
   .ask-foot .hint svg { width: 15px; height: 15px; flex: none; }
 
-  /* ---------------- Voz (idosos) ---------------- */
   .voice-box { margin-bottom: 12px; }
   .btn-voice {
     width: 100%;
@@ -824,7 +809,6 @@
   .alt-item strong { font-size: 0.82rem; line-height: 1.3; }
   .alt-item small { font-size: 0.68rem; color: var(--muted); }
 
-  /* ---------------- Histórico ---------------- */
   .history-list { display: flex; flex-direction: column; gap: 9px; }
   .history-item {
     padding: 13px 14px;
@@ -838,7 +822,6 @@
   .history-question { margin: 0 0 8px; font-size: 0.86rem; font-weight: 600; line-height: 1.35; }
   .history-meta { display: flex; flex-wrap: wrap; gap: 10px; font-size: 0.68rem; color: var(--muted); }
 
-  /* ---------------- Métricas e análise ---------------- */
   .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
   .metric {
     padding: 14px;
@@ -869,7 +852,6 @@
   }
   .star.ativo { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
 
-  /* ---------------- Mais ---------------- */
   .more-group {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -939,7 +921,6 @@
   .seg.ativo { background: var(--surface); color: var(--text); box-shadow: var(--shadow-sm); }
   .preview { padding: 13px 14px; border-radius: 14px; border: 1px dashed var(--border); background: var(--bg); font-size: 0.9rem; }
 
-  /* ---------------- Folhas, modais e toasts ---------------- */
   .overlay {
     position: fixed;
     inset: 0;
@@ -1015,7 +996,6 @@
   }
   html[data-theme="dark"] .toast { background: #e8f1f5; color: #0d1f2d; }
 
-  /* ---------------- Campos de formulário ---------------- */
   .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
   .field label { font-size: 0.78rem; font-weight: 700; }
   .field input, .field textarea, .field select {
@@ -1041,7 +1021,6 @@
   .form-erro.visivel { display: block; }
   .form-erro div { margin-bottom: 3px; }
 
-  /* ---------------- Animações ---------------- */
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
   @keyframes subir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes pop { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: scale(1); } }
@@ -1138,14 +1117,7 @@
 </noscript>
 
 <script id="app-script">
-/* =====================================================================
-   Citizen Assist AI — versão mobile (arquivo único, offline)
-   Reimplementa em JavaScript a mesma lógica do projeto Python:
-   lista encadeada própria, Selection Sort, busca por pontuação,
-   histórico, indicadores e exportação CSV.
-   ===================================================================== */
 
-/* ------------------------------- Ícones ------------------------------- */
 var ICONES = {
   home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg>',
   lista: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></svg>',
@@ -1175,7 +1147,6 @@ var ICONES = {
   fechar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>'
 };
 
-/* ------------------------------ Utilitários ------------------------------ */
 function normalizar(texto) {
   if (texto === null || texto === undefined) return "";
   return String(texto)
@@ -1205,7 +1176,7 @@ function urlSegura(valor) {
   try {
     var url = new URL(String(valor), window.location.href);
     if (url.protocol === "http:" || url.protocol === "https:") return url.href;
-  } catch (e) { /* endereço inválido */ }
+  } catch (e) {   }
   return "";
 }
 
@@ -1241,7 +1212,6 @@ function insertionSort(itens, comparar) {
   return itens;
 }
 
-/* ------------------------------- Modelo ------------------------------- */
 function Servico(dados) {
   this.id = Number(dados.id);
   this.titulo = String(dados.titulo || "").trim();
@@ -1294,7 +1264,6 @@ Servico.prototype.paraDict = function () {
   };
 };
 
-/* --------------------------- Lista encadeada --------------------------- */
 function No(servico) {
   this.servico = servico;
   this.proximo = null;
@@ -1417,7 +1386,6 @@ ListaEncadeada.prototype.contarPorCategoria = function () {
   return contagem;
 };
 
-/* --------------------------- Base de conhecimento --------------------------- */
 var PONTOS_ALTA = 6;
 var PONTOS_MEDIA = 3;
 
@@ -1474,7 +1442,6 @@ BaseConhecimento.prototype.buscar = function (pergunta) {
   });
 };
 
-/* ------------------------------ Dados iniciais ------------------------------ */
 var DADOS_INICIAIS = [
   {
     id: 1,
@@ -1610,7 +1577,6 @@ var DADOS_INICIAIS = [
   }
 ];
 
-/* ------------------------------ Armazenamento ------------------------------ */
 var CHAVES = {
   servicos: "citizenassist.servicos.v1",
   historico: "citizenassist.historico.v1",
@@ -1655,7 +1621,6 @@ function falhaArmazenamento() {
   toast("Não foi possível salvar neste navegador. Exporte um backup.");
 }
 
-/* -------------------------------- Estado -------------------------------- */
 var lista = new ListaEncadeada();
 var base = new BaseConhecimento(lista);
 var historico = [];
@@ -1676,7 +1641,6 @@ var state = { screen: "home", params: {} };
 var sheetAberto = false;
 var resolverConfirmacao = null;
 
-/* ------------------------------ Preferências ------------------------------ */
 function salvarPrefs() {
   if (!gravarChave(CHAVES.prefs, JSON.stringify(prefs))) falhaArmazenamento();
 }
@@ -1693,15 +1657,6 @@ function aplicarPreferencias() {
   if (meta) meta.setAttribute("content", tema === "dark" ? "#0a121a" : "#f2f6f8");
 }
 
-/* --------------------------------- Voz --------------------------------- */
-/*
- * Ditado: usa a Web Speech API do próprio navegador (pt-BR).
- * Leitura: usa a voz do aparelho/navegador ou a voz natural Azure opcional.
- * Na voz natural, só o texto da resposta vai ao servidor local; a pergunta
- * nunca é enviada. Nenhum áudio é gravado pelo aplicativo; o navegador pode
- * usar um serviço online de reconhecimento. Se a API não existir, o app
- * orienta a usar o microfone do teclado, que funciona em qualquer campo.
- */
 var voz = {
   reconhecimento: null,
   ouvindo: false,
@@ -1867,12 +1822,12 @@ function vozesNaturaisOptions() {
 
 function limparAudio() {
   if (voz.audio) {
-    try { voz.audio.pause(); } catch (e) { /* áudio já parado */ }
-    try { voz.audio.src = ""; } catch (e) { /* sem fonte */ }
+    try { voz.audio.pause(); } catch (e) {   }
+    try { voz.audio.src = ""; } catch (e) {   }
     voz.audio = null;
   }
   if (voz.audioUrl && typeof URL !== "undefined" && URL.revokeObjectURL) {
-    try { URL.revokeObjectURL(voz.audioUrl); } catch (e) { /* URL já liberada */ }
+    try { URL.revokeObjectURL(voz.audioUrl); } catch (e) {   }
   }
   voz.audioUrl = "";
 }
@@ -2230,7 +2185,7 @@ function iniciarDitado() {
 function pararDitado() {
   voz.pararPedido = true;
   if (voz.reconhecimento) {
-    try { voz.reconhecimento.stop(); } catch (e) { /* já parado */ }
+    try { voz.reconhecimento.stop(); } catch (e) {   }
   }
   voz.ouvindo = false;
   voz.parcial = "";
@@ -2258,12 +2213,12 @@ function marcarFalando(ativo) {
 function pararFala() {
   voz.falaToken++;
   if (voz.ttsAbort) {
-    try { voz.ttsAbort.abort(); } catch (e) { /* requisição já terminou */ }
+    try { voz.ttsAbort.abort(); } catch (e) {   }
     voz.ttsAbort = null;
   }
   voz.ttsCarregando = false;
   if (window.speechSynthesis) {
-    try { window.speechSynthesis.cancel(); } catch (e) { /* sem síntese de voz */ }
+    try { window.speechSynthesis.cancel(); } catch (e) {   }
   }
   limparAudio();
   marcarFalando(false);
@@ -2322,12 +2277,11 @@ function falarRespostaAtual() {
   falarTexto(textoParaFalar(ultimaResposta.servico));
 }
 
-/* --------------------------- Carregar e salvar --------------------------- */
 function semear() {
   lista = new ListaEncadeada();
   base = new BaseConhecimento(lista);
   DADOS_INICIAIS.forEach(function (item) {
-    try { lista.inserir(Servico.deDict(item)); } catch (e) { /* registro inválido */ }
+    try { lista.inserir(Servico.deDict(item)); } catch (e) {   }
   });
   salvarServicos();
 }
@@ -2341,7 +2295,7 @@ function carregarTudo() {
       var dados = JSON.parse(bruto);
       if (!Array.isArray(dados)) throw new Error("formato inválido");
       dados.forEach(function (item) {
-        try { lista.inserir(Servico.deDict(item)); } catch (e) { /* ignora registro inválido */ }
+        try { lista.inserir(Servico.deDict(item)); } catch (e) {   }
       });
     } catch (e) {
       toast("Dados salvos inválidos. Carregando os exemplos.");
@@ -2354,7 +2308,7 @@ function carregarTudo() {
     try {
       var h = JSON.parse(brutoHistorico);
       if (Array.isArray(h)) historico = h;
-    } catch (e) { /* histórico inválido é ignorado */ }
+    } catch (e) {   }
   }
 
   var brutoPrefs = lerChave(CHAVES.prefs);
@@ -2371,7 +2325,7 @@ function carregarTudo() {
         if (typeof p.vozNatural === "string") prefs.vozNatural = p.vozNatural;
         if (typeof p.vozNaturalConviteVisto === "boolean") prefs.vozNaturalConviteVisto = p.vozNaturalConviteVisto;
       }
-    } catch (e) { /* preferências inválidas são ignoradas */ }
+    } catch (e) {   }
   }
 }
 
@@ -2384,7 +2338,6 @@ function salvarHistorico() {
   if (!gravarChave(CHAVES.historico, JSON.stringify(historico))) falhaArmazenamento();
 }
 
-/* ------------------------------- Atendimento ------------------------------- */
 function contemDadoPessoal(texto) {
   var digitos = (String(texto).match(/\d/g) || []).length;
   return digitos >= 8 || String(texto).indexOf("@") !== -1;
@@ -2509,7 +2462,6 @@ function responderAjuda(ajudou) {
   toast(ajudou ? "Que bom! Obrigado pelo retorno." : "Obrigado! Isso nos ajuda a melhorar.");
 }
 
-/* ------------------------------- Indicadores ------------------------------- */
 function calcularIndicadores() {
   var total = historico.length;
   var encontrados = historico.filter(function (r) { return r.encontrou; }).length;
@@ -2548,7 +2500,6 @@ function definirNota(nota) {
   salvarPrefs();
 }
 
-/* --------------------------------- CSV --------------------------------- */
 var CAMPOS_CSV = ["data", "origem", "pergunta", "id_orientacao", "encontrou", "ajudou", "tentativas", "tempo", "nota_facilidade"];
 
 function celulaCsv(valor) {
@@ -2641,7 +2592,7 @@ function importarBackup(arquivo) {
 
       var nova = new ListaEncadeada();
       servicos.forEach(function (item) {
-        try { nova.inserir(Servico.deDict(item)); } catch (e) { /* ignora inválido */ }
+        try { nova.inserir(Servico.deDict(item)); } catch (e) {   }
       });
       lista = nova;
       base = new BaseConhecimento(lista);
@@ -2716,7 +2667,6 @@ async function limparHistorico() {
   toast("Histórico apagado.");
 }
 
-/* ------------------------------ Componentes ------------------------------ */
 function cartaoServico(s) {
   var meta = s.documentos.length + " documento(s)";
   if (s.local) meta += " · " + resumir(s.local, 42);
@@ -2759,7 +2709,6 @@ function bannerArmazenamento() {
   return '<div class="banner-storage">' + ICONES.info + '<div><strong>Armazenamento bloqueado.</strong> Os dados podem ser perdidos ao fechar. Exporte um backup em <em>Mais → Dados → Exportar backup completo</em>.</div></div>';
 }
 
-/* -------------------------------- Início -------------------------------- */
 function renderHome() {
   var categorias = base.categorias();
   var destaques = lista.percorrer().slice(0, 3);
@@ -2793,7 +2742,6 @@ function renderHome() {
   return html;
 }
 
-/* -------------------------------- Serviços -------------------------------- */
 function renderServicos() {
   var categorias = base.categorias();
   var html = '<div class="view-head"><div><h1>Serviços</h1><p>' + lista.quantidade + " orientações no catálogo</p></div>" +
@@ -2823,7 +2771,6 @@ function renderServicos() {
   return html;
 }
 
-/* ------------------------------- Categorias ------------------------------- */
 function renderCategorias() {
   var categorias = base.categorias();
   var html = '<div class="view-head"><div><h1>Categorias</h1><p>Navegue por assunto</p></div></div>';
@@ -2852,7 +2799,6 @@ function renderCategoria() {
   return html + itens.map(cartaoServico).join("");
 }
 
-/* ------------------------------- Assistente ------------------------------- */
 function renderResultadoAssistente() {
   var r = ultimaResposta;
   if (!r) return "";
@@ -2992,7 +2938,6 @@ function renderAssistente() {
   return html;
 }
 
-/* --------------------------------- Análise --------------------------------- */
 function renderAnalise() {
   var itens = lista.percorrer();
   var html = '<button class="back-btn" data-action="voltar">' + ICONES.voltar + " Voltar</button>" +
@@ -3042,7 +2987,6 @@ function renderAnalise() {
   return html;
 }
 
-/* ------------------------------- Indicadores ------------------------------- */
 function renderIndicadores() {
   var d = calcularIndicadores();
   var html = '<button class="back-btn" data-action="voltar">' + ICONES.voltar + " Voltar</button>" +
@@ -3083,7 +3027,6 @@ function renderIndicadores() {
   return html;
 }
 
-/* -------------------------------- Histórico -------------------------------- */
 function renderHistorico() {
   var html = '<button class="back-btn" data-action="voltar">' + ICONES.voltar + " Voltar</button>" +
     '<div class="view-head"><div><h1>Histórico</h1><p>' + historico.length + " atendimento(s)</p></div>" +
@@ -3109,7 +3052,6 @@ function renderHistorico() {
   return html;
 }
 
-/* ---------------------------------- Mais ---------------------------------- */
 function linhaMais(acao, icone, titulo, sub, perigo) {
   return '<button class="more-row' + (perigo ? " perigo" : "") + '" data-action="' + acao + '">' +
     '<span class="mi">' + icone + "</span>" +
@@ -3147,7 +3089,6 @@ function renderMais() {
   return html;
 }
 
-/* ------------------------------- Aparência ------------------------------- */
 function renderAparencia() {
   var temas = [["auto", "Automático"], ["light", "Claro"], ["dark", "Escuro"]];
   var fontes = [[1, "Padrão"], [1.12, "Grande"], [1.25, "Muito grande"]];
@@ -3234,7 +3175,6 @@ function renderAparencia() {
     "</div></div>";
 }
 
-/* --------------------------------- Sobre --------------------------------- */
 function renderSobre() {
   return '<button class="back-btn" data-action="voltar">' + ICONES.voltar + " Voltar</button>" +
     '<div class="view-head"><div><h1>Sobre o projeto</h1><p>Citizen Assist AI · versão mobile</p></div></div>' +
@@ -3271,7 +3211,6 @@ function renderSobre() {
     "</div></div>";
 }
 
-/* ------------------------------ Renderização ------------------------------ */
 function render() {
   if (state.screen !== "assistente") {
     if (voz.ouvindo) pararDitado();
@@ -3322,7 +3261,6 @@ function atualizarTabbar() {
   }
 }
 
-/* -------------------------------- Navegação -------------------------------- */
 var historyOk = true;
 var navegacoes = 0;
 var pilha = [{ tela: "home", params: {} }];
@@ -3371,7 +3309,6 @@ function voltar() {
   }
 }
 
-/* ------------------------------ Folha inferior ------------------------------ */
 function abrirSheet(conteudo, aoAbrir) {
   var root = document.getElementById("sheet-root");
   root.innerHTML = '<div class="overlay" data-overlay><div class="sheet" role="dialog" aria-modal="true">' + conteudo + "</div></div>";
@@ -3392,7 +3329,6 @@ function fecharSheet() {
   document.body.classList.remove("sem-rolagem");
 }
 
-/* ------------------------------ Detalhe do serviço ------------------------------ */
 function abrirDetalhe(id) {
   var s = lista.buscarPorId(id);
   if (!s) { toast("Serviço não encontrado."); return; }
@@ -3422,7 +3358,6 @@ function abrirDetalhe(id) {
   abrirSheet(conteudo);
 }
 
-/* ------------------------------ Formulário ------------------------------ */
 function abrirFormulario(id, semNovoEstado) {
   var editando = id !== null && id !== undefined;
   var s = editando ? lista.buscarPorId(id) : null;
@@ -3556,7 +3491,6 @@ async function excluirServico(id) {
   toast("Serviço excluído.");
 }
 
-/* ------------------------------ Modal de confirmação ------------------------------ */
 function confirmar(mensagem, opcoes) {
   opcoes = opcoes || {};
   return new Promise(function (resolve) {
@@ -3586,7 +3520,6 @@ function finalizarConfirmacao(valor) {
   if (resolver) resolver(valor);
 }
 
-/* --------------------------------- Toast --------------------------------- */
 function toast(mensagem) {
   var root = document.getElementById("toast-root");
   if (!root) return;
@@ -3604,7 +3537,6 @@ function toast(mensagem) {
   }, 3000);
 }
 
-/* ------------------------------ Eventos da tela ------------------------------ */
 function bindView() {
   if (state.screen === "servicos") {
     var entrada = document.getElementById("busca-servicos");
@@ -3676,7 +3608,6 @@ function bindView() {
   }
 }
 
-/* ------------------------------ Cliques globais ------------------------------ */
 document.addEventListener("click", async function (e) {
   var alvo = e.target.closest("[data-action]");
   if (!alvo) return;
@@ -3882,7 +3813,7 @@ document.addEventListener("click", async function (e) {
 
     case "atualizar-vozes":
       if (window.speechSynthesis && window.speechSynthesis.getVoices) {
-        try { window.speechSynthesis.getVoices(); } catch (e) { /* sem vozes */ }
+        try { window.speechSynthesis.getVoices(); } catch (e) {   }
       }
       if (prefs.motorVoz === "natural") {
         carregarStatusTTS();
@@ -3931,7 +3862,6 @@ document.addEventListener("click", async function (e) {
   }
 });
 
-/* ------------------------------ Histórico do navegador ------------------------------ */
 window.addEventListener("popstate", function (e) {
   if (sheetAberto) {
     fecharSheet();
@@ -3958,7 +3888,6 @@ window.addEventListener("popstate", function (e) {
   render();
 });
 
-/* ------------------------------- Inicialização ------------------------------- */
 function iniciar() {
   carregarTudo();
   aplicarPreferencias();
@@ -3969,7 +3898,7 @@ function iniciar() {
     historyOk = false;
   }
   if (window.speechSynthesis && window.speechSynthesis.getVoices) {
-    try { window.speechSynthesis.getVoices(); } catch (e) { /* sem vozes */ }
+    try { window.speechSynthesis.getVoices(); } catch (e) {   }
     var aoCarregarVozes = function () {
       if (state.screen === "aparencia") render();
     };

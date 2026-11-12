@@ -154,15 +154,15 @@ class TestOperacoesDoMenu(unittest.TestCase):
         self._adicionar_teste()
 
         with patch("builtins.input", side_effect=[
-            "99",                # ID
-            "Serviço atualizado",  # título
-            "",                  # categoria
-            "",                  # descrição
-            "",                  # documentos
-            "",                  # local
-            "",                  # fonte
-            "",                  # palavras-chave
-            "",                  # verificação
+            "99",
+            "Serviço atualizado",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
         ]):
             with redirect_stdout(io.StringIO()):
                 alterou = atualizar(self.lista)
@@ -248,13 +248,13 @@ class TestMenuUnificado(unittest.TestCase):
     def test_fluxo_do_menu_principal(self):
         saida = io.StringIO()
         with patch("builtins.input", side_effect=[
-            "3", "cartao",   # pesquisar
-            "7", "1",        # ordenar por título
-            "8",             # análise
-            "11",            # indicadores
-            "12",            # exportar CSV
-            "0",             # sair
-            "5",             # nota de facilidade
+            "3", "cartao",
+            "7", "1",
+            "8",
+            "11",
+            "12",
+            "0",
+            "5",
         ]):
             with redirect_stdout(saida):
                 executar_menu(
@@ -269,7 +269,6 @@ class TestMenuUnificado(unittest.TestCase):
         self.assertIn("CSV exportado", texto)
         self.assertIn("Obrigado por usar o Citizen Assist AI", texto)
 
-        # O catálogo foi salvo em JSON e pode ser recarregado.
         self.assertEqual(len(carregar_servicos(self.caminho_servicos)), 1)
 
     def test_menu_recusa_opcao_inexistente(self):
@@ -295,7 +294,6 @@ class TestMenuUnificado(unittest.TestCase):
         self.assertIn("Agente de Documentos Pessoais", texto)
         self.assertIn("Sessão encerrada", texto)
         self.assertIn("Nenhuma pergunta foi armazenada", texto)
-
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

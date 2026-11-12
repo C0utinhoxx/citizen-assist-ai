@@ -1,7 +1,6 @@
 """Atendimento ao cidadão, histórico, indicadores e exportação CSV.
 
-Esta classe preserva a proposta da Lição 1 e agora trabalha sobre a mesma
-lista encadeada usada pelo CRUD da Lição 2.
+A classe trabalha sobre a mesma lista encadeada usada pelo catálogo.
 """
 
 import time
@@ -26,9 +25,6 @@ class Assistente:
         self.historico = carregar_historico(caminho_historico)
         self.nota_facilidade = None
 
-    # ------------------------------------------------------------------
-    # Entrada de dados
-    # ------------------------------------------------------------------
     def contem_dado_pessoal(self, texto):
         """Detecta CPF/telefone (8 ou mais dígitos) e e-mail (contém @)."""
         quantidade_digitos = sum(1 for caractere in texto if caractere.isdigit())
@@ -74,9 +70,6 @@ class Assistente:
                 return int(entrada)
             print("Entrada inválida. Digite um número de 1 a 5.")
 
-    # ------------------------------------------------------------------
-    # Atendimento por pergunta livre
-    # ------------------------------------------------------------------
     def perguntar(self):
         """Faz um atendimento usando a busca por pontuação."""
         print("\n--- Fazer uma pergunta ---")
@@ -96,11 +89,9 @@ class Assistente:
                 continue
 
             if self.contem_dado_pessoal(pergunta):
-                # A pergunta é recusada e NÃO é registrada no histórico.
                 print("Atenção: não digite CPF, telefone ou e-mail. Reescreva.")
                 continue
 
-            # O tempo e o número de tentativas começam na primeira pergunta válida.
             if pergunta_original is None:
                 pergunta_original = pergunta
                 inicio = time.time()
@@ -115,7 +106,6 @@ class Assistente:
                 print(f"\nConfiança da resposta: {confianca} ({pontos} pontos)\n")
                 melhor.exibir()
 
-                # Até duas alternativas, como na Lição 1.
                 alternativas = [orientacao for _, orientacao in resultados[1:3]]
                 if alternativas:
                     print("\nOutras orientações parecidas:")
@@ -128,7 +118,6 @@ class Assistente:
                                True, ajudou, tentativas, tempo)
                 return
 
-            # Nenhuma orientação atingiu 3 pontos.
             print("\nNão encontrei uma orientação para essa dúvida.")
             print("Tente usar outras palavras ou escolha uma categoria:")
             for categoria in self.base.categorias():
@@ -138,15 +127,12 @@ class Assistente:
                 "Deseja tentar outra pergunta? (s/n, 0 para sair): ",
                 aceitar_zero=True,
             )
-            if not continuar:  # "n" ou "0"
+            if not continuar:
                 tempo = round(time.time() - inicio, 1)
                 self.registrar("pergunta", pergunta_original, None,
                                False, False, tentativas, tempo)
                 return
 
-    # ------------------------------------------------------------------
-    # Navegação por categorias
-    # ------------------------------------------------------------------
     def navegar(self):
         """Mostra as categorias e permite escolher uma orientação."""
         while True:
@@ -197,9 +183,6 @@ class Assistente:
                            True, ajudou, 1, tempo)
             return
 
-    # ------------------------------------------------------------------
-    # Histórico
-    # ------------------------------------------------------------------
     def registrar(self, origem, pergunta, id_orientacao, encontrou,
                   ajudou, tentativas, tempo):
         """Cria um registro de atendimento e salva no histórico."""
@@ -218,9 +201,6 @@ class Assistente:
         salvar_historico(self.caminho_historico, self.historico)
         return registro
 
-    # ------------------------------------------------------------------
-    # Indicadores e CSV
-    # ------------------------------------------------------------------
     def calcular_indicadores(self):
         """Calcula os indicadores sem imprimir, facilitando os testes."""
         total = len(self.historico)
@@ -234,7 +214,6 @@ class Assistente:
                 sum(int(r.get("tentativas", 1)) for r in self.historico) / total
             )
 
-        # Tempo médio apenas dos atendimentos em que a resposta foi encontrada.
         tempos = [
             float(r.get("tempo", 0))
             for r in self.historico
@@ -242,7 +221,6 @@ class Assistente:
         ]
         tempo_medio = sum(tempos) / len(tempos) if tempos else 0.0
 
-        # A nota de facilidade fica guardada no último atendimento da sessão.
         notas = [
             r["nota_facilidade"]
             for r in self.historico
@@ -255,7 +233,6 @@ class Assistente:
         else:
             facilidade = "não avaliada"
 
-        # Dúvidas em que o assistente não ajudou (inclui as não encontradas).
         sem_solucao = []
         for registro in self.historico:
             if not registro.get("ajudou"):
@@ -303,15 +280,11 @@ class Assistente:
         """Exporta todos os atendimentos para o CSV configurado."""
         return exportar_csv(self.caminho_csv, self.historico)
 
-    # ------------------------------------------------------------------
-    # Encerramento
-    # ------------------------------------------------------------------
     def finalizar(self):
         """Pede a nota, exporta o CSV e mostra os indicadores ao sair."""
         print("\n--- Encerrando o atendimento ---")
         self.nota_facilidade = self._ler_nota()
 
-        # Guarda a nota no último atendimento para ela não se perder ao fechar.
         if self.historico:
             self.historico[-1]["nota_facilidade"] = self.nota_facilidade
             salvar_historico(self.caminho_historico, self.historico)

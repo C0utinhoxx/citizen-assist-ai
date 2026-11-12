@@ -27,7 +27,6 @@ class TestDadosPessoais(unittest.TestCase):
         self.assertTrue(contem_pii("meu telefone é (11) 98765-4321"))
 
     def test_nao_trata_assunto_como_dado(self):
-        # "meu RG" e "minha CNH" são o assunto da pergunta, não um dado.
         self.assertFalse(contem_pii("Perdi meu RG. Preciso de boletim?"))
         self.assertFalse(contem_pii("Minha CNH venceu há 45 dias."))
 
@@ -91,7 +90,6 @@ class TestAnaliseDeEntrada(unittest.TestCase):
         )
         self.assertEqual(analise.tipo, "dados_pessoais")
         self.assertNotIn("123.456.789-09", analise.texto_seguro)
-
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -32,6 +32,8 @@ PONTOS_MINIMOS = 3
 
 
 @dataclass
+
+
 class Ocorrencia:
     """Uma seção que pode responder à pergunta."""
 
@@ -45,6 +47,8 @@ class Ocorrencia:
 
 
 @dataclass
+
+
 class _SecaoIndexada:
     ficha: Ficha
     secao: Secao
@@ -143,9 +147,6 @@ class Recuperador:
             if pontos < PONTOS_MINIMOS:
                 continue
 
-            # Âncora: a pergunta precisa falar de algo que existe nesta ficha.
-            # Sem isso, "quanto custa o passaporte?" casaria com "quanto custa"
-            # de uma ficha de RG e produziria uma resposta errada.
             tem_ancora = (
                 any(token in ficha.vocabulario() for token in tokens_assunto)
                 or any(
@@ -163,7 +164,6 @@ class Recuperador:
             key=lambda o: (-o.pontos, o.ficha.id, o.secao.titulo_exibicao)
         )
 
-        # Remove seções repetidas mantendo a melhor pontuação.
         vistos = set()
         unicas: List[Ocorrencia] = []
         for ocorrencia in ocorrencias:

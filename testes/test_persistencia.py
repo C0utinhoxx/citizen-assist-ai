@@ -91,7 +91,7 @@ class TestPersistencia(unittest.TestCase):
             "id": "7",
             "titulo": "Certidão",
             "categoria": "Documentos",
-            "resposta": "Texto da lição 1",
+            "resposta": "Texto do catálogo",
             "requisitos": "Documento com foto; CPF",
             "onde": "Cartório",
             "fonte": "https://exemplo.gov.br",
@@ -100,7 +100,7 @@ class TestPersistencia(unittest.TestCase):
         })
 
         self.assertEqual(servico.id, 7)
-        self.assertEqual(servico.descricao, "Texto da lição 1")
+        self.assertEqual(servico.descricao, "Texto do catálogo")
         self.assertEqual(servico.documentos, ["Documento com foto", "CPF"])
         self.assertEqual(servico.local, "Cartório")
 

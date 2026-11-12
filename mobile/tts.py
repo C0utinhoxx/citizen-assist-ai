@@ -38,8 +38,6 @@ FORMATO_PADRAO = "audio-24khz-48kbitrate-mono-mp3"
 
 CACHE_LOCK = threading.Lock()
 
-# Vozes neurais padrão em português do Brasil. A lista é fixa para a interface
-# funcionar mesmo antes de consultar o Azure e para impedir SSML arbitrário.
 VOZES_AZURE: List[Dict[str, str]] = [
     {"id": "pt-BR-ThalitaNeural", "nome": "Thalita", "genero": "feminina"},
     {"id": "pt-BR-MacerioNeural", "nome": "Macerio", "genero": "masculina"},
@@ -74,6 +72,8 @@ class TTSConfigError(TTSError):
 
 
 @dataclass
+
+
 class ConfigTTS:
     provedor: str
     modo: str
@@ -97,6 +97,8 @@ class ConfigTTS:
 
 
 @dataclass
+
+
 class ResultadoTTS:
     audio: bytes
     content_type: str
@@ -287,7 +289,6 @@ def sintetizar(texto: object, voz: Optional[str] = None) -> ResultadoTTS:
         temporario.write_bytes(audio)
         temporario.replace(caminho)
     except OSError:
-        # O cache é opcional; se não puder gravar, ainda devolvemos o áudio.
         pass
 
     return ResultadoTTS(

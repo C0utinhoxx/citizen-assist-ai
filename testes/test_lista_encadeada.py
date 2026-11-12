@@ -58,7 +58,7 @@ class TestListaEncadeada(unittest.TestCase):
     def test_pesquisar_titulo_categoria_e_descricao(self):
         self.assertEqual(len(self.lista.pesquisar("vacina")), 1)
         self.assertEqual(len(self.lista.pesquisar("documentos")), 1)
-        self.assertEqual(len(self.lista.pesquisar("saude")), 2)  # sem acento
+        self.assertEqual(len(self.lista.pesquisar("saude")), 2)
         self.assertEqual(len(self.lista.pesquisar("descricao")), 3)
         self.assertEqual(self.lista.pesquisar("inexistente"), [])
         self.assertEqual(self.lista.pesquisar("   "), [])
@@ -108,7 +108,7 @@ class TestListaEncadeada(unittest.TestCase):
 
     def test_ordenar_lista_vazia(self):
         lista = ListaEncadeada()
-        lista.ordenar_por("titulo")  # não deve gerar erro
+        lista.ordenar_por("titulo")
         self.assertTrue(lista.vazia())
 
     def test_ordenar_campo_invalido(self):
@@ -120,7 +120,6 @@ class TestListaEncadeada(unittest.TestCase):
 
         self.assertEqual(contagem["Saúde"], 2)
         self.assertEqual(contagem["Documentos"], 1)
-
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

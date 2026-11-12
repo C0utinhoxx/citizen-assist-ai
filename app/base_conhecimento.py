@@ -6,7 +6,6 @@ encadeada do catálogo. Assim, toda consulta percorre os nós de verdade.
 
 from .texto import contem_palavra, normalizar
 
-# Pontuação mínima para cada nível de confiança.
 PONTOS_ALTA = 6
 PONTOS_MEDIA = 3
 
@@ -79,7 +78,7 @@ class BaseConhecimento:
     def pontuar(self, pergunta, servico):
         """Calcula quantos pontos um serviço faz para a pergunta.
 
-        Regras mantidas da Lição 1:
+        Regras de pontuação do catálogo:
         - +3 para cada palavra-chave que aparece inteira na pergunta;
         - +1 para cada palavra da pergunta (4 letras ou mais) que
           aparece inteira no título.
