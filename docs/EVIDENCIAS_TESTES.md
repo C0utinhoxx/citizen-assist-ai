@@ -115,6 +115,7 @@ Arquivos:
 ```bash
 python3 -m avaliacao.executar \
   --modo ambos --juiz llm --agente llm \
+  --fluxo sequencial \
   --saida avaliacao/resultados/llm_sequencial
 ```
 

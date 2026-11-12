@@ -31,7 +31,7 @@ O projeto tem quatro componentes:
 
 Tecnologias: Python 3.9+, LangGraph (com fallback sequencial), modelos compatíveis com OpenAI (Groq, OpenAI e Ollama local), HTML/CSS/JavaScript sem framework.
 
-Avaliação: 26 de 26 acertos exatos no juiz determinístico (offline, reproduzível) e 25 de 26 no juiz LLM com gpt-4o-mini e LangGraph (98,1%). A suíte tem 141 testes Python e 78 verificações mobile aprovados.
+Avaliação: 26 de 26 acertos exatos no juiz determinístico (offline, reproduzível) e 25 de 26 no juiz LLM com gpt-4o-mini e LangGraph (98,1%). A suíte tem 143 testes Python e 78 verificações mobile aprovados.
 
 Importante: as fichas são material didático fictício da Central do Cidadão de Aurora, criado exclusivamente para a atividade acadêmica. O assistente não é um canal oficial e não consulta sistemas do governo. Confirme sempre as informações no órgão competente.
 

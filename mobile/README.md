@@ -241,7 +241,7 @@ Os testes Python incluem a API de voz natural e o servidor local. Na raiz do pro
 python3 -m unittest discover -s testes -t . -v
 ```
 
-Resultado atual: **141 testes Python aprovados** (60 do sistema DSA + 59 do agente e da avaliação + 22 da voz natural mobile).
+Resultado atual: **143 testes Python aprovados** (60 do sistema DSA + 61 do agente e da avaliação + 22 da voz natural mobile).
 
 ## Compatibilidade
 

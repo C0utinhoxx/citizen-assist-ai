@@ -1,15 +1,42 @@
 from __future__ import annotations
 
+import warnings
 from typing import Any, Dict, TypedDict
 
-try:  # pragma: no cover - depende do ambiente
-    from langgraph.graph import END, StateGraph
+# Avisos de bibliotecas de terceiros poluem a saida do CLI sem afetar o
+# comportamento: o urllib3 v2 reclama do LibreSSL do Python do sistema (comum
+# no macOS) e o LangChain avisa sobre uma mudanca futura de valor padrao.
+# Nenhum dos dois afeta o agente, e atrapalhariam a leitura do terminal e a
+# gravacao do pitch.
+#
+# Durante a importacao o aviso do LangChain escapa dos filtros, porque a
+# propria biblioteca os religa no meio do import. Por isso a importacao roda
+# com record=True: nada e impresso, e os filtros sao religados logo abaixo.
+with warnings.catch_warnings(record=True):
+    warnings.simplefilter("always")
+    try:  # pragma: no cover - depende do ambiente
+        from langgraph.graph import END, StateGraph
 
-    LANGGRAPH_DISPONIVEL = True
-except ImportError:  # pragma: no cover - caminho sem a dependência
-    END = "__end__"  # type: ignore[assignment]
-    StateGraph = None  # type: ignore[assignment]
-    LANGGRAPH_DISPONIVEL = False
+        LANGGRAPH_DISPONIVEL = True
+    except ImportError:  # pragma: no cover - caminho sem a dependência
+        END = "__end__"  # type: ignore[assignment]
+        StateGraph = None  # type: ignore[assignment]
+        LANGGRAPH_DISPONIVEL = False
+
+warnings.filterwarnings(
+    "ignore",
+    message=r".*urllib3 v2 only supports OpenSSL.*",
+)
+try:
+    from langchain_core._api.deprecation import (
+        LangChainDeprecationWarning,
+        LangChainPendingDeprecationWarning,
+    )
+
+    warnings.filterwarnings("ignore", category=LangChainPendingDeprecationWarning)
+    warnings.filterwarnings("ignore", category=LangChainDeprecationWarning)
+except ImportError:  # pragma: no cover - so existe junto com o langgraph
+    pass
 
 
 class EstadoAgente(TypedDict, total=False):
@@ -23,9 +50,12 @@ class EstadoAgente(TypedDict, total=False):
 
 class FluxoAgente:
 
-    def __init__(self, agente: "AgenteCidadao"):
+    def __init__(self, agente: "AgenteCidadao", usar_langgraph: bool = True):
         self.agente = agente
-        self._grafo = self._construir_grafo() if LANGGRAPH_DISPONIVEL else None
+        if usar_langgraph and LANGGRAPH_DISPONIVEL:
+            self._grafo = self._construir_grafo()
+        else:
+            self._grafo = None
 
     @property
     def framework(self) -> str:

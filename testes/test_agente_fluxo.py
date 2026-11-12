@@ -146,6 +146,18 @@ class TestFluxoDoAgente(unittest.TestCase):
         esperado = "langgraph" if LANGGRAPH_DISPONIVEL else "sequencial"
         self.assertEqual(self.agente.fluxo.framework, esperado)
 
+    def test_pode_forcar_o_fallback_sequencial(self):
+        agente = AgenteCidadao(usar_llm=False, usar_langgraph=False)
+        self.assertEqual(agente.fluxo.framework, "sequencial")
+
+    def test_fallback_sequencial_responde_como_o_langgraph(self):
+        sequencial = AgenteCidadao(usar_llm=False, usar_langgraph=False)
+        pergunta = "Quanto custa a segunda via do RG?"
+        self.assertEqual(
+            sequencial.responder(pergunta).texto,
+            self.agente.responder(pergunta).texto,
+        )
+
 
 class TestFallbackDoProvedor(unittest.TestCase):
 

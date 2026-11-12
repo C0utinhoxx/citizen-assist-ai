@@ -321,6 +321,7 @@ def _converter(caminho: Path) -> Tuple[str, str]:
 def main(origem: Path) -> int:
     if not origem.is_dir():
         print(f"Pasta não encontrada: {origem}")
+        print("Uso: python3 ferramentas/importar_fichas.py PASTA_DAS_FICHAS")
         return 1
 
     arquivos = sorted(origem.glob("FC-*.md"))

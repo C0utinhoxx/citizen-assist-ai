@@ -398,7 +398,7 @@ Ran 81 tests in 0.058s
 OK
 ```
 
-> **Atualização (2026-11-10):** este bloco registra a suíte original dos Projetos 1 e 2. Depois da inclusão do agente, `python3 -m unittest discover -s testes -t .` passou a executar **141 testes**: 82 do catálogo/mobile e 59 do agente/avaliação/provedor. O `test_integracao.py` ganhou 1 teste da opção 13 (17 → 18). Veja [`EVIDENCIAS_TESTES.md`](EVIDENCIAS_TESTES.md).
+> **Atualização (2026-11-10):** este bloco registra a suíte original dos Projetos 1 e 2. Depois da inclusão do agente, `python3 -m unittest discover -s testes -t .` passou a executar **143 testes**: 82 do catálogo/mobile e 61 do agente/avaliação/provedor. O `test_integracao.py` ganhou 1 teste da opção 13 (17 → 18). Veja [`EVIDENCIAS_TESTES.md`](EVIDENCIAS_TESTES.md).
 
 Distribuição dos 81 testes originais:
 
@@ -580,7 +580,7 @@ node mobile/teste-logica.js
 | IDs duplicados | recusa no cadastro | Atendido |
 | Consultas sem resultado | mensagens específicas | Atendido |
 | Análise Big-O | seção 13 | Atendido |
-| Testes normais, inexistentes, inválidos e lista vazia | 81 testes originais do P1/P2 (141 na suíte atual) | Atendido |
+| Testes normais, inexistentes, inválidos e lista vazia | 81 testes originais do P1/P2 (143 na suíte atual) | Atendido |
 | Persistência em arquivos (opcional) | JSON e CSV | Atendido |
 | Relatórios/indicadores (opcional) | menus 8 e 11 | Atendido |
 | Documentação técnica | este documento | Atendido |
@@ -595,7 +595,7 @@ node mobile/teste-logica.js
 | Lista encadeada e recursos específicos da linguagem | 3,0 | `No`, `ListaEncadeada`, referências, percurso e remoção |
 | Algoritmos de busca e ordenação implementados | 2,0 | busca linear por ID/texto, pontuação e Selection Sort |
 | Organização do código, documentação e Big-O | 1,0 | módulos separados, esta documentação e seção 13 |
-| Evidências de testes e demonstração | 1,0 | 81 testes do P1/P2 + 59 do agente (141 no total), teste manual e roteiro de demonstração |
+| Evidências de testes e demonstração | 1,0 | 81 testes do P1/P2 + 61 do agente (143 no total), teste manual e roteiro de demonstração |
 
 O único item deste recorte P1/P2 que ainda depende da equipe é a **gravação da demonstração em vídeo**; o roteiro está pronto na seção 19. As pendências do Projeto 3 e do Projeto 4 estão na documentação única.
 

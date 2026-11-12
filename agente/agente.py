@@ -46,6 +46,7 @@ class AgenteCidadao:
         pasta_fichas: Optional[str] = None,
         provedor: object = _AUTO,
         usar_llm: bool = True,
+        usar_langgraph: bool = True,
     ):
         self.fichas: Dict[str, Ficha] = (
             carregar_fichas(pasta_fichas) if pasta_fichas else carregar_fichas()
@@ -64,7 +65,7 @@ class AgenteCidadao:
         self.respostas_encontradas = 0
         self.respostas_seguras = 0
         self.respostas_sem_resultado = 0
-        self.fluxo = FluxoAgente(self)
+        self.fluxo = FluxoAgente(self, usar_langgraph=usar_langgraph)
 
     def categorias(self) -> List[Dict[str, object]]:
         return [

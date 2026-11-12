@@ -357,7 +357,7 @@ O fluxo é implementado em `agente/fluxo.py` com `StateGraph`:
 - Aresta condicional: `sem_resultado` ou `responder`.
 - Nós `responder`, `bloqueio`, `sem_resultado` → `END`.
 
-Quando o LangGraph não está instalado, o mesmo fluxo é executado em sequência. As regras e as respostas são idênticas. A suíte roda nos dois ambientes: **141 testes aprovados** com e sem LangGraph.
+Quando o LangGraph não está instalado, o mesmo fluxo é executado em sequência. As regras e as respostas são idênticas. A suíte roda nos dois ambientes: **143 testes aprovados** com e sem LangGraph.
 
 ### Por que LangGraph
 
@@ -684,6 +684,10 @@ com 5 pessoas ainda não ocorreu**; nenhum resultado foi inventado.
 python3 -m unittest discover -s testes -t . -v
 node mobile/teste-logica.js
 python3 -m avaliacao.executar --modo ambos --juiz deterministico
+python3 -m avaliacao.executar --modo ambos --juiz llm --agente llm \
+  --fluxo langgraph  --saida avaliacao/resultados/llm_langgraph
+python3 -m avaliacao.executar --modo ambos --juiz llm --agente llm \
+  --fluxo sequencial --saida avaliacao/resultados/llm_sequencial
 python3 main_agente.py
 ```
 
@@ -691,8 +695,8 @@ python3 main_agente.py
 
 | Verificação | Resultado |
 |---|---|
-| Suíte Python (sem LangGraph) | **141 testes aprovados** |
-| Suíte Python (com LangGraph 0.6.11) | **141 testes aprovados** |
+| Suíte Python (sem LangGraph) | **143 testes aprovados** |
+| Suíte Python (com LangGraph 0.6.11) | **143 testes aprovados** |
 | Mobile | **78 verificações aprovadas** |
 | Golden Dataset — baseline (juiz determinístico) | 0/26 exatos, 7 parciais, 19 falhas, 13,5% |
 | Golden Dataset — melhorado (juiz determinístico) | **26/26 exatos, 100,0%** |
@@ -797,7 +801,7 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 | P2 — lista encadeada manual | Entregue |
 | P2 — busca, Selection Sort, indicadores, CSV, JSON | Entregue |
 | P2 — 13 requisitos | Entregue |
-| P2 — testes Python | 141 aprovados (60 do DSA + 59 do agente/avaliação + 22 da voz mobile) |
+| P2 — testes Python | 143 aprovados (60 do DSA + 61 do agente/avaliação + 22 da voz mobile) |
 | P2 — mobile | 78 verificações aprovadas |
 | P3 — agente com FC-01 a FC-07 | **Entregue** com as fichas oficiais (versão 01/10/2026) |
 | P3 — citação da ficha e data | Entregue |

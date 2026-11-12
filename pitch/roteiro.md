@@ -37,7 +37,7 @@
 
 **Narração:**
 
-> “A base do projeto é o catálogo de serviços dos Projetos 1 e 2. Ele usa uma lista encadeada implementada por nós, sem listas prontas, com busca por pontuação e Selection Sort próprio. Também tem indicadores, exportação CSV, persistência em JSON e uma versão mobile que funciona offline. São 141 testes Python e 78 verificações mobile aprovados.”
+> “A base do projeto é o catálogo de serviços dos Projetos 1 e 2. Ele usa uma lista encadeada implementada por nós, sem listas prontas, com busca por pontuação e Selection Sort próprio. Também tem indicadores, exportação CSV, persistência em JSON e uma versão mobile que funciona offline. São 143 testes Python e 78 verificações mobile aprovados.”
 
 **Demonstração (5–8 segundos):**
 

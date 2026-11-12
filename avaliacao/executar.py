@@ -138,6 +138,16 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         help="Modo do agente melhorado (auto usa LLM se houver provedor).",
     )
     parser.add_argument(
+        "--fluxo",
+        choices=("auto", "langgraph", "sequencial"),
+        default="auto",
+        help=(
+            "Orquestracao do agente. 'auto' usa LangGraph quando a biblioteca "
+            "esta instalada; 'sequencial' forca o fallback sem precisar "
+            "desinstalar nada."
+        ),
+    )
+    parser.add_argument(
         "--saida",
         default=PASTA_RESULTADOS,
         help="Pasta de saída dos resultados.",
@@ -181,7 +191,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             usar_llm = args.agente == "llm" or (
                 args.agente == "auto" and provedor is not None
             )
-            agente = AgenteCidadao(usar_llm=usar_llm)
+            usar_langgraph = args.fluxo != "sequencial"
+            agente = AgenteCidadao(
+                usar_llm=usar_llm,
+                usar_langgraph=usar_langgraph,
+            )
             fluxos[modo] = agente.fluxo.framework
         resultados[modo] = _executar_modo(modo, agente, dataset, juiz)
 

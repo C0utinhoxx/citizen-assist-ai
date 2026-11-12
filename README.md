@@ -119,6 +119,20 @@ python3 -m avaliacao.executar --modo ambos --juiz deterministico
 python3 -m avaliacao.executar --modo ambos --juiz llm --agente llm
 ```
 
+A opção `--fluxo` escolhe a orquestração do agente: `auto` (padrão) usa LangGraph
+quando a biblioteca está instalada, `sequencial` força o fallback determinístico.
+Com isso, as duas execuções do juiz LLM ficam reproduzíveis no mesmo ambiente:
+
+```bash
+# Com LangGraph
+python3 -m avaliacao.executar --modo ambos --juiz llm --agente llm \
+  --fluxo langgraph --saida avaliacao/resultados/llm_langgraph
+
+# Com o fallback sequencial, sem precisar desinstalar nada
+python3 -m avaliacao.executar --modo ambos --juiz llm --agente llm \
+  --fluxo sequencial --saida avaliacao/resultados/llm_sequencial
+```
+
 Resultados reais desta máquina:
 
 **Juiz determinístico (offline, reproduzível):**
@@ -148,7 +162,7 @@ node mobile/teste-logica.js
 
 Resultado atual:
 
-- **141 testes Python aprovados**, cobrindo catálogo, agente, avaliação e provedor.
+- **143 testes Python aprovados**, cobrindo catálogo, agente, avaliação e provedor.
 - **78 verificações mobile** aprovadas.
 
 Os testes do agente cobrem fichas, PII, prompt injection, entradas inválidas, fluxo, citações, fallback do LLM, Golden Dataset, juiz determinístico, juiz LLM e cliente HTTP OpenAI-compatível.
@@ -181,7 +195,7 @@ Jun/
 │   └── resultados/             # determinístico + llm_langgraph + llm_sequencial
 ├── testes_usuarios/            # protocolo, questionário, planilha e relatório (execução pendente)
 ├── pitch/                      # roteiro, descrição do YouTube; link do vídeo pendente
-├── testes/                     # 141 testes Python
+├── testes/                     # 143 testes Python
 ├── docs/
 │   ├── DOCUMENTACAO.md         # documentação do catálogo DSA
 │   └── DOCUMENTACAO_UNIFICADA.md # documento único da solução
