@@ -7,7 +7,7 @@ from app.persistencia import carregar_servicos
 from testes.apoio import criar_servico
 
 RAIZ = Path(__file__).resolve().parents[1]
-ARQUIVO_DADOS = RAIZ / "data" / "servicos.json"
+ARQUIVO_DADOS = RAIZ / "data" / "base_conhecimento.json"
 
 
 class TestBaseConhecimento(unittest.TestCase):

@@ -1,0 +1,5 @@
+Nome do assistente: Citizen Assist AI
+Público atendido: pessoas idosas (60 anos ou mais) e familiares ou cuidadores que ajudam essas pessoas a acessar serviços públicos
+Integrantes e RM: Bruno Riquelme Coutinho Pereira (RM 569619); Eduardo Bigoli Portela (RM 569897); Gustavo Fondato de Souza (RM 573651)
+Link do repositório GitHub: https://github.com/C0utinhoxx/citizen-assist-ai
+Link do vídeo técnico no YouTube: COLE_AQUI_O_LINK_NAO_LISTADO

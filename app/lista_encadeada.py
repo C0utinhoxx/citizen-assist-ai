@@ -70,8 +70,8 @@ class ListaEncadeada:
             return None
 
         permitidos = {
-            "titulo", "categoria", "descricao", "documentos",
-            "local", "fonte", "palavras_chave", "verificado_em",
+            "titulo", "categoria", "resposta", "descricao", "documentos",
+            "onde", "local", "fonte", "palavras_chave", "verificado_em",
         }
 
         for nome, valor in campos.items():

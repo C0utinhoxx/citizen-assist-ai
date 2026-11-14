@@ -14,6 +14,20 @@ O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços p
 - interface mobile em HTML único, com voz e acessibilidade;
 - avaliação automatizada no Golden Dataset, com juiz determinístico e **LLM as a Judge**.
 
+## Público e problema
+
+**Público:** pessoas idosas (60 anos ou mais) e familiares ou cuidadores que ajudam essas pessoas a acessar serviços públicos.
+
+**Problema:** a informação sobre serviços públicos existe, mas está espalhada em vários sites, em linguagem técnica e misturada com páginas que não são oficiais. A pessoa perde tempo, vai ao lugar errado ou leva documentos incompletos.
+
+**Solução:** um assistente em terminal que responde apenas com a base verificada, mostra documentos, local, fonte e data de verificação, e avisa que não é canal oficial.
+
+## ODS relacionados
+
+- **ODS 3 — Saúde e Bem-Estar:** Cartão SUS, vacinação e consultas na UBS.
+- **ODS 10 — Redução das Desigualdades:** acesso de pessoas idosas a documentos, benefícios e transporte.
+- **ODS 16 — Paz, Justiça e Instituições Eficazes:** orientação sobre denúncia de violência e acesso a serviços públicos.
+
 ## Status
 
 | Módulo | Status |
@@ -21,8 +35,8 @@ O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços p
 | Catálogo de serviços | Concluído e testado |
 | Agente de documentos | Concluído; fichas oficiais importadas e avaliação LLM executada |
 | Mobile | Concluído e testado |
-| Validação humana | Pendente: conferência manual e teste com 5 pessoas |
-| Vídeo | Pendente: roteiro pronto, gravação e publicação a fazer |
+| Validação humana | Pendente: conferência manual; teste com ≥5 pessoas (IA) e ≥3 pessoas / 10 atendimentos (PCP) |
+| Vídeo | Pendente: pitch de 3 min (SERS) e vídeo técnico de 5–8 min (PCP) |
 
 > **Importante:** os resultados de LLM são reais e foram produzidos com OpenAI `gpt-4o-mini`. Nenhum resultado de teste com pessoas ou de gravação foi inventado. O que ainda não foi executado está marcado como pendente.
 
@@ -144,21 +158,21 @@ O menu abre com 12 serviços já cadastrados. Teste nesta ordem:
 | 7 | Opção **2** — Consultar | Consulte o ID **99** e depois tente o ID **1234**, que não existe |
 | 8 | Opção **4** — Atualizar | Atualize o ID **99**; o menu oferece manter o valor atual pressionando Enter |
 | 9 | Opção **5** — Excluir | Exclua o ID **99** e confirme a exclusão |
-| 10 | Opção **0** — Sair | Confirma que os dados foram salvos em `data/servicos.json` |
+| 10 | Opção **0** — Sair | Confirma que os dados foram salvos em `data/base_conhecimento.json` |
 
-> **Atenção:** a opção **0** salva o catálogo em `data/servicos.json`. Se você
+> **Atenção:** a opção **0** salva o catálogo em `data/base_conhecimento.json`. Se você
 > usar a opção **7** (ordenar) durante um teste, a nova ordem fica gravada no
 > arquivo e o menu passa a abrir na ordem ordenada, não mais na ordem original.
 > Para voltar à ordem original do repositório:
 >
 > ```bash
-> git checkout -- data/servicos.json
+> git checkout -- data/base_conhecimento.json
 > ```
 >
 > Vale conferir isso **antes de gravar o vídeo**, porque a abertura do catálogo
 > faz parte da demonstração. O serviço de teste que você cadastrar só existe
 > enquanto o programa estiver aberto; para conferir a persistência, abra outro
-> terminal e rode `cat data/servicos.json`.
+> terminal e rode `cat data/base_conhecimento.json`.
 
 **Erros que o sistema não deve deixar passar:** digite uma letra no lugar de um
 número (`abc`), escolha a opção **99** ou deixe um campo obrigatório vazio. O
@@ -235,7 +249,7 @@ python3 -m unittest discover -s testes -t . -v
 node mobile/teste-logica.js
 ```
 
-Resultado esperado: **143 testes Python aprovados** e **78 verificações
+Resultado esperado: **148 testes Python aprovados** e **78 verificações
 mobile**. A suíte passa com e sem o LangGraph instalado.
 
 Para ver cada módulo:
@@ -312,7 +326,7 @@ Para parar o servidor, pressione `Ctrl+C`.
 ### 7. Checklist rápido de verificação
 
 ```bash
-python3 -m unittest discover -s testes -t .     # espera: 143 testes, OK
+python3 -m unittest discover -s testes -t .     # espera: 148 testes, OK
 node mobile/teste-logica.js                     # espera: 78 verificações
 python3 -m avaliacao.executar --modo ambos \
   --juiz deterministico --agente extrativo       # espera: 26/26 no agente
@@ -395,7 +409,7 @@ node mobile/teste-logica.js
 
 Resultado atual:
 
-- **143 testes Python aprovados**, cobrindo catálogo, agente, avaliação e provedor.
+- **148 testes Python aprovados**, cobrindo catálogo, agente, avaliação e provedor.
 - **78 verificações mobile** aprovadas.
 
 Os testes do agente cobrem fichas, PII, prompt injection, entradas inválidas, fluxo, citações, fallback do LLM, Golden Dataset, juiz determinístico, juiz LLM e cliente HTTP OpenAI-compatível.
@@ -404,10 +418,18 @@ Os testes do agente cobrem fichas, PII, prompt injection, entradas inválidas, f
 
 ```text
 Jun/
-├── main.py                     # catálogo de serviços
+├── main.py                     # catálogo de serviços (menu completo)
 ├── main_agente.py              # agente de documentos
+├── orientacao.py               # atalho: Orientacao (código em app/modelos.py)
+├── base_conhecimento.py        # atalho: BaseConhecimento (código em app/)
+├── assistente.py               # atalho: Assistente (código em app/)
 ├── app/                        # núcleo do catálogo DSA
-├── data/                       # catálogo, histórico e CSV
+├── data/
+│   ├── base_conhecimento.json  # 12 orientações (id, categoria, titulo,
+│   │                           # palavras_chave, resposta, documentos, onde,
+│   │                           # fonte, verificado_em)
+│   ├── historico.json          # atendimentos registrados
+│   └── atendimentos.csv        # exportação do histórico
 ├── mobile/                     # app mobile completo
 ├── agente/
 │   ├── fichas/                 # FC-01 a FC-07 (oficiais, versão 01/10/2026)
@@ -428,7 +450,8 @@ Jun/
 │   └── resultados/             # determinístico + llm_langgraph + llm_sequencial
 ├── testes_usuarios/            # protocolo, questionário, planilha e relatório (execução pendente)
 ├── pitch/                      # roteiro, descrição do YouTube; link do vídeo pendente
-├── testes/                     # 143 testes Python
+├── entrega_portal.txt          # .txt de entrega no portal (falta o link do vídeo técnico)
+├── testes/                     # 148 testes Python
 ├── docs/
 │   ├── DOCUMENTACAO.md         # documentação do catálogo DSA
 │   └── DOCUMENTACAO_UNIFICADA.md # documento único da solução
@@ -458,6 +481,29 @@ Jun/
 
 O menu do agente tem opções próprias para perguntar, navegar pelas fichas e ler o aviso de privacidade. Nenhuma pergunta é armazenada.
 
+## Regra de pontuação e confiança
+
+A busca é por regras, sem IA generativa. Pergunta, título e palavras-chave são normalizados (sem acento, sem pontuação, em minúsculas) antes da comparação.
+
+| Regra | Pontos |
+|---|---:|
+| Palavra-chave da orientação aparece na pergunta | +3 |
+| Palavra da pergunta (4 letras ou mais) aparece no título | +1 |
+
+- **ALTA:** melhor orientação com **6 pontos ou mais**.
+- **MÉDIA:** melhor orientação com **3 a 5 pontos**.
+- **Não encontrei:** nenhuma orientação atinge **3 pontos**; o assistente sugere outras palavras e lista as categorias.
+
+`BaseConhecimento.buscar()` devolve uma lista de tuplas `(pontos, orientacao)` da maior para a menor pontuação; em caso de empate, vence o menor `id`. O assistente mostra a melhor orientação e até duas alternativas.
+
+Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** por `cartao do sus`, **+3** por `sus` e **+1** porque `cartao` aparece no título — **7 pontos, confiança ALTA**.
+
+## Integrações com outras disciplinas
+
+- **DSA:** o catálogo usa lista encadeada manual, busca implementada e Selection Sort próprio, com análise Big-O em `docs/DOCUMENTACAO.md`.
+- **Prompt and Artificial Intelligence:** agente com LangGraph, fichas FC-01 a FC-07, Golden Dataset de 26 mensagens, LLM as a Judge e proteção contra prompt injection.
+- **SERS:** pitch de 3 minutos em `pitch/`.
+
 ## Segurança e privacidade
 
 - **Não coleta** dados pessoais. CPF, RG, CNH, título, telefone, e-mail, endereço e números longos são detectados, ocultados e não repetidos.
@@ -466,6 +512,15 @@ O menu do agente tem opções próprias para perguntar, navegar pelas fichas e l
 - **Não inventa.** Fora das fichas, a resposta é “não encontrei” + orientação ao órgão competente.
 - **Não é canal oficial.** Toda resposta de escopo traz o aviso e a data de verificação.
 - O juiz LLM recebe a mensagem com dados pessoais mascarados e não recebe números de documentos nem como “fato proibido”.
+
+## Limitações
+
+- A base é local e estática: 12 orientações em 4 categorias. Fora dela, o assistente diz “não encontrei”.
+- A busca é por regras (palavras-chave e título). Não entende sinônimos que não estejam nas palavras-chave.
+- Persistência em JSON, sem banco de dados e sem múltiplos usuários simultâneos.
+- Não consulta sistemas do governo, não agenda e não acompanha processos.
+- O assistente não é canal oficial; a informação deve ser confirmada no órgão competente.
+- O catálogo salva alterações feitas no menu, inclusive a ordem escolhida na opção 7.
 
 ## Documentação
 
@@ -485,11 +540,15 @@ O menu do agente tem opções próprias para perguntar, navegar pelas fichas e l
 ## Pendências antes da entrega
 
 1. Fazer a **conferência manual** de uma amostra (formulário em `avaliacao/conferencia_manual.md`).
-2. Executar o teste com **≥5 pessoas externas** e preencher a planilha anônima.
-3. Gravar o vídeo de até 3 minutos, publicar como **não listado** e colar o link em `pitch/link_video.txt`.
+2. Executar o teste com **≥5 pessoas externas** (IA) e **≥3 pessoas / 10 atendimentos** (PCP), preenchendo a planilha anônima.
+3. Gravar os dois vídeos e publicar como **não listado**:
+   - **Pitch (SERS):** até 3 minutos; cole o link em `pitch/link_video.txt`.
+   - **Técnico (PCP):** 5 a 8 minutos, com o roteiro obrigatório (JSON, classes, `normalizar()`/`pontuar()`, execução, alteração ao vivo no JSON, histórico/CSV e uma decisão técnica + uma limitação).
 4. Revisar o resultado do juiz LLM (24/26; o parcial é o caso 24 e a falha é o 25) e registrar a análise final.
+5. Colar o link do vídeo técnico em `entrega_portal.txt` e entregar esse `.txt` no portal da FIAP até 19/11, 23h59.
 
-As fichas oficiais já foram importadas, o juiz LLM já foi executado com `gpt-4o-mini` e o repositório público já está em https://github.com/C0utinhoxx/citizen-assist-ai. Esses itens não são mais pendências.
+Já está pronto: as fichas oficiais foram importadas, o juiz LLM foi executado com `gpt-4o-mini`, o repositório público está em https://github.com/C0utinhoxx/citizen-assist-ai, a base usa o nome/campos do enunciado e o `entrega_portal.txt` está preenchido (falta só o link do vídeo).
+
 
 ## Licença
 

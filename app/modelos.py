@@ -1,27 +1,56 @@
-class Servico:
+class Orientacao:
+    """Uma orientação da base de conhecimento (um registro do JSON).
 
-    def __init__(self, id, titulo, categoria, descricao, documentos=None,
-                 local="", fonte="", palavras_chave=None, verificado_em=""):
+    Campos canônicos (os mesmos do enunciado): id, categoria, titulo,
+    palavras_chave, resposta, documentos, onde, fonte, verificado_em.
+
+    Por compatibilidade com o código antigo do catálogo, os nomes
+    ``descricao`` e ``local`` continuam funcionando como apelidos de
+    ``resposta`` e ``onde`` (leitura e escrita).
+    """
+
+    def __init__(self, id, titulo, categoria, descricao=None, documentos=None,
+                 local=None, fonte="", palavras_chave=None, verificado_em="",
+                 resposta=None, onde=None):
         self.id = int(id)
         self.titulo = str(titulo).strip()
         self.categoria = str(categoria).strip()
-        self.descricao = str(descricao).strip()
+        self.resposta = str(
+            resposta if resposta is not None else (descricao or "")
+        ).strip()
         self.documentos = list(documentos or [])
-        self.local = str(local).strip()
+        self.onde = str(onde if onde is not None else (local or "")).strip()
         self.fonte = str(fonte).strip()
         self.palavras_chave = list(palavras_chave or [])
         self.verificado_em = str(verificado_em).strip()
 
+    # Apelidos usados pelo catálogo DSA (descricao/local).
+    @property
+    def descricao(self):
+        return self.resposta
+
+    @descricao.setter
+    def descricao(self, valor):
+        self.resposta = str(valor).strip()
+
+    @property
+    def local(self):
+        return self.onde
+
+    @local.setter
+    def local(self, valor):
+        self.onde = str(valor).strip()
+
     def para_dict(self):
         return {
             "id": self.id,
-            "titulo": self.titulo,
             "categoria": self.categoria,
-            "descricao": self.descricao,
-            "documentos": self.documentos,
-            "local": self.local,
-            "fonte": self.fonte,
+            "titulo": self.titulo,
             "palavras_chave": self.palavras_chave,
+            "resposta": self.resposta,
+            "documentos": self.documentos,
+            "onde": self.onde,
+            "fonte": self.fonte,
             "verificado_em": self.verificado_em,
         }
 
@@ -30,11 +59,11 @@ class Servico:
         if not isinstance(dados, dict):
             raise TypeError("o registro deve ser um objeto")
 
-        descricao = dados.get("descricao", dados.get("resposta"))
-        local = dados.get("local", dados.get("onde", ""))
+        resposta = dados.get("resposta", dados.get("descricao"))
+        onde = dados.get("onde", dados.get("local", ""))
 
-        if descricao is None:
-            raise KeyError("descricao")
+        if resposta is None:
+            raise KeyError("resposta")
 
         documentos = dados.get("documentos")
         if documentos is None:
@@ -56,9 +85,9 @@ class Servico:
             id=int(dados["id"]),
             titulo=str(dados["titulo"]).strip(),
             categoria=str(dados["categoria"]).strip(),
-            descricao=str(descricao).strip(),
+            resposta=str(resposta).strip(),
             documentos=[str(item).strip() for item in documentos if str(item).strip()],
-            local=str(local).strip(),
+            onde=str(onde).strip(),
             fonte=str(dados.get("fonte", "")).strip(),
             palavras_chave=[
                 str(item).strip() for item in palavras_chave if str(item).strip()
@@ -69,16 +98,16 @@ class Servico:
     def exibir(self):
         print(f"\n>> {self.titulo} [{self.categoria}]")
         print(f"ID: {self.id}")
-        print(f"Descrição: {self.descricao}")
+        print(f"Resposta: {self.resposta}")
 
-        print("Documentos/requisitos:")
+        print("Documentos necessários:")
         if self.documentos:
             for documento in self.documentos:
                 print(f" - {documento}")
         else:
             print(" - Nenhum documento informado.")
 
-        print(f"Local: {self.local or 'não informado'}")
+        print(f"Onde: {self.onde or 'não informado'}")
 
         if self.fonte:
             if self.verificado_em:
@@ -92,3 +121,7 @@ class Servico:
             print(f"Palavras-chave: {', '.join(self.palavras_chave)}")
 
         print("Aviso: este assistente NÃO é um canal oficial.")
+
+
+# O catálogo DSA chama esse mesmo registro de Servico.
+Servico = Orientacao

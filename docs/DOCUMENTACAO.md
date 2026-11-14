@@ -134,17 +134,17 @@ A Lição 2 acrescentou os requisitos de estruturas de dados e algoritmos:
 | Item | Lição 1 | Lição 2 | Solução unificada |
 |---|---|---|---|
 | Registro | `Orientacao` | `Servico` | `Servico` com todos os campos |
-| Texto principal | `resposta` | `descricao` | `descricao` |
+| Texto principal | `resposta` | `descricao` | `resposta` (`descricao` continua como apelido) |
 | Documentos | lista `documentos` | texto `requisitos` | lista `documentos` |
-| Local | `onde` | `local` | `local` |
+| Local | `onde` | `local` | `onde` (`local` continua como apelido) |
 | Palavras-chave | `palavras_chave` | não existia | `palavras_chave` |
 | Verificação | `verificado_em` | não existia | `verificado_em` |
 | Armazenamento | lista Python | lista encadeada | lista encadeada |
-| Base de dados | `base_conhecimento.json` | `servicos.json` | um único `servicos.json` |
+| Base de dados | `base_conhecimento.json` | `servicos.json` | `base_conhecimento.json` |
 | Atendimento | pergunta, categorias, histórico, CSV | não existia | mantido no menu unificado |
 | CRUD e algoritmos | não existiam | completos | mantidos no menu unificado |
 
-O carregador aceita os nomes antigos (`resposta`, `requisitos`, `onde`) para facilitar a importação de dados das duas versões. O arquivo unificado já foi gerado a partir das duas bases, que continham os mesmos 12 registros.
+O arquivo unificado usa os campos canônicos do enunciado de PCP (`resposta` e `onde`). A classe `Orientacao` lê os nomes antigos (`descricao`, `requisitos`, `local`) e expõe `descricao`/`local` como apelidos, então o catálogo DSA continua funcionando sem alteração. `Servico` é um apelido de `Orientacao`.
 
 ### 4.2. Organização do código
 
@@ -306,7 +306,7 @@ Esses Insertion Sorts auxiliares não substituem o Selection Sort exigido: a ord
 - **Exclusão:** localiza o nó, ajusta o ponteiro do nó anterior e diminui a quantidade. Pede confirmação `s/n`.
 - **ID inexistente:** consulta, atualização e exclusão mostram mensagem e não alteram a lista.
 - **ID duplicado:** o cadastro é recusado.
-- **Persistência:** o catálogo é salvo em `data/servicos.json` após cada alteração e ao sair.
+- **Persistência:** o catálogo é salvo em `data/base_conhecimento.json` após cada alteração e ao sair.
 - **Lista vazia:** listagem, ordenação e análise tratam o caso sem erro.
 
 ---
@@ -487,7 +487,7 @@ Jun/
 ├── main.py                        # ponto de entrada
 ├── app/
 │   ├── __init__.py
-│   ├── modelos.py                 # classe Servico
+│   ├── modelos.py                 # classe Orientacao (apelido: Servico)
 │   ├── texto.py                   # normalização de texto
 │   ├── lista_encadeada.py         # No e ListaEncadeada
 │   ├── base_conhecimento.py       # categorias, pontuação e ranking
@@ -495,7 +495,7 @@ Jun/
 │   ├── persistencia.py            # JSON e CSV
 │   └── interface.py               # menu, validações e CRUD
 ├── data/
-│   ├── servicos.json              # 12 registros unificados
+│   ├── base_conhecimento.json     # 12 registros unificados (campos canônicos)
 │   ├── historico.json             # histórico de atendimentos
 │   └── atendimentos.csv           # exportação dos atendimentos
 ├── testes/
@@ -580,7 +580,7 @@ node mobile/teste-logica.js
 | IDs duplicados | recusa no cadastro | Atendido |
 | Consultas sem resultado | mensagens específicas | Atendido |
 | Análise Big-O | seção 13 | Atendido |
-| Testes normais, inexistentes, inválidos e lista vazia | 81 testes originais do P1/P2 (143 na suíte atual) | Atendido |
+| Testes normais, inexistentes, inválidos e lista vazia | 81 testes originais do P1/P2 (148 na suíte atual) | Atendido |
 | Persistência em arquivos (opcional) | JSON e CSV | Atendido |
 | Relatórios/indicadores (opcional) | menus 8 e 11 | Atendido |
 | Documentação técnica | este documento | Atendido |
@@ -638,7 +638,7 @@ Limitações técnicas conscientes:
 9. Navegar por categorias e mostrar uma orientação.
 10. Mostrar os indicadores da opção 11 e o CSV exportado.
 11. Excluir o ID 99 e mostrar que a lista continua íntegra.
-12. Sair e abrir `data/servicos.json` para mostrar a persistência.
+12. Sair e abrir `data/base_conhecimento.json` para mostrar a persistência.
 
 Durante a demonstração, destacar que o CRUD, a busca e a ordenação percorrem a lista encadeada real, e não uma lista pronta da linguagem.
 

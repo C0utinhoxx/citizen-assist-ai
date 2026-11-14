@@ -1,5 +1,6 @@
 import time
 from datetime import datetime
+from pathlib import Path
 
 from .base_conhecimento import PONTOS_ALTA, PONTOS_MEDIA
 from .persistencia import (
@@ -8,15 +9,19 @@ from .persistencia import (
     salvar_historico,
 )
 
+PASTA_DADOS = Path(__file__).resolve().parents[1] / "data"
+
 
 class Assistente:
 
-    def __init__(self, nome, base, caminho_historico, caminho_csv):
+    def __init__(self, nome, base, caminho_historico=None, caminho_csv=None):
         self.nome = nome
         self.base = base
-        self.caminho_historico = caminho_historico
-        self.caminho_csv = caminho_csv
-        self.historico = carregar_historico(caminho_historico)
+        self.caminho_historico = str(
+            caminho_historico or PASTA_DADOS / "historico.json"
+        )
+        self.caminho_csv = str(caminho_csv or PASTA_DADOS / "atendimentos.csv")
+        self.historico = carregar_historico(self.caminho_historico)
         self.nota_facilidade = None
 
     def contem_dado_pessoal(self, texto):

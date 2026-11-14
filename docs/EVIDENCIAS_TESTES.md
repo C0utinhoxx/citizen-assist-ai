@@ -291,3 +291,37 @@ python3 -m avaliacao.executar --modo ambos --juiz llm --agente llm \
 python3 -m avaliacao.executar --modo ambos --juiz llm --agente llm \
   --fluxo sequencial --saida avaliacao/resultados/llm_sequencial
 ```
+
+## 19. Atualização — 2026-11-14 (alinhamento ao enunciado de PCP)
+
+A base passou a usar o nome e os campos canônicos do enunciado:
+`data/base_conhecimento.json`, com `resposta` e `onde` (os apelidos
+`descricao`/`local` continuam aceitos pelo código). Foram adicionados os
+atalhos `orientacao.py`, `base_conhecimento.py` e `assistente.py` na raiz e o
+arquivo `testes/test_api_enunciado.py`, que cobre:
+
+- `BaseConhecimento("data/base_conhecimento.json").carregar()`;
+- `base.orientacoes` como lista de objetos `Orientacao`;
+- campos obrigatórios e mínimo de 10 orientações / 3 categorias / 3 palavras-chave;
+- `orientacao.exibir()` e os apelidos `descricao`/`local`;
+- arquivo ausente sem travar o programa.
+
+Saída real:
+
+```text
+$ python3 -m unittest discover -s testes -t .
+Ran 148 tests in 1.519s
+
+OK
+```
+
+```text
+$ python3 -m avaliacao.executar --modo ambos --juiz deterministico --agente extrativo
+baseline: 0/26 exatos, 7 parciais, 19 falhas, média 0.135 (13.5%).
+melhorado: 26/26 exatos, 0 parciais, 0 falhas, média 1.0 (100.0%).
+```
+
+```text
+$ node mobile/teste-logica.js
+OK — 78 verificações passaram.
+```

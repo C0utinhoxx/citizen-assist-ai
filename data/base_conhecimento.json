@@ -1,0 +1,246 @@
+[
+  {
+    "id": 1,
+    "categoria": "Saúde",
+    "titulo": "Fazer o Cartão Nacional de Saúde (Cartão SUS)",
+    "palavras_chave": [
+      "cartao sus",
+      "cartao do sus",
+      "sus",
+      "cns",
+      "cartao nacional de saude"
+    ],
+    "resposta": "O Cartão Nacional de Saúde (CNS) é gratuito. Para tirar o primeiro cartão ou corrigir seus dados, vá a uma UBS com documento com foto e CPF. O número do cartão também aparece no aplicativo Meu SUS Digital. Não é possível emitir um cartão novo somente pelo aplicativo.",
+    "documentos": [
+      "Documento com foto",
+      "CPF"
+    ],
+    "onde": "Qualquer UBS ou aplicativo Meu SUS Digital (para consultar o número)",
+    "fonte": "https://www.gov.br/saude/pt-br/composicao/seidigi/meususdigital/perguntas-e-respostas/cidadao/9-como-faco-o-cartao",
+    "verificado_em": "2026-11-05"
+  },
+  {
+    "id": 2,
+    "categoria": "Saúde",
+    "titulo": "Tomar a vacina da gripe",
+    "palavras_chave": [
+      "vacina",
+      "vacinacao",
+      "gripe",
+      "influenza",
+      "dose"
+    ],
+    "resposta": "Pessoas com 60 anos ou mais fazem parte do grupo prioritário da vacinação contra a gripe no SUS. A vacina é gratuita e aplicada nas UBS durante a campanha anual. Leve documento com foto e o Cartão SUS.",
+    "documentos": [
+      "Documento com foto",
+      "Cartão SUS"
+    ],
+    "onde": "UBS mais próxima de sua casa",
+    "fonte": "https://www.gov.br/saude/pt-br/vacinacao",
+    "verificado_em": "2026-11-05"
+  },
+  {
+    "id": 3,
+    "categoria": "Saúde",
+    "titulo": "Marcar consulta na UBS",
+    "palavras_chave": [
+      "consulta",
+      "ubs",
+      "posto de saude",
+      "agendar",
+      "medico"
+    ],
+    "resposta": "Para marcar consulta, procure a UBS do seu bairro com documento com foto e Cartão SUS. A equipe da unidade orienta como agendar o atendimento. Em caso de urgência, procure o serviço de saúde mais próximo.",
+    "documentos": [
+      "Documento com foto",
+      "Cartão SUS",
+      "Comprovante de residência"
+    ],
+    "onde": "UBS do seu bairro",
+    "fonte": "https://www.gov.br/saude/pt-br/assuntos/atencao-primaria",
+    "verificado_em": "2026-11-05"
+  },
+  {
+    "id": 4,
+    "categoria": "Documentos",
+    "titulo": "Tirar a Carteira de Identidade Nacional (CIN)",
+    "palavras_chave": [
+      "rg",
+      "cin",
+      "identidade",
+      "carteira de identidade",
+      "documento"
+    ],
+    "resposta": "A Carteira de Identidade Nacional (CIN) substitui o RG e usa o CPF como número único. A primeira via é gratuita. Agende o atendimento no posto de identificação do seu estado (como Poupatempo ou Instituto de Identificação) e leve certidão de nascimento ou casamento e CPF.",
+    "documentos": [
+      "Certidão de nascimento ou casamento",
+      "CPF",
+      "Comprovante de residência"
+    ],
+    "onde": "Posto de identificação ou Poupatempo do seu estado",
+    "fonte": "https://www.gov.br/governodigital/pt-br/identidade/cin",
+    "verificado_em": "2026-11-05"
+  },
+  {
+    "id": 5,
+    "categoria": "Documentos",
+    "titulo": "Consultar ou emitir o CPF",
+    "palavras_chave": [
+      "cpf",
+      "receita federal",
+      "meu cpf",
+      "comprovante de cpf",
+      "numero do cpf"
+    ],
+    "resposta": "O CPF é gratuito na primeira inscrição. Para consultar a situação, emitir o comprovante ou corrigir dados, use a página Meu CPF no site da Receita Federal. Se precisar de atendimento presencial, procure uma unidade da Receita Federal ou um posto conveniado.",
+    "documentos": [
+      "Documento com foto"
+    ],
+    "onde": "Página Meu CPF da Receita Federal ou unidade de atendimento",
+    "fonte": "https://www.gov.br/receitafederal/pt-br/assuntos/meu-cpf",
+    "verificado_em": "2026-11-05"
+  },
+  {
+    "id": 6,
+    "categoria": "Documentos",
+    "titulo": "Tirar o Título de Eleitor",
+    "palavras_chave": [
+      "titulo",
+      "titulo de eleitor",
+      "tse",
+      "votar",
+      "e-titulo"
+    ],
+    "resposta": "O título de eleitor pode ser tirado ou regularizado pelo site do TSE (Título Net) ou no cartório eleitoral. Para o primeiro título, leve documento oficial com foto e comprovante de residência. O título digital fica no aplicativo e-Título.",
+    "documentos": [
+      "Documento oficial com foto",
+      "Comprovante de residência"
+    ],
+    "onde": "Site do TSE (Título Net) ou cartório eleitoral",
+    "fonte": "https://www.tse.jus.br/servicos-eleitorais/titulo-eleitor",
+    "verificado_em": "2026-11-05"
+  },
+  {
+    "id": 7,
+    "categoria": "Documentos",
+    "titulo": "Pedir a segunda via da certidão de nascimento",
+    "palavras_chave": [
+      "certidao",
+      "certidao de nascimento",
+      "segunda via",
+      "registro civil",
+      "cartorio"
+    ],
+    "resposta": "A segunda via da certidão de nascimento é solicitada no cartório onde o nascimento foi registrado ou pelo portal oficial dos cartórios (registrocivil.org.br). Leve documento com foto e informe os dados do registro, como nome completo, data e cartório. O cartório informa se há taxa.",
+    "documentos": [
+      "Documento com foto",
+      "Dados do registro (nome completo, data e cartório)"
+    ],
+    "onde": "Cartório de registro civil ou portal registrocivil.org.br",
+    "fonte": "https://www.registrocivil.org.br/",
+    "verificado_em": "2026-11-05"
+  },
+  {
+    "id": 8,
+    "categoria": "Direitos e Benefícios",
+    "titulo": "Pedir aposentadoria por idade no INSS",
+    "palavras_chave": [
+      "aposentadoria",
+      "inss",
+      "meu inss",
+      "aposentar",
+      "beneficio"
+    ],
+    "resposta": "Para pedir aposentadoria por idade, acesse o aplicativo ou site Meu INSS ou ligue para 135. O INSS analisa se você cumpre os requisitos. Leve documento com foto e CPF; se precisar, o INSS pede os documentos que comprovam o tempo de contribuição.",
+    "documentos": [
+      "Documento com foto",
+      "CPF",
+      "Documentos que comprovem o tempo de contribuição (quando pedidos)"
+    ],
+    "onde": "Aplicativo ou site Meu INSS, telefone 135 ou agência do INSS",
+    "fonte": "https://www.gov.br/pt-br/servicos/solicitar-aposentadoria-por-idade-trabalhador-urbano",
+    "verificado_em": "2026-11-05"
+  },
+  {
+    "id": 9,
+    "categoria": "Direitos e Benefícios",
+    "titulo": "Pedir o BPC (Benefício de Prestação Continuada)",
+    "palavras_chave": [
+      "bpc",
+      "loas",
+      "beneficio assistencial",
+      "cadunico",
+      "cras"
+    ],
+    "resposta": "O BPC (LOAS) garante um salário mínimo por mês para pessoas com 65 anos ou mais de baixa renda. É preciso ter renda familiar por pessoa de até 1/4 do salário mínimo e estar no CadÚnico. Procure o CRAS para atualizar o CadÚnico e peça o benefício pelo Meu INSS, telefone 135 ou agência do INSS.",
+    "documentos": [
+      "Documento com foto",
+      "CPF",
+      "Comprovante de residência",
+      "CadÚnico atualizado"
+    ],
+    "onde": "CRAS (CadÚnico) e Meu INSS, telefone 135 ou agência do INSS",
+    "fonte": "https://www.gov.br/pt-br/servicos/solicitar-beneficio-assistencial-ao-idoso",
+    "verificado_em": "2026-11-05"
+  },
+  {
+    "id": 10,
+    "categoria": "Direitos e Benefícios",
+    "titulo": "Denunciar violência contra a pessoa idosa",
+    "palavras_chave": [
+      "violencia",
+      "denuncia",
+      "disque 100",
+      "maus tratos",
+      "abuso"
+    ],
+    "resposta": "Se você sofre ou presencia violência contra uma pessoa idosa, ligue para o Disque 100 (gratuito, 24 horas) ou procure a delegacia mais próxima. A denúncia pode ser anônima. Em emergência, ligue 190. O Conselho Municipal da Pessoa Idosa e o CRAS também podem orientar.",
+    "documentos": [
+      "Nenhum documento é obrigatório para denunciar"
+    ],
+    "onde": "Disque 100, delegacia, Conselho da Pessoa Idosa ou CRAS",
+    "fonte": "https://www.gov.br/pt-br/servicos/denunciar-violacao-de-direitos-humanos",
+    "verificado_em": "2026-11-05"
+  },
+  {
+    "id": 11,
+    "categoria": "Transporte",
+    "titulo": "Gratuidade no transporte público municipal",
+    "palavras_chave": [
+      "transporte",
+      "onibus",
+      "gratuidade",
+      "passagem de onibus",
+      "bilhete unico"
+    ],
+    "resposta": "A lei federal garante gratuidade nos ônibus urbanos e semiurbanos para pessoas com 65 anos ou mais. Basta apresentar um documento pessoal com foto. As regras podem variar conforme a cidade; confirme na prefeitura ou na empresa de transporte.",
+    "documentos": [
+      "Documento oficial com foto",
+      "Cartão do idoso (quando a cidade exige)"
+    ],
+    "onde": "No próprio ônibus ou posto da prefeitura ou da empresa de transporte",
+    "fonte": "https://www.planalto.gov.br/ccivil_03/leis/2003/l10.741.htm",
+    "verificado_em": "2026-11-05"
+  },
+  {
+    "id": 12,
+    "categoria": "Transporte",
+    "titulo": "Carteira da Pessoa Idosa: viagens interestaduais",
+    "palavras_chave": [
+      "carteira do idoso",
+      "viagem",
+      "interestadual",
+      "passe livre",
+      "passagem interestadual"
+    ],
+    "resposta": "Pessoas com 60 anos ou mais e renda de até 2 salários mínimos têm direito a duas vagas gratuitas por veículo em viagens interestaduais. Quem não conseguir a vaga gratuita tem desconto de pelo menos 50% na passagem. A Carteira da Pessoa Idosa, emitida pelo gov.br, comprova esse direito.",
+    "documentos": [
+      "Documento com foto",
+      "CPF",
+      "Comprovante de renda"
+    ],
+    "onde": "Site gov.br (Carteira da Pessoa Idosa) ou rodoviária",
+    "fonte": "https://www.gov.br/pt-br/servicos/adquirir-carteira-do-idoso",
+    "verificado_em": "2026-11-05"
+  }
+]
