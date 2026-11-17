@@ -35,8 +35,8 @@ class TestApiDoEnunciado(unittest.TestCase):
     def test_base_carrega_arquivo_e_cria_objetos_orientacao(self):
         base = BaseConhecimento(str(ARQUIVO))
 
-        self.assertEqual(base.carregar(), 12)
-        self.assertEqual(len(base.orientacoes), 12)
+        self.assertEqual(base.carregar(), 15)
+        self.assertEqual(len(base.orientacoes), 15)
         self.assertTrue(all(isinstance(o, Orientacao) for o in base.orientacoes))
         self.assertEqual(base.caminho, str(ARQUIVO))
 

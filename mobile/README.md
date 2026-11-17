@@ -6,7 +6,7 @@ Aplicativo completo em **um único arquivo HTML**, feito para rodar no celular *
 
 | Arquivo | Para que serve |
 |---|---|
-| `index.html` | O aplicativo inteiro: HTML, CSS, JavaScript e os 12 serviços iniciais embutidos. É o único arquivo necessário no celular. |
+| `index.html` | O aplicativo inteiro: HTML, CSS, JavaScript e os 15 serviços iniciais embutidos. É o único arquivo necessário no celular. |
 | `servir.py` | Opcional. Servidor local em Python para abrir o app pelo Wi-Fi quando o navegador do celular bloqueia arquivos locais. Também oferece a API opcional de voz natural. |
 | `tts.py` | Opcional. Síntese de voz natural (Azure) ou modo de teste, usada pelo `servir.py`. A chave da API fica no computador, nunca no HTML. |
 | `.env.example` | Modelo de configuração da voz natural. Copie para `.env` e preencha a chave do Azure. |
@@ -84,7 +84,7 @@ python3 servir.py --port 0
 - Exportar e importar **backup em JSON**.
 - Alternar entre tema claro, escuro e automático.
 - Aumentar o tamanho do texto.
-- Restaurar os 12 serviços de exemplo.
+- Restaurar os 15 serviços de exemplo.
 
 ## Voz: falar em vez de digitar
 
@@ -104,15 +104,51 @@ Na mesma tela, em **Voz do navegador (offline)**, você pode escolher a voz e to
 
 - O ditado usa a **Web Speech API** do próprio navegador, em português do Brasil. Não é um serviço do aplicativo.
 - Funciona melhor no **Chrome do Android** e no **Safari do iPhone** (iOS 14.5 ou superior). No Firefox para computador o ditado geralmente não existe.
-- No **Safari do Mac**, o ditado pode mostrar erro de rede mesmo com internet. Ative o **Ditado** em **Ajustes do Sistema → Teclado → Ditado** e permita o microfone; o próprio botão **Falar** do Safari depende desse recurso. Se ainda falhar, use o **Google Chrome** ou pressione **Fn duas vezes** na caixa de texto para usar o Ditado do macOS.
-- No **Chrome do Mac**, se aparecer erro de rede, verifique VPN, proxy ou firewall da rede: o Chrome usa um serviço online do Google para transcrever.
+- No **Safari do Mac**, o ditado pode mostrar erro de rede mesmo com internet. Ative o **Ditado** em **Ajustes do Sistema → Teclado → Ditado** e permita o microfone; o próprio botão **Falar** do Safari depende desse recurso. Se ainda falhar, use o **Microsoft Edge**, pressione **Fn duas vezes** na caixa de texto ou use o **ditado pelo computador**.
+- No **Chrome do Mac**, o navegador usa um serviço online do Google e pode não responder mesmo com internet. Verifique VPN, proxy e firewall; se continuar falhando, use o Safari com Ditado, o Microsoft Edge, o microfone do teclado (Fn duas vezes) ou o **ditado pelo computador**.
+- Navegadores recentes (como o Chrome 139 ou superior) podem usar reconhecimento **no próprio aparelho** quando essa opção está disponível; nesse caso, o ditado pode funcionar sem internet.
 - A voz do navegador vem do **sistema ou do navegador**, não é uma voz do aplicativo. Vozes como Siri e Gemini não ficam disponíveis para sites; para chegar perto delas, instale uma voz **Enhanced/Premium** no aparelho, use Chrome/Edge ou ative a **voz natural Azure** opcional.
 - No **Mac**, instale vozes melhores em **Ajustes do Sistema → Acessibilidade → Conteúdo Falado → Voz do Sistema → Gerenciar Vozes**. Depois volte em **Aparência → Voz do navegador** e escolha a voz.
 - O microfone precisa de **permissão** do navegador. Se você negar, o app avisa e continua funcionando pelo teclado.
 - Em alguns navegadores, o reconhecimento de voz usa **internet** e pode enviar o áudio para um serviço online do fabricante. O app **não grava nem guarda áudio**.
 - Se o botão **Falar** não aparecer, use o **microfone do teclado** do celular: toque na caixa de texto e depois no ícone de microfone do teclado. Funciona em qualquer campo e é a alternativa mais compatível.
-- O ditado só funciona em **contexto seguro**: `https` ou `http://localhost`. No Mac, rode `python3 servir.py` e abra `http://localhost:8000` no Chrome. Em `file://` o microfone pode ser bloqueado, e o `servir.py` na rede Wi-Fi usa `http://IP`, onde o navegador também pode bloquear. Nesses casos, use o **microfone do teclado** ou publique o arquivo em um endereço `https`.
+- O ditado só funciona em **contexto seguro**: `https` ou `http://localhost`. No Mac, rode `python3 servir.py` e abra `http://localhost:8000` no Safari ou no Chrome. Em `file://` o microfone pode ser bloqueado, e o `servir.py` na rede Wi-Fi usa `http://IP`, onde o navegador também pode bloquear. Nesses casos, use o **microfone do teclado**, o **ditado pelo computador** ou publique o arquivo em um endereço `https`.
 - O aplicativo continua funcionando **offline** para tudo, menos para o ditado quando o navegador exigir internet e para a voz natural Azure quando ela estiver ativada.
+
+## Ditado pelo computador — opcional
+
+Se o ditado do navegador falhar no Mac (é comum no Chrome), o servidor local pode transcrever o áudio. O app mostra o botão **Falar pelo computador** na tela do assistente e na mensagem de erro.
+
+1. Na pasta `mobile`, copie o modelo e preencha **uma** das chaves:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+   ```dotenv
+   # Opção 1: OpenAI (a mesma chave do agente também funciona)
+   OPENAI_API_KEY=sua-chave-aqui
+   OPENAI_TRANSCRIBE_MODEL=whisper-1
+
+   # Opção 2: Groq (plano gratuito)
+   # GROQ_API_KEY=sua-chave-aqui
+   # GROQ_TRANSCRIBE_MODEL=whisper-large-v3-turbo
+   ```
+
+   Se `mobile/.env` não tiver chave, o servidor reutiliza `OPENAI_API_KEY` de `agente/.env`.
+
+2. Rode `python3 servir.py`. O terminal mostra `Ditado pelo servidor: openai · whisper-1` quando está pronto.
+3. Toque em **Falar**. Se o ditado do navegador falhar, o app começa a gravar pelo computador sozinho. Fale e toque em **Parar e transcrever**; o texto aparece na caixa de pergunta. O botão **Falar pelo computador** também inicia a gravação diretamente.
+
+O áudio só é enviado depois que você toca em **Parar e transcrever**, e o servidor **não grava o áudio em disco**. O servidor limita a **12 transcrições por minuto por IP**. Para desativar, use `ASR_PROVIDER=off` no `mobile/.env`.
+
+| Variável | Padrão | Para que serve |
+|---|---|---|
+| `ASR_PROVIDER` | `auto` | `openai`, `groq`, `auto` (OpenAI se houver chave, senão Groq) ou `off`. |
+| `OPENAI_API_KEY` | vazio | Chave da OpenAI para transcrição. |
+| `OPENAI_TRANSCRIBE_MODEL` | `whisper-1` | Modelo de transcrição da OpenAI. |
+| `GROQ_API_KEY` | vazio | Chave da Groq para transcrição. |
+| `GROQ_TRANSCRIBE_MODEL` | `whisper-large-v3-turbo` | Modelo de transcrição da Groq. |
 
 ## Voz natural (Azure) — opcional
 
@@ -181,7 +217,8 @@ O próximo passo previsto é trocar o adaptador para **Google Cloud Text-to-Spee
 - Por padrão, tudo fica no **seu celular**, em `localStorage`.
 - O app não tem login e não envia o catálogo nem o histórico para servidor nenhum por conta própria.
 - A primeira exceção possível é o **ditado por voz**: o navegador pode enviar o áudio a um serviço online do fabricante para transcrever. O app não grava nem guarda áudio; quem controla isso é o navegador.
-- A segunda exceção é a **voz natural opcional**: quando ativada, apenas o **texto da resposta** é enviado ao Azure. A pergunta não é enviada. Se você não ativar a voz natural, nada sai do aparelho para a leitura.
+- A segunda exceção é o **ditado pelo computador opcional**: quando você toca em **Parar e transcrever**, o áudio é enviado ao provedor configurado (OpenAI ou Groq) e não é gravado em disco pelo servidor.
+- A terceira exceção é a **voz natural opcional**: quando ativada, apenas o **texto da resposta** é enviado ao Azure. A pergunta não é enviada. Se você não ativar a voz natural, nada sai do aparelho para a leitura.
 - Os links de fonte só abrem quando você toca neles; isso é uma ação sua no navegador.
 - Perguntas com **8 ou mais dígitos** ou com **@** são recusadas e **não** entram no histórico, para evitar CPF, telefone ou e-mail.
 - O assistente **não é um canal oficial**. Confirme as informações nos canais do governo. Em emergência, ligue **190**; para denúncias, ligue **100**.
@@ -233,7 +270,7 @@ cd mobile
 node teste-logica.js
 ```
 
-O teste extrai o JavaScript do `index.html`, simula o navegador e verifica lista encadeada, ordenação, busca, privacidade, histórico, CSV, indicadores, voz, motor de voz natural e a renderização das telas. Resultado atual: **78 verificações aprovadas**.
+O teste extrai o JavaScript do `index.html`, simula o navegador e verifica lista encadeada, ordenação, busca, privacidade, histórico, CSV, indicadores, voz, motor de voz natural e a renderização das telas. Resultado atual: **90 verificações aprovadas**.
 
 Os testes Python incluem a API de voz natural e o servidor local. Na raiz do projeto:
 
@@ -241,7 +278,7 @@ Os testes Python incluem a API de voz natural e o servidor local. Na raiz do pro
 python3 -m unittest discover -s testes -t . -v
 ```
 
-Resultado atual: **143 testes Python aprovados** (60 do sistema DSA + 61 do agente e da avaliação + 22 da voz natural mobile).
+Resultado atual: **168 testes Python aprovados**, incluindo catálogo, agente, avaliação, voz natural e transcrição pelo servidor.
 
 ## Compatibilidade
 
@@ -260,9 +297,11 @@ Resultado atual: **143 testes Python aprovados** (60 do sistema DSA + 61 do agen
 | O celular não abre o endereço do servidor | Confirme a mesma rede Wi-Fi, o IP mostrado e o firewall do computador. |
 | CSV não abre | Procure o arquivo em Downloads ou use a folha de compartilhamento. |
 | Backup inválido | Use apenas um JSON exportado pelo próprio app. |
-| O botão Falar não aparece | O navegador não tem ditado por voz. Use o microfone do teclado do celular. |
+| O botão Falar não aparece | O navegador não tem ditado por voz. Use o microfone do teclado do celular ou configure o **Falar pelo computador**. |
 | O microfone não funciona | Permita o microfone nas configurações do navegador e abra o app em endereço seguro (`https` ou arquivo local). |
-| O ditado diz que o serviço não respondeu ou que precisa de internet | No Safari do Mac, ative o Ditado em Ajustes do Sistema → Teclado → Ditado e permita o microfone. Se ainda falhar, use o Google Chrome ou o Ditado do macOS (clique na caixa de texto e pressione Fn duas vezes). No Chrome, verifique VPN, proxy e firewall. |
+| O ditado diz que o serviço não respondeu ou que precisa de internet | No Safari do Mac, ative o Ditado em Ajustes do Sistema → Teclado → Ditado e permita o microfone. No Chrome do Mac, o serviço online pode falhar: use o Safari, o Microsoft Edge, o Ditado do macOS (Fn duas vezes) ou o botão **Falar pelo computador**. |
+| O botão **Falar pelo computador** não aparece | Confirme que o app está em `http://localhost:8000` (não em `file://`), que o `python3 servir.py` foi **reiniciado** depois da atualização e que `http://localhost:8000/api/asr/status` mostra `"pronto": true`. |
+| O ditado pelo computador diz que o servidor não respondeu | Pare o servidor antigo com **Ctrl+C**, rode de novo `cd mobile && python3 servir.py` e recarregue a página. Um servidor iniciado antes da atualização não tem a rota `/api/asr`. O terminal deve mostrar `Ditado pelo servidor: openai · whisper-1`. Confira `OPENAI_API_KEY` no `mobile/.env` ou em `agente/.env`. |
 | O ditado não entende | Fale mais devagar, em local silencioso, e toque em Tentar de novo. |
 | A resposta não é lida em voz alta | Verifique o volume do aparelho e se o navegador tem voz em português instalada. Se estiver usando a voz natural, confira o status em **Aparência → Motor de voz**. |
 | A voz natural não aparece ou diz “servidor não encontrado” | Abra o app por `http://localhost:8000` com `python3 servir.py`; em `file://` não existe API de voz natural. O app continua usando a voz do navegador. |

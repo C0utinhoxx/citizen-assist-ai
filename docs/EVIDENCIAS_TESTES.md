@@ -31,7 +31,7 @@ python3 -m unittest discover -s testes -t .
 Saída:
 
 ```text
-Ran 143 tests in 1.524s
+Ran 168 tests in 1.524s
 
 OK
 ```
@@ -49,7 +49,7 @@ python3 -m venv /tmp/venv_sem_lg
 Saída:
 
 ```text
-Ran 143 tests in 1.421s
+Ran 168 tests in 1.421s
 
 OK
 ```
@@ -68,7 +68,7 @@ node mobile/teste-logica.js
 Saída:
 
 ```text
-OK — 78 verificações passaram.
+OK — 90 verificações passaram.
 ```
 
 ## 5. Golden Dataset — juiz determinístico, agente extrativo
@@ -310,7 +310,7 @@ Saída real:
 
 ```text
 $ python3 -m unittest discover -s testes -t .
-Ran 148 tests in 1.519s
+Ran 168 tests in 1.519s
 
 OK
 ```
@@ -323,5 +323,5 @@ melhorado: 26/26 exatos, 0 parciais, 0 falhas, média 1.0 (100.0%).
 
 ```text
 $ node mobile/teste-logica.js
-OK — 78 verificações passaram.
+OK — 90 verificações passaram.
 ```

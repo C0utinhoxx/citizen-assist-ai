@@ -69,6 +69,25 @@ class TestFluxoDoAgente(unittest.TestCase):
         self.assertIn("não pode dirigir", resposta.texto)
         self.assertIn("FC-06", resposta.texto)
 
+    def test_pis_usa_a_ficha_da_carteira_de_trabalho(self):
+        resposta = self._responder("Como consulto o número do meu PIS?")
+        self.assertEqual(resposta.tipo, "resposta")
+        self.assertIn("FC-04", resposta.texto)
+        self.assertIn("Carteira de Trabalho Digital", resposta.texto)
+
+    def test_abono_salarial(self):
+        resposta = self._responder("Quando recebo o abono salarial?")
+        self.assertEqual(resposta.tipo, "resposta")
+        self.assertIn("FC-04", resposta.texto)
+        self.assertIn("R$ 2.766,00", resposta.texto)
+        self.assertIn("30/12/2026", resposta.texto)
+
+    def test_seguro_desemprego(self):
+        resposta = self._responder("Fui demitido, como pedir o seguro desemprego?")
+        self.assertEqual(resposta.tipo, "resposta")
+        self.assertIn("FC-04", resposta.texto)
+        self.assertIn("Requerimento do Seguro-Desemprego", resposta.texto)
+
     def test_fora_do_escopo_nao_inventa_preco(self):
         resposta = self._responder("Quanto custa tirar o passaporte?")
         self.assertEqual(resposta.tipo, "fora_escopo")

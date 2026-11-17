@@ -48,15 +48,7 @@ def _ordenar_resultados(resultados):
 class BaseConhecimento:
 
     def __init__(self, origem=None, caminho=None):
-        """Aceita um caminho de JSON ou uma ListaEncadeada já montada.
-
-        Forma do enunciado:
-            base = BaseConhecimento("data/base_conhecimento.json")
-            base.carregar()
-
-        Forma usada pelo catálogo:
-            base = BaseConhecimento(lista_encadeada)
-        """
+ 
         if isinstance(origem, os.PathLike):
             origem = os.fspath(origem)
 
@@ -76,15 +68,11 @@ class BaseConhecimento:
 
     @property
     def orientacoes(self):
-        """Lista de objetos Orientacao carregados (visão da lista encadeada)."""
+
         return list(self.lista.percorrer())
 
     def carregar(self, caminho=None):
-        """Lê o JSON e cria os objetos Orientacao na lista encadeada.
-
-        Devolve a quantidade de orientações carregadas. Arquivo ausente ou
-        corrompido não derruba o programa: apenas avisa e devolve 0.
-        """
+  
         caminho = caminho or self.caminho
         if not caminho:
             print("Aviso: nenhum caminho de base de conhecimento informado.")

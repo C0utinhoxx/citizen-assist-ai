@@ -242,5 +242,76 @@
     "onde": "Site gov.br (Carteira da Pessoa Idosa) ou rodoviária",
     "fonte": "https://www.gov.br/pt-br/servicos/adquirir-carteira-do-idoso",
     "verificado_em": "2026-11-05"
+  },
+  {
+    "id": 13,
+    "categoria": "Direitos e Benefícios",
+    "titulo": "Consultar o número do PIS/NIS",
+    "palavras_chave": [
+      "pis",
+      "pasep",
+      "nis",
+      "nit",
+      "numero do pis",
+      "numero do nis",
+      "cadastro nis",
+      "carteira de trabalho digital",
+      "meu inss"
+    ],
+    "resposta": "O PIS é o mesmo número do NIS (Número de Identificação Social) e identifica o trabalhador em programas como abono salarial, FGTS, CadÚnico e Bolsa Família. Para consultar, abra o aplicativo Carteira de Trabalho Digital ou o aplicativo Meu INSS, ambos com login gov.br. O número também pode ser visto no aplicativo Caixa Tem e no CRAS, no CadÚnico. Se você nunca teve emprego com carteira assinada, o PIS pode não existir; nesse caso, o empregador gera o número. Para tirar dúvidas, ligue para o Alô Trabalho no 158. Nunca envie esse número por mensagem ou em conversas.",
+    "documentos": [
+      "Conta gov.br (nível bronze, prata ou ouro)",
+      "CPF"
+    ],
+    "onde": "Aplicativo Carteira de Trabalho Digital, aplicativo Meu INSS, Caixa Tem, CRAS ou telefone 158",
+    "fonte": "https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/carteira-de-trabalho/perguntas-frequentes-carteira-de-trabalho-digital",
+    "verificado_em": "2026-11-14"
+  },
+  {
+    "id": 14,
+    "categoria": "Direitos e Benefícios",
+    "titulo": "Receber o Abono Salarial (PIS/PASEP)",
+    "palavras_chave": [
+      "abono",
+      "abono salarial",
+      "pis pasep",
+      "pasep",
+      "salario adicional",
+      "decimo quarto salario",
+      "beneficio do pis",
+      "caixa tem",
+      "calendario do abono"
+    ],
+    "resposta": "O Abono Salarial é um benefício anual de até um salário mínimo para quem trabalhou com carteira assinada. No calendário de 2026, tem direito quem recebeu em média até R$ 2.766,00 no ano-base 2024, trabalhou pelo menos 30 dias nesse ano e está cadastrado no PIS/PASEP há pelo menos 5 anos. O valor é proporcional aos meses trabalhados: de R$ 136,00 a R$ 1.621,00. Consulte o calendário e o valor na Carteira de Trabalho Digital ou no portal gov.br, ou ligue para o 158. O PIS é pago pela Caixa (conta, Caixa Tem, lotérica ou agência) e o PASEP pelo Banco do Brasil. O prazo do calendário de 2026 vai até 30/12/2026.",
+    "documentos": [
+      "CPF",
+      "Conta gov.br (nível bronze, prata ou ouro)",
+      "Carteira de Trabalho Digital"
+    ],
+    "onde": "Carteira de Trabalho Digital, portal gov.br, Caixa, Banco do Brasil ou telefone 158",
+    "fonte": "https://www.gov.br/pt-br/servicos/receber-o-abono-salarial",
+    "verificado_em": "2026-11-14"
+  },
+  {
+    "id": 15,
+    "categoria": "Direitos e Benefícios",
+    "titulo": "Pedir o Seguro-Desemprego",
+    "palavras_chave": [
+      "seguro desemprego",
+      "seguro-desemprego",
+      "demitido",
+      "demissao",
+      "sem justa causa",
+      "parcelas do seguro",
+      "requerimento do seguro"
+    ],
+    "resposta": "O Seguro-Desemprego é uma ajuda financeira temporária para quem foi demitido sem justa causa. Para pedir, use o aplicativo Carteira de Trabalho Digital, o portal gov.br ou ligue para o 158. Tenha em mãos o documento do Requerimento do Seguro-Desemprego, que o empregador entrega no momento da dispensa, e o CPF. O pedido deve ser feito dentro do prazo. O pagamento é feito pela Caixa e você pode acompanhar o valor e as parcelas no gov.br ou na Carteira de Trabalho Digital.",
+    "documentos": [
+      "Documento do Requerimento do Seguro-Desemprego",
+      "CPF"
+    ],
+    "onde": "Carteira de Trabalho Digital, portal gov.br, Plataforma Facilita ou telefone 158",
+    "fonte": "https://www.gov.br/pt-br/servicos/solicitar-o-seguro-desemprego",
+    "verificado_em": "2026-11-14"
   }
 ]

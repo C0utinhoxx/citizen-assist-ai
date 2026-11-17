@@ -76,13 +76,13 @@ O sistema não inventa respostas, não consulta a internet em tempo real e não 
 
 ### 3.5. Recorte escolhido
 
-O catálogo cobre **12 orientações em 4 categorias**:
+O catálogo cobre **15 orientações em 4 categorias**:
 
 | Categoria | Orientações |
 |---|---|
 | Saúde | Cartão SUS, vacina da gripe e consulta na UBS |
 | Documentos | CIN (RG), CPF, título de eleitor e certidão de nascimento |
-| Direitos e Benefícios | Aposentadoria, BPC/LOAS e denúncia de violência |
+| Direitos e Benefícios | Aposentadoria, BPC/LOAS, PIS/NIS, abono salarial, seguro-desemprego e denúncia de violência |
 | Transporte | Gratuidade municipal e Carteira da Pessoa Idosa |
 
 ### 3.6. Funcionalidades da Lição 1 preservadas
@@ -418,7 +418,7 @@ cd Jun/mobile
 node teste-logica.js
 ```
 
-Resultado atual: **78 verificações aprovadas**, cobrindo lista encadeada, ordenação, busca, privacidade, histórico, CSV, indicadores, voz do navegador, motor de voz natural e renderização das telas.
+Resultado atual: **90 verificações aprovadas**, cobrindo lista encadeada, ordenação, busca, privacidade, histórico, CSV, indicadores, voz do navegador, motor de voz natural e renderização das telas.
 
 ### 14.2. Casos cobertos
 
@@ -454,7 +454,7 @@ Foi executada uma sessão real do `main.py`, com backup e restauração dos dado
 4. atualização do ID 99;
 5. exclusão do ID 99 com confirmação;
 6. ordenação por título com Selection Sort;
-7. análise dos 12 serviços;
+7. análise dos 15 serviços;
 8. pergunta “Como faço o cartão do SUS?” com confiança ALTA (7 pontos);
 9. indicadores de atendimento;
 10. exportação CSV;
@@ -629,7 +629,7 @@ Limitações técnicas conscientes:
 
 1. Mostrar a estrutura de pastas e o `Servico` com todos os campos.
 2. Abrir `app/lista_encadeada.py` e explicar `No`, `inicio`, `proximo` e `quantidade`.
-3. Executar `python3 main.py` e mostrar os 12 serviços e as 4 categorias.
+3. Executar `python3 main.py` e mostrar os 15 serviços e as 4 categorias.
 4. Consultar o ID 4 e mostrar documentos, local, fonte e aviso.
 5. Pesquisar `saude` e mostrar os 3 resultados.
 6. Cadastrar um serviço com ID 99 e tentar cadastrar o mesmo ID novamente.
@@ -646,7 +646,7 @@ Durante a demonstração, destacar que o CRUD, a busca e a ordenação percorrem
 
 ## 20. Fontes consultadas
 
-Todas as fontes foram conferidas em **05/11/2026** e estão registradas em cada registro do JSON.
+Todas as fontes foram conferidas em **05/11/2026**, com PIS/NIS, abono salarial e seguro-desemprego conferidos em **14/11/2026**, e estão registradas em cada registro do JSON.
 
 | Tema | Fonte oficial |
 |---|---|
@@ -662,3 +662,6 @@ Todas as fontes foram conferidas em **05/11/2026** e estão registradas em cada 
 | Denúncia / Disque 100 | https://www.gov.br/pt-br/servicos/denunciar-violacao-de-direitos-humanos |
 | Estatuto da Pessoa Idosa (Lei 10.741/2003) | https://www.planalto.gov.br/ccivil_03/leis/2003/l10.741.htm |
 | Carteira da Pessoa Idosa | https://www.gov.br/pt-br/servicos/adquirir-carteira-do-idoso |
+| PIS/NIS e Carteira de Trabalho Digital | https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/carteira-de-trabalho/perguntas-frequentes-carteira-de-trabalho-digital |
+| Abono Salarial | https://www.gov.br/pt-br/servicos/receber-o-abono-salarial |
+| Seguro-Desemprego | https://www.gov.br/pt-br/servicos/solicitar-o-seguro-desemprego |

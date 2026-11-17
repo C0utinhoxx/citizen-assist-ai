@@ -10,7 +10,7 @@ Solução em **Python** para a **Global Solution 2026.2 — Citizen Tech**. O pr
 O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços públicos e documentos pessoais. A solução combina:
 
 - catálogo de serviços com **lista encadeada manual**, busca, ordenação e indicadores;
-- agente que responde **exclusivamente** com base nas fichas FC-01 a FC-07;
+- agente que responde **exclusivamente** com base nas fichas FC-01 a FC-07, incluindo PIS/NIS, abono salarial e seguro-desemprego;
 - interface mobile em HTML único, com voz e acessibilidade;
 - avaliação automatizada no Golden Dataset, com juiz determinístico e **LLM as a Judge**.
 
@@ -145,11 +145,11 @@ python3 -m pip install --user -r requirements.txt
 python3 main.py
 ```
 
-O menu abre com 12 serviços já cadastrados. Teste nesta ordem:
+O menu abre com 15 serviços já cadastrados. Teste nesta ordem:
 
 | # | O que fazer | O que deve acontecer |
 |---:|---|---|
-| 1 | Opção **6** — Listar todos | Lista os 12 serviços com ID, descrição, documentos, local e fonte |
+| 1 | Opção **6** — Listar todos | Lista os 15 serviços com ID, descrição, documentos, local e fonte |
 | 2 | Opção **8** — Análise | Mostra total, quantidade por categoria com percentual e a categoria com mais serviços |
 | 3 | Opção **7** — Ordenar | Escolha 1 (título), 2 (categoria) ou 3 (ID) e veja a lista reordenada por Selection Sort próprio |
 | 4 | Opção **3** — Pesquisar | Digite `saúde`, `transporte` ou `SUS` e veja os registros encontrados |
@@ -249,7 +249,7 @@ python3 -m unittest discover -s testes -t . -v
 node mobile/teste-logica.js
 ```
 
-Resultado esperado: **148 testes Python aprovados** e **78 verificações
+Resultado esperado: **168 testes Python aprovados** e **90 verificações
 mobile**. A suíte passa com e sem o LangGraph instalado.
 
 Para ver cada módulo:
@@ -304,17 +304,36 @@ Abra o **Computador** no navegador e teste:
 | # | O que fazer | O que deve acontecer |
 |---:|---|---|
 | 1 | Aba **Início** | Tela inicial com o resumo e os atalhos |
-| 2 | Aba **Serviços** | Os 12 serviços, com busca e filtro por categoria |
+| 2 | Aba **Serviços** | Os 15 serviços, com busca e filtro por categoria |
 | 3 | Aba **Assistente** | Campo de pergunta; digite `como faço o cartão do SUS?` e veja a resposta com nível de confiança |
 | 4 | Aba **Mais** → **Aparência** | Troque entre tema claro e escuro e aumente o tamanho do texto |
 | 5 | Aba **Mais** → **Dados** | Exporte um backup completo e restaure os dados de exemplo |
-| 6 | Botão **Falar** | Ditado por voz do navegador; o texto aparece enquanto você fala. Precisa de `https` ou `http://localhost` |
+| 6 | Botão **Falar** | Ditado por voz do navegador; o texto aparece enquanto você fala. Precisa de `https` ou `http://localhost`. Se falhar, use **Falar pelo computador** |
 | 7 | Botão **Ouvir resposta** | O navegador lê a resposta em voz alta |
 | 8 | Aba **Mais** → **Indicadores** | Quantidade, respostas encontradas, tempo médio e nota de facilidade |
 | 9 | Aba **Mais** → **Exportar CSV** | Baixa o histórico em CSV, com BOM para abrir no Excel |
 
 No celular, abra o endereço **Celular**. Computador e celular precisam estar na
 mesma rede Wi-Fi. Se não abrir, verifique o firewall.
+
+**Se o ditado do navegador falhar no Mac:** o Chrome costuma usar o serviço
+online do Google e pode não responder. Use o Safari com o Ditado ativado
+(**Ajustes do Sistema → Teclado → Ditado**), o Microsoft Edge ou o microfone do
+teclado (**Fn duas vezes**) na caixa de texto. Como alternativa, o servidor
+local pode transcrever o áudio:
+
+1. Copie `mobile/.env.example` para `mobile/.env`.
+2. Preencha `OPENAI_API_KEY` (ou `GROQ_API_KEY`). Se `mobile/.env` não tiver
+   chave, o servidor reutiliza a chave já configurada em `agente/.env`.
+3. Reinicie `python3 servir.py`. O terminal mostra
+   `Ditado pelo servidor: openai · whisper-1`.
+4. No app, toque em **Falar**. Se o ditado do navegador falhar, o app começa a
+   gravar pelo computador sozinho; fale e toque em **Parar e transcrever**.
+   O botão **Falar pelo computador** também inicia a gravação diretamente.
+
+O áudio só é enviado quando você toca no botão e não é gravado em disco pelo
+servidor. O servidor limita a 12 transcrições por minuto por IP. Para desativar,
+use `ASR_PROVIDER=off` no `mobile/.env`.
 
 Para parar o servidor, pressione `Ctrl+C`.
 
@@ -326,8 +345,8 @@ Para parar o servidor, pressione `Ctrl+C`.
 ### 7. Checklist rápido de verificação
 
 ```bash
-python3 -m unittest discover -s testes -t .     # espera: 148 testes, OK
-node mobile/teste-logica.js                     # espera: 78 verificações
+python3 -m unittest discover -s testes -t .     # espera: 168 testes, OK
+node mobile/teste-logica.js                     # espera: 90 verificações
 python3 -m avaliacao.executar --modo ambos \
   --juiz deterministico --agente extrativo       # espera: 26/26 no agente
 ```
@@ -409,8 +428,8 @@ node mobile/teste-logica.js
 
 Resultado atual:
 
-- **148 testes Python aprovados**, cobrindo catálogo, agente, avaliação e provedor.
-- **78 verificações mobile** aprovadas.
+- **168 testes Python aprovados**, cobrindo catálogo, agente, avaliação, provedor e transcrição.
+- **90 verificações mobile** aprovadas.
 
 Os testes do agente cobrem fichas, PII, prompt injection, entradas inválidas, fluxo, citações, fallback do LLM, Golden Dataset, juiz determinístico, juiz LLM e cliente HTTP OpenAI-compatível.
 
@@ -425,7 +444,7 @@ Jun/
 ├── assistente.py               # atalho: Assistente (código em app/)
 ├── app/                        # núcleo do catálogo DSA
 ├── data/
-│   ├── base_conhecimento.json  # 12 orientações (id, categoria, titulo,
+│   ├── base_conhecimento.json  # 15 orientações (id, categoria, titulo,
 │   │                           # palavras_chave, resposta, documentos, onde,
 │   │                           # fonte, verificado_em)
 │   ├── historico.json          # atendimentos registrados
@@ -451,7 +470,7 @@ Jun/
 ├── testes_usuarios/            # protocolo, questionário, planilha e relatório (execução pendente)
 ├── pitch/                      # roteiro, descrição do YouTube; link do vídeo pendente
 ├── entrega_portal.txt          # .txt de entrega no portal (falta o link do vídeo técnico)
-├── testes/                     # 148 testes Python
+├── testes/                     # 168 testes Python
 ├── docs/
 │   ├── DOCUMENTACAO.md         # documentação do catálogo DSA
 │   └── DOCUMENTACAO_UNIFICADA.md # documento único da solução
@@ -515,7 +534,7 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
 
 ## Limitações
 
-- A base é local e estática: 12 orientações em 4 categorias. Fora dela, o assistente diz “não encontrei”.
+- A base é local e estática: 15 orientações em 4 categorias (incluindo PIS/NIS, abono salarial e seguro-desemprego). Fora dela, o assistente diz “não encontrei”.
 - A busca é por regras (palavras-chave e título). Não entende sinônimos que não estejam nas palavras-chave.
 - Persistência em JSON, sem banco de dados e sem múltiplos usuários simultâneos.
 - Não consulta sistemas do governo, não agenda e não acompanha processos.

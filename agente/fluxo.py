@@ -3,15 +3,6 @@ from __future__ import annotations
 import warnings
 from typing import Any, Dict, TypedDict
 
-# Avisos de bibliotecas de terceiros poluem a saida do CLI sem afetar o
-# comportamento: o urllib3 v2 reclama do LibreSSL do Python do sistema (comum
-# no macOS) e o LangChain avisa sobre uma mudanca futura de valor padrao.
-# Nenhum dos dois afeta o agente, e atrapalhariam a leitura do terminal e a
-# gravacao do pitch.
-#
-# Durante a importacao o aviso do LangChain escapa dos filtros, porque a
-# propria biblioteca os religa no meio do import. Por isso a importacao roda
-# com record=True: nada e impresso, e os filtros sao religados logo abaixo.
 with warnings.catch_warnings(record=True):
     warnings.simplefilter("always")
     try:  # pragma: no cover - depende do ambiente

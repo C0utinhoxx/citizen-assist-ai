@@ -19,11 +19,11 @@ class TestBaseConhecimento(unittest.TestCase):
         self.base = BaseConhecimento(self.lista)
 
     def test_dados_unificados(self):
-        self.assertEqual(self.lista.quantidade, 12)
+        self.assertEqual(self.lista.quantidade, 15)
 
         ids = [servico.id for servico in self.lista.percorrer()]
         self.assertEqual(len(ids), len(set(ids)))
-        self.assertEqual(ids, list(range(1, 13)))
+        self.assertEqual(ids, list(range(1, 16)))
 
         for servico in self.lista.percorrer():
             self.assertTrue(servico.titulo)

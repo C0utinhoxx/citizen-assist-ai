@@ -19,8 +19,8 @@ Cronograma sugerido:
 
 ```bash
 cd /Users/brunocoutinho/Documents/GlobalSoluctions/Jun
-python3 -m unittest discover -s testes -t .     # espera: 148 testes, OK
-node mobile/teste-logica.js                     # espera: 78 verificações
+python3 -m unittest discover -s testes -t .     # espera: 168 testes, OK
+node mobile/teste-logica.js                     # espera: 90 verificações
 git add -A
 git commit -m "Alinha base e classes ao enunciado de PCP; documenta público, ODS, pontuação e limitações"
 git push origin main
@@ -121,7 +121,7 @@ python3 -m avaliacao.executar --modo ambos --juiz deterministico --agente extrat
 python3 main.py        # testar 9 (pergunta), 10 (categorias), 11 (indicadores), 0 (sair)
 ```
 
-- [ ] 148 testes OK · 78 verificações mobile OK · melhorado 26/26
+- [ ] 168 testes OK · 90 verificações mobile OK · melhorado 26/26
 - [ ] README: integrantes+RMs, público, problema, ODS, execução, pontuação, integrações, fontes, teste com usuários, limitações e **link do vídeo**
 - [ ] `entrega_portal.txt` com os 5 campos preenchidos (sem placeholder)
 - [ ] Links dos vídeos testados em janela anônima

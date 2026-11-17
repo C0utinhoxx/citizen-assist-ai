@@ -1,6 +1,6 @@
 {
   "metadados": {
-    "executado_em": "2026-11-14 10:41:03",
+    "executado_em": "2026-11-14 11:14:56",
     "dataset": "1.0",
     "dataset_total": 26,
     "modo_agente": "ambos",
@@ -900,7 +900,7 @@
         "proibidos": [],
         "justificativa": "3/3 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Não encontrei essa informação nas fichas FC-01 a FC-07 e não vou inventar. Posso ajudar com RG, CPF, título de eleitor, carteira de trabalho, certidões e CNH. Para este assunto, consulte o órgão competente. Fichas consultadas: FC-01 a FC-07…"
+        "resposta_excerpt": "Não encontrei essa informação nas fichas FC-01 a FC-07 e não vou inventar. Posso ajudar com RG, CPF, título de eleitor, carteira de trabalho, certidões, CNH, PIS/NIS, abono salarial e seguro-desemprego. Para este assunto, consulte o órgão c…"
       },
       {
         "caso_id": 21,
@@ -918,7 +918,7 @@
         "proibidos": [],
         "justificativa": "3/3 fatos esperados; citação=sim; proibidos=nenhum; aviso=sim.",
         "juiz": "deterministico",
-        "resposta_excerpt": "Não consegui entender a mensagem. Reformule com uma pergunta simples ou escolha uma categoria: RG, CPF, título de eleitor, carteira de trabalho, certidões ou CNH. Exemplos: - Como faço a segunda via do RG? - Quanto custa tirar o CPF? - Poss…"
+        "resposta_excerpt": "Não consegui entender a mensagem. Reformule com uma pergunta simples ou escolha uma categoria: RG, CPF, título de eleitor, carteira de trabalho, certidões, CNH, PIS/NIS, abono salarial ou seguro-desemprego. Exemplos: - Como faço a segunda v…"
       },
       {
         "caso_id": 22,

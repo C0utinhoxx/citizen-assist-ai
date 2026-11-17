@@ -40,8 +40,8 @@ Configuração recomendada do terminal:
 ### Antes de gravar, confirme que está tudo pronto
 
 ```bash
-python3 -m unittest discover -s testes -t .    # 143 testes, OK
-node mobile/teste-logica.js                    # 78 verificações
+python3 -m unittest discover -s testes -t .    # 168 testes, OK
+node mobile/teste-logica.js                    # 90 verificações
 ```
 
 E confira o modo do agente: no cabeçalho do menu do agente deve aparecer
@@ -176,7 +176,7 @@ para o menu, sem clicar.
 
 ### Beat 3.2 — A análise (0:10–0:16 do bloco)
 
-**Na tela:** a análise dos 12 serviços, com o total, as categorias, os
+**Na tela:** a análise dos 15 serviços, com o total, as categorias, os
 percentuais e a categoria com mais serviços.
 
 **Fala:**
@@ -398,8 +398,8 @@ de todos.
 
 ## Antes de gravar
 
-- [ ] `python3 -m unittest discover -s testes -t .` retorna **143 testes, OK**
-- [ ] `node mobile/teste-logica.js` retorna **78 verificações**
+- [ ] `python3 -m unittest discover -s testes -t .` retorna **168 testes, OK**
+- [ ] `node mobile/teste-logica.js` retorna **90 verificações**
 - [ ] `python3 main.py` abre sem nenhum aviso na tela
 - [ ] O agente abre pela opção 13 e o cabeçalho mostra o modo correto
 - [ ] A fonte do terminal está em 18–22 pt

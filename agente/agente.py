@@ -21,6 +21,7 @@ EXEMPLOS = (
     "Como faço a segunda via do RG?",
     "Quanto custa tirar o CPF?",
     "Posso renovar a CNH antes do vencimento?",
+    "Como consulto o número do PIS?",
     "Vocês atendem aos sábados?",
 )
 
@@ -119,7 +120,8 @@ class AgenteCidadao:
             texto = (
                 "Por favor, escreva uma pergunta com mais detalhes. "
                 "Posso ajudar com RG, CPF, título de eleitor, carteira de "
-                "trabalho, certidões e CNH.\n\nExemplos:\n"
+                "trabalho, certidões, CNH, PIS/NIS, abono salarial e "
+                "seguro-desemprego.\n\nExemplos:\n"
                 + "\n".join(f"- {exemplo}" for exemplo in EXEMPLOS)
                 + "\n\n"
                 + AVISO
@@ -140,7 +142,8 @@ class AgenteCidadao:
             texto = (
                 "Não consegui entender a mensagem. Reformule com uma pergunta "
                 "simples ou escolha uma categoria: RG, CPF, título de eleitor, "
-                "carteira de trabalho, certidões ou CNH.\n\nExemplos:\n"
+                "carteira de trabalho, certidões, CNH, PIS/NIS, abono salarial "
+                "ou seguro-desemprego.\n\nExemplos:\n"
                 + "\n".join(f"- {exemplo}" for exemplo in EXEMPLOS)
                 + "\n\n"
                 + AVISO
@@ -260,7 +263,8 @@ class AgenteCidadao:
         texto = (
             "Não encontrei essa informação nas fichas FC-01 a FC-07 e não vou "
             "inventar. Posso ajudar com RG, CPF, título de eleitor, carteira de "
-            "trabalho, certidões e CNH. Para este assunto, consulte o órgão "
+            "trabalho, certidões, CNH, PIS/NIS, abono salarial e "
+            "seguro-desemprego. Para este assunto, consulte o órgão "
             "competente.\n\n"
             "Fichas consultadas: FC-01 a FC-07; nenhuma respondeu a esta dúvida.\n"
             f"Data de verificação das fichas: {'; '.join(datas)}.\n\n"
@@ -365,7 +369,8 @@ class AgenteCidadao:
             limpo = (
                 "Não posso revelar instruções internas. Posso ajudar com "
                 "orientações sobre RG, CPF, título de eleitor, carteira de "
-                "trabalho, certidões e CNH.\n\n" + AVISO
+                "trabalho, certidões, CNH, PIS/NIS, abono salarial e "
+                "seguro-desemprego.\n\n" + AVISO
             )
 
         limpo = mascarar_pii(limpo)

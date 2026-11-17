@@ -141,7 +141,7 @@ function formularioFalso(valores) {
 }
 
 try {
-  teste("carregou os 12 serviços iniciais", contexto.lista.quantidade === 12);
+  teste("carregou os 15 serviços iniciais", contexto.lista.quantidade === 15);
   teste("normalização remove acentos", contexto.normalizar("Saúde") === "saude");
   teste(
     "busca por cartão SUS pontua 7",
@@ -153,6 +153,21 @@ try {
       "Direitos e Benefícios|Documentos|Saúde|Transporte"
   );
   teste("pesquisa por saúde retorna 3", contexto.lista.pesquisar("saude").length === 3);
+  const buscaPis = contexto.base.buscar("Como consulto meu PIS?");
+  teste(
+    "busca por PIS encontra a orientação",
+    buscaPis.length > 0 && buscaPis[0][1].titulo.indexOf("PIS") !== -1
+  );
+  const buscaAbono = contexto.base.buscar("Quando recebo o abono salarial?");
+  teste(
+    "busca por abono salarial encontra a orientação",
+    buscaAbono.length > 0 && buscaAbono[0][1].id === 14
+  );
+  const buscaSeguro = contexto.base.buscar("Fui demitido, como pedir o seguro desemprego?");
+  teste(
+    "busca por seguro-desemprego encontra a orientação",
+    buscaSeguro.length > 0 && buscaSeguro[0][1].id === 15
+  );
   teste(
     "busca por ID 4",
     contexto.lista.buscarPorId(4).titulo.indexOf("Carteira de Identidade") !== -1
@@ -221,6 +236,38 @@ try {
     "nome da voz mostra o idioma",
     contexto.nomeCurtoVoz({ name: "Luciana", lang: "pt-BR" }) === "Luciana (pt-BR)"
   );
+  teste(
+    "ditado pelo servidor indisponível no simulador",
+    contexto.ditadoServidorDisponivel() === false
+  );
+  const localOriginal = janela.location;
+  janela.location = { protocol: "http:", hostname: "localhost", port: "5500" };
+  teste(
+    "descobre a API local na porta 8000",
+    contexto.origensApiCandidatas().indexOf("http://localhost:8000") !== -1
+  );
+  janela.location = localOriginal;
+  contexto.apiBase = "http://localhost:8000";
+  teste(
+    "url da API usa a base descoberta",
+    contexto.urlApi("/api/asr") === "http://localhost:8000/api/asr"
+  );
+  contexto.apiBase = "";
+  const gravacaoOriginal = contexto.gravacaoSuportada;
+  contexto.asrStatus.pronto = true;
+  contexto.gravacaoSuportada = function () { return true; };
+  teste(
+    "ditado pelo servidor disponível com status e microfone",
+    contexto.ditadoServidorDisponivel() === true
+  );
+  const servidorOriginal = contexto.iniciarGravacaoServidor;
+  let fallbackChamado = false;
+  contexto.iniciarGravacaoServidor = function () { fallbackChamado = true; };
+  contexto.iniciarDitado();
+  teste("falar sem ditado do navegador usa o servidor", fallbackChamado === true);
+  contexto.iniciarGravacaoServidor = servidorOriginal;
+  contexto.asrStatus.pronto = false;
+  contexto.gravacaoSuportada = gravacaoOriginal;
 
   const vozesFalsas = [
     { name: "Luciana", lang: "pt-BR", voiceURI: "luciana", localService: true },
@@ -278,6 +325,16 @@ try {
   teste("cache da voz natural separa as vozes", contexto.chaveCacheNatural("Olá") !== chaveThalita);
   contexto.prefs.vozNatural = "pt-BR-ThalitaNeural";
   contexto.prefs.motorVoz = "navegador";
+  chamadaTTS = null;
+  contexto.ttsStatus.pronto = true;
+  contexto.ttsStatus.modo = "teste";
+  teste(
+    "sem voz do navegador usa a voz natural local",
+    contexto.falarTexto("Olá") === true &&
+      chamadaTTS !== null &&
+      chamadaTTS.url === "/api/tts"
+  );
+  contexto.pararFala();
   contexto.ttsStatus.pronto = false;
   delete contexto.fetch;
 
@@ -414,6 +471,25 @@ try {
   contexto.state.params = {};
   contexto.voltar();
   teste("voltar usa a pilha quando não há histórico", contexto.state.screen === "home");
+
+  contexto.perguntar("Como consulto o meu PIS?");
+  teste(
+    "app responde sobre PIS",
+    contexto.ultimaResposta.tipo === "encontrada" &&
+      contexto.ultimaResposta.servico.id === 13
+  );
+  contexto.perguntar("Quando recebo o abono salarial?");
+  teste(
+    "app responde sobre abono salarial",
+    contexto.ultimaResposta.tipo === "encontrada" &&
+      contexto.ultimaResposta.servico.id === 14
+  );
+  contexto.perguntar("Fui demitido, como pedir o seguro desemprego?");
+  teste(
+    "app responde sobre seguro-desemprego",
+    contexto.ultimaResposta.tipo === "encontrada" &&
+      contexto.ultimaResposta.servico.id === 15
+  );
 
   console.log("OK — " + passaram + " verificações passaram.");
 } catch (erro) {

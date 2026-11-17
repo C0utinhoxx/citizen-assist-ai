@@ -1574,6 +1574,39 @@ var DADOS_INICIAIS = [
     fonte: "https://www.gov.br/pt-br/servicos/adquirir-carteira-do-idoso",
     palavras_chave: ["carteira do idoso", "viagem", "interestadual", "passe livre", "passagem interestadual"],
     verificado_em: "2026-11-05"
+  },
+  {
+    id: 13,
+    titulo: "Consultar o número do PIS/NIS",
+    categoria: "Direitos e Benefícios",
+    descricao: "O PIS é o mesmo número do NIS (Número de Identificação Social) e identifica o trabalhador em programas como abono salarial, FGTS, CadÚnico e Bolsa Família. Para consultar, abra o aplicativo Carteira de Trabalho Digital ou o aplicativo Meu INSS, ambos com login gov.br. O número também pode ser visto no aplicativo Caixa Tem e no CRAS, no CadÚnico. Se você nunca teve emprego com carteira assinada, o PIS pode não existir; nesse caso, o empregador gera o número. Para tirar dúvidas, ligue para o Alô Trabalho no 158. Nunca envie esse número por mensagem ou em conversas.",
+    documentos: ["Conta gov.br (nível bronze, prata ou ouro)", "CPF"],
+    local: "Aplicativo Carteira de Trabalho Digital, aplicativo Meu INSS, Caixa Tem, CRAS ou telefone 158",
+    fonte: "https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/carteira-de-trabalho/perguntas-frequentes-carteira-de-trabalho-digital",
+    palavras_chave: ["pis", "pasep", "nis", "nit", "numero do pis", "numero do nis", "cadastro nis", "carteira de trabalho digital", "meu inss"],
+    verificado_em: "2026-11-14"
+  },
+  {
+    id: 14,
+    titulo: "Receber o Abono Salarial (PIS/PASEP)",
+    categoria: "Direitos e Benefícios",
+    descricao: "O Abono Salarial é um benefício anual de até um salário mínimo para quem trabalhou com carteira assinada. No calendário de 2026, tem direito quem recebeu em média até R$ 2.766,00 no ano-base 2024, trabalhou pelo menos 30 dias nesse ano e está cadastrado no PIS/PASEP há pelo menos 5 anos. O valor é proporcional aos meses trabalhados: de R$ 136,00 a R$ 1.621,00. Consulte o calendário e o valor na Carteira de Trabalho Digital ou no portal gov.br, ou ligue para o 158. O PIS é pago pela Caixa (conta, Caixa Tem, lotérica ou agência) e o PASEP pelo Banco do Brasil. O prazo do calendário de 2026 vai até 30/12/2026.",
+    documentos: ["CPF", "Conta gov.br (nível bronze, prata ou ouro)", "Carteira de Trabalho Digital"],
+    local: "Carteira de Trabalho Digital, portal gov.br, Caixa, Banco do Brasil ou telefone 158",
+    fonte: "https://www.gov.br/pt-br/servicos/receber-o-abono-salarial",
+    palavras_chave: ["abono", "abono salarial", "pis pasep", "pasep", "salario adicional", "decimo quarto salario", "beneficio do pis", "caixa tem", "calendario do abono"],
+    verificado_em: "2026-11-14"
+  },
+  {
+    id: 15,
+    titulo: "Pedir o Seguro-Desemprego",
+    categoria: "Direitos e Benefícios",
+    descricao: "O Seguro-Desemprego é uma ajuda financeira temporária para quem foi demitido sem justa causa. Para pedir, use o aplicativo Carteira de Trabalho Digital, o portal gov.br ou ligue para o 158. Tenha em mãos o documento do Requerimento do Seguro-Desemprego, que o empregador entrega no momento da dispensa, e o CPF. O pedido deve ser feito dentro do prazo. O pagamento é feito pela Caixa e você pode acompanhar o valor e as parcelas no gov.br ou na Carteira de Trabalho Digital.",
+    documentos: ["Documento do Requerimento do Seguro-Desemprego", "CPF"],
+    local: "Carteira de Trabalho Digital, portal gov.br, Plataforma Facilita ou telefone 158",
+    fonte: "https://www.gov.br/pt-br/servicos/solicitar-o-seguro-desemprego",
+    palavras_chave: ["seguro desemprego", "seguro-desemprego", "demitido", "demissao", "sem justa causa", "parcelas do seguro", "requerimento do seguro"],
+    verificado_em: "2026-11-14"
   }
 ];
 
@@ -1665,11 +1698,31 @@ var voz = {
   final: "",
   parcial: "",
   erro: "",
+  erroTexto: "",
+  retryFeito: false,
+  retryTimer: null,
+  fallbackServidor: false,
   falaToken: 0,
   audio: null,
   audioUrl: "",
   ttsCarregando: false,
   ttsAbort: null
+};
+
+var asrStatus = {
+  carregado: false,
+  pronto: false,
+  provedor: "",
+  modelo: "",
+  aviso: ""
+};
+
+var gravacao = {
+  ativa: false,
+  enviando: false,
+  recorder: null,
+  chunks: [],
+  stream: null
 };
 
 var VOZES_NATURAIS_PADRAO = [
@@ -1725,6 +1778,66 @@ function nomeVozNatural(id) {
   return "Thalita (feminina)";
 }
 
+var apiBase = "";
+var apiDescoberta = null;
+
+function urlApi(caminho) {
+  return apiBase + caminho;
+}
+
+function origensApiCandidatas() {
+  var lista = [""];
+  if (typeof window === "undefined" || !window.location) return lista;
+  var protocolo = window.location.protocol;
+  var host = window.location.hostname;
+  var local = protocolo === "file:" || host === "localhost" ||
+    host === "127.0.0.1" || host === "[::1]";
+  if (!local || protocolo === "https:") return lista;
+  var portas = ["8000"];
+  if (window.location.port && portas.indexOf(window.location.port) === -1) {
+    portas.push(window.location.port);
+  }
+  for (var i = 0; i < portas.length; i++) {
+    var bases = [
+      "http://localhost:" + portas[i],
+      "http://127.0.0.1:" + portas[i]
+    ];
+    for (var j = 0; j < bases.length; j++) {
+      if (lista.indexOf(bases[j]) === -1) lista.push(bases[j]);
+    }
+  }
+  return lista;
+}
+
+function descobrirApi() {
+  if (apiBase) return Promise.resolve({ base: apiBase, dados: null });
+  if (apiDescoberta) return apiDescoberta;
+  var candidatos = origensApiCandidatas();
+  var indice = 0;
+  function tentar() {
+    if (indice >= candidatos.length) return Promise.reject(new Error("api"));
+    var base = candidatos[indice++];
+    return fetch(base + "/api/tts/status", { cache: "no-store" })
+      .then(function (resposta) {
+        if (!resposta.ok) throw new Error("status");
+        return resposta.json().then(function (dados) {
+          return { base: base, dados: dados };
+        });
+      })
+      .catch(tentar);
+  }
+  apiDescoberta = tentar().then(function (resultado) {
+    apiBase = resultado.base;
+    apiDescoberta = null;
+    return resultado;
+  }).catch(function (erro) {
+    apiDescoberta = null;
+    apiBase = "";
+    throw erro;
+  });
+  return apiDescoberta;
+}
+
 function carregarStatusTTS() {
   if (typeof fetch !== "function") {
     ttsStatus = {
@@ -1739,10 +1852,14 @@ function carregarStatusTTS() {
     return Promise.resolve(ttsStatus);
   }
 
-  return fetch("/api/tts/status", { cache: "no-store" })
-    .then(function (resposta) {
-      if (!resposta.ok) throw new Error("status");
-      return resposta.json();
+  return descobrirApi()
+    .then(function (resultado) {
+      if (resultado.dados) return resultado.dados;
+      return fetch(resultado.base + "/api/tts/status", { cache: "no-store" })
+        .then(function (resposta) {
+          if (!resposta.ok) throw new Error("status");
+          return resposta.json();
+        });
     })
     .then(function (dados) {
       ttsStatus = {
@@ -1775,7 +1892,7 @@ function carregarStatusTTS() {
 
 function carregarVozesTTS() {
   if (typeof fetch !== "function") return Promise.resolve([]);
-  return fetch("/api/tts/voices", { cache: "no-store" })
+  return fetch(urlApi("/api/tts/voices"), { cache: "no-store" })
     .then(function (resposta) {
       if (!resposta.ok) throw new Error("vozes");
       return resposta.json();
@@ -1788,6 +1905,60 @@ function carregarVozesTTS() {
     .catch(function () {
       ttsVozes = [];
       return ttsVozes;
+    });
+}
+
+function carregarStatusASR() {
+  if (typeof fetch !== "function") {
+    asrStatus = {
+      carregado: true,
+      pronto: false,
+      provedor: "",
+      modelo: "",
+      aviso: "Abra o app por http://localhost:8000 para usar o ditado pelo computador."
+    };
+    return Promise.resolve(asrStatus);
+  }
+  return descobrirApi()
+    .then(function (resultado) {
+      return fetch(resultado.base + "/api/asr/status", { cache: "no-store" });
+    })
+    .then(function (resposta) {
+      if (!resposta.ok) throw new Error("status");
+      return resposta.json();
+    })
+    .then(function (dados) {
+      asrStatus = {
+        carregado: true,
+        pronto: !!dados.pronto,
+        provedor: String(dados.provedor || ""),
+        modelo: String(dados.modelo || ""),
+        aviso: String(dados.aviso || "")
+      };
+      if (state.screen === "assistente" && !voz.ouvindo && !gravacao.ativa && !gravacao.enviando) {
+        var campoAtual = document.getElementById("pergunta");
+        if (!campoAtual || !String(campoAtual.value || "").trim()) {
+          render();
+          atualizarBotaoVoz();
+          atualizarStatusVoz();
+        } else {
+          atualizarStatusVoz();
+        }
+      }
+      return asrStatus;
+    })
+    .catch(function () {
+      var emArquivo = typeof window !== "undefined" && window.location && window.location.protocol === "file:";
+      asrStatus = {
+        carregado: true,
+        pronto: false,
+        provedor: "",
+        modelo: "",
+        aviso: emArquivo
+          ? "Abra o app por http://localhost:8000 para usar o ditado pelo computador."
+          : "Não consegui falar com a API de transcrição. Pare o servidor com Ctrl+C, rode de novo cd mobile && python3 servir.py e recarregue a página. O terminal deve mostrar Ditado pelo servidor: openai · whisper-1."
+      };
+      return asrStatus;
     });
 }
 
@@ -1856,7 +2027,7 @@ function obterAudioNatural(texto) {
     voz.ttsAbort = controlador;
   }
 
-  return fetch("/api/tts", {
+  return fetch(urlApi("/api/tts"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ texto: texto, voz: prefs.vozNatural }),
@@ -2030,9 +2201,13 @@ function mensagemErroVoz(codigo) {
     case "audio-capture":
       return "Não encontrei o microfone. Verifique se ele está disponível e se o navegador tem permissão para usá-lo.";
     case "network":
-      return safari
-        ? "O Safari não conseguiu usar o serviço de ditado. Ative o Ditado em Ajustes do Sistema → Teclado → Ditado e permita o microfone. Se ainda falhar, use o Google Chrome ou o Ditado do macOS (tecla Fn duas vezes) na caixa de texto."
-        : "O serviço de ditado não respondeu. Verifique a internet e tente o Google Chrome, ou use o microfone do teclado.";
+      if (safari) {
+        return "O Safari não conseguiu usar o serviço de ditado. Ative o Ditado em Ajustes do Sistema → Teclado → Ditado e permita o microfone. Se ainda falhar, use o Google Chrome, o Microsoft Edge ou o Ditado do macOS (tecla Fn duas vezes) na caixa de texto.";
+      }
+      if (pareceMac()) {
+        return "O serviço de ditado do navegador não respondeu. No Mac, o Google Chrome costuma falhar nesse recurso. Use o Safari com o Ditado ativado, o Microsoft Edge ou o microfone do teclado (Fn duas vezes). Se o servidor local estiver configurado, toque em Falar pelo computador.";
+      }
+      return "O serviço de ditado não respondeu. Verifique a internet e tente o Google Chrome ou o Microsoft Edge, ou use o microfone do teclado.";
     case "no-speech":
       return "Não ouvi nenhuma fala. Toque em Tentar de novo e fale mais perto do microfone.";
     case "language-not-supported":
@@ -2044,17 +2219,112 @@ function mensagemErroVoz(codigo) {
 
 function atualizarBotaoVoz() {
   var botao = document.querySelector('[data-action="ditar"]');
+  var ativo = voz.ouvindo || gravacao.ativa;
   if (!botao) return;
-  botao.classList.toggle("ouvindo", voz.ouvindo);
-  botao.setAttribute("aria-pressed", voz.ouvindo ? "true" : "false");
-  botao.setAttribute("aria-label", voz.ouvindo ? "Parar de falar" : "Falar a pergunta");
+  botao.classList.toggle("ouvindo", ativo);
+  botao.setAttribute("aria-pressed", ativo ? "true" : "false");
+  botao.setAttribute("aria-label", ativo ? "Parar de falar" : "Falar a pergunta");
   var rotulo = botao.querySelector(".voz-rotulo");
-  if (rotulo) rotulo.textContent = voz.ouvindo ? "Parar de falar" : "Falar";
+  if (rotulo) {
+    rotulo.textContent = gravacao.ativa ? "Parar gravação" : (ativo ? "Parar de falar" : "Falar");
+  }
+}
+
+function gravacaoSuportada() {
+  var temMicrofone = !!(
+    typeof navigator !== "undefined" &&
+    navigator.mediaDevices &&
+    typeof navigator.mediaDevices.getUserMedia === "function"
+  );
+  if (!temMicrofone && typeof navigator !== "undefined") {
+    temMicrofone = !!(
+      navigator.getUserMedia ||
+      navigator.webkitGetUserMedia ||
+      navigator.mozGetUserMedia
+    );
+  }
+  return !!(temMicrofone && window.MediaRecorder);
+}
+
+function ditadoServidorDisponivel() {
+  return !!(asrStatus.pronto && gravacaoSuportada());
+}
+
+function obterStreamAudio() {
+  if (
+    typeof navigator !== "undefined" &&
+    navigator.mediaDevices &&
+    typeof navigator.mediaDevices.getUserMedia === "function"
+  ) {
+    return navigator.mediaDevices.getUserMedia({ audio: true });
+  }
+  var legado = typeof navigator !== "undefined"
+    ? (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia)
+    : null;
+  if (!legado) return Promise.reject(new Error("microfone indisponível"));
+  return new Promise(function (resolver, rejeitar) {
+    legado.call(navigator, { audio: true }, resolver, rejeitar);
+  });
+}
+
+function dicaDitadoComputador() {
+  if (ditadoServidorDisponivel()) {
+    return "Se preferir, use Falar pelo computador: o áudio só é enviado depois que você tocar em Parar e transcrever.";
+  }
+  if (typeof window !== "undefined" && window.location && window.location.protocol === "file:") {
+    return "Para usar o ditado pelo computador, rode cd mobile && python3 servir.py e abra http://localhost:8000.";
+  }
+  if (asrStatus.pronto && !gravacaoSuportada()) {
+    return "Este navegador não consegue gravar áudio neste endereço. Abra o app em http://localhost:8000 ou use o microfone do teclado.";
+  }
+  if (asrStatus.carregado) {
+    return asrStatus.aviso || "O servidor de transcrição não respondeu. Reinicie python3 servir.py e recarregue a página.";
+  }
+  return "Verificando o ditado pelo computador…";
+}
+
+function tipoGravacao() {
+  if (!window.MediaRecorder || typeof window.MediaRecorder.isTypeSupported !== "function") {
+    return "";
+  }
+  var tipos = [
+    "audio/webm;codecs=opus",
+    "audio/webm",
+    "audio/mp4",
+    "audio/ogg;codecs=opus"
+  ];
+  for (var i = 0; i < tipos.length; i++) {
+    try {
+      if (window.MediaRecorder.isTypeSupported(tipos[i])) return tipos[i];
+    } catch (e) {   }
+  }
+  return "";
 }
 
 function atualizarStatusVoz() {
   var caixa = document.getElementById("voz-status");
   if (!caixa) return;
+
+  if (gravacao.ativa) {
+    caixa.classList.add("ativo");
+    caixa.classList.remove("erro");
+    caixa.innerHTML = '<div class="rotulo"><span class="ponto"></span>Gravando pelo computador…</div>' +
+      '<div class="parcial">Fale a sua pergunta e toque em <strong>Parar e transcrever</strong>.</div>' +
+      '<div class="acoes">' +
+        '<button type="button" class="btn btn-secondary btn-sm" data-action="parar-gravacao-servidor">' +
+          ICONES.parar + "Parar e transcrever</button>" +
+      "</div>" +
+      '<span class="hint">O áudio é enviado ao serviço de transcrição somente depois que você tocar no botão.</span>';
+    return;
+  }
+
+  if (gravacao.enviando) {
+    caixa.classList.add("ativo");
+    caixa.classList.remove("erro");
+    caixa.innerHTML = '<div class="rotulo"><span class="ponto"></span>Transcrevendo…</div>' +
+      '<div class="parcial">Aguarde enquanto o computador transforma o áudio em texto.</div>';
+    return;
+  }
 
   if (voz.ouvindo) {
     caixa.classList.add("ativo");
@@ -2067,15 +2337,22 @@ function atualizarStatusVoz() {
   }
 
   if (voz.erro && voz.erro !== "aborted") {
+    var mensagem = voz.erroTexto || mensagemErroVoz(voz.erro);
     caixa.classList.add("ativo", "erro");
     caixa.innerHTML = '<div class="rotulo erro-rotulo">' + ICONES.info + "Não foi possível ouvir</div>" +
-      '<div class="parcial">' + escapeHtml(mensagemErroVoz(voz.erro)) + "</div>" +
+      '<div class="parcial">' + escapeHtml(mensagem) + "</div>" +
       '<div class="acoes">' +
         '<button type="button" class="btn btn-secondary btn-sm" data-action="ditar">' +
           ICONES.microfone + "Tentar de novo</button>" +
+        (ditadoServidorDisponivel()
+          ? '<button type="button" class="btn btn-secondary btn-sm" data-action="ditar-servidor">' +
+              ICONES.microfone + "Falar pelo computador</button>"
+          : '<button type="button" class="btn btn-secondary btn-sm" data-action="verificar-servidor">' +
+              ICONES.info + "Verificar servidor</button>") +
         '<button type="button" class="btn btn-ghost btn-sm" data-action="focar-campo">Usar o teclado</button>' +
       "</div>" +
-      '<span class="hint">No Mac, o Ditado do sistema também funciona na caixa de texto (tecla Fn duas vezes).</span>';
+      '<span class="hint">No Mac, o Ditado do sistema também funciona na caixa de texto (tecla Fn duas vezes).</span>' +
+      '<span class="hint">' + escapeHtml(dicaDitadoComputador()) + "</span>";
     return;
   }
 
@@ -2095,6 +2372,10 @@ function obterReconhecimento() {
   rec.maxAlternatives = 1;
 
   rec.onstart = function () {
+    if (voz.retryTimer) {
+      clearTimeout(voz.retryTimer);
+      voz.retryTimer = null;
+    }
     voz.ouvindo = true;
     atualizarBotaoVoz();
     atualizarStatusVoz();
@@ -2120,12 +2401,41 @@ function obterReconhecimento() {
   rec.onerror = function (evento) {
     var codigo = evento && evento.error ? evento.error : "";
     voz.erro = codigo;
+    voz.erroTexto = "";
     voz.ouvindo = false;
     voz.parcial = "";
-    if (codigo === "not-allowed" || codigo === "service-not-allowed") voz.pararPedido = true;
+    if (codigo === "not-allowed") voz.pararPedido = true;
+    if (codigo === "network" && !voz.retryFeito && !voz.pararPedido) {
+      voz.retryFeito = true;
+      voz.erro = "";
+      voz.retryTimer = setTimeout(function () {
+        voz.retryTimer = null;
+        if (voz.pararPedido || voz.ouvindo) return;
+        try {
+          rec.start();
+        } catch (e) {
+          voz.erro = "network";
+          atualizarBotaoVoz();
+          atualizarStatusVoz();
+        }
+      }, 450);
+    }
+    var podeServidor = codigo === "network" ||
+      codigo === "service-not-allowed" ||
+      codigo === "language-not-supported";
+    if (podeServidor && !voz.retryTimer && !voz.pararPedido && !voz.fallbackServidor &&
+        ditadoServidorDisponivel()) {
+      voz.fallbackServidor = true;
+      voz.erro = "";
+      atualizarBotaoVoz();
+      atualizarStatusVoz();
+      toast("O ditado do navegador não respondeu. Gravando pelo computador…");
+      iniciarGravacaoServidor();
+      return;
+    }
     atualizarBotaoVoz();
     atualizarStatusVoz();
-    if (codigo !== "aborted" && !document.getElementById("voz-status")) {
+    if (codigo !== "aborted" && codigo !== "network" && !document.getElementById("voz-status")) {
       toast(mensagemErroVoz(codigo));
     }
   };
@@ -2145,12 +2455,20 @@ function obterReconhecimento() {
 
 function iniciarDitado() {
   if (!ditadoSuportado()) {
+    if (ditadoServidorDisponivel()) {
+      iniciarGravacaoServidor();
+      return;
+    }
     toast("Este navegador não tem ditado por voz. Use o microfone do teclado.");
     var semVoz = document.getElementById("pergunta");
     if (semVoz) semVoz.focus();
     return;
   }
   if (!ditadoEmContextoSeguro()) {
+    if (ditadoServidorDisponivel()) {
+      iniciarGravacaoServidor();
+      return;
+    }
     toast("O ditado precisa de um endereço seguro (https). Use o microfone do teclado.");
     var semSeguro = document.getElementById("pergunta");
     if (semSeguro) semSeguro.focus();
@@ -2164,6 +2482,13 @@ function iniciarDitado() {
   voz.final = "";
   voz.parcial = "";
   voz.erro = "";
+  voz.erroTexto = "";
+  voz.retryFeito = false;
+  voz.fallbackServidor = false;
+  if (voz.retryTimer) {
+    clearTimeout(voz.retryTimer);
+    voz.retryTimer = null;
+  }
   voz.pararPedido = false;
 
   var rec = obterReconhecimento();
@@ -2184,6 +2509,10 @@ function iniciarDitado() {
 
 function pararDitado() {
   voz.pararPedido = true;
+  if (voz.retryTimer) {
+    clearTimeout(voz.retryTimer);
+    voz.retryTimer = null;
+  }
   if (voz.reconhecimento) {
     try { voz.reconhecimento.stop(); } catch (e) {   }
   }
@@ -2194,8 +2523,138 @@ function pararDitado() {
 }
 
 function alternarDitado() {
+  if (gravacao.ativa) {
+    pararGravacaoServidor();
+    return;
+  }
   if (voz.ouvindo) pararDitado();
   else iniciarDitado();
+}
+
+function iniciarGravacaoServidor() {
+  if (!asrStatus.pronto) {
+    toast(asrStatus.aviso || "O ditado pelo computador não está configurado.");
+    return;
+  }
+  if (!gravacaoSuportada()) {
+    toast("Este navegador não consegue gravar áudio. Use o microfone do teclado.");
+    return;
+  }
+
+  pararFala();
+  if (voz.ouvindo) pararDitado();
+  if (voz.retryTimer) {
+    clearTimeout(voz.retryTimer);
+    voz.retryTimer = null;
+  }
+
+  var campo = document.getElementById("pergunta");
+  voz.base = campo ? String(campo.value || "").trim() : "";
+  voz.erro = "";
+  voz.erroTexto = "";
+  voz.parcial = "";
+  voz.final = "";
+  voz.fallbackServidor = true;
+
+  obterStreamAudio().then(function (stream) {
+    gravacao.stream = stream;
+    gravacao.chunks = [];
+    var tipo = tipoGravacao();
+    var opcoes = tipo ? { mimeType: tipo } : {};
+    var recorder;
+    try {
+      recorder = new window.MediaRecorder(stream, opcoes);
+    } catch (e) {
+      recorder = new window.MediaRecorder(stream);
+    }
+    gravacao.recorder = recorder;
+    gravacao.ativa = true;
+    recorder.ondataavailable = function (evento) {
+      if (evento && evento.data && evento.data.size) gravacao.chunks.push(evento.data);
+    };
+    recorder.onstop = function () {
+      finalizarGravacaoServidor();
+    };
+    recorder.start();
+    atualizarBotaoVoz();
+    atualizarStatusVoz();
+  }).catch(function () {
+    gravacao.ativa = false;
+    gravacao.enviando = false;
+    voz.erro = "asr";
+    voz.erroTexto = "Não consegui usar o microfone. Permita o microfone no navegador, abra o app em http://localhost:8000 ou use o microfone do teclado.";
+    atualizarBotaoVoz();
+    atualizarStatusVoz();
+  });
+}
+
+function pararGravacaoServidor() {
+  if (!gravacao.ativa || !gravacao.recorder) return;
+  try {
+    gravacao.recorder.stop();
+  } catch (e) {   }
+  gravacao.ativa = false;
+  atualizarBotaoVoz();
+  atualizarStatusVoz();
+}
+
+function encerrarStreamGravacao() {
+  if (gravacao.stream) {
+    try {
+      gravacao.stream.getTracks().forEach(function (faixa) { faixa.stop(); });
+    } catch (e) {   }
+    gravacao.stream = null;
+  }
+}
+
+function finalizarGravacaoServidor() {
+  encerrarStreamGravacao();
+  var chunks = gravacao.chunks || [];
+  gravacao.chunks = [];
+  var tipo = (gravacao.recorder && gravacao.recorder.mimeType) || "audio/webm";
+  gravacao.recorder = null;
+  gravacao.ativa = false;
+
+  var blob = new Blob(chunks, { type: tipo });
+  if (!blob.size) {
+    voz.erro = "asr";
+    voz.erroTexto = "Não ouvi nenhuma fala. Tente de novo e fale mais perto do microfone.";
+    atualizarBotaoVoz();
+    atualizarStatusVoz();
+    return;
+  }
+
+  gravacao.enviando = true;
+  atualizarStatusVoz();
+
+  fetch(urlApi("/api/asr"), {
+    method: "POST",
+    headers: { "Content-Type": tipo },
+    body: blob
+  }).then(function (resposta) {
+    return resposta.json().catch(function () { return {}; }).then(function (dados) {
+      if (!resposta.ok) throw new Error(dados && dados.erro ? dados.erro : "HTTP " + resposta.status);
+      return dados;
+    });
+  }).then(function (dados) {
+    var texto = String((dados && dados.texto) || "").trim();
+    if (!texto) throw new Error("Não consegui entender o áudio. Tente de novo.");
+    var campo = document.getElementById("pergunta");
+    if (campo) {
+      campo.value = juntarTextoVoz(voz.base, texto);
+      campo.scrollTop = campo.scrollHeight;
+      campo.focus();
+    }
+    voz.erro = "";
+    voz.erroTexto = "";
+  }).catch(function (erro) {
+    voz.erro = "asr";
+    voz.erroTexto = erro && erro.message ? erro.message : "Não foi possível transcrever o áudio.";
+  }).finally(function () {
+    gravacao.enviando = false;
+    atualizarBotaoVoz();
+    atualizarStatusVoz();
+  });
 }
 
 function marcarFalando(ativo) {
@@ -2229,6 +2688,11 @@ function falarTexto(texto) {
   if (!conteudo) return false;
   if (prefs.motorVoz === "natural" && ttsStatus.pronto) {
     return falarTextoNatural(conteudo);
+  }
+  if (!falaSuportada() || !vozesPortugues().length) {
+    if (ttsStatus.pronto && ttsStatus.modo === "teste") {
+      return falarTextoNatural(conteudo);
+    }
   }
   return falarTextoNavegador(conteudo);
 }
@@ -2632,7 +3096,7 @@ function importarBackup(arquivo) {
 }
 
 async function restaurarDemo() {
-  var ok = await confirmar("Restaurar os 12 serviços de exemplo? As alterações e o histórico serão apagados.", {
+  var ok = await confirmar("Restaurar os 15 serviços de exemplo? As alterações e o histórico serão apagados.", {
     titulo: "Restaurar dados",
     texto: "Restaurar",
     perigoso: true
@@ -2898,6 +3362,12 @@ function renderAssistente() {
 
   var html = '<div class="view-head"><div><h1>Assistente</h1><p>Pergunte com suas palavras</p></div></div>';
 
+  var botaoServidor = ditadoServidorDisponivel()
+    ? '<p class="voice-help"><button type="button" class="btn btn-secondary btn-sm" data-action="ditar-servidor">' +
+        ICONES.microfone + "Falar pelo computador</button> " +
+        "Use esta opção se o ditado do navegador falhar.</p>"
+    : "";
+
   var areaVoz = ditadoOk
     ? '<div class="voice-box">' +
         '<button type="button" class="btn-voice" data-action="ditar" aria-pressed="false" aria-label="Falar a pergunta">' +
@@ -2906,12 +3376,26 @@ function renderAssistente() {
           '<span class="voz-rotulo">Falar</span>' +
         "</button>" +
         '<p class="voice-help">Toque em <strong>Falar</strong> e fale devagar. O que você disser aparece escrito na caixa abaixo.</p>' +
+        botaoServidor +
         '<div class="voice-live" id="voz-status" aria-live="polite"></div>' +
       "</div>"
-    : '<p class="voice-help" style="margin:0 2px 12px">' + avisoSemDitado + "</p>";
+    : (ditadoServidorDisponivel()
+      ? '<div class="voice-box">' +
+          '<button type="button" class="btn-voice" data-action="ditar-servidor" aria-label="Falar pelo computador">' +
+            '<span class="voz-icone voz-mic">' + ICONES.microfone + "</span>" +
+            '<span class="voz-rotulo">Falar pelo computador</span>' +
+          "</button>" +
+          '<p class="voice-help">O ditado do navegador não está disponível, mas o servidor local pode transcrever o áudio.</p>' +
+          '<div class="voice-live" id="voz-status" aria-live="polite"></div>' +
+        "</div>"
+      : '<p class="voice-help" style="margin:0 2px 12px">' + avisoSemDitado + "</p>");
 
   if (ditadoOk && navegadorPareceSafari() && pareceMac()) {
-    areaVoz += '<p class="hint" style="margin:0 2px 12px">No <strong>Safari do Mac</strong>, o ditado pode falhar mesmo com internet. Ative o <strong>Ditado</strong> em <strong>Ajustes do Sistema → Teclado → Ditado</strong>. Se ainda falhar, use o <strong>Google Chrome</strong> ou pressione <strong>Fn duas vezes</strong> na caixa de texto.</p>';
+    areaVoz += '<p class="hint" style="margin:0 2px 12px">No <strong>Safari do Mac</strong>, o ditado pode falhar mesmo com internet. Ative o <strong>Ditado</strong> em <strong>Ajustes do Sistema → Teclado → Ditado</strong>. Se ainda falhar, use o <strong>Microsoft Edge</strong> ou pressione <strong>Fn duas vezes</strong> na caixa de texto.</p>';
+  }
+
+  if (ditadoOk && pareceMac() && !navegadorPareceSafari()) {
+    areaVoz += '<p class="hint" style="margin:0 2px 12px">No <strong>Chrome do Mac</strong>, o ditado do navegador pode não responder. Use o <strong>Safari</strong> com o Ditado ativado, o <strong>Microsoft Edge</strong>, o microfone do teclado (Fn duas vezes) ou a opção <strong>Falar pelo computador</strong>.</p>';
   }
 
   if (ditadoOk && pareceMac() && window.location && window.location.protocol === "file:") {
@@ -3076,7 +3560,7 @@ function renderMais() {
     linhaMais("exportar-csv", ICONES.download, "Exportar atendimentos em CSV", "Planilha com o histórico de atendimentos") +
     linhaMais("exportar-backup", ICONES.download, "Exportar backup completo", "Salva serviços, histórico e preferências") +
     linhaMais("importar-backup", ICONES.upload, "Importar backup", "Restaura um arquivo JSON do app") +
-    linhaMais("restaurar-demo", ICONES.livro, "Restaurar dados de exemplo", "Volta aos 12 serviços originais", true) +
+    linhaMais("restaurar-demo", ICONES.livro, "Restaurar dados de exemplo", "Volta aos 15 serviços originais", true) +
     "</div>";
 
   html += '<h2 class="section-title">Aplicativo</h2><div class="more-group">' +
@@ -3726,6 +4210,28 @@ document.addEventListener("click", async function (e) {
       alternarDitado();
       break;
 
+    case "ditar-servidor":
+      iniciarGravacaoServidor();
+      break;
+
+    case "parar-gravacao-servidor":
+      pararGravacaoServidor();
+      break;
+
+    case "verificar-servidor":
+      apiBase = "";
+      apiDescoberta = null;
+      toast("Verificando o servidor local…");
+      Promise.all([carregarStatusTTS(), carregarStatusASR()]).then(function () {
+        render();
+        atualizarBotaoVoz();
+        atualizarStatusVoz();
+        toast(asrStatus.pronto
+          ? "Servidor encontrado. Use Falar pelo computador."
+          : (asrStatus.aviso || "Servidor local não encontrado."));
+      });
+      break;
+
     case "focar-campo": {
       if (state.screen !== "assistente") go("assistente");
       setTimeout(function () {
@@ -3910,6 +4416,7 @@ function iniciar() {
   }
   render();
   carregarStatusTTS();
+  carregarStatusASR();
   if (!storageOk) {
     setTimeout(function () {
       toast("Armazenamento bloqueado: exporte um backup para não perder os dados.");

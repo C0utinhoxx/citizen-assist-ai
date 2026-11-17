@@ -25,7 +25,8 @@ def _ler_inteiro(mensagem: str, maximo: int) -> Optional[int]:
 def _mostrar_cabecalho(agente: AgenteCidadao) -> None:
     print("\n" + "=" * 62)
     print(" Citizen Assist AI — Agente de Documentos Pessoais")
-    print(" Fonte exclusiva: fichas FC-01 a FC-07")
+    print(" Fonte exclusiva: fichas FC-01 a FC-07 (documentos, PIS/NIS,")
+    print(" abono salarial e seguro-desemprego)")
     print("=" * 62)
     if agente.modo == "llm":
         print(f"Modo: LLM ({agente.provedor.nome})")

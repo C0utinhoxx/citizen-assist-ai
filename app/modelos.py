@@ -24,7 +24,6 @@ class Orientacao:
         self.palavras_chave = list(palavras_chave or [])
         self.verificado_em = str(verificado_em).strip()
 
-    # Apelidos usados pelo catálogo DSA (descricao/local).
     @property
     def descricao(self):
         return self.resposta
@@ -123,5 +122,4 @@ class Orientacao:
         print("Aviso: este assistente NÃO é um canal oficial.")
 
 
-# O catálogo DSA chama esse mesmo registro de Servico.
 Servico = Orientacao

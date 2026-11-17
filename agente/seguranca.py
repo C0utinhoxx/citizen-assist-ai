@@ -24,7 +24,7 @@ PADROES_PII = [
 
 FRASES_PII = [
     r"\bmeu\s+nome\b",
-    r"\bmeu\s+(telefone|endereco|e-?mail|pis|nis)\b",
+    r"\bmeu\s+(telefone|endereco|e-?mail)\b",
     r"\bmeus\s+dados\b",
     r"\bmeu\s+endereco\s+e\s+telefone\b",
     r"\bvou\s+(te\s+)?passar\s+(meu|meus)\b",

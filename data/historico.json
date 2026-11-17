@@ -1,1 +1,79 @@
-[]
+[
+  {
+    "data": "2026-11-17 19:38:21",
+    "origem": "categoria",
+    "pergunta": "Tirar a Carteira de Identidade Nacional (CIN)",
+    "id_orientacao": 4,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 7.7,
+    "nota_facilidade": 5
+  },
+  {
+    "data": "2026-11-17 19:39:01",
+    "origem": "pergunta",
+    "pergunta": "RG",
+    "id_orientacao": 4,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 10.3,
+    "nota_facilidade": 1
+  },
+  {
+    "data": "2026-11-17 19:41:43",
+    "origem": "pergunta",
+    "pergunta": "Sus",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 8.0,
+    "nota_facilidade": 5
+  },
+  {
+    "data": "2026-11-17 19:45:23",
+    "origem": "pergunta",
+    "pergunta": "Sus",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 11.8,
+    "nota_facilidade": 5
+  },
+  {
+    "data": "2026-11-17 19:48:03",
+    "origem": "pergunta",
+    "pergunta": "Sus",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 7.1,
+    "nota_facilidade": 5
+  },
+  {
+    "data": "2026-11-17 19:50:31",
+    "origem": "pergunta",
+    "pergunta": "Sus",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 6.3,
+    "nota_facilidade": 5
+  },
+  {
+    "data": "2026-11-17 19:56:43",
+    "origem": "pergunta",
+    "pergunta": "sus",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 8.1,
+    "nota_facilidade": 5
+  }
+]

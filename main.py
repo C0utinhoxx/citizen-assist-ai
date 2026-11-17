@@ -11,7 +11,7 @@ CAMINHO_CSV = PASTA_DADOS / "atendimentos.csv"
 
 
 def main():
-    # Forma do enunciado: a base lê o JSON e cria os objetos Orientacao.
+ 
     base = BaseConhecimento(str(CAMINHO_BASE))
     base.carregar()
 
@@ -22,7 +22,7 @@ def main():
         str(CAMINHO_CSV),
     )
 
-    # O catálogo DSA usa a mesma lista encadeada da base.
+
     executar_menu(base.lista, assistente, str(CAMINHO_BASE))
 
 

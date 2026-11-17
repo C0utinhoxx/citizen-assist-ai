@@ -244,7 +244,7 @@ Os 13 requisitos do P2 estão atendidos: lista encadeada manual, nós, inserçã
 
 ### Mobile
 
-A versão mobile reimplementa a lista encadeada, o Selection Sort, a busca, o histórico, os indicadores e o CSV em JavaScript. O app tem 4.004 linhas, 12 serviços embutidos, voz e acessibilidade. Testes: `node mobile/teste-logica.js` → **78 verificações aprovadas**.
+A versão mobile reimplementa a lista encadeada, o Selection Sort, a busca, o histórico, os indicadores e o CSV em JavaScript. O app tem 4.358 linhas, 15 serviços embutidos, voz e acessibilidade. Testes: `node mobile/teste-logica.js` → **90 verificações aprovadas**.
 
 ---
 
@@ -357,7 +357,7 @@ O fluxo é implementado em `agente/fluxo.py` com `StateGraph`:
 - Aresta condicional: `sem_resultado` ou `responder`.
 - Nós `responder`, `bloqueio`, `sem_resultado` → `END`.
 
-Quando o LangGraph não está instalado, o mesmo fluxo é executado em sequência. As regras e as respostas são idênticas. A suíte roda nos dois ambientes: **148 testes aprovados** com e sem LangGraph.
+Quando o LangGraph não está instalado, o mesmo fluxo é executado em sequência. As regras e as respostas são idênticas. A suíte roda nos dois ambientes: **168 testes aprovados** com e sem LangGraph.
 
 ### Por que LangGraph
 
@@ -725,9 +725,9 @@ python3 main_agente.py
 
 | Verificação | Resultado |
 |---|---|
-| Suíte Python (sem LangGraph) | **148 testes aprovados** |
-| Suíte Python (com LangGraph 0.6.11) | **148 testes aprovados** |
-| Mobile | **78 verificações aprovadas** |
+| Suíte Python (sem LangGraph) | **168 testes aprovados** |
+| Suíte Python (com LangGraph 0.6.11) | **168 testes aprovados** |
+| Mobile | **90 verificações aprovadas** |
 | Golden Dataset — baseline (juiz determinístico) | 0/26 exatos, 7 parciais, 19 falhas, 13,5% |
 | Golden Dataset — extrativo (juiz determinístico) | **26/26 exatos, 100,0%** |
 | Golden Dataset — modo LLM (juiz determinístico) | 19/26 exatos, 5 parciais, 2 falhas, 82,7% |
@@ -835,7 +835,7 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 | P2 — busca, Selection Sort, indicadores, CSV, JSON | Entregue |
 | P2 — 13 requisitos | Entregue |
 | P2 — testes Python | 148 aprovados (60 do DSA + 61 do agente/avaliação + 22 da voz mobile) |
-| P2 — mobile | 78 verificações aprovadas |
+| P2 — mobile | 90 verificações aprovadas |
 | P3 — agente com FC-01 a FC-07 | **Entregue** com as fichas oficiais (versão 01/10/2026) |
 | P3 — citação da ficha e data | Entregue |
 | P3 — linguagem simples e admissão de desconhecimento | Entregue |
