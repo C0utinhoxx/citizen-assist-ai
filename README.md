@@ -3,7 +3,7 @@
 **Equipe:** Bruno Riquelme Coutinho Pereira (RM 569619) · Eduardo Bigoli Portela (RM 569897) · Gustavo Fondato de Souza (RM 573651)  
 **Turma:** 1CCPX · **Repositório:** https://github.com/C0utinhoxx/citizen-assist-ai
 
-> **Entrega por disciplina:** [`ENTREGAS.md`](ENTREGAS.md) reúne requisitos, evidências e pendências de PCP, IA, SERS e DSA.
+> **Documentos de submissão:** mantidos fora do repositório, na pasta local `Entregas_GS_2026_2`, com um documento e um texto de portal para cada disciplina.
 
 Solução em **Python** para a **Global Solution 2026.2 — Citizen Tech**. O projeto reúne um catálogo de serviços públicos com estruturas de dados implementadas manualmente, um agente de IA para orientação sobre documentos pessoais, uma análise de energia e sustentabilidade (SERS) e uma versão mobile acessível.
 
@@ -494,11 +494,6 @@ Jun/
 │   └── resultados/             # determinístico + llm_langgraph + llm_sequencial
 ├── testes_usuarios/            # protocolos, planilhas e relatório (execução pendente)
 ├── pitch/                      # roteiros PCP/IA e SERS; links pendentes
-├── entregas/                   # um documento e um .txt por disciplina
-│   ├── PCP.md / PCP.txt        # Pensamento Computacional e Programação
-│   ├── IA.md / IA.txt          # Prompt and Artificial Intelligence
-│   ├── SERS.md / SERS.txt      # Soluções em Energias Renováveis e Sustentáveis
-│   └── DSA.md / DSA.txt        # Data Structures and Algorithms
 ├── testes/                     # 178 testes Python
 ├── docs/
 │   ├── DOCUMENTACAO.md         # documentação do catálogo DSA
@@ -506,7 +501,6 @@ Jun/
 │   ├── SERS_RELATORIO.md       # análise de energia, cálculos e fontes
 │   └── arquitetura_agente.svg  # diagrama do fluxo do agente
 ├── requirements.txt            # langgraph (opcional)
-├── ENTREGAS.md                 # índice de entrega por disciplina
 ├── README.md
 └── .gitignore
 ```
@@ -578,8 +572,6 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
 ## Documentação
 
 - [`docs/DOCUMENTACAO_UNIFICADA.md`](docs/DOCUMENTACAO_UNIFICADA.md) — documento único da solução, com arquitetura, segurança, SERS, resultados, limitações e checklist.
-- [`ENTREGAS.md`](ENTREGAS.md) — índice dos quatro entregáveis (PCP, IA, SERS e DSA).
-- [`entregas/PCP.md`](entregas/PCP.md), [`entregas/IA.md`](entregas/IA.md), [`entregas/SERS.md`](entregas/SERS.md) e [`entregas/DSA.md`](entregas/DSA.md) — documentos completos por disciplina.
 - [`docs/arquitetura_agente.svg`](docs/arquitetura_agente.svg) — diagrama do fluxo do agente.
 - [`docs/DOCUMENTACAO.md`](docs/DOCUMENTACAO.md) — documentação detalhada do catálogo DSA.
 - [`docs/EVIDENCIAS_TESTES.md`](docs/EVIDENCIAS_TESTES.md) — comandos e saídas reais dos testes.
@@ -604,9 +596,9 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
    - **Pitch (SERS):** até 3 minutos; cole o link em `pitch/link_video.txt`.
    - **Técnico (PCP):** 5 a 8 minutos, com o roteiro obrigatório (JSON, classes, `normalizar()`/`pontuar()`, execução, alteração ao vivo no JSON, histórico/CSV e uma decisão técnica + uma limitação).
 4. Revisar o resultado do juiz LLM (24/26; o parcial é o caso 24 e a falha é o 25) e registrar a análise final.
-5. Preencher os quatro textos de portal (`entregas/PCP.txt`, `entregas/IA.txt`, `entregas/SERS.txt` e `entregas/DSA.txt`) e entregar nos respectivos espaços até 19/11, 23h59.
+5. Preencher os quatro textos de portal na pasta externa `Entregas_GS_2026_2` (`PCP.txt`, `IA.txt`, `SERS.txt` e `DSA.txt`) e entregar nos respectivos espaços até 19/11, 23h59.
 
-Já está pronto: as fichas oficiais foram importadas, o juiz LLM foi executado com `gpt-4o-mini`, o repositório público está em https://github.com/C0utinhoxx/citizen-assist-ai, a base usa o nome/campos do enunciado e o `entregas/PCP.txt` está preenchido (falta só o link do vídeo).
+Já está pronto: as fichas oficiais foram importadas, o juiz LLM foi executado com `gpt-4o-mini`, o repositório público está em https://github.com/C0utinhoxx/citizen-assist-ai e a base usa o nome/campos do enunciado. Os documentos de submissão ficam fora do repositório.
 
 
 ## Licença

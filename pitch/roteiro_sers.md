@@ -5,7 +5,7 @@
 **Duração alvo:** 2min45 · **Limite:** 3 minutos
 **Narração:** humana, por um integrante do grupo. **Sem voz de IA.**
 **Publicação:** YouTube como **não listado**
-**Entrega:** colar o link em [`entregas/SERS.txt`](../entregas/SERS.txt)
+**Entrega:** colar o link no arquivo `SERS.txt` da pasta externa `Entregas_GS_2026_2`
 
 **Equipe:** Bruno Riquelme Coutinho Pereira (RM 569619) · Eduardo Bigoli Portela (RM 569897) · Gustavo Fondato de Souza (RM 573651)
 
@@ -164,5 +164,5 @@ github.com/C0utinhoxx/citizen-assist-ai
 - [ ] A fala cita pelo menos uma limitação.
 - [ ] Nenhum dado pessoal, chave ou nome de participante aparece.
 - [ ] Vídeo publicado como **não listado**.
-- [ ] Link colado em [`entregas/SERS.txt`](../entregas/SERS.txt).
+- [ ] Link colado no `SERS.txt` da pasta externa `Entregas_GS_2026_2`.
 - [ ] Link testado em janela anônima.

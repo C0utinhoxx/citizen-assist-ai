@@ -960,7 +960,7 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 1. Conferir os nomes/RMs e a turma (**1CCPX**) no topo deste documento e no `README.md`.
 2. Preencher a conferência manual de 9 casos em `avaliacao/conferencia_manual.md`.
 3. Executar os testes com pessoas: 5 na IA, ≥3 pessoas / 10 atendimentos no PCP e ≥3 no SERS; preencher planilhas e relatórios.
-4. Gravar os vídeos, publicar como não listado, colar os links em `pitch/link_video.txt` e nos arquivos `entregas/PCP.txt`, `entregas/IA.txt`, `entregas/SERS.txt` e `entregas/DSA.txt`, e usar `pitch/descricao_youtube.md` para a descrição e o comentário.
+4. Gravar os vídeos, publicar como não listado, colar os links em `pitch/link_video.txt` e nos arquivos `PCP.txt`, `IA.txt`, `SERS.txt` e `DSA.txt` da pasta externa `Entregas_GS_2026_2`, e usar `pitch/descricao_youtube.md` para a descrição e o comentário.
 5. Rodar novamente `python3 -m unittest discover -s testes -t .`, `node mobile/teste-logica.js` e `python3 -m sers`.
 6. Confirmar que o repositório público abre sem login e que os arquivos de dados estão versionados.
 7. Revisar o resultado do juiz LLM (24/26; o parcial é o caso 24 e a falha é o 25) e registrar a análise final.

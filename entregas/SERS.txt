@@ -1,7 +1,0 @@
-Nome do assistente: Citizen Assist AI
-Disciplina: Soluções em Energias Renováveis e Sustentáveis (SERS)
-Integrantes e RM: Bruno Riquelme Coutinho Pereira (RM 569619); Eduardo Bigoli Portela (RM 569897); Gustavo Fondato de Souza (RM 573651)
-Link do repositório GitHub: https://github.com/C0utinhoxx/citizen-assist-ai
-Link do vídeo no YouTube: COLE_AQUI_O_LINK_NAO_LISTADO
-
-Observação: o documento completo da entrega está em entregas/SERS.md. A análise compara eficiência energética e solar fotovoltaico, com premissas, cálculos, custos, payback, CO2 evitado, fontes e limitações. A integração está na opção 14 do menu e nas orientações 16 a 18 da base. O relatório técnico está em docs/SERS_RELATORIO.md. O teste com pessoas e o pitch permanecem pendentes.

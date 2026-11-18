@@ -1,7 +1,0 @@
-Nome do assistente: Citizen Assist AI
-Disciplina: Prompt and Artificial Intelligence (IA)
-Integrantes e RM: Bruno Riquelme Coutinho Pereira (RM 569619); Eduardo Bigoli Portela (RM 569897); Gustavo Fondato de Souza (RM 573651)
-Link do repositório GitHub: https://github.com/C0utinhoxx/citizen-assist-ai
-Link do vídeo no YouTube: COLE_AQUI_O_LINK_NAO_LISTADO
-
-Observação: o documento completo da entrega está em entregas/IA.md. O agente usa LangGraph com fallback sequencial, fichas FC-01 a FC-07, Golden Dataset de 26 mensagens e LLM as a Judge (24/26 exatos, 94,2% com gpt-4o-mini). O teste com pessoas e a conferência manual permanecem pendentes.
