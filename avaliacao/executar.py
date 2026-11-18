@@ -41,7 +41,7 @@ def _executar_modo(
     juiz,
 ) -> List[Avaliacao]:
     avaliacoes: List[Avaliacao] = []
-    for caso in dataset["mensagens"]:  # type: ignore[index]
+    for caso in dataset["mensagens"]:
         pergunta = str(caso["mensagem"])
         if nome == "baseline":
             resposta = agente.responder(pergunta)

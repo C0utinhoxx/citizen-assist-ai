@@ -1,0 +1,7 @@
+Nome do projeto: Citizen Assist AI
+Disciplina: Data Structures and Algorithms (DSA)
+Integrantes e RM: Bruno Riquelme Coutinho Pereira (RM 569619); Eduardo Bigoli Portela (RM 569897); Gustavo Fondato de Souza (RM 573651)
+Link do repositório GitHub: https://github.com/C0utinhoxx/citizen-assist-ai
+Link do vídeo de demonstração no YouTube: COLE_AQUI_O_LINK_NAO_LISTADO
+
+Observação: o documento completo da entrega está em entregas/DSA.md. O projeto usa lista encadeada manual, CRUD completo, busca por ID e por texto, Selection Sort próprio e análise Big-O. A suíte tem 178 testes Python e 90 verificações mobile aprovados.

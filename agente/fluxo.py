@@ -5,13 +5,13 @@ from typing import Any, Dict, TypedDict
 
 with warnings.catch_warnings(record=True):
     warnings.simplefilter("always")
-    try:  # pragma: no cover - depende do ambiente
+    try:
         from langgraph.graph import END, StateGraph
 
         LANGGRAPH_DISPONIVEL = True
-    except ImportError:  # pragma: no cover - caminho sem a dependência
-        END = "__end__"  # type: ignore[assignment]
-        StateGraph = None  # type: ignore[assignment]
+    except ImportError:
+        END = "__end__"
+        StateGraph = None
         LANGGRAPH_DISPONIVEL = False
 
 warnings.filterwarnings(
@@ -26,7 +26,7 @@ try:
 
     warnings.filterwarnings("ignore", category=LangChainPendingDeprecationWarning)
     warnings.filterwarnings("ignore", category=LangChainDeprecationWarning)
-except ImportError:  # pragma: no cover - so existe junto com o langgraph
+except ImportError:
     pass
 
 

@@ -347,9 +347,9 @@ Segundo o checklist da documentação unificada (itens pendentes):
 2. **Conferência manual humana:** Formulário em `avaliacao/conferencia_manual.md` pronto, mas falta preenchimento por integrante do grupo.
 3. **Vídeo pitch (SERS):** Roteiro pronto em `pitch/roteiro_sers.md`, mas gravação e publicação pendente.
 4. **Vídeo técnico (PCP):** Roteiro obrigatório pendente (JSON, classes, `normalizar()`/`pontuar()`, execução, alteração ao vivo no JSON, histórico/CSV e uma decisão técnica + uma limitação).
-5. **Link do vídeo:** Falta inserir em `pitch/link_video.txt`, `entrega_portal.txt` e `entrega_sers.txt`.
+5. **Link do vídeo:** Falta inserir em `pitch/link_video.txt`, `entregas/PCP.txt` e `entregas/SERS.txt`.
 6. **Revisar resultado do juiz LLM:** Análise final do caso 24 (parcial) e caso 25 (falha devido a confundir com frase da ficha).
-7. **Preencher entrega no portal:** Link do vídeo técnico precisa ser adicionado em `entrega_portal.txt` até 19/11, 23h59.
+7. **Preencher entrega no portal:** Link do vídeo técnico precisa ser adicionado em `entregas/PCP.txt` até 19/11, 23h59.
 8. **Teste com usuários do SERS:** Protocolo pronto em `testes_usuarios/protocolo_sers.md`; execução pendente.
 
 ---
@@ -818,7 +818,7 @@ Segundo a documentação unificada e o checklist, os seguintes itens ainda não 
 
 #### Projeto 1 (PCP) - Pendências:
 1. **Teste com ≥3 pessoas externas:** Protocolo pronto em `testes_usuarios/protocolo.md`, mas não executado.
-2. **Preencher entrega no portal:** Falta link do vídeo técnico em `entrega_portal.txt`.
+2. **Preencher entrega no portal:** Falta link do vídeo técnico em `entregas/PCP.txt`.
 
 #### Projeto 2 (DSA) - Pendências:
 1. **Ja já estão atendidos:** Todos os 13 requisitos do P2 estão marcados como "Entregue" no checklist, incluindo:
@@ -838,8 +838,8 @@ Segundo a documentação unificada e o checklist, os seguintes itens ainda não 
 1. **Gravar vídeo de 3 minutos (SERS):** Roteiro em `pitch/roteiro_sers.md`; falta gravação.
 2. **Gravar vídeo técnico (PCP):** 5-8 minutos; falta gravação.
 3. **Publicar como não listado no YouTube:** Falta upload e link.
-4. **Preencher `pitch/link_video.txt` e `entrega_sers.txt`:** Falta link do vídeo publicado.
-5. **Preencher `entrega_portal.txt`:** Falta link do vídeo técnico.
+4. **Preencher `pitch/link_video.txt` e `entregas/SERS.txt`:** Falta link do vídeo publicado.
+5. **Preencher `entregas/PCP.txt`:** Falta link do vídeo técnico.
 6. **Resultados teste com pessoas:** Dados não foram coletados ainda.
 
 > **Já entregue no SERS:** relatório com premissas, duas alternativas, cálculos, custos, payback, CO₂, integração (opção 14 e orientações 16-18), limitações e referências; 9 testes automatizados.

@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from __future__ import annotations
 
 import argparse
@@ -102,14 +100,14 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def _enviar_erro(self, codigo: int, mensagem: str) -> None:
         self._enviar_json(codigo, {"erro": mensagem})
 
-    def do_OPTIONS(self) -> None:  # noqa: N802 (nome exigido pela biblioteca)
+    def do_OPTIONS(self) -> None:
         if self.path.split("?", 1)[0].startswith("/api/"):
             self.send_response(204)
             self.end_headers()
             return
         self._enviar_erro(404, "Endpoint não encontrado.")
 
-    def do_GET(self) -> None:  # noqa: N802 (nome exigido pela biblioteca)
+    def do_GET(self) -> None:
         if self.path == "/api/tts/status":
             self._enviar_json(200, tts.status())
             return
@@ -127,7 +125,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return
         super().do_GET()
 
-    def do_POST(self) -> None:  # noqa: N802 (nome exigido pela biblioteca)
+    def do_POST(self) -> None:
         if self.path == "/api/tts":
             self._post_tts()
             return

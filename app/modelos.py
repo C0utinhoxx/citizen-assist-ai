@@ -1,14 +1,4 @@
 class Orientacao:
-    """Uma orientação da base de conhecimento (um registro do JSON).
-
-    Campos canônicos (os mesmos do enunciado): id, categoria, titulo,
-    palavras_chave, resposta, documentos, onde, fonte, verificado_em.
-
-    Por compatibilidade com o código antigo do catálogo, os nomes
-    ``descricao`` e ``local`` continuam funcionando como apelidos de
-    ``resposta`` e ``onde`` (leitura e escrita).
-    """
-
     def __init__(self, id, titulo, categoria, descricao=None, documentos=None,
                  local=None, fonte="", palavras_chave=None, verificado_em="",
                  resposta=None, onde=None):

@@ -95,7 +95,7 @@ Roteiro obrigatório (um bloco por integrante):
 
 Depois:
 - [ ] Upload **não listado**, duração ≤ 8 min
-- [ ] Link colado em `pitch/link_video.txt` **e** em `entrega_portal.txt`
+- [ ] Link colado em `pitch/link_video.txt` **e** em `entregas/PCP.txt`
 - [ ] Commit da alteração ao vivo no JSON (`git add data/base_conhecimento.json`)
 
 ---
@@ -108,7 +108,7 @@ Roteiro pronto: [`pitch/roteiro_sers.md`](pitch/roteiro_sers.md). Descrição/co
 - [ ] Deixa claro a proposta e o tema da GS
 - [ ] Comentário fixado: **individual, dupla ou trio + nomes e RMs**
 - [ ] Somente **um** integrante entrega
-- [ ] Link colado em `pitch/link_video.txt` **e** em `entrega_sers.txt`
+- [ ] Link colado em `pitch/link_video.txt` **e** em `entregas/SERS.txt`
 
 ---
 
@@ -127,7 +127,7 @@ python3 main.py        # testar 9 (pergunta), 10 (categorias), 11 (indicadores),
 
 - [ ] 178 testes OK · 90 verificações mobile OK · melhorado 26/26
 - [ ] README: integrantes+RMs, público, problema, ODS, execução, pontuação, integrações, fontes, teste com usuários, limitações e **links dos vídeos**
-- [ ] `entrega_portal.txt` e `entrega_sers.txt` com todos os campos preenchidos (sem placeholder)
+- [ ] `entregas/PCP.txt`, `entregas/IA.txt`, `entregas/SERS.txt` e `entregas/DSA.txt` com todos os campos preenchidos (sem placeholder)
 - [ ] Links dos vídeos testados em janela anônima
 
 ### 5.2 Publicar
@@ -142,18 +142,24 @@ git push origin main
 
 Entregar os arquivos `.txt` nos respectivos espaços do portal, até **19/11 23h59**:
 
-**PCP / DSA — `entrega_portal.txt`:**
+**PCP — `entregas/PCP.txt`:**
 ```text
 Nome do assistente: Citizen Assist AI
+Disciplina: Pensamento Computacional e Programação (PCP)
 Público atendido: pessoas idosas (60+) e familiares/cuidadores
 Integrantes e RM: Bruno Riquelme Coutinho Pereira (569619); Eduardo Bigoli Portela (569897); Gustavo Fondato de Souza (573651)
 Link do repositório GitHub: https://github.com/C0utinhoxx/citizen-assist-ai
 Link do vídeo técnico no YouTube: <link não listado>
 ```
 
-**SERS — `entrega_sers.txt`:** conferir o conteúdo do arquivo antes de enviar (tema, integrantes, repositório e link do pitch).
+**IA — `entregas/IA.txt`:** conferir o conteúdo antes de enviar (LangGraph, Golden Dataset, juiz LLM e pendências).
 
-- [ ] Arquivos `.txt` enviados (só um integrante por disciplina)
+**SERS — `entregas/SERS.txt`:** conferir o conteúdo antes de enviar (tema, integrantes, repositório e link do pitch).
+
+**DSA — `entregas/DSA.txt`:** conferir o conteúdo antes de enviar (lista encadeada, Selection Sort, Big-O e link do vídeo).
+
+- [ ] Os quatro arquivos `.txt` revisados
+- [ ] Arquivos enviados nos respectivos espaços do portal (só um integrante por disciplina)
 - [ ] Print/comprovante do envio salvo no grupo
 - [ ] Repositório e vídeos ainda acessíveis na data da correção
 

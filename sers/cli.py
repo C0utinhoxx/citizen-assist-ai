@@ -1,5 +1,3 @@
-"""Interface de terminal da contribuição SERS no Citizen Assist AI."""
-
 from __future__ import annotations
 
 from typing import Optional

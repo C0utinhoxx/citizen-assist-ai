@@ -1,13 +1,3 @@
-"""Cálculos da contribuição SERS para o Citizen Assist AI.
-
-Todas as premissas ficam em um único objeto ``Premissas`` e podem ser
-alteradas pela interface. Os valores padrão representam uma casa de baixa
-renda com consumo estimado de 150 kWh/mês e tarifa de R$ 0,90/kWh. As fontes
-e as condições estão em ``FONTES`` e no relatório ``docs/SERS_RELATORIO.md``.
-
-Nenhum dado pessoal é lido, guardado ou enviado. O cálculo é local.
-"""
-
 from __future__ import annotations
 
 import math
@@ -17,14 +7,11 @@ from typing import Dict, List
 
 @dataclass(frozen=True)
 class Premissas:
-    """Premissas do cenário. Valores em kWh, W, R$ e anos."""
-
     consumo_mensal_kwh: float = 150.0
     tarifa_rs_kwh: float = 0.90
     dias_no_mes: int = 30
     meses_no_ano: int = 12
 
-    # Eficiência energética: lâmpadas e standby.
     lampadas: int = 5
     potencia_antiga_w: float = 60.0
     potencia_led_w: float = 9.0
@@ -33,13 +20,11 @@ class Premissas:
     potencia_standby_w: float = 8.0
     custo_corta_standby_rs: float = 60.0
 
-    # Geração solar fotovoltaica.
     produtividade_kwh_kwp_ano: float = 1200.0
     custo_kwp_rs: float = 5000.0
     fator_compensacao: float = 0.85
     vida_util_anos: int = 25
 
-    # Fator médio do Sistema Interligado Nacional (MCTI, ano-base 2024).
     fator_emissao_kg_kwh: float = 0.040
 
     def validar(self) -> None:
@@ -85,8 +70,6 @@ def _payback_anos(investimento: float, economia_ano: float) -> float:
 
 
 def economia_eficiencia(p: Premissas) -> Dict[str, float]:
-    """Alternativa A: troca de lâmpadas e corte de standby."""
-
     p.validar()
 
     economia_led_dia = (
@@ -127,8 +110,6 @@ def economia_eficiencia(p: Premissas) -> Dict[str, float]:
 
 
 def economia_solar(p: Premissas, consumo_mensal_kwh: float | None = None) -> Dict[str, float]:
-    """Alternativa B: sistema fotovoltaico dimensionado para o consumo."""
-
     p.validar()
     consumo = (
         p.consumo_mensal_kwh if consumo_mensal_kwh is None else consumo_mensal_kwh
@@ -169,8 +150,6 @@ def economia_solar(p: Premissas, consumo_mensal_kwh: float | None = None) -> Dic
 
 
 def analisar(p: Premissas | None = None) -> Dict[str, object]:
-    """Compara as duas alternativas e calcula o cenário combinado."""
-
     p = p or Premissas()
     p.validar()
 
@@ -279,8 +258,6 @@ def _linha(tabela: List[List[str]]) -> str:
 
 
 def formatar_relatorio(resultado: Dict[str, object] | None = None) -> str:
-    """Devolve o relatório em texto, adequado ao terminal e ao README."""
-
     dados = resultado or analisar()
     p = dados["premissas"]
     eficiencia = dados["eficiencia"]

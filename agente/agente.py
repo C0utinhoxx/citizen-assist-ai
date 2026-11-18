@@ -58,7 +58,7 @@ class AgenteCidadao:
         if provedor is _AUTO:
             self.provedor: Optional[Provedor] = criar_provedor() if usar_llm else None
         else:
-            self.provedor = provedor  # type: ignore[assignment]
+            self.provedor = provedor
 
         self.modo = "llm" if self.provedor is not None else "extrativo"
         self.ultimo_erro_provedor = ""
@@ -307,7 +307,7 @@ class AgenteCidadao:
         self, pergunta: str, selecionadas: Sequence[Ocorrencia]
     ) -> Resposta:
         try:
-            texto = self.provedor.gerar(  # type: ignore[union-attr]
+            texto = self.provedor.gerar(
                 SISTEMA, montar_consulta(pergunta, selecionadas)
             )
         except ErroProvedor as erro:

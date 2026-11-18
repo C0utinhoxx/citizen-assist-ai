@@ -272,4 +272,4 @@ Registro previsto (sem nome, CPF ou endereço): código anônimo, tempo, acertos
 | Referências e limitações | seções 9 e 11 | Atendido |
 | Testes com usuários | seção 10 | **Pendente de execução** |
 | Vídeo de até 3 minutos | [`pitch/roteiro_sers.md`](../pitch/roteiro_sers.md) | **Pendente de gravação** |
-| Repositório e arquivo `.txt` | [`entrega_sers.txt`](../entrega_sers.txt) | Link do vídeo pendente |
+| Repositório e arquivo `.txt` | [`entregas/SERS.txt`](../entregas/SERS.txt) | Link do vídeo pendente |

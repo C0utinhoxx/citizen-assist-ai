@@ -1,9 +1,3 @@
-"""Verifica a API descrita no enunciado de PCP.
-
-Cobre os atalhos da raiz (orientacao.py, base_conhecimento.py,
-assistente.py) e o uso ``BaseConhecimento(caminho).carregar()``.
-"""
-
 import json
 import unittest
 from pathlib import Path

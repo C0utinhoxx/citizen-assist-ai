@@ -13,7 +13,7 @@ IDS = [1, 3, 8, 13, 20, 21, 22, 24, 25]
 
 
 def _casos_por_id(dataset: Dict[str, object]) -> Dict[int, Dict[str, object]]:
-    return {int(m["id"]): m for m in dataset["mensagens"]}  # type: ignore[index]
+    return {int(m["id"]): m for m in dataset["mensagens"]}
 
 
 def gerar(saida: Path = SAIDA) -> Path:

@@ -125,7 +125,7 @@ Public service information is fragmented, written in administrative language, di
 - Vídeo pitch de 3 minutos (roteiro pronto, gravação pendente)
 - Vídeo técnico 5-8 minutos (roteiro obrigatório, gravação pendente)
 - Link do vídeo não listado no YouTube (pendente)
-- Preenchimento entrega_portal.txt (falta link vídeo técnico)
+- Preenchimento entregas/PCP.txt (falta link vídeo técnico)
 
 ### ❌ NOT IMPLEMENTATED (or explicitly avoided)
 - Busca semântica/embeddings (uso de embeddings explicitly avoided)

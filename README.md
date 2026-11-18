@@ -494,8 +494,11 @@ Jun/
 │   └── resultados/             # determinístico + llm_langgraph + llm_sequencial
 ├── testes_usuarios/            # protocolos, planilhas e relatório (execução pendente)
 ├── pitch/                      # roteiros PCP/IA e SERS; links pendentes
-├── entrega_portal.txt          # entrega PCP (falta o link do vídeo técnico)
-├── entrega_sers.txt            # entrega SERS (falta o link do vídeo)
+├── entregas/                   # um documento e um .txt por disciplina
+│   ├── PCP.md / PCP.txt        # Pensamento Computacional e Programação
+│   ├── IA.md / IA.txt          # Prompt and Artificial Intelligence
+│   ├── SERS.md / SERS.txt      # Soluções em Energias Renováveis e Sustentáveis
+│   └── DSA.md / DSA.txt        # Data Structures and Algorithms
 ├── testes/                     # 178 testes Python
 ├── docs/
 │   ├── DOCUMENTACAO.md         # documentação do catálogo DSA
@@ -575,7 +578,8 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
 ## Documentação
 
 - [`docs/DOCUMENTACAO_UNIFICADA.md`](docs/DOCUMENTACAO_UNIFICADA.md) — documento único da solução, com arquitetura, segurança, SERS, resultados, limitações e checklist.
-- [`ENTREGAS.md`](ENTREGAS.md) — índice de entrega por disciplina (PCP, IA, SERS e DSA).
+- [`ENTREGAS.md`](ENTREGAS.md) — índice dos quatro entregáveis (PCP, IA, SERS e DSA).
+- [`entregas/PCP.md`](entregas/PCP.md), [`entregas/IA.md`](entregas/IA.md), [`entregas/SERS.md`](entregas/SERS.md) e [`entregas/DSA.md`](entregas/DSA.md) — documentos completos por disciplina.
 - [`docs/arquitetura_agente.svg`](docs/arquitetura_agente.svg) — diagrama do fluxo do agente.
 - [`docs/DOCUMENTACAO.md`](docs/DOCUMENTACAO.md) — documentação detalhada do catálogo DSA.
 - [`docs/EVIDENCIAS_TESTES.md`](docs/EVIDENCIAS_TESTES.md) — comandos e saídas reais dos testes.
@@ -600,9 +604,9 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
    - **Pitch (SERS):** até 3 minutos; cole o link em `pitch/link_video.txt`.
    - **Técnico (PCP):** 5 a 8 minutos, com o roteiro obrigatório (JSON, classes, `normalizar()`/`pontuar()`, execução, alteração ao vivo no JSON, histórico/CSV e uma decisão técnica + uma limitação).
 4. Revisar o resultado do juiz LLM (24/26; o parcial é o caso 24 e a falha é o 25) e registrar a análise final.
-5. Colar o link do vídeo técnico em `entrega_portal.txt`, o do pitch em `entrega_sers.txt` e entregar os `.txt` no portal da FIAP até 19/11, 23h59.
+5. Preencher os quatro textos de portal (`entregas/PCP.txt`, `entregas/IA.txt`, `entregas/SERS.txt` e `entregas/DSA.txt`) e entregar nos respectivos espaços até 19/11, 23h59.
 
-Já está pronto: as fichas oficiais foram importadas, o juiz LLM foi executado com `gpt-4o-mini`, o repositório público está em https://github.com/C0utinhoxx/citizen-assist-ai, a base usa o nome/campos do enunciado e o `entrega_portal.txt` está preenchido (falta só o link do vídeo).
+Já está pronto: as fichas oficiais foram importadas, o juiz LLM foi executado com `gpt-4o-mini`, o repositório público está em https://github.com/C0utinhoxx/citizen-assist-ai, a base usa o nome/campos do enunciado e o `entregas/PCP.txt` está preenchido (falta só o link do vídeo).
 
 
 ## Licença
