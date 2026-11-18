@@ -75,5 +75,26 @@
     "tentativas": 1,
     "tempo": 8.1,
     "nota_facilidade": 5
+  },
+  {
+    "data": "2026-11-17 20:26:59",
+    "origem": "pergunta",
+    "pergunta": "sus",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 9.1
+  },
+  {
+    "data": "2026-11-17 20:30:30",
+    "origem": "categoria",
+    "pergunta": "Tomar a vacina da gripe",
+    "id_orientacao": 2,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 7.5,
+    "nota_facilidade": 5
   }
 ]

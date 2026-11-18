@@ -10,6 +10,8 @@ Esta pasta contém:
 - [`planilha.csv`](planilha.csv) — planilha para consolidar os resultados das tarefas.
 - [`questionario.csv`](questionario.csv) — planilha para o questionário de facilidade de uso (5 perguntas).
 - [`relatorio.md`](relatorio.md) — modelo do relatório final, com as tabelas a preencher.
+- [`protocolo_sers.md`](protocolo_sers.md) — protocolo específico da contribuição de energia (SERS), com 5 tarefas e registro anônimo.
+- [`planilha_sers.csv`](planilha_sers.csv) e [`questionario_sers.csv`](questionario_sers.csv) — planilhas da sessão de energia.
 
 ## Regras de privacidade
 

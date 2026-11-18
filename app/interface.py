@@ -301,6 +301,7 @@ def mostrar_menu(lista, assistente):
     print("11 - Indicadores de atendimento")
     print("12 - Exportar atendimentos para CSV")
     print("13 - Agente de documentos pessoais (IA)")
+    print("14 - Energia e sustentabilidade (SERS)")
     print("0 - Salvar e sair")
     print("=" * 60)
 
@@ -308,7 +309,7 @@ def mostrar_menu(lista, assistente):
 def executar_menu(lista, assistente, caminho_servicos):
     while True:
         mostrar_menu(lista, assistente)
-        opcao = ler_inteiro("Escolha uma opção: ", 0, 13)
+        opcao = ler_inteiro("Escolha uma opção: ", 0, 14)
 
         if opcao == 0:
             if salvar_servicos(caminho_servicos, lista):
@@ -346,6 +347,10 @@ def executar_menu(lista, assistente, caminho_servicos):
             from agente.cli import executar_menu_agente
 
             executar_menu_agente()
+        elif opcao == 14:
+            from sers.cli import executar_menu_sers
+
+            executar_menu_sers()
 
         if alterou:
             salvar_servicos(caminho_servicos, lista)

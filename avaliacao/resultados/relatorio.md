@@ -1,6 +1,6 @@
 # Resultados do Golden Dataset
 
-- Executado em: **2026-11-14 11:14:56**
+- Executado em: **2026-11-18 11:28:53**
 - Dataset: **1.0** (26 mensagens originais)
 - Juiz: **deterministico**
 - Provedor: **openai (configurado)**

@@ -138,7 +138,7 @@ O arquivo `data/base_conhecimento.json` contém uma lista de dicionários, cada 
 6. Se algum registro falhar (KeyError, TypeError, ValueError), avisa e ignora aquele registro.
 7. Os serviços válidos são retornados como lista, prontos para serem inseridos na `ListaEncadeada`.
 
-O JSON tem 15 orientações atuais (IDs 1-15) nas categorias: Saúde, Documentos, Direitos e Benefícios, Transporte.
+O JSON tem 18 orientações atuais (IDs 1-18) nas categorias: Saúde, Documentos, Direitos e Benefícios, Transporte e Energia.
 
 ### 5. Como funciona a busca inteligente e o cálculo de pontuação
 
@@ -281,7 +281,7 @@ O resultado é um arquivo `atendimentos.csv` com os dados estruturados, pronto p
 - `test_integracao.py`: 17 (depois de atualização, 18) testes cobrindo validações, CRUD completo e fluxo do menu unificado.
 - `test_tts_mobile.py`: 22 testes de voz natural.
 
-**Total original:** 81 testes. **Atual total:** 168 testes (inclui agente e avaliação).
+**Total original:** 81 testes. **Atual total:** 178 testes (inclui agente, avaliação, SERS e voz mobile).
 
 #### Testes mobile:
 - `node mobile/teste-logica.js`: 90 verificações aprovadas.
@@ -298,7 +298,7 @@ cd Jun
 python3 main.py
 ```
 
-Isso iniciará o menu unificado com 15 serviços já cadastrados. As opções são:
+Isso iniciará o menu unificado com 18 serviços já cadastrados. As opções são:
 - 1: Cadastrar serviço
 - 2: Consultar por ID
 - 3: Pesquisar por título/categoria/descrição
@@ -312,6 +312,7 @@ Isso iniciará o menu unificado com 15 serviços já cadastrados. As opções s�
 - 11: Indicadores de atendimento
 - 12: Exportar atendimentos para CSV
 - 13: Agente de documentos pessoais (IA)
+- 14: Energia e sustentabilidade (SERS)
 - 0: Salvar e sair
 
 #### Execução do agente independente:
@@ -344,11 +345,12 @@ Segundo o checklist da documentação unificada (itens pendentes):
 
 1. **Teste com ≥5 pessoas externas (IA):** Protocolo pronto em `testes_usuarios/protocolo.md`, mas ainda não executado.
 2. **Conferência manual humana:** Formulário em `avaliacao/conferencia_manual.md` pronto, mas falta preenchimento por integrante do grupo.
-3. **Vídeo pitch (SERS):** Roteiro pronto em `pitch/roteiro.md`, mas gravação e publicação pendente.
+3. **Vídeo pitch (SERS):** Roteiro pronto em `pitch/roteiro_sers.md`, mas gravação e publicação pendente.
 4. **Vídeo técnico (PCP):** Roteiro obrigatório pendente (JSON, classes, `normalizar()`/`pontuar()`, execução, alteração ao vivo no JSON, histórico/CSV e uma decisão técnica + uma limitação).
-5. **Link do vídeo:** Falta inserir em `pitch/link_video.txt` e `entrega_portal.txt`.
+5. **Link do vídeo:** Falta inserir em `pitch/link_video.txt`, `entrega_portal.txt` e `entrega_sers.txt`.
 6. **Revisar resultado do juiz LLM:** Análise final do caso 24 (parcial) e caso 25 (falha devido a confundir com frase da ficha).
 7. **Preencher entrega no portal:** Link do vídeo técnico precisa ser adicionado em `entrega_portal.txt` até 19/11, 23h59.
+8. **Teste com usuários do SERS:** Protocolo pronto em `testes_usuarios/protocolo_sers.md`; execução pendente.
 
 ---
 
@@ -501,7 +503,7 @@ Dois algoritmos de busca estão implementados:
 
 ### 12. Como funciona o menu de DSA
 
-O menu unificado está em `app/interface.py` via a função `executar_menu(lista, assistente, caminho_servicos)`. Ele possui 14 opções (0 a 13):
+O menu unificado está em `app/interface.py` via a função `executar_menu(lista, assistente, caminho_servicos)`. Ele possui 15 opções (0 a 14):
 
 | Opção | Operação |
 |---|---|
@@ -519,14 +521,15 @@ O menu unificado está em `app/interface.py` via a função `executar_menu(lista
 | 11 | Indicadores de atendimento |
 | 12 | Exportar atendimentos para CSV |
 | 13 | Agente de documentos pessoais (IA) |
+| 14 | Energia e sustentabilidade (SERS) |
 | - | **Validados:** IDs duplicados são recusados; entradas inválidas não encerram o programa; campos obrigatórios não podem ficar vazios. |
 
-O menu mostra no topo a quantidade de serviços cadastrados e as categorias disponíveis. Opções inválidas (fora do range 0-13) fazem o menu ser mostrado novamente após mensagem de erro.
+O menu mostra no topo a quantidade de serviços cadastrados e as categorias disponíveis. Opções inválidas (fora do range 0-14) fazem o menu ser mostrado novamente após mensagem de erro.
 
 ### 13. Quais validações foram implementadas
 
 #### Validações de entrada do menu:
-- Opções de menu devem ser números inteiros de 0 a 13; letras ou números fora desse range geram mensagem "Entrada inválida. Digite um número de 0 a 13." e o menu é mostrado novamente.
+- Opções de menu devem ser números inteiros de 0 a 14; letras ou números fora desse range geram mensagem "Entrada inválida. Digite um número de 0 a 14." e o menu é mostrado novamente.
 - Campos obrigatórios (título, categoria, descrição/local) não podem ficar vazios; o sistema pede preenchimento.
 - IDs para consultar/atualizar/excluir devem ser inteiros positivos; IDs inexistentes mostram "Serviço não encontrado." e não alteram a lista.
 
@@ -546,16 +549,17 @@ O menu mostra no topo a quantidade de serviços cadastrados e as categorias disp
 
 #### Testes automatizados da suíte DSA/P1/P2 (arquivos `testes/`):
 - `test_lista_encadeada.py`: 14 testes cobrindo todos os métodos da lista (inserção, percurso, busca, atualização, remoção, ordenação, lista vazia, integridade dos ponteiros, ID duplicado, contagem por categoria).
-- `test_base_conhecimento.py`: 9 testes cobrindo dados unificados (15 serviços, IDs únicos), categorias ordenadas, busca por categoria (ignorando acento/maiúscula), pontuação do cartão SUS (exatamente 7 pontos), busca sem resultado, ranking decrescente, empate desempatado por ID menor, palavra-chave não deve casa em pedaço de palavra, título também pontua.
+- `test_base_conhecimento.py`: 9 testes cobrindo dados unificados (18 serviços, IDs únicos), categorias ordenadas, busca por categoria (ignorando acento/maiúscula), pontuação do cartão SUS (exatamente 7 pontos), busca sem resultado, ranking decrescente, empate desempatado por ID menor, palavra-chave não deve casa em pedaço de palavra, título também pontua.
 - `test_assistente.py`: 11 testes cobrindo detecção de dado pessoal, pergunta encontrada com confiança ALTA, bloqueio de dado pessoal (não entra no histórico), pergunta sem resultado, navegação por categoria, cálculo de indicadores, indicadores sem atendimentos, registro persistente no JSON, exportação CSV, finalizar salvando nota e exportando CSV.
 - `test_persistencia.py`: 8 testes cobrindo JSON (arquivo ausente, corrompido, compatibilidade com duas versões), CSV.
-- `test_integracao.py`: 18 (originalmente 17, atualizado após inclusão do agente) testes cobrindo validações, CRUD completo e fluxo do menu unificado.
+- `test_integracao.py`: 19 testes cobrindo validações, CRUD completo, fluxo do menu unificado, opção 13 e opção 14 (SERS).
+- `test_sers_energia.py`: 9 testes cobrindo premissas, eficiência, solar, payback, CO₂, comparação e relatório.
 
-**Total na suíte atual:** 168 testes (82 do catálogo/mobile + 61 do agente/avaliação + 22 da voz mobile).
+**Total na suíte atual:** 178 testes (61 do catálogo/DSA + 64 do agente/avaliação + 9 do SERS + 44 de API/voz mobile).
 
 #### Resultados observados:
-- **168 testes Python aprovados** (execução: `python3 -m unittest discover -s testes -t . -v` → `Ran 168 tests in 1.524s OK`).
-- **168 testes Python aprovados** também sem LangGraph instalado (fallback sequencial).
+- **178 testes Python aprovados** (execução: `python3 -m unittest discover -s testes -t . -v`).
+- **178 testes Python aprovados** também sem LangGraph instalado (fallback sequencial).
 - **90 verificações mobile** aprovadas (`node mobile/teste-logica.js`).
 
 ### 15. Quais funcionalidades ainda faltam implementar
@@ -582,7 +586,7 @@ Segundo o checklist da documentação:
 
 ## PARTE 3 — INFORMAÇÕES PARA OS VÍDEOS
 
-### Apresentadores: Bruno, Eduardo, Jon
+### Apresentadores: Bruno, Eduardo, Gustavo
 
 #### Funcionalidades que cada pessoa pode explicar (PCP):
 
@@ -606,7 +610,7 @@ Segundo o checklist da documentação:
 - Funcionamento do método `_chave` para ordenação.
 - Arquivos `app/lista_encadeada.py` e `app/interface.py`.
 
-**Jon (provavelmente terceiro integrante ou responsável por aspecto específico):**
+**Gustavo (terceiro integrante):**
 - Leitura e processamento do JSON `data/base_conhecimento.json`.
 - Modelo `Orientacao/Servico` e campos canônicos.
 - Normalização de texto (`app/texto.py`): `normalizar()`, `contem_palavra()`.
@@ -629,10 +633,10 @@ Segundo o checklist da documentação:
 - Busca linear por ID e por atributo.
 - Selection Sort: passo a passo de como funciona o algoritmo na lista encadeada.
 - Complexidade Big-O de cada operação.
-- Menu de DSA: todas as opções 0 a 13.
+- Menu de DSA: todas as opções 0 a 14.
 - Atualização e exclusão de nós (tratamento de ponteiros).
 
-**Jon:**
+**Gustavo:**
 - Como o Selection Sort troca dados dos nós sem remover/inserir.
 - Modelo `Servico`/`Orientacao`: todos os campos e seus significados.
 - Como funciona o `_ordenar_categorias` no `BaseConhecimento`.
@@ -821,22 +825,23 @@ Segundo a documentação unificada e o checklist, os seguintes itens ainda não 
    - Lista encadeada manual ✓
    - Busca, Selection Sort, indicadores, CSV, JSON ✓
    - 13 requisitos ✓
-   - 148 testes aprovados ✓
+   - 178 testes aprovados ✓
    - Mobile 90 verificações ✓
 
 #### Projeto 3 (Agente de IA) - Pendências:
 1. **Conferência manual humana:** Formulário pronto; execução pendente.
 2. **Teste com 5 pessoas externas:** Protocolo pronto; execução pendente.
-3. **Vídeo pitch (SERS):** Roteiro pronto; gravação e publicação pendentes.
-4. **Vídeo técnico (PCP):** Roteiro obrigatório pendente (JSON, classes, `normalizar()`/`pontuar()`, execução, alteração ao vivo no JSON, histórico/CSV e uma decisão técnica + uma limitação).
-5. **Revisar resultado do juiz LLM:** Análise final do caso 24 (parcial) e caso 25 (falha por frase da ficha).
+3. **Vídeo técnico (PCP):** Roteiro obrigatório pendente (JSON, classes, `normalizar()`/`pontuar()`, execução, alteração ao vivo no JSON, histórico/CSV e uma decisão técnica + uma limitação).
+4. **Revisar resultado do juiz LLM:** Análise final do caso 24 (parcial) e caso 25 (falha por frase da ficha).
 
-#### Projeto 4 (Pitch/Vídeo) - Pendências:
-1. **Gravar vídeo de 3 minutos (SERS):** Roteiro em `pitch/roteiro.md`; falta gravação.
+#### Projeto 4 (SERS) - Pendências:
+1. **Gravar vídeo de 3 minutos (SERS):** Roteiro em `pitch/roteiro_sers.md`; falta gravação.
 2. **Gravar vídeo técnico (PCP):** 5-8 minutos; falta gravação.
 3. **Publicar como não listado no YouTube:** Falta upload e link.
-4. **Preencher `pitch/link_video.txt`:** Falta link do vídeo publicado.
+4. **Preencher `pitch/link_video.txt` e `entrega_sers.txt`:** Falta link do vídeo publicado.
 5. **Preencher `entrega_portal.txt`:** Falta link do vídeo técnico.
 6. **Resultados teste com pessoas:** Dados não foram coletados ainda.
+
+> **Já entregue no SERS:** relatório com premissas, duas alternativas, cálculos, custos, payback, CO₂, integração (opção 14 e orientações 16-18), limitações e referências; 9 testes automatizados.
 
 ---

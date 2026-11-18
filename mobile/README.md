@@ -6,7 +6,7 @@ Aplicativo completo em **um único arquivo HTML**, feito para rodar no celular *
 
 | Arquivo | Para que serve |
 |---|---|
-| `index.html` | O aplicativo inteiro: HTML, CSS, JavaScript e os 15 serviços iniciais embutidos. É o único arquivo necessário no celular. |
+| `index.html` | O aplicativo inteiro: HTML, CSS, JavaScript e os 18 serviços iniciais embutidos. É o único arquivo necessário no celular. |
 | `servir.py` | Opcional. Servidor local em Python para abrir o app pelo Wi-Fi quando o navegador do celular bloqueia arquivos locais. Também oferece a API opcional de voz natural. |
 | `tts.py` | Opcional. Síntese de voz natural (Azure) ou modo de teste, usada pelo `servir.py`. A chave da API fica no computador, nunca no HTML. |
 | `.env.example` | Modelo de configuração da voz natural. Copie para `.env` e preencha a chave do Azure. |
@@ -84,7 +84,7 @@ python3 servir.py --port 0
 - Exportar e importar **backup em JSON**.
 - Alternar entre tema claro, escuro e automático.
 - Aumentar o tamanho do texto.
-- Restaurar os 15 serviços de exemplo.
+- Restaurar os 18 serviços de exemplo.
 
 ## Voz: falar em vez de digitar
 
@@ -278,7 +278,7 @@ Os testes Python incluem a API de voz natural e o servidor local. Na raiz do pro
 python3 -m unittest discover -s testes -t . -v
 ```
 
-Resultado atual: **168 testes Python aprovados**, incluindo catálogo, agente, avaliação, voz natural e transcrição pelo servidor.
+Resultado atual: **178 testes Python aprovados**, incluindo catálogo, agente, avaliação, SERS, voz natural e transcrição pelo servidor.
 
 ## Compatibilidade
 

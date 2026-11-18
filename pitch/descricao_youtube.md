@@ -27,11 +27,12 @@ O Citizen Assist AI é um assistente digital que responde a dúvidas sobre RG, C
 O projeto tem quatro componentes:
 • DSA (Projetos 1 e 2) — catálogo de serviços com lista encadeada e Selection Sort implementados manualmente, busca por pontuação, indicadores e exportação CSV.
 • Citizen Assist AI (Projeto 3) — agente de IA com LangGraph, proteção de dados pessoais, resistência a prompt injection e avaliação automática no Golden Dataset de 26 casos com LLM as a Judge.
-• Vídeo pitch (Projeto 4) — este vídeo.
+• SERS (Projeto 4) — análise de energia com duas alternativas (eficiência e solar fotovoltaico), premissas, custos, payback, CO₂ evitado e integração ao menu na opção 14.
+• Vídeo pitch (SERS) — este vídeo.
 
 Tecnologias: Python 3.9+, LangGraph (com fallback sequencial), modelos compatíveis com OpenAI (Groq, OpenAI e Ollama local), HTML/CSS/JavaScript sem framework.
 
-Avaliação: 26 de 26 acertos exatos no juiz determinístico (offline, reproduzível) e 24 de 26 no juiz LLM com gpt-4o-mini e LangGraph (94,2%). O fallback sequencial recebeu nota idêntica nos 26 casos. A suíte tem 168 testes Python e 90 verificações mobile aprovados.
+Avaliação: 26 de 26 acertos exatos no juiz determinístico (offline, reproduzível) e 24 de 26 no juiz LLM com gpt-4o-mini e LangGraph (94,2%). O fallback sequencial recebeu nota idêntica nos 26 casos. A suíte tem 178 testes Python e 90 verificações mobile aprovados.
 
 Importante: as fichas são material didático fictício da Central do Cidadão de Aurora, criado exclusivamente para a atividade acadêmica. O assistente não é um canal oficial e não consulta sistemas do governo. Confirme sempre as informações no órgão competente.
 

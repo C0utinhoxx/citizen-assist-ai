@@ -4,7 +4,7 @@
 **Disciplina:** Data Structures and Algorithms (DSA)  
 **Instituição:** FIAP
 
-> **Preencher antes da entrega:** apenas o link do vídeo. A turma (1CCPX), os nomes/RMs e o link do repositório já estão preenchidos abaixo.
+> **Preencher antes da entrega:** links dos vídeos e resultados reais dos testes com pessoas. A turma (1CCPX), os nomes/RMs e o link do repositório já estão preenchidos abaixo.
 
 ## Sumário
 
@@ -22,8 +22,9 @@
 12. [Avaliação no Golden Dataset](#12-avaliação-no-golden-dataset)
 13. [Testes com usuários](#13-testes-com-usuários)
 14. [Testes técnicos e evidências](#14-testes-técnicos-e-evidências)
-15. [Limitações, riscos e trabalhos futuros](#15-limitações-riscos-e-trabalhos-futuros)
-16. [Conclusão e checklist de entrega](#16-conclusão-e-checklist-de-entrega)
+15. [Projeto 4 — SERS: energia e sustentabilidade](#15-projeto-4--sers-energia-e-sustentabilidade)
+16. [Limitações, riscos e trabalhos futuros](#16-limitações-riscos-e-trabalhos-futuros)
+17. [Conclusão e checklist de entrega](#17-conclusão-e-checklist-de-entrega)
 
 ---
 
@@ -40,13 +41,14 @@
 
 O **Citizen Assist AI** reúne uma proposta de atendimento ao cidadão, um catálogo de serviços implementado com estruturas de dados manuais e um agente de IA restrito a sete fichas de referência. O sistema foi pensado para pessoas que têm dificuldade de encontrar informação pública confiável, especialmente em periferias, famílias de baixa renda, idosos, jovens e cuidadores.
 
-A solução tem três camadas:
+A solução tem quatro camadas:
 
 1. **Catálogo DSA** — serviços organizados em lista encadeada, com busca, ordenação, indicadores e persistência.
 2. **Agente de documentos** — respostas em linguagem simples, com citação da ficha, data de verificação, aviso de limitação e proteção de dados.
-3. **Avaliação** — Golden Dataset com as 26 mensagens originais, juiz determinístico, pipeline LLM as a Judge e comparação antes/depois.
+3. **Módulo SERS de energia** — comparação entre redução de consumo e solar fotovoltaico, com premissas, cálculos, custos, payback e impacto ambiental.
+4. **Avaliação** — Golden Dataset com as 26 mensagens originais, juiz determinístico, pipeline LLM as a Judge e comparação antes/depois.
 
-**Estado real da entrega:** o núcleo DSA está concluído e testado; a arquitetura do agente está concluída e testada; as fichas oficiais foram importadas e o juiz LLM foi executado com OpenAI `gpt-4o-mini` e LangGraph 0.6.11. A conferência manual, o teste com pessoas e o vídeo ainda dependem de execução humana. Essas pendências estão explicitadas ao longo do documento e no checklist final.
+**Estado real da entrega:** o núcleo DSA está concluído e testado; a arquitetura do agente está concluída e testada; as fichas oficiais foram importadas e o juiz LLM foi executado com OpenAI `gpt-4o-mini` e LangGraph 0.6.11; o módulo SERS está implementado, integrado ao menu e coberto por testes. A conferência manual, os testes com pessoas e os vídeos ainda dependem de execução humana. Essas pendências estão explicitadas ao longo do documento e no checklist final.
 
 ---
 
@@ -111,6 +113,8 @@ Criar uma solução conceitual e funcional que ajude o cidadão a encontrar orie
 - Proteger dados pessoais.
 - Avaliar o agente com as 26 mensagens originais do Golden Dataset.
 - Comparar resultados antes e depois de uma melhoria.
+- Calcular duas alternativas de energia (eficiência e solar) com premissas, custos, payback e CO₂ evitado.
+- Integrar a orientação energética ao menu e à base de conhecimento.
 - Preparar teste com pelo menos 5 pessoas externas, medindo acerto, tempo e facilidade, sem coletar dados pessoais.
 - Preparar um vídeo pitch de até 3 minutos, com narração humana.
 
@@ -141,6 +145,8 @@ Criar uma solução conceitual e funcional que ajude o cidadão a encontrar orie
 │  Mobile em HTML           │  Ollama) ou modo extrativo      │
 │                           │  Citação + data + aviso         │
 ├───────────────────────────┴─────────────────────────────────┤
+│  SERS (P4): eficiência + solar, payback, CO₂ e opção 14     │
+├─────────────────────────────────────────────────────────────┤
 │  Avaliação: 26 mensagens originais + juiz determinístico +  │
 │  LLM as a Judge + comparação antes/depois                   │
 ├─────────────────────────────────────────────────────────────┤
@@ -154,7 +160,7 @@ O catálogo e o agente são **separados de propósito**:
 - O agente usa **fichas fictícias** fornecidas pelo enunciado.
 - Misturar as duas bases faria o agente citar fontes que não estão nas fichas e quebraria a regra de “usar exclusivamente FC-01 a FC-07”.
 
-A integração acontece na interface: a opção 13 do menu abre o agente, mantendo a identidade visual e a experiência de terminal.
+A integração acontece na interface: a opção 13 abre o agente e a opção 14 abre o módulo SERS, mantendo a identidade visual e a experiência de terminal.
 
 ---
 
@@ -198,14 +204,14 @@ O catálogo usa uma **lista encadeada manual**, com nós que guardam um objeto `
 Cada `Servico` tem nove campos:
 
 1. `id`
-2. `titulo`
-3. `categoria`
-4. `descricao`
-5. `publico`
+2. `categoria`
+3. `titulo`
+4. `palavras_chave`
+5. `resposta`
 6. `documentos`
 7. `onde`
-8. `prazo`
-9. `fonte`
+8. `fonte`
+9. `verificado_em`
 
 ### Operações
 
@@ -244,7 +250,7 @@ Os 13 requisitos do P2 estão atendidos: lista encadeada manual, nós, inserçã
 
 ### Mobile
 
-A versão mobile reimplementa a lista encadeada, o Selection Sort, a busca, o histórico, os indicadores e o CSV em JavaScript. O app tem 4.358 linhas, 15 serviços embutidos, voz e acessibilidade. Testes: `node mobile/teste-logica.js` → **90 verificações aprovadas**.
+A versão mobile reimplementa a lista encadeada, o Selection Sort, a busca, o histórico, os indicadores e o CSV em JavaScript. O app tem 4.473 linhas, 18 serviços embutidos, voz e acessibilidade. Testes: `node mobile/teste-logica.js` → **90 verificações aprovadas**.
 
 ---
 
@@ -316,6 +322,8 @@ Isso significa:
 
 ### Fluxo
 
+![Diagrama da arquitetura do agente](arquitetura_agente.svg)
+
 ```text
 Pergunta
    │
@@ -357,7 +365,7 @@ O fluxo é implementado em `agente/fluxo.py` com `StateGraph`:
 - Aresta condicional: `sem_resultado` ou `responder`.
 - Nós `responder`, `bloqueio`, `sem_resultado` → `END`.
 
-Quando o LangGraph não está instalado, o mesmo fluxo é executado em sequência. As regras e as respostas são idênticas. A suíte roda nos dois ambientes: **168 testes aprovados** com e sem LangGraph.
+Quando o LangGraph não está instalado, o mesmo fluxo é executado em sequência. As regras e as respostas são idênticas. A suíte roda nos dois ambientes: **178 testes aprovados** com e sem LangGraph.
 
 ### Por que LangGraph
 
@@ -725,8 +733,8 @@ python3 main_agente.py
 
 | Verificação | Resultado |
 |---|---|
-| Suíte Python (sem LangGraph) | **168 testes aprovados** |
-| Suíte Python (com LangGraph 0.6.11) | **168 testes aprovados** |
+| Suíte Python (sem LangGraph) | **178 testes aprovados** |
+| Suíte Python (com LangGraph 0.6.11) | **178 testes aprovados** |
 | Mobile | **90 verificações aprovadas** |
 | Golden Dataset — baseline (juiz determinístico) | 0/26 exatos, 7 parciais, 19 falhas, 13,5% |
 | Golden Dataset — extrativo (juiz determinístico) | **26/26 exatos, 100,0%** |
@@ -776,7 +784,90 @@ python3 main_agente.py
 
 ---
 
-## 15. Limitações, riscos e trabalhos futuros
+## 15. Projeto 4 — SERS: energia e sustentabilidade
+
+### Problema e público
+
+A conta de luz pesa no orçamento de famílias de baixa renda, e a informação sobre economia raramente é apresentada em linguagem simples e com números verificáveis. O módulo SERS atende o mesmo público do assistente — pessoas idosas, famílias de baixa renda e cuidadores — e responde a uma pergunta prática: **reduzir o consumo ou instalar energia solar?**
+
+### Cenário e premissas
+
+Cenário comum usado nos cálculos e nos testes:
+
+| Premissa | Valor | Origem / observação |
+|---|---:|---|
+| Consumo mensal | 150 kWh | faixa residencial típica de baixa renda |
+| Tarifa média | R$ 0,90/kWh | valor didático conservador, com tributos |
+| Período | 12 meses | base anual |
+| Produtividade solar | 1.200 kWh/kWp/ano | estimativa para São Paulo |
+| Custo do sistema solar | R$ 5.000,00/kWp | faixa de mercado para pequenos sistemas |
+| Fator de emissão | 0,040 kg CO₂/kWh | média didática para a matriz elétrica |
+| LED | 5 lâmpadas de 60 W → 9 W, 2 h/dia | troca residencial comum |
+| Standby | 8 W contínuos | corte de aparelhos em espera |
+
+Conta base: 150 kWh × R$ 0,90 = **R$ 135,00/mês**; 1.800 kWh/ano.
+
+### Alternativa A — eficiência energética
+
+- LED: 5 × (60 − 9) W × 2 h × 30 dias ÷ 1.000 = **15,3 kWh/mês**.
+- Standby: 8 W × 24 h × 30 dias ÷ 1.000 = **5,76 kWh/mês**.
+- Total: **21,06 kWh/mês** e **252,72 kWh/ano**.
+- Economia: **R$ 18,95/mês** e **R$ 227,45/ano**.
+- Investimento: **R$ 135,00**; payback: **7,1 meses**.
+- Consumo final: **128,94 kWh/mês** (redução de 14%).
+- Emissões evitadas: **10,11 kg CO₂/ano**.
+
+### Alternativa B — solar fotovoltaico
+
+- Sistema: 1.800 kWh/ano ÷ 1.200 kWh/kWp/ano = **1,5 kWp**.
+- Geração estimada: **1.800 kWh/ano**; área aproximada: **6 m²**.
+- Investimento: 1,5 kWp × R$ 5.000,00 = **R$ 7.500,00**.
+- Economia: **R$ 1.377,00/ano** (**R$ 114,75/mês**), com fator de compensação de 85% (perdas, autoconsumo e Fio B).
+- Payback simples: **5,4 anos** (65,4 meses).
+- Emissões evitadas: **72 kg CO₂/ano**.
+- Economia líquida em 25 anos: **R$ 26.925,00**, sem contar reajustes tarifários.
+
+### Comparação e recomendação
+
+| Critério | Eficiência (LED + standby) | Solar fotovoltaico |
+|---|---:|---:|
+| Investimento inicial | R$ 135,00 | R$ 7.500,00 |
+| Economia mensal | R$ 18,95 | R$ 114,75 |
+| Payback | 7,1 meses | 5,4 anos |
+| Redução de consumo | 14% | 85% de compensação |
+| CO₂ evitado/ano | 10,11 kg | 72 kg |
+| Exige obra/aprovação | Não | Sim |
+
+**Recomendação:** começar pela eficiência energética, que é barata e rápida, e só depois avaliar o solar, que tem retorno maior no longo prazo, mas exige imóvel próprio, telhado sem sombra, aprovação da distribuidora e capital inicial. Para renda baixa, verificar primeiro a Tarifa Social (orientação 18).
+
+### Integração com o assistente
+
+- Menu principal, opção **14 — Energia e sustentabilidade (SERS)**, em `python3 main.py` ou `python3 -m sers`.
+- Três orientações na categoria **Energia** da base: ids 16, 17 e 18, com fonte e data de verificação.
+- A busca por palavras-chave encontra “conta de luz”, “placa solar” e “tarifa social” sem misturar com as fichas FC-01 a FC-07 do agente de IA.
+- Cálculos em `sers/energia.py`, cobertos por 9 testes em `testes/test_sers_energia.py`.
+
+### Limitações
+
+- Tarifa, produtividade, custo e fator de emissão variam por região e concessionária; os valores são estimativas.
+- O payback é simples: não inclui juros, inflação, degradação dos painéis nem reajuste tarifário.
+- A Tarifa Social depende de CadÚnico/BPC e de regras que mudam; a orientação deve ser confirmada na distribuidora.
+- O módulo não substitui orçamento de empresa habilitada nem projeto elétrico.
+
+### Referências
+
+- EPE — consumo de energia elétrica: https://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/consumo-de-energia-eletrica
+- ANEEL — geração distribuída: https://www.gov.br/aneel/pt-br/assuntos/geracao-distribuida
+- ANEEL — Tarifa Social: https://www.gov.br/aneel/pt-br/assuntos/tarifas/tarifa-social
+- Relatório completo: [`SERS_RELATORIO.md`](SERS_RELATORIO.md)
+- Roteiro do vídeo: [`pitch/roteiro_sers.md`](../pitch/roteiro_sers.md)
+- Protocolo de teste: [`testes_usuarios/protocolo_sers.md`](../testes_usuarios/protocolo_sers.md)
+
+**Pendências:** gravação do pitch e execução do teste com usuários. Nenhum resultado foi inventado.
+
+---
+
+## 16. Limitações, riscos e trabalhos futuros
 
 ### Limitações atuais
 
@@ -815,11 +906,11 @@ python3 main_agente.py
 
 ---
 
-## 16. Conclusão e checklist de entrega
+## 17. Conclusão e checklist de entrega
 
 ### Conclusão
 
-O projeto entrega uma solução coerente: o catálogo DSA dos Projetos 1 e 2 foi preservado; o agente do Projeto 3 foi construído como módulo separado, com LangGraph, segurança, citação, avaliação e testes; o pitch do Projeto 4 tem roteiro e checklist.
+O projeto entrega uma solução coerente: o catálogo DSA dos Projetos 1 e 2 foi preservado; o agente do Projeto 3 foi construído como módulo separado, com LangGraph, segurança, citação, avaliação e testes; o módulo SERS do Projeto 4 calcula e compara eficiência energética e solar fotovoltaico, com fontes e limitações; o pitch tem roteiro e checklist.
 
 A decisão mais importante foi **não misturar** o catálogo de fontes oficiais com as fichas fictícias. O agente só responde com as fichas. Quando não sabe, diz que não sabe. Essa escolha reduz a utilidade aparente, mas aumenta a confiabilidade e atende à regra central do exercício.
 
@@ -829,12 +920,12 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 
 | Item | Status |
 |---|---|
-| P1 — problema, público, proposta e jornada | Entregue (nomes/RMs preenchidos; falta o link do repositório) |
+| P1 — problema, público, proposta e jornada | Entregue (nomes/RMs e repositório preenchidos) |
 | P1 — público ampliado (periferias, jovens, famílias) | Entregue |
 | P2 — lista encadeada manual | Entregue |
 | P2 — busca, Selection Sort, indicadores, CSV, JSON | Entregue |
 | P2 — 13 requisitos | Entregue |
-| P2 — testes Python | 148 aprovados (60 do DSA + 61 do agente/avaliação + 22 da voz mobile) |
+| P2 — testes Python | 178 aprovados (61 do DSA + 64 do agente/avaliação + 9 do SERS + 44 de API/voz mobile) |
 | P2 — mobile | 90 verificações aprovadas |
 | P3 — agente com FC-01 a FC-07 | **Entregue** com as fichas oficiais (versão 01/10/2026) |
 | P3 — citação da ficha e data | Entregue |
@@ -851,6 +942,11 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 | P3 — teste com 5 pessoas | Protocolo pronto; **execução pendente** |
 | P3 — documentação | Entregue |
 | P4 — vídeo até 3 min | Roteiro pronto; **gravação pendente** |
+| P4 — análise de energia com duas alternativas | Entregue em `sers/` e `SERS_RELATORIO.md` |
+| P4 — premissas, cálculos, custos e payback | Entregue e coberto por 9 testes |
+| P4 — fontes, unidades e limitações | Entregue |
+| P4 — integração ao assistente (opção 14 e 3 orientações) | Entregue |
+| P4 — protocolo de teste com usuários | Pronto; **execução pendente** |
 | P4 — narração humana | Instrução no roteiro; **gravação pendente** |
 | P4 — YouTube não listado | Instrução no roteiro; **publicação pendente** |
 | P4 — TXT com link | Modelo pronto; **link pendente** |
@@ -863,10 +959,11 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 
 1. Conferir os nomes/RMs e a turma (**1CCPX**) no topo deste documento e no `README.md`.
 2. Preencher a conferência manual de 9 casos em `avaliacao/conferencia_manual.md`.
-3. Executar o teste com 5 pessoas, preencher `planilha.csv` e `questionario.csv` e fechar `testes_usuarios/relatorio.md`.
-4. Gravar o vídeo, publicar como não listado, colar o link em `pitch/link_video.txt` e usar `pitch/descricao_youtube.md` para a descrição e o comentário.
-5. Rodar novamente `python3 -m unittest discover -s testes -t .` e `node mobile/teste-logica.js`.
-6. Publicar o repositório no GitHub e colar o link no README e neste documento.
+3. Executar os testes com pessoas: 5 na IA, ≥3 pessoas / 10 atendimentos no PCP e ≥3 no SERS; preencher planilhas e relatórios.
+4. Gravar os dois vídeos, publicar como não listado, colar os links em `pitch/link_video.txt`, `entrega_portal.txt` e `entrega_sers.txt`, e usar `pitch/descricao_youtube.md` para a descrição e o comentário.
+5. Rodar novamente `python3 -m unittest discover -s testes -t .`, `node mobile/teste-logica.js` e `python3 -m sers`.
+6. Confirmar que o repositório público abre sem login e que os arquivos de dados estão versionados.
 7. Revisar o resultado do juiz LLM (24/26; o parcial é o caso 24 e a falha é o 25) e registrar a análise final.
+8. Aplicar o protocolo SERS com pelo menos 3 pessoas e registrar os resultados em `testes_usuarios/`.
 
 > **Nota final:** este documento não declara concluído o que está pendente. Os resultados de LLM são reais; os resultados de teste com pessoas e de vídeo só devem ser preenchidos depois de executados.

@@ -1,6 +1,6 @@
 # Evidências de testes
 
-**Data da execução:** 2026-11-12
+**Data da execução:** 2026-11-18
 **Ambiente:** macOS, Python 3.9.6, Node.js v26.7.0
 **LangGraph:** 0.6.11, instalado no ambiente real
 **Provedor LLM real:** OpenAI `gpt-4o-mini` (chave somente em `agente/.env`, ignorado pelo Git)
@@ -31,7 +31,7 @@ python3 -m unittest discover -s testes -t .
 Saída:
 
 ```text
-Ran 168 tests in 1.524s
+Ran 178 tests in 1.702s
 
 OK
 ```
@@ -49,7 +49,7 @@ python3 -m venv /tmp/venv_sem_lg
 Saída:
 
 ```text
-Ran 168 tests in 1.421s
+Ran 178 tests in 1.620s
 
 OK
 ```
@@ -306,7 +306,7 @@ arquivo `testes/test_api_enunciado.py`, que cobre:
 - `orientacao.exibir()` e os apelidos `descricao`/`local`;
 - arquivo ausente sem travar o programa.
 
-Saída real:
+Saída real naquela data, antes da inclusão do SERS (o número atual está na seção 20):
 
 ```text
 $ python3 -m unittest discover -s testes -t .
@@ -325,3 +325,48 @@ melhorado: 26/26 exatos, 0 parciais, 0 falhas, média 1.0 (100.0%).
 $ node mobile/teste-logica.js
 OK — 90 verificações passaram.
 ```
+
+## 20. Atualização — 2026-11-18 (SERS e 18 orientações)
+
+Foram adicionados o módulo `sers/`, a opção **14** do menu e três orientações
+na categoria **Energia** (ids 16–18). A versão mobile também passou a embutir
+as 18 orientações. Com isso, a suíte subiu de 168 para **178 testes**.
+
+```text
+$ python3 -m unittest discover -s testes -t .
+Ran 178 tests in 1.702s
+
+OK
+```
+
+```text
+$ /tmp/venv_sem_lg/bin/python -m unittest discover -s testes -t .
+Ran 178 tests in 1.620s
+
+OK
+```
+
+```text
+$ node mobile/teste-logica.js
+OK — 90 verificações passaram.
+```
+
+```text
+$ python3 -m avaliacao.executar --modo ambos --juiz deterministico --agente extrativo
+baseline: 0/26 exatos, 7 parciais, 19 falhas, média 0.135 (13.5%).
+melhorado: 26/26 exatos, 0 parciais, 0 falhas, média 1.0 (100.0%).
+```
+
+```text
+$ printf '1\n\n0\n' | python3 -m sers
+Consumo considerado: 150.0 kWh/mês (1800 kWh/ano).
+Tarifa considerada: R$ 0.90/kWh.
+Alternativa A — eficiência: 21.1 kWh/mês, R$ 18.95/mês, payback 7.1 meses.
+Alternativa B — solar: 1.5 kWp, R$ 1377.00/ano, payback 5.4 anos.
+Cenário combinado: R$ 6635.00, R$ 1411.12/ano, payback 4.7 anos.
+CO2 evitado: 72.0 kg/ano.
+```
+
+> Os testes do SERS ficam em `testes/test_sers_energia.py` (9 casos) e não
+> fazem chamadas de rede. Nenhum resultado de teste com pessoas foi gerado
+> nesta execução.

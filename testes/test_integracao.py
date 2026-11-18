@@ -271,14 +271,30 @@ class TestMenuUnificado(unittest.TestCase):
 
     def test_menu_recusa_opcao_inexistente(self):
         saida = io.StringIO()
-        with patch("builtins.input", side_effect=["14", "0", "5"]):
+        with patch("builtins.input", side_effect=["15", "0", "5"]):
             with redirect_stdout(saida):
                 executar_menu(
                     self.lista, self.assistente, self.caminho_servicos
                 )
 
-        self.assertIn("Entrada inválida. Digite um número de 0 a 13.",
+        self.assertIn("Entrada inválida. Digite um número de 0 a 14.",
                       saida.getvalue())
+
+    def test_menu_abre_o_modulo_de_energia(self):
+        saida = io.StringIO()
+        with patch("builtins.input", side_effect=[
+            "14", "1", "", "0", "0", "5"
+        ]):
+            with redirect_stdout(saida):
+                executar_menu(
+                    self.lista, self.assistente, self.caminho_servicos
+                )
+
+        texto = saida.getvalue()
+        self.assertIn("Energia e sustentabilidade (SERS)", texto)
+        self.assertIn("ALTERNATIVA A", texto)
+        self.assertIn("ALTERNATIVA B", texto)
+        self.assertIn("R$ 135.00", texto)
 
     def test_menu_abre_o_agente_de_documentos(self):
         saida = io.StringIO()

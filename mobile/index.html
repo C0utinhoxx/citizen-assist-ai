@@ -1607,6 +1607,39 @@ var DADOS_INICIAIS = [
     fonte: "https://www.gov.br/pt-br/servicos/solicitar-o-seguro-desemprego",
     palavras_chave: ["seguro desemprego", "seguro-desemprego", "demitido", "demissao", "sem justa causa", "parcelas do seguro", "requerimento do seguro"],
     verificado_em: "2026-11-14"
+  },
+  {
+    id: 16,
+    titulo: "Reduzir o consumo de energia elétrica em casa",
+    categoria: "Energia",
+    descricao: "Troque lâmpadas incandescentes por LED e desligue aparelhos em standby. Em uma casa que consome 150 kWh/mês, 5 lâmpadas de 60 W trocadas por LED de 9 W, usadas 2 h/dia, economizam cerca de 15 kWh/mês; cortar 8 W de standby economiza mais 5,8 kWh/mês. O investimento estimado é de R$ 135,00 e a economia de cerca de R$ 19,00/mês, com retorno em poucos meses. São estimativas: confira a etiqueta do Inmetro e use a opção 14 do menu Python para calcular com o seu consumo. (SERS)",
+    documentos: ["Conta de luz (para conferir o consumo em kWh)", "Etiqueta do Inmetro dos aparelhos (opcional)"],
+    local: "Na própria residência; cálculo na opção 14 do menu Python",
+    fonte: "https://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/consumo-de-energia-eletrica",
+    palavras_chave: ["energia", "conta de luz", "economizar energia", "led", "standby", "consumo de energia", "eficiencia energetica"],
+    verificado_em: "2026-11-18"
+  },
+  {
+    id: 17,
+    titulo: "Instalar energia solar fotovoltaica em casa",
+    categoria: "Energia",
+    descricao: "Para um consumo de 150 kWh/mês, um sistema de cerca de 1,5 kWp pode gerar aproximadamente 1.800 kWh/ano em São Paulo. O investimento estimado é de R$ 7.500,00 (R$ 5.000,00/kWp), com economia de cerca de R$ 1.377,00/ano e retorno em torno de 5,5 anos. É preciso ter telhado próprio e sem sombra, aprovação da distribuidora e condições de investir ou financiar. Os valores são estimativas e não garantem economia. Use a opção 14 do menu Python para o cálculo completo. (SERS)",
+    documentos: ["Conta de luz dos últimos 12 meses", "Documento do imóvel ou autorização do proprietário", "Orçamento de empresa habilitada"],
+    local: "Na residência, com empresa habilitada e aprovação da distribuidora",
+    fonte: "https://www.gov.br/aneel/pt-br/assuntos/geracao-distribuida",
+    palavras_chave: ["energia solar", "placa solar", "painel solar", "fotovoltaica", "geracao distribuida", "solar"],
+    verificado_em: "2026-11-18"
+  },
+  {
+    id: 18,
+    titulo: "Pedir a Tarifa Social de Energia Elétrica",
+    categoria: "Energia",
+    descricao: "Famílias de baixa renda inscritas no CadÚnico, e idosos ou pessoas com deficiência que recebem o BPC, podem ter desconto na conta de luz. Desde 2026, a regra prevê 100% de desconto para o consumo de até 80 kWh/mês; a parcela acima disso não recebe desconto. O endereço no CadÚnico ou no BPC precisa estar atualizado. Se o desconto não aparecer na fatura, procure a distribuidora de energia. (SERS)",
+    documentos: ["CadÚnico atualizado ou comprovação do BPC", "Conta de luz no nome de alguém da família", "Documento com foto"],
+    local: "Distribuidora de energia elétrica ou CRAS (para atualizar o CadÚnico)",
+    fonte: "https://www.gov.br/aneel/pt-br/assuntos/tarifas/tarifa-social",
+    palavras_chave: ["tarifa social", "desconto na conta de luz", "baixa renda", "cadunico", "bpc", "conta de luz"],
+    verificado_em: "2026-11-18"
   }
 ];
 
@@ -3096,7 +3129,7 @@ function importarBackup(arquivo) {
 }
 
 async function restaurarDemo() {
-  var ok = await confirmar("Restaurar os 15 serviços de exemplo? As alterações e o histórico serão apagados.", {
+  var ok = await confirmar("Restaurar os 18 serviços de exemplo? As alterações e o histórico serão apagados.", {
     titulo: "Restaurar dados",
     texto: "Restaurar",
     perigoso: true
@@ -3560,7 +3593,7 @@ function renderMais() {
     linhaMais("exportar-csv", ICONES.download, "Exportar atendimentos em CSV", "Planilha com o histórico de atendimentos") +
     linhaMais("exportar-backup", ICONES.download, "Exportar backup completo", "Salva serviços, histórico e preferências") +
     linhaMais("importar-backup", ICONES.upload, "Importar backup", "Restaura um arquivo JSON do app") +
-    linhaMais("restaurar-demo", ICONES.livro, "Restaurar dados de exemplo", "Volta aos 15 serviços originais", true) +
+    linhaMais("restaurar-demo", ICONES.livro, "Restaurar dados de exemplo", "Volta aos 18 serviços originais", true) +
     "</div>";
 
   html += '<h2 class="section-title">Aplicativo</h2><div class="more-group">' +

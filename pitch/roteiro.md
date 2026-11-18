@@ -40,7 +40,7 @@ Configuração recomendada do terminal:
 ### Antes de gravar, confirme que está tudo pronto
 
 ```bash
-python3 -m unittest discover -s testes -t .    # 168 testes, OK
+python3 -m unittest discover -s testes -t .    # 178 testes, OK
 node mobile/teste-logica.js                    # 90 verificações
 ```
 
@@ -164,7 +164,7 @@ comente o que apareceu na tela.
 
 ### Beat 3.1 — O catálogo (0:00–0:10 do bloco)
 
-**Na tela:** o menu do `python3 main.py` com as 13 opções. Aponte com o mouse
+**Na tela:** o menu do `python3 main.py` com as 14 opções. Aponte com o mouse
 para o menu, sem clicar.
 
 **Fala:**
@@ -176,7 +176,7 @@ para o menu, sem clicar.
 
 ### Beat 3.2 — A análise (0:10–0:16 do bloco)
 
-**Na tela:** a análise dos 15 serviços, com o total, as categorias, os
+**Na tela:** a análise dos 18 serviços, com o total, as categorias, os
 percentuais e a categoria com mais serviços.
 
 **Fala:**
@@ -367,7 +367,7 @@ que provam que o projeto funciona.
 
 | # | Tela / ação | Onde | Por que |
 |---:|---|---|---|
-| 1 | Menu do catálogo com 13 opções | `python3 main.py` | Mostra a amplitude do DSA e a entrada no agente |
+| 1 | Menu do catálogo com 14 opções | `python3 main.py` | Mostra a amplitude do DSA e a entrada no agente |
 | 2 | Análise dos serviços (opção 8) | menu do catálogo | Prova as estatísticas e a categorização |
 | 3 | Menu do agente | opção 13 do catálogo | Mostra "fonte exclusiva: fichas FC-01 a FC-07" |
 | 4 | Resposta da segunda via do RG | pergunta 1 do agente | Prova valor + ficha + data + aviso |
@@ -398,7 +398,7 @@ de todos.
 
 ## Antes de gravar
 
-- [ ] `python3 -m unittest discover -s testes -t .` retorna **168 testes, OK**
+- [ ] `python3 -m unittest discover -s testes -t .` retorna **178 testes, OK**
 - [ ] `node mobile/teste-logica.js` retorna **90 verificações**
 - [ ] `python3 main.py` abre sem nenhum aviso na tela
 - [ ] O agente abre pela opção 13 e o cabeçalho mostra o modo correto

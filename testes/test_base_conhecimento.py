@@ -19,11 +19,11 @@ class TestBaseConhecimento(unittest.TestCase):
         self.base = BaseConhecimento(self.lista)
 
     def test_dados_unificados(self):
-        self.assertEqual(self.lista.quantidade, 15)
+        self.assertEqual(self.lista.quantidade, 18)
 
         ids = [servico.id for servico in self.lista.percorrer()]
         self.assertEqual(len(ids), len(set(ids)))
-        self.assertEqual(ids, list(range(1, 16)))
+        self.assertEqual(ids, list(range(1, 19)))
 
         for servico in self.lista.percorrer():
             self.assertTrue(servico.titulo)
@@ -38,7 +38,13 @@ class TestBaseConhecimento(unittest.TestCase):
     def test_categorias_ordenadas(self):
         self.assertEqual(
             self.base.categorias(),
-            ["Direitos e Benefícios", "Documentos", "Saúde", "Transporte"],
+            [
+                "Direitos e Benefícios",
+                "Documentos",
+                "Energia",
+                "Saúde",
+                "Transporte",
+            ],
         )
 
     def test_por_categoria_ignora_acento_e_maiuscula(self):

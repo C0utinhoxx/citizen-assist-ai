@@ -141,7 +141,7 @@ function formularioFalso(valores) {
 }
 
 try {
-  teste("carregou os 15 serviços iniciais", contexto.lista.quantidade === 15);
+  teste("carregou os 18 serviços iniciais", contexto.lista.quantidade === 18);
   teste("normalização remove acentos", contexto.normalizar("Saúde") === "saude");
   teste(
     "busca por cartão SUS pontua 7",
@@ -150,7 +150,7 @@ try {
   teste(
     "categorias em ordem alfabética",
     contexto.base.categorias().join("|") ===
-      "Direitos e Benefícios|Documentos|Saúde|Transporte"
+      "Direitos e Benefícios|Documentos|Energia|Saúde|Transporte"
   );
   teste("pesquisa por saúde retorna 3", contexto.lista.pesquisar("saude").length === 3);
   const buscaPis = contexto.base.buscar("Como consulto meu PIS?");

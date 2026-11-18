@@ -1,17 +1,18 @@
 # Checklist de entrega — Citizen Assist AI (GS 2026.2)
 
-**Prazo:** 19/11/2026, 23h59 (portal da FIAP) · **Hoje:** 14/11/2026
+**Prazo:** 19/11/2026, 23h59 (portal da FIAP) · **Hoje:** 18/11/2026
 **Equipe:** Bruno (RM 569619), Eduardo (RM 569897), Gustavo (RM 573651)
+
+> **Guia por disciplina:** [`ENTREGAS.md`](ENTREGAS.md) — o que cada disciplina (PCP, IA, SERS, DSA) exige, onde está e o que ainda falta.
 
 Cronograma sugerido:
 
 | Data | O que fazer | Quem |
 |---|---|---|
-| 14/11 (sáb) | Passo 0 (commit) e Passo 1 (conferência manual); recrutar 5 pessoas | Todos |
-| 15–16/11 | Passo 2 (teste com usuários, planilhas e relatório) | 2 aplicam, 1 tabula |
-| 17/11 | Passo 3 (gravar vídeo técnico PCP) | Todos falam |
-| 18/11 | Passo 4 (gravar pitch SERS) | 1 narra, 2 apoiam |
-| 19/11 | Passo 5 (revisão, push e entrega do `.txt`) | 1 entrega |
+| 18/11 (qua) | Passo 0 (commit) e Passo 1 (conferência manual); recrutar participantes | Todos |
+| 18/11 | Passo 2 (teste com usuários, planilhas e relatório) | 2 aplicam, 1 tabula |
+| 18/11 | Passo 3 (gravar vídeo técnico PCP) e Passo 4 (gravar pitch SERS) | Todos falam |
+| 19/11 | Passo 5 (revisão, push e entrega dos `.txt`) | 1 entrega |
 
 ---
 
@@ -19,8 +20,10 @@ Cronograma sugerido:
 
 ```bash
 cd /Users/brunocoutinho/Documents/GlobalSoluctions/Jun
-python3 -m unittest discover -s testes -t .     # espera: 168 testes, OK
+python3 -m unittest discover -s testes -t .     # espera: 178 testes, OK
 node mobile/teste-logica.js                     # espera: 90 verificações
+python3 -m avaliacao.executar --modo ambos --juiz deterministico --agente extrativo
+python3 -m sers                                 # cálculo SERS sem erro
 git add -A
 git commit -m "Alinha base e classes ao enunciado de PCP; documenta público, ODS, pontuação e limitações"
 git push origin main
@@ -99,13 +102,13 @@ Depois:
 
 ## Passo 4 — Pitch SERS (≤3 min, até 18/11)
 
-Roteiro pronto: [`pitch/roteiro.md`](pitch/roteiro.md). Descrição/comentário: [`pitch/descricao_youtube.md`](pitch/descricao_youtube.md).
+Roteiro pronto: [`pitch/roteiro_sers.md`](pitch/roteiro_sers.md). Descrição/comentário: [`pitch/descricao_youtube.md`](pitch/descricao_youtube.md).
 
 - [ ] Vídeo **não listado**, no máximo 3 min, narração humana
 - [ ] Deixa claro a proposta e o tema da GS
 - [ ] Comentário fixado: **individual, dupla ou trio + nomes e RMs**
 - [ ] Somente **um** integrante entrega
-- [ ] Link colado em `pitch/link_video.txt`
+- [ ] Link colado em `pitch/link_video.txt` **e** em `entrega_sers.txt`
 
 ---
 
@@ -118,12 +121,13 @@ cd /Users/brunocoutinho/Documents/GlobalSoluctions/Jun
 python3 -m unittest discover -s testes -t .
 node mobile/teste-logica.js
 python3 -m avaliacao.executar --modo ambos --juiz deterministico --agente extrativo
-python3 main.py        # testar 9 (pergunta), 10 (categorias), 11 (indicadores), 0 (sair)
+python3 -m sers
+python3 main.py        # testar 9 (pergunta), 10 (categorias), 11 (indicadores), 13 (agente), 14 (SERS), 0 (sair)
 ```
 
-- [ ] 168 testes OK · 90 verificações mobile OK · melhorado 26/26
-- [ ] README: integrantes+RMs, público, problema, ODS, execução, pontuação, integrações, fontes, teste com usuários, limitações e **link do vídeo**
-- [ ] `entrega_portal.txt` com os 5 campos preenchidos (sem placeholder)
+- [ ] 178 testes OK · 90 verificações mobile OK · melhorado 26/26
+- [ ] README: integrantes+RMs, público, problema, ODS, execução, pontuação, integrações, fontes, teste com usuários, limitações e **links dos vídeos**
+- [ ] `entrega_portal.txt` e `entrega_sers.txt` com todos os campos preenchidos (sem placeholder)
 - [ ] Links dos vídeos testados em janela anônima
 
 ### 5.2 Publicar
@@ -136,8 +140,9 @@ git push origin main
 
 ### 5.3 Portal FIAP
 
-Entregar **apenas** `entrega_portal.txt` em Entregas de Trabalho, até **19/11 23h59**:
+Entregar os arquivos `.txt` nos respectivos espaços do portal, até **19/11 23h59**:
 
+**PCP / DSA — `entrega_portal.txt`:**
 ```text
 Nome do assistente: Citizen Assist AI
 Público atendido: pessoas idosas (60+) e familiares/cuidadores
@@ -146,7 +151,9 @@ Link do repositório GitHub: https://github.com/C0utinhoxx/citizen-assist-ai
 Link do vídeo técnico no YouTube: <link não listado>
 ```
 
-- [ ] Arquivo `.txt` enviado (só um integrante)
+**SERS — `entrega_sers.txt`:** conferir o conteúdo do arquivo antes de enviar (tema, integrantes, repositório e link do pitch).
+
+- [ ] Arquivos `.txt` enviados (só um integrante por disciplina)
 - [ ] Print/comprovante do envio salvo no grupo
 - [ ] Repositório e vídeos ainda acessíveis na data da correção
 
@@ -156,7 +163,7 @@ Link do vídeo técnico no YouTube: <link não listado>
 
 | Problema | Solução |
 |---|---|
-| Teste não deu 148 | rode `python3 -m unittest discover -s testes -t . -v` e veja o módulo que falhou |
+| Teste não deu 178 | rode `python3 -m unittest discover -s testes -t . -v` e veja o módulo que falhou |
 | JSON corrompido | `git checkout -- data/base_conhecimento.json` |
 | Vídeo passou do tempo | corte o bloco 2 ou 7; o que importa é demonstrar, não explicar tudo |
 | Portal fechou | envie por e-mail ao professor **antes** do prazo, com o mesmo `.txt` |

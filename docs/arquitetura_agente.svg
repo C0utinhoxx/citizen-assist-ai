@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="titulo descricao">
+  <title id="titulo">Arquitetura do agente Citizen Assist AI</title>
+  <desc id="descricao">Fluxo da mensagem do usuário: validação e segurança, bloqueio ou recuperação nas fichas, montagem de contexto, resposta extrativa ou por LLM, sempre com citação e aviso. O Golden Dataset e o juiz avaliam o resultado.</desc>
+
+  <defs>
+    <marker id="seta" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+    <marker id="seta-vermelha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#b91c1c"/>
+    </marker>
+    <style>
+      .caixa { fill: #ffffff; stroke: #334155; stroke-width: 2; rx: 12; }
+      .caixa-ia { fill: #eef6ff; stroke: #1d4ed8; }
+      .caixa-seg { fill: #fff7ed; stroke: #c2410c; }
+      .caixa-bloqueio { fill: #fef2f2; stroke: #b91c1c; }
+      .caixa-ok { fill: #f0fdf4; stroke: #15803d; }
+      .caixa-aval { fill: #faf5ff; stroke: #7e22ce; }
+      .titulo { font: 700 17px system-ui, -apple-system, Segoe UI, sans-serif; fill: #0f172a; }
+      .texto { font: 14px system-ui, -apple-system, Segoe UI, sans-serif; fill: #1e293b; }
+      .pequeno { font: 12px system-ui, -apple-system, Segoe UI, sans-serif; fill: #475569; }
+      .rotulo { font: 600 12px system-ui, -apple-system, Segoe UI, sans-serif; fill: #334155; }
+      .linha { stroke: #475569; stroke-width: 2; fill: none; marker-end: url(#seta); }
+      .linha-vermelha { stroke: #b91c1c; stroke-width: 2; fill: none; marker-end: url(#seta-vermelha); }
+      .linha-aval { stroke: #7e22ce; stroke-width: 2; stroke-dasharray: 6 4; fill: none; marker-end: url(#seta); }
+      .faixa { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1; rx: 16; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="820" fill="#ffffff"/>
+  <text x="40" y="46" class="titulo" font-size="24">Citizen Assist AI — arquitetura do agente</text>
+  <text x="40" y="72" class="pequeno">Fluxo determinístico de segurança e recuperação; o LLM é opcional e apenas redige com base no contexto.</text>
+
+  <!-- Camada de entrada -->
+  <rect x="40" y="100" width="1120" height="120" class="faixa"/>
+  <text x="58" y="126" class="rotulo">ENTRADA</text>
+
+  <rect x="80" y="142" width="220" height="56" class="caixa"/>
+  <text x="190" y="166" class="texto" text-anchor="middle">Mensagem do usuário</text>
+  <text x="190" y="186" class="pequeno" text-anchor="middle">texto livre na CLI</text>
+
+  <rect x="380" y="134" width="260" height="72" class="caixa caixa-seg"/>
+  <text x="510" y="160" class="texto" text-anchor="middle">Validação e segurança</text>
+  <text x="510" y="180" class="pequeno" text-anchor="middle">entrada vazia · tamanho · PII</text>
+  <text x="510" y="196" class="pequeno" text-anchor="middle">prompt injection</text>
+
+  <rect x="720" y="142" width="240" height="56" class="caixa"/>
+  <text x="840" y="166" class="texto" text-anchor="middle">Classificação da intenção</text>
+  <text x="840" y="186" class="pequeno" text-anchor="middle">saudação · escopo · fora de escopo</text>
+
+  <line x1="300" y1="170" x2="372" y2="170" class="linha"/>
+  <line x1="640" y1="170" x2="712" y2="170" class="linha"/>
+
+  <!-- Bloqueio -->
+  <rect x="80" y="280" width="300" height="96" class="caixa caixa-bloqueio"/>
+  <text x="230" y="308" class="texto" text-anchor="middle">Bloqueio seguro</text>
+  <text x="230" y="330" class="pequeno" text-anchor="middle">PII é ocultada e não repetida</text>
+  <text x="230" y="348" class="pequeno" text-anchor="middle">injection é tratada como dado</text>
+  <text x="230" y="366" class="pequeno" text-anchor="middle">nada é gravado</text>
+
+  <line x1="510" y1="206" x2="300" y2="272" class="linha-vermelha"/>
+  <text x="360" y="244" class="rotulo" fill="#b91c1c">bloqueio</text>
+
+  <!-- Recuperação -->
+  <rect x="440" y="280" width="320" height="96" class="caixa caixa-ia"/>
+  <text x="600" y="308" class="texto" text-anchor="middle">Recuperação nas fichas</text>
+  <text x="600" y="330" class="pequeno" text-anchor="middle">busca lexical + pontuação</text>
+  <text x="600" y="348" class="pequeno" text-anchor="middle">FC-01 a FC-07 (versão 01/10/2026)</text>
+  <text x="600" y="366" class="pequeno" text-anchor="middle">seleção de seções próximas</text>
+
+  <line x1="840" y1="198" x2="700" y2="272" class="linha"/>
+  <text x="770" y="244" class="rotulo">dentro do escopo</text>
+
+  <!-- Base de fichas -->
+  <rect x="820" y="280" width="300" height="96" class="caixa"/>
+  <text x="970" y="308" class="texto" text-anchor="middle">Base de conhecimento</text>
+  <text x="970" y="330" class="pequeno" text-anchor="middle">agente/fichas/*.md</text>
+  <text x="970" y="348" class="pequeno" text-anchor="middle">fonte e data de verificação</text>
+  <text x="970" y="366" class="pequeno" text-anchor="middle">sem acesso a sistemas do governo</text>
+  <line x1="820" y1="328" x2="768" y2="328" class="linha"/>
+
+  <!-- Sem resultado -->
+  <rect x="80" y="430" width="300" height="86" class="caixa caixa-bloqueio"/>
+  <text x="230" y="458" class="texto" text-anchor="middle">Sem resultado</text>
+  <text x="230" y="480" class="pequeno" text-anchor="middle">“Não encontrei uma orientação”</text>
+  <text x="230" y="498" class="pequeno" text-anchor="middle">sugere categorias e órgão competente</text>
+
+  <line x1="520" y1="376" x2="330" y2="424" class="linha-vermelha"/>
+  <text x="390" y="398" class="rotulo" fill="#b91c1c">nenhuma ficha atinge o corte</text>
+
+  <!-- Contexto e resposta -->
+  <rect x="440" y="430" width="320" height="86" class="caixa caixa-ia"/>
+  <text x="600" y="458" class="texto" text-anchor="middle">Contexto citado</text>
+  <text x="600" y="480" class="pequeno" text-anchor="middle">trechos + fonte + data</text>
+  <text x="600" y="498" class="pequeno" text-anchor="middle">limite de tamanho e de fichas</text>
+
+  <line x1="600" y1="376" x2="600" y2="422" class="linha"/>
+  <text x="612" y="402" class="rotulo">resultado encontrado</text>
+
+  <rect x="820" y="430" width="300" height="86" class="caixa caixa-ia"/>
+  <text x="970" y="458" class="texto" text-anchor="middle">Redação da resposta</text>
+  <text x="970" y="480" class="pequeno" text-anchor="middle">extrativa (offline) ou LLM</text>
+  <text x="970" y="498" class="pequeno" text-anchor="middle">Groq · OpenAI · Ollama</text>
+
+  <line x1="760" y1="473" x2="812" y2="473" class="linha"/>
+  <text x="786" y="462" class="rotulo" text-anchor="middle">contexto</text>
+
+  <!-- Saída -->
+  <rect x="440" y="570" width="680" height="82" class="caixa caixa-ok"/>
+  <text x="780" y="598" class="texto" text-anchor="middle">Resposta ao cidadão</text>
+  <text x="780" y="620" class="pequeno" text-anchor="middle">linguagem simples · citação da ficha · data · “não é canal oficial”</text>
+  <text x="780" y="638" class="pequeno" text-anchor="middle">sem repetir PII · sem inventar valor, prazo ou documento</text>
+
+  <line x1="970" y1="516" x2="900" y2="562" class="linha"/>
+  <line x1="230" y1="516" x2="440" y2="600" class="linha-vermelha"/>
+
+  <!-- Avaliação -->
+  <rect x="80" y="570" width="300" height="82" class="caixa caixa-aval"/>
+  <text x="230" y="598" class="texto" text-anchor="middle">Golden Dataset + juiz</text>
+  <text x="230" y="620" class="pequeno" text-anchor="middle">26 mensagens originais</text>
+  <text x="230" y="638" class="pequeno" text-anchor="middle">determinístico e LLM as a Judge</text>
+
+  <path d="M 440 611 C 400 611 380 611 380 611" class="linha-aval"/>
+  <text x="410" y="600" class="rotulo" fill="#7e22ce">avalia</text>
+
+  <!-- Legenda -->
+  <rect x="40" y="700" width="1120" height="86" class="faixa"/>
+  <text x="58" y="726" class="rotulo">LEGENDA</text>
+  <rect x="60" y="740" width="18" height="18" class="caixa-seg"/>
+  <text x="86" y="754" class="pequeno">segurança determinística</text>
+  <rect x="250" y="740" width="18" height="18" class="caixa-ia"/>
+  <text x="276" y="754" class="pequeno">recuperação / IA opcional</text>
+  <rect x="460" y="740" width="18" height="18" class="caixa-bloqueio"/>
+  <text x="486" y="754" class="pequeno">saída segura sem resposta inventada</text>
+  <rect x="740" y="740" width="18" height="18" class="caixa-aval"/>
+  <text x="766" y="754" class="pequeno">avaliação automática</text>
+
+  <text x="40" y="806" class="pequeno">Repositório: github.com/C0utinhoxx/citizen-assist-ai · Documentação: docs/DOCUMENTACAO_UNIFICADA.md</text>
+</svg>

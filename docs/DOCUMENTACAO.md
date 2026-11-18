@@ -31,16 +31,15 @@ A proposta da Lição 1 foi preservada e passou a usar a mesma lista encadeada d
 
 ## 2. Integrantes
 
-> Preencher com os dados reais da equipe antes da entrega.
-
 | Nome | RM |
 |---|---|
-| Integrante 1 | RM000000 |
-| Integrante 2 | RM000000 |
-| Integrante 3 | RM000000 |
+| Bruno Riquelme Coutinho Pereira | RM 569619 |
+| Eduardo Bigoli Portela | RM 569897 |
+| Gustavo Fondato de Souza | RM 573651 |
 
-**Repositório GitHub:** (preencher)
-**Vídeo de demonstração:** (preencher)
+**Turma:** 1CCPX
+**Repositório GitHub:** https://github.com/C0utinhoxx/citizen-assist-ai
+**Vídeo de demonstração:** pendente de gravação e publicação como não listado.
 
 ---
 
@@ -76,7 +75,7 @@ O sistema não inventa respostas, não consulta a internet em tempo real e não 
 
 ### 3.5. Recorte escolhido
 
-O catálogo cobre **15 orientações em 4 categorias**:
+O catálogo cobre **18 orientações em 5 categorias**:
 
 | Categoria | Orientações |
 |---|---|
@@ -84,6 +83,7 @@ O catálogo cobre **15 orientações em 4 categorias**:
 | Documentos | CIN (RG), CPF, título de eleitor e certidão de nascimento |
 | Direitos e Benefícios | Aposentadoria, BPC/LOAS, PIS/NIS, abono salarial, seguro-desemprego e denúncia de violência |
 | Transporte | Gratuidade municipal e Carteira da Pessoa Idosa |
+| Energia | Redução de consumo, energia solar fotovoltaica e Tarifa Social (SERS) |
 
 ### 3.6. Funcionalidades da Lição 1 preservadas
 
@@ -398,7 +398,7 @@ Ran 81 tests in 0.058s
 OK
 ```
 
-> **Atualização (2026-11-10):** este bloco registra a suíte original dos Projetos 1 e 2. Depois da inclusão do agente, `python3 -m unittest discover -s testes -t .` passou a executar **143 testes**: 82 do catálogo/mobile e 61 do agente/avaliação/provedor. O `test_integracao.py` ganhou 1 teste da opção 13 (17 → 18). Veja [`EVIDENCIAS_TESTES.md`](EVIDENCIAS_TESTES.md).
+> **Atualização (2026-11-18):** este bloco registra a suíte original dos Projetos 1 e 2. Com o agente, o SERS e a voz mobile, `python3 -m unittest discover -s testes -t .` passou a executar **178 testes**: 61 do catálogo/DSA, 64 do agente/avaliação/provedor, 9 do SERS e 44 de API/voz mobile. Veja [`EVIDENCIAS_TESTES.md`](EVIDENCIAS_TESTES.md).
 
 Distribuição dos 81 testes originais:
 
@@ -435,7 +435,7 @@ Resultado atual: **90 verificações aprovadas**, cobrindo lista encadeada, orde
 | Exclusão confirmada | ID 99, `s` | Registro removido | `Serviço excluído.` |
 | Exclusão cancelada | ID 99, `n` | Nada alterado | `Operação cancelada.` |
 | Exclusão inexistente | ID 999 | Não encontrado | `Serviço não encontrado.` |
-| Opção inválida | `14` | Pedir novamente | `Entrada inválida. Digite um número de 0 a 13.` |
+| Opção inválida | `15` | Pedir novamente | `Entrada inválida. Digite um número de 0 a 14.` |
 | Texto vazio | Enter | Pedir novamente | `Este campo não pode ficar vazio.` |
 | Lista vazia | ordenar/listar/analisar | Sem erro | Avisos específicos |
 | Pergunta encontrada | `Como faço o cartão do SUS?` | Confiança ALTA | 7 pontos |
@@ -454,7 +454,7 @@ Foi executada uma sessão real do `main.py`, com backup e restauração dos dado
 4. atualização do ID 99;
 5. exclusão do ID 99 com confirmação;
 6. ordenação por título com Selection Sort;
-7. análise dos 15 serviços;
+7. análise dos 18 serviços;
 8. pergunta “Como faço o cartão do SUS?” com confiança ALTA (7 pontos);
 9. indicadores de atendimento;
 10. exportação CSV;
@@ -575,12 +575,12 @@ node mobile/teste-logica.js
 | Modelagem em Python com classes e referências | `Servico`, `No`, `ListaEncadeada` | Atendido |
 | Atualização e exclusão preservando a lista | menus 4 e 5 | Atendido |
 | Informação útil de processamento | menus 8 e 11 | Atendido |
-| Menu interativo com todas as operações | menu 0 a 13 (12 do catálogo + agente) | Atendido |
+| Menu interativo com todas as operações | menu 0 a 14 (13 do catálogo + agente + SERS) | Atendido |
 | Validação de entradas e opções inexistentes | `ler_inteiro()`, `ler_texto()`, `confirmar()` | Atendido |
 | IDs duplicados | recusa no cadastro | Atendido |
 | Consultas sem resultado | mensagens específicas | Atendido |
 | Análise Big-O | seção 13 | Atendido |
-| Testes normais, inexistentes, inválidos e lista vazia | 81 testes originais do P1/P2 (148 na suíte atual) | Atendido |
+| Testes normais, inexistentes, inválidos e lista vazia | 81 testes originais do P1/P2 (178 na suíte atual) | Atendido |
 | Persistência em arquivos (opcional) | JSON e CSV | Atendido |
 | Relatórios/indicadores (opcional) | menus 8 e 11 | Atendido |
 | Documentação técnica | este documento | Atendido |
@@ -595,7 +595,7 @@ node mobile/teste-logica.js
 | Lista encadeada e recursos específicos da linguagem | 3,0 | `No`, `ListaEncadeada`, referências, percurso e remoção |
 | Algoritmos de busca e ordenação implementados | 2,0 | busca linear por ID/texto, pontuação e Selection Sort |
 | Organização do código, documentação e Big-O | 1,0 | módulos separados, esta documentação e seção 13 |
-| Evidências de testes e demonstração | 1,0 | 81 testes do P1/P2 + 61 do agente (143 no total), teste manual e roteiro de demonstração |
+| Evidências de testes e demonstração | 1,0 | 178 testes automatizados (DSA, agente/avaliação, SERS e voz mobile), teste manual e roteiro de demonstração |
 
 O único item deste recorte P1/P2 que ainda depende da equipe é a **gravação da demonstração em vídeo**; o roteiro está pronto na seção 19. As pendências do Projeto 3 e do Projeto 4 estão na documentação única.
 
@@ -629,7 +629,7 @@ Limitações técnicas conscientes:
 
 1. Mostrar a estrutura de pastas e o `Servico` com todos os campos.
 2. Abrir `app/lista_encadeada.py` e explicar `No`, `inicio`, `proximo` e `quantidade`.
-3. Executar `python3 main.py` e mostrar os 15 serviços e as 4 categorias.
+3. Executar `python3 main.py` e mostrar os 18 serviços e as 5 categorias.
 4. Consultar o ID 4 e mostrar documentos, local, fonte e aviso.
 5. Pesquisar `saude` e mostrar os 3 resultados.
 6. Cadastrar um serviço com ID 99 e tentar cadastrar o mesmo ID novamente.

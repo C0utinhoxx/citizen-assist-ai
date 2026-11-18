@@ -3,7 +3,9 @@
 **Equipe:** Bruno Riquelme Coutinho Pereira (RM 569619) · Eduardo Bigoli Portela (RM 569897) · Gustavo Fondato de Souza (RM 573651)  
 **Turma:** 1CCPX · **Repositório:** https://github.com/C0utinhoxx/citizen-assist-ai
 
-Solução em **Python** para a **Global Solution 2026.2 — Citizen Tech**. O projeto reúne um catálogo de serviços públicos com estruturas de dados implementadas manualmente, um agente de IA para orientação sobre documentos pessoais e uma versão mobile acessível.
+> **Entrega por disciplina:** [`ENTREGAS.md`](ENTREGAS.md) reúne requisitos, evidências e pendências de PCP, IA, SERS e DSA.
+
+Solução em **Python** para a **Global Solution 2026.2 — Citizen Tech**. O projeto reúne um catálogo de serviços públicos com estruturas de dados implementadas manualmente, um agente de IA para orientação sobre documentos pessoais, uma análise de energia e sustentabilidade (SERS) e uma versão mobile acessível.
 
 ## Visão geral
 
@@ -11,6 +13,7 @@ O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços p
 
 - catálogo de serviços com **lista encadeada manual**, busca, ordenação e indicadores;
 - agente que responde **exclusivamente** com base nas fichas FC-01 a FC-07, incluindo PIS/NIS, abono salarial e seguro-desemprego;
+- módulo de **energia e sustentabilidade (SERS)** com comparação de eficiência energética e solar fotovoltaico;
 - interface mobile em HTML único, com voz e acessibilidade;
 - avaliação automatizada no Golden Dataset, com juiz determinístico e **LLM as a Judge**.
 
@@ -34,8 +37,9 @@ O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços p
 |---|---|
 | Catálogo de serviços | Concluído e testado |
 | Agente de documentos | Concluído; fichas oficiais importadas e avaliação LLM executada |
+| Energia e sustentabilidade (SERS) | Concluído: cálculos, opção 14 e 3 orientações na base; teste com pessoas e vídeo pendentes |
 | Mobile | Concluído e testado |
-| Validação humana | Pendente: conferência manual; teste com ≥5 pessoas (IA) e ≥3 pessoas / 10 atendimentos (PCP) |
+| Validação humana | Pendente: conferência manual; teste com ≥5 pessoas (IA), ≥3 pessoas / 10 atendimentos (PCP) e ≥3 pessoas (SERS) |
 | Vídeo | Pendente: pitch de 3 min (SERS) e vídeo técnico de 5–8 min (PCP) |
 
 > **Importante:** os resultados de LLM são reais e foram produzidos com OpenAI `gpt-4o-mini`. Nenhum resultado de teste com pessoas ou de gravação foi inventado. O que ainda não foi executado está marcado como pendente.
@@ -63,6 +67,15 @@ O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços p
 - Não agenda, não consulta sistemas do governo e não é um canal oficial.
 - Não grava perguntas em arquivo, banco ou histórico.
 
+### Energia e sustentabilidade (SERS)
+
+- Compara **eficiência energética** (LED + corte de standby) e **geração solar fotovoltaica** para o mesmo consumo e o mesmo período.
+- Usa premissas explícitas: 150 kWh/mês, tarifa de R$ 0,90/kWh, 12 meses e fator de emissão do SIN.
+- Calcula investimento, economia mensal e anual, payback, CO₂ evitado e cenário combinado.
+- Abre pelo menu principal, **opção 14**, com cenário padrão, cálculo personalizado e tela de fontes.
+- Também responde por texto livre: a base tem 3 orientações na categoria **Energia**.
+- Relatório completo: [`docs/SERS_RELATORIO.md`](docs/SERS_RELATORIO.md).
+
 ### Mobile
 
 A versão mobile completa fica em um único HTML, com lista encadeada, Selection Sort, busca, histórico, indicadores, CSV, voz e acessibilidade. Veja [`mobile/README.md`](mobile/README.md).
@@ -74,6 +87,7 @@ A versão mobile completa fica em um único HTML, com lista encadeada, Selection
 - **JSON** para persistência local do catálogo e do histórico.
 - **LangGraph** para orquestração do agente, com fallback sequencial quando a biblioteca não está instalada.
 - **Provedores compatíveis com OpenAI**: Groq, OpenAI e Ollama local.
+- **Módulo SERS** em Python puro, com cálculo local e sem coleta de dados.
 - **HTML, CSS e JavaScript** no app mobile, sem framework.
 
 ## Como executar
@@ -85,10 +99,16 @@ cd Jun
 python3 main.py
 ```
 
-No menu do catálogo, a opção **13** abre o agente de documentos. O agente também pode ser executado sozinho:
+No menu do catálogo, a opção **13** abre o agente de documentos e a opção **14** abre o módulo de energia (SERS). O agente também pode ser executado sozinho:
 
 ```bash
 python3 main_agente.py
+```
+
+O relatório de energia pode ser gerado sem abrir o menu:
+
+```bash
+python3 -m sers
 ```
 
 ### LangGraph (opcional)
@@ -145,11 +165,11 @@ python3 -m pip install --user -r requirements.txt
 python3 main.py
 ```
 
-O menu abre com 15 serviços já cadastrados. Teste nesta ordem:
+O menu abre com 18 serviços já cadastrados, em 5 categorias. Teste nesta ordem:
 
 | # | O que fazer | O que deve acontecer |
 |---:|---|---|
-| 1 | Opção **6** — Listar todos | Lista os 15 serviços com ID, descrição, documentos, local e fonte |
+| 1 | Opção **6** — Listar todos | Lista os 18 serviços com ID, descrição, documentos, local e fonte |
 | 2 | Opção **8** — Análise | Mostra total, quantidade por categoria com percentual e a categoria com mais serviços |
 | 3 | Opção **7** — Ordenar | Escolha 1 (título), 2 (categoria) ou 3 (ID) e veja a lista reordenada por Selection Sort próprio |
 | 4 | Opção **3** — Pesquisar | Digite `saúde`, `transporte` ou `SUS` e veja os registros encontrados |
@@ -159,6 +179,7 @@ O menu abre com 15 serviços já cadastrados. Teste nesta ordem:
 | 8 | Opção **4** — Atualizar | Atualize o ID **99**; o menu oferece manter o valor atual pressionando Enter |
 | 9 | Opção **5** — Excluir | Exclua o ID **99** e confirme a exclusão |
 | 10 | Opção **0** — Sair | Confirma que os dados foram salvos em `data/base_conhecimento.json` |
+| 11 | Opção **14** — Energia (SERS) | Compara LED/standby e solar, mostra payback, fontes e limitações |
 
 > **Atenção:** a opção **0** salva o catálogo em `data/base_conhecimento.json`. Se você
 > usar a opção **7** (ordenar) durante um teste, a nova ordem fica gravada no
@@ -249,7 +270,7 @@ python3 -m unittest discover -s testes -t . -v
 node mobile/teste-logica.js
 ```
 
-Resultado esperado: **168 testes Python aprovados** e **90 verificações
+Resultado esperado: **178 testes Python aprovados** e **90 verificações
 mobile**. A suíte passa com e sem o LangGraph instalado.
 
 Para ver cada módulo:
@@ -304,7 +325,7 @@ Abra o **Computador** no navegador e teste:
 | # | O que fazer | O que deve acontecer |
 |---:|---|---|
 | 1 | Aba **Início** | Tela inicial com o resumo e os atalhos |
-| 2 | Aba **Serviços** | Os 15 serviços, com busca e filtro por categoria |
+| 2 | Aba **Serviços** | Os 18 serviços, com busca e filtro por categoria |
 | 3 | Aba **Assistente** | Campo de pergunta; digite `como faço o cartão do SUS?` e veja a resposta com nível de confiança |
 | 4 | Aba **Mais** → **Aparência** | Troque entre tema claro e escuro e aumente o tamanho do texto |
 | 5 | Aba **Mais** → **Dados** | Exporte um backup completo e restaure os dados de exemplo |
@@ -345,7 +366,7 @@ Para parar o servidor, pressione `Ctrl+C`.
 ### 7. Checklist rápido de verificação
 
 ```bash
-python3 -m unittest discover -s testes -t .     # espera: 168 testes, OK
+python3 -m unittest discover -s testes -t .     # espera: 178 testes, OK
 node mobile/teste-logica.js                     # espera: 90 verificações
 python3 -m avaliacao.executar --modo ambos \
   --juiz deterministico --agente extrativo       # espera: 26/26 no agente
@@ -428,7 +449,7 @@ node mobile/teste-logica.js
 
 Resultado atual:
 
-- **168 testes Python aprovados**, cobrindo catálogo, agente, avaliação, provedor e transcrição.
+- **178 testes Python aprovados**, cobrindo catálogo, agente, avaliação, provedor, transcrição e cálculos de energia.
 - **90 verificações mobile** aprovadas.
 
 Os testes do agente cobrem fichas, PII, prompt injection, entradas inválidas, fluxo, citações, fallback do LLM, Golden Dataset, juiz determinístico, juiz LLM e cliente HTTP OpenAI-compatível.
@@ -444,11 +465,15 @@ Jun/
 ├── assistente.py               # atalho: Assistente (código em app/)
 ├── app/                        # núcleo do catálogo DSA
 ├── data/
-│   ├── base_conhecimento.json  # 15 orientações (id, categoria, titulo,
+│   ├── base_conhecimento.json  # 18 orientações (id, categoria, titulo,
 │   │                           # palavras_chave, resposta, documentos, onde,
 │   │                           # fonte, verificado_em)
 │   ├── historico.json          # atendimentos registrados
 │   └── atendimentos.csv        # exportação do histórico
+├── sers/
+│   ├── energia.py              # premissas, cálculos, fontes e relatório
+│   ├── cli.py                  # menu da opção 14
+│   └── __main__.py             # python3 -m sers
 ├── mobile/                     # app mobile completo
 ├── agente/
 │   ├── fichas/                 # FC-01 a FC-07 (oficiais, versão 01/10/2026)
@@ -467,14 +492,18 @@ Jun/
 │   ├── baseline.py             # versão de comparação
 │   ├── executar.py             # runner antes/depois
 │   └── resultados/             # determinístico + llm_langgraph + llm_sequencial
-├── testes_usuarios/            # protocolo, questionário, planilha e relatório (execução pendente)
-├── pitch/                      # roteiro, descrição do YouTube; link do vídeo pendente
-├── entrega_portal.txt          # .txt de entrega no portal (falta o link do vídeo técnico)
-├── testes/                     # 168 testes Python
+├── testes_usuarios/            # protocolos, planilhas e relatório (execução pendente)
+├── pitch/                      # roteiros PCP/IA e SERS; links pendentes
+├── entrega_portal.txt          # entrega PCP (falta o link do vídeo técnico)
+├── entrega_sers.txt            # entrega SERS (falta o link do vídeo)
+├── testes/                     # 178 testes Python
 ├── docs/
 │   ├── DOCUMENTACAO.md         # documentação do catálogo DSA
-│   └── DOCUMENTACAO_UNIFICADA.md # documento único da solução
+│   ├── DOCUMENTACAO_UNIFICADA.md # documento único da solução
+│   ├── SERS_RELATORIO.md       # análise de energia, cálculos e fontes
+│   └── arquitetura_agente.svg  # diagrama do fluxo do agente
 ├── requirements.txt            # langgraph (opcional)
+├── ENTREGAS.md                 # índice de entrega por disciplina
 ├── README.md
 └── .gitignore
 ```
@@ -496,6 +525,7 @@ Jun/
 | 11 | Indicadores de atendimento |
 | 12 | Exportar atendimentos para CSV |
 | 13 | Agente de documentos pessoais (IA) |
+| 14 | Energia e sustentabilidade (SERS) |
 | 0 | Salvar e sair |
 
 O menu do agente tem opções próprias para perguntar, navegar pelas fichas e ler o aviso de privacidade. Nenhuma pergunta é armazenada.
@@ -521,7 +551,7 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
 
 - **DSA:** o catálogo usa lista encadeada manual, busca implementada e Selection Sort próprio, com análise Big-O em `docs/DOCUMENTACAO.md`.
 - **Prompt and Artificial Intelligence:** agente com LangGraph, fichas FC-01 a FC-07, Golden Dataset de 26 mensagens, LLM as a Judge e proteção contra prompt injection.
-- **SERS:** pitch de 3 minutos em `pitch/`.
+- **SERS:** módulo `sers/` com comparação de eficiência energética e solar fotovoltaico, opção **14** do menu e 3 orientações na categoria **Energia**. Relatório em [`docs/SERS_RELATORIO.md`](docs/SERS_RELATORIO.md) e roteiro em [`pitch/roteiro_sers.md`](pitch/roteiro_sers.md).
 
 ## Segurança e privacidade
 
@@ -534,23 +564,29 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
 
 ## Limitações
 
-- A base é local e estática: 15 orientações em 4 categorias (incluindo PIS/NIS, abono salarial e seguro-desemprego). Fora dela, o assistente diz “não encontrei”.
+- A base é local e estática: 18 orientações em 5 categorias (incluindo PIS/NIS, abono salarial, seguro-desemprego e energia). Fora dela, o assistente diz “não encontrei”.
 - A busca é por regras (palavras-chave e título). Não entende sinônimos que não estejam nas palavras-chave.
 - Persistência em JSON, sem banco de dados e sem múltiplos usuários simultâneos.
 - Não consulta sistemas do governo, não agenda e não acompanha processos.
 - O assistente não é canal oficial; a informação deve ser confirmada no órgão competente.
 - O catálogo salva alterações feitas no menu, inclusive a ordem escolhida na opção 7.
+- As estimativas de energia dependem de tarifa, consumo, impostos e condições do imóvel; não são garantia de economia.
 
 ## Documentação
 
-- [`docs/DOCUMENTACAO_UNIFICADA.md`](docs/DOCUMENTACAO_UNIFICADA.md) — documento único da solução, com arquitetura, segurança, resultados, limitações e checklist.
+- [`docs/DOCUMENTACAO_UNIFICADA.md`](docs/DOCUMENTACAO_UNIFICADA.md) — documento único da solução, com arquitetura, segurança, SERS, resultados, limitações e checklist.
+- [`ENTREGAS.md`](ENTREGAS.md) — índice de entrega por disciplina (PCP, IA, SERS e DSA).
+- [`docs/arquitetura_agente.svg`](docs/arquitetura_agente.svg) — diagrama do fluxo do agente.
 - [`docs/DOCUMENTACAO.md`](docs/DOCUMENTACAO.md) — documentação detalhada do catálogo DSA.
 - [`docs/EVIDENCIAS_TESTES.md`](docs/EVIDENCIAS_TESTES.md) — comandos e saídas reais dos testes.
 - [`docs/PEDIDO_FICHAS.md`](docs/PEDIDO_FICHAS.md) — registro da importação das fichas oficiais.
 - [`agente/fichas/LEIA-ME.md`](agente/fichas/LEIA-ME.md) — origem, versão e formato das fichas oficiais.
 - [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md) — resultados do juiz determinístico.
 - [`avaliacao/conferencia_manual.md`](avaliacao/conferencia_manual.md) — amostra para conferência humana (pendente).
-- [`pitch/roteiro.md`](pitch/roteiro.md) — roteiro do vídeo de 3 minutos.
+- [`docs/SERS_RELATORIO.md`](docs/SERS_RELATORIO.md) — análise de energia, cálculos, fontes e limitações.
+- [`pitch/roteiro_sers.md`](pitch/roteiro_sers.md) — roteiro do pitch SERS (até 3 min).
+- [`testes_usuarios/protocolo_sers.md`](testes_usuarios/protocolo_sers.md) — protocolo de teste da contribuição de energia.
+- [`pitch/roteiro.md`](pitch/roteiro.md) — roteiro do vídeo técnico (5–8 min).
 - [`pitch/descricao_youtube.md`](pitch/descricao_youtube.md) — texto da descrição e do comentário do YouTube, prontos para copiar.
 - [`testes_usuarios/protocolo.md`](testes_usuarios/protocolo.md) — protocolo completo do teste com 5 pessoas externas.
 - [`testes_usuarios/protocolo_rapido.md`](testes_usuarios/protocolo_rapido.md) — versão reduzida (5 pessoas, 6 tarefas, 15–20 min).
@@ -559,12 +595,12 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
 ## Pendências antes da entrega
 
 1. Fazer a **conferência manual** de uma amostra (formulário em `avaliacao/conferencia_manual.md`).
-2. Executar o teste com **≥5 pessoas externas** (IA) e **≥3 pessoas / 10 atendimentos** (PCP), preenchendo a planilha anônima.
+2. Executar o teste com **≥5 pessoas externas** (IA), **≥3 pessoas / 10 atendimentos** (PCP) e **≥3 pessoas** (SERS), preenchendo as planilhas anônimas.
 3. Gravar os dois vídeos e publicar como **não listado**:
    - **Pitch (SERS):** até 3 minutos; cole o link em `pitch/link_video.txt`.
    - **Técnico (PCP):** 5 a 8 minutos, com o roteiro obrigatório (JSON, classes, `normalizar()`/`pontuar()`, execução, alteração ao vivo no JSON, histórico/CSV e uma decisão técnica + uma limitação).
 4. Revisar o resultado do juiz LLM (24/26; o parcial é o caso 24 e a falha é o 25) e registrar a análise final.
-5. Colar o link do vídeo técnico em `entrega_portal.txt` e entregar esse `.txt` no portal da FIAP até 19/11, 23h59.
+5. Colar o link do vídeo técnico em `entrega_portal.txt`, o do pitch em `entrega_sers.txt` e entregar os `.txt` no portal da FIAP até 19/11, 23h59.
 
 Já está pronto: as fichas oficiais foram importadas, o juiz LLM foi executado com `gpt-4o-mini`, o repositório público está em https://github.com/C0utinhoxx/citizen-assist-ai, a base usa o nome/campos do enunciado e o `entrega_portal.txt` está preenchido (falta só o link do vídeo).
 

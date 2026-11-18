@@ -1,0 +1,7 @@
+Nome do assistente: Citizen Assist AI
+Disciplina: Soluções em Energias Renováveis e Sustentáveis (SERS)
+Integrantes e RM: Bruno Riquelme Coutinho Pereira (RM 569619); Eduardo Bigoli Portela (RM 569897); Gustavo Fondato de Souza (RM 573651)
+Link do repositório GitHub: https://github.com/C0utinhoxx/citizen-assist-ai
+Link do vídeo no YouTube: COLE_AQUI_O_LINK_NAO_LISTADO
+
+Observação: a contribuição SERS está em docs/SERS_RELATORIO.md, sers/ e na opção 14 do menu.
