@@ -548,7 +548,7 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
 
 - **DSA:** o catálogo usa lista encadeada manual, busca implementada e Selection Sort próprio, com análise Big-O em `docs/DOCUMENTACAO.md`.
 - **Prompt and Artificial Intelligence:** agente com LangGraph, fichas FC-01 a FC-07, Golden Dataset de 26 mensagens, LLM as a Judge e proteção contra prompt injection.
-- **SERS:** módulo `sers/` com comparação de eficiência energética e solar fotovoltaico, opção **14** do menu e 3 orientações na categoria **Energia**. Relatório em [`docs/SERS_RELATORIO.md`](docs/SERS_RELATORIO.md) e roteiro em [`pitch/roteiro_sers.md`](pitch/roteiro_sers.md).
+- **SERS:** módulo `sers/` com comparação de eficiência energética e solar fotovoltaico, opção **14** do menu e 3 orientações na categoria **Energia**.
 
 ## Segurança e privacidade
 
