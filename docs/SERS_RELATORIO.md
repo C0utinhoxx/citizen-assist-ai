@@ -11,7 +11,7 @@
 - Gustavo Fondato de Souza — RM 573651
 
 **Repositório:** https://github.com/C0utinhoxx/citizen-assist-ai
-**Vídeo SERS (até 3 min):** _pendente de gravação e publicação como não listado_
+**Vídeo SERS (até 3 min):** https://youtu.be/r_cDeVWeedo
 
 ---
 
@@ -271,5 +271,5 @@ Registro previsto (sem nome, CPF ou endereço): código anônimo, tempo, acertos
 | Recomendações coerentes com a análise | seção 8 | Atendido |
 | Referências e limitações | seções 9 e 11 | Atendido |
 | Testes com usuários | seção 10 | **Pendente de execução** |
-| Vídeo de até 3 minutos | [`pitch/roteiro_sers.md`](../pitch/roteiro_sers.md) | **Pendente de gravação** |
-| Repositório e arquivo `.txt` | `SERS.txt` na pasta externa `Entregas_GS_2026_2` | Link do vídeo pendente |
+| Vídeo de até 3 minutos | [`pitch/roteiro_sers.md`](../pitch/roteiro_sers.md) | Publicado: https://youtu.be/r_cDeVWeedo |
+| Repositório e arquivo `.txt` | `SERS.txt` na pasta externa `Entregas_GS_2026_2` | Link do vídeo preenchido |

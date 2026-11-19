@@ -37,10 +37,10 @@ O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços p
 |---|---|
 | Catálogo de serviços | Concluído e testado |
 | Agente de documentos | Concluído; fichas oficiais importadas e avaliação LLM executada |
-| Energia e sustentabilidade (SERS) | Concluído: cálculos, opção 14 e 3 orientações na base; teste com pessoas e vídeo pendentes |
+| Energia e sustentabilidade (SERS) | Concluído: cálculos, opção 14, 3 orientações na base e pitch publicado; teste com pessoas pendente |
 | Mobile | Concluído e testado |
 | Validação humana | Pendente: conferência manual; teste com ≥5 pessoas (IA), ≥3 pessoas / 10 atendimentos (PCP) e ≥3 pessoas (SERS) |
-| Vídeo | Pendente: pitch de 3 min (SERS) e vídeo técnico de 5–8 min (PCP) |
+| Vídeo | Pitch de 3 min (SERS) publicado; vídeo técnico de 5–8 min (PCP) pendente |
 
 > **Importante:** os resultados de LLM são reais e foram produzidos com OpenAI `gpt-4o-mini`. Nenhum resultado de teste com pessoas ou de gravação foi inventado. O que ainda não foi executado está marcado como pendente.
 
@@ -493,7 +493,7 @@ Jun/
 │   ├── executar.py             # runner antes/depois
 │   └── resultados/             # determinístico + llm_langgraph + llm_sequencial
 ├── testes_usuarios/            # protocolos, planilhas e relatório (execução pendente)
-├── pitch/                      # roteiros PCP/IA e SERS; links pendentes
+├── pitch/                      # roteiros PCP/IA e SERS; pitch SERS publicado
 ├── testes/                     # 178 testes Python
 ├── docs/
 │   ├── DOCUMENTACAO.md         # documentação do catálogo DSA
@@ -592,13 +592,12 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
 
 1. Fazer a **conferência manual** de uma amostra (formulário em `avaliacao/conferencia_manual.md`).
 2. Executar o teste com **≥5 pessoas externas** (IA), **≥3 pessoas / 10 atendimentos** (PCP) e **≥3 pessoas** (SERS), preenchendo as planilhas anônimas.
-3. Gravar os dois vídeos e publicar como **não listado**:
-   - **Pitch (SERS):** até 3 minutos; cole o link em `pitch/link_video.txt`.
+3. Gravar o **vídeo técnico (PCP)** e publicar como **não listado**:
    - **Técnico (PCP):** 5 a 8 minutos, com o roteiro obrigatório (JSON, classes, `normalizar()`/`pontuar()`, execução, alteração ao vivo no JSON, histórico/CSV e uma decisão técnica + uma limitação).
 4. Revisar o resultado do juiz LLM (24/26; o parcial é o caso 24 e a falha é o 25) e registrar a análise final.
 5. Preencher os quatro textos de portal na pasta externa `Entregas_GS_2026_2` (`PCP.txt`, `IA.txt`, `SERS.txt` e `DSA.txt`) e entregar nos respectivos espaços até 19/11, 23h59.
 
-Já está pronto: as fichas oficiais foram importadas, o juiz LLM foi executado com `gpt-4o-mini`, o repositório público está em https://github.com/C0utinhoxx/citizen-assist-ai e a base usa o nome/campos do enunciado. Os documentos de submissão ficam fora do repositório.
+Já está pronto: as fichas oficiais foram importadas, o juiz LLM foi executado com `gpt-4o-mini`, o pitch SERS está publicado em https://youtu.be/r_cDeVWeedo, o repositório público está em https://github.com/C0utinhoxx/citizen-assist-ai e a base usa o nome/campos do enunciado. Os documentos de submissão ficam fora do repositório.
 
 
 ## Licença

@@ -1,21 +1,23 @@
-# Link do vídeo pitch
+# Link do vídeo pitch (SERS)
 
-**Status:** PENDENTE — o vídeo ainda não foi gravado/publicado.
+**Status:** PUBLICADO em 18/11/2026.
 
-Cole abaixo o link do YouTube **não listado** depois da publicação:
+Link do YouTube:
 
 ```text
-COLE_AQUI_O_LINK_DO_YOUTUBE_NAO_LISTADO
+https://youtu.be/r_cDeVWeedo
 ```
 
-Checklist antes de colar:
+Título no YouTube: Citizen Assist AI | Global Solution FIAP 2026
+
+Checklist:
 
 - [ ] Duração de até 3 minutos.
-- [ ] Narração humana (sem voz de IA).
-- [ ] Vídeo publicado como **não listado**.
-- [ ] Link testado em janela anônima.
-- [ ] Nomes/RMs e link do GitHub na descrição.
+- [x] Narração humana (sem voz de IA).
+- [x] Vídeo publicado como **não listado**.
+- [x] Link testado em janela anônima (oEmbed respondeu em 18/11/2026).
+- [x] Nomes/RMs e link do GitHub na descrição.
   - Link do repositório: https://github.com/C0utinhoxx/citizen-assist-ai
-- [ ] Nenhum dado pessoal real ou chave de API aparece no vídeo.
+- [x] Nenhum dado pessoal real ou chave de API aparece no vídeo.
 
-Depois de colar o link, atualize também o `README.md` e a documentação única.
+O link também foi colado em `SERS.txt` da pasta externa `Entregas_GS_2026_2` e nos documentos do projeto.

@@ -150,7 +150,7 @@ Criar uma solução conceitual e funcional que ajude o cidadão a encontrar orie
 │  Avaliação: 26 mensagens originais + juiz determinístico +  │
 │  LLM as a Judge + comparação antes/depois                   │
 ├─────────────────────────────────────────────────────────────┤
-│  Pitch de 3 minutos (P4) — roteiro pronto, gravação pendente│
+│  Pitch de 3 min (P4) — publicado no YouTube (não listado)   │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -747,7 +747,7 @@ python3 main_agente.py
 | Juiz LLM | **executado com OpenAI `gpt-4o-mini`** |
 | Teste com 5 pessoas | pendente |
 | Conferência manual | pendente |
-| Vídeo | pendente |
+| Vídeo | Pitch SERS **publicado**; vídeo técnico PCP pendente |
 
 ### Cobertura dos testes do agente
 
@@ -941,15 +941,15 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 | P3 — conferência manual de amostra | Formulário pronto; **execução humana pendente** |
 | P3 — teste com 5 pessoas | Protocolo pronto; **execução pendente** |
 | P3 — documentação | Entregue |
-| P4 — vídeo até 3 min | Roteiro pronto; **gravação pendente** |
+| P4 — vídeo até 3 min | **Publicado:** https://youtu.be/r_cDeVWeedo |
 | P4 — análise de energia com duas alternativas | Entregue em `sers/` e `SERS_RELATORIO.md` |
 | P4 — premissas, cálculos, custos e payback | Entregue e coberto por 9 testes |
 | P4 — fontes, unidades e limitações | Entregue |
 | P4 — integração ao assistente (opção 14 e 3 orientações) | Entregue |
 | P4 — protocolo de teste com usuários | Pronto; **execução pendente** |
-| P4 — narração humana | Instrução no roteiro; **gravação pendente** |
-| P4 — YouTube não listado | Instrução no roteiro; **publicação pendente** |
-| P4 — TXT com link | Modelo pronto; **link pendente** |
+| P4 — narração humana | Vídeo publicado em 18/11/2026 |
+| P4 — YouTube não listado | Publicado em 18/11/2026 |
+| P4 — TXT com link | Preenchido em `SERS.txt` |
 | Nomes/RM | Preenchidos |
 | Turma | **1CCPX** |
 | GitHub | **Publicado:** https://github.com/C0utinhoxx/citizen-assist-ai |
@@ -960,7 +960,7 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 1. Conferir os nomes/RMs e a turma (**1CCPX**) no topo deste documento e no `README.md`.
 2. Preencher a conferência manual de 9 casos em `avaliacao/conferencia_manual.md`.
 3. Executar os testes com pessoas: 5 na IA, ≥3 pessoas / 10 atendimentos no PCP e ≥3 no SERS; preencher planilhas e relatórios.
-4. Gravar os vídeos, publicar como não listado, colar os links em `pitch/link_video.txt` e nos arquivos `PCP.txt`, `IA.txt`, `SERS.txt` e `DSA.txt` da pasta externa `Entregas_GS_2026_2`, e usar `pitch/descricao_youtube.md` para a descrição e o comentário.
+4. Gravar o vídeo técnico (PCP) e, se aplicável, os vídeos de IA e DSA; publicar como não listado e colar os links em `pitch/link_video.txt` e nos arquivos `PCP.txt`, `IA.txt` e `DSA.txt` da pasta externa `Entregas_GS_2026_2`. O link do SERS já está preenchido em `SERS.txt`. Usar `pitch/descricao_youtube.md` para a descrição e o comentário.
 5. Rodar novamente `python3 -m unittest discover -s testes -t .`, `node mobile/teste-logica.js` e `python3 -m sers`.
 6. Confirmar que o repositório público abre sem login e que os arquivos de dados estão versionados.
 7. Revisar o resultado do juiz LLM (24/26; o parcial é o caso 24 e a falha é o 25) e registrar a análise final.
