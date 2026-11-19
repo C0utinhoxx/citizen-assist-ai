@@ -96,5 +96,35 @@
     "tentativas": 1,
     "tempo": 7.5,
     "nota_facilidade": 5
+  },
+  {
+    "data": "2026-11-19 18:46:31",
+    "origem": "pergunta",
+    "pergunta": "Preciso de dentista",
+    "id_orientacao": null,
+    "encontrou": false,
+    "ajudou": false,
+    "tentativas": 1,
+    "tempo": 232.7
+  },
+  {
+    "data": "2026-11-19 19:01:58",
+    "origem": "pergunta",
+    "pergunta": "Como tirar a carteira do sus",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 4.7
+  },
+  {
+    "data": "2026-11-19 19:14:45",
+    "origem": "pergunta",
+    "pergunta": "dentista",
+    "id_orientacao": 3,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 69.5
   }
 ]

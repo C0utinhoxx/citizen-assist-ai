@@ -31,6 +31,12 @@ O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços p
 - **ODS 10 — Redução das Desigualdades:** acesso de pessoas idosas a documentos, benefícios e transporte.
 - **ODS 16 — Paz, Justiça e Instituições Eficazes:** orientação sobre denúncia de violência e acesso a serviços públicos.
 
+## Fontes consultadas
+
+- [Gov.br — Programa Farmácia Popular](https://www.gov.br/saude/farmaciapopular)
+- [Gov.br — Atenção Primária à Saúde](https://www.gov.br/saude/pt-br/assuntos/atencao-primaria)
+- [Gov.br — serviços sobre documentos, benefícios e transporte](https://www.gov.br/)
+
 ## Status
 
 | Módulo | Status |
@@ -43,6 +49,22 @@ O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços p
 | Vídeo | Pitch de 3 min (SERS) publicado; vídeo técnico de 5–8 min (PCP) pendente |
 
 > **Importante:** os resultados de LLM são reais e foram produzidos com OpenAI `gpt-4o-mini`. Nenhum resultado de teste com pessoas ou de gravação foi inventado. O que ainda não foi executado está marcado como pendente.
+
+## Resultado do teste
+
+Com base nos 12 registros exportados em `data/atendimentos.csv`:
+
+| Indicador | Resultado |
+|---|---:|
+| Atendimentos | 12 |
+| Resposta encontrada | 11 de 12 (91,7%) |
+| Atendimento que ajudou | 11 de 12 (91,7%) |
+| Tempo médio para encontrar uma resposta | 13,6 s |
+| Tentativas médias | 1,0 |
+
+**Dúvida sem solução:** `Preciso de dentista`. Ela ficou registrada como atendimento sem solução antes da melhoria.
+
+**Melhoria aplicada:** a orientação 3 (`Marcar consulta na UBS`) passou a informar como pedir atendimento médico ou odontológico pela UBS, incluindo o atendimento com dentista.
 
 ## Funcionalidades
 
@@ -95,7 +117,7 @@ A versão mobile completa fica em um único HTML, com lista encadeada, Selection
 Pré-requisito do núcleo: **Python 3.9 ou superior**, sem dependências externas.
 
 ```bash
-cd Jun
+cd citizen-assist-ai
 python3 main.py
 ```
 

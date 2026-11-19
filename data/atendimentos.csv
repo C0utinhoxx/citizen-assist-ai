@@ -8,3 +8,6 @@ data,origem,pergunta,id_orientacao,encontrou,ajudou,tentativas,tempo
 2026-11-17 19:56:43,pergunta,sus,1,True,True,1,8.1
 2026-11-17 20:26:59,pergunta,sus,1,True,True,1,9.1
 2026-11-17 20:30:30,categoria,Tomar a vacina da gripe,2,True,True,1,7.5
+2026-11-19 18:46:31,pergunta,Preciso de dentista,,False,False,1,232.7
+2026-11-19 19:01:58,pergunta,Como tirar a carteira do sus,1,True,True,1,4.7
+2026-11-19 19:14:45,pergunta,dentista,3,True,True,1,69.5

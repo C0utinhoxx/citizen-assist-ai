@@ -48,9 +48,10 @@
       "ubs",
       "posto de saude",
       "agendar",
+      "dentista",
       "medico"
     ],
-    "resposta": "Para marcar consulta, procure a UBS do seu bairro com documento com foto e Cartão SUS. A equipe da unidade orienta como agendar o atendimento. Em caso de urgência, procure o serviço de saúde mais próximo.",
+    "resposta": "Para marcar consulta médica ou odontológica, procure a UBS do seu bairro com documento com foto e Cartão SUS. Para atendimento com dentista, informe o motivo na UBS: a equipe poderá agendar avaliação odontológica ou encaminhar para o serviço adequado. Em caso de urgência, procure o serviço de saúde mais próximo.",
     "documentos": [
       "Documento com foto",
       "Cartão SUS",
@@ -58,7 +59,7 @@
     ],
     "onde": "UBS do seu bairro",
     "fonte": "https://www.gov.br/saude/pt-br/assuntos/atencao-primaria",
-    "verificado_em": "2026-11-05"
+    "verificado_em": "2026-11-19"
   },
   {
     "id": 4,
