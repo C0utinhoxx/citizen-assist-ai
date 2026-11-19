@@ -440,6 +440,114 @@ correto.
 
 Relatórios: [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md) (determinístico), [`avaliacao/resultados/llm_langgraph/relatorio.md`](avaliacao/resultados/llm_langgraph/relatorio.md) (LLM + LangGraph) e [`avaliacao/resultados/llm_sequencial/relatorio.md`](avaliacao/resultados/llm_sequencial/relatorio.md) (LLM + fallback sequencial).
 
+## Historico JSON
+```[
+  {
+    "data": "2026-11-18 10:08:14",
+    "origem": "pergunta",
+    "pergunta": "Como faço o cartão do SUS?",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 4.1
+  },
+  {
+    "data": "2026-11-18 10:19:42",
+    "origem": "pergunta",
+    "pergunta": "Como peço a minha aposentadoria?",
+    "id_orientacao": 8,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 3.5,
+    "nota_facilidade": 5
+  },
+  {
+    "data": "2026-11-18 10:31:05",
+    "origem": "pergunta",
+    "pergunta": "Como faso o meu cartao do SUS",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 5.5
+  },
+  {
+    "data": "2026-11-18 10:44:29",
+    "origem": "pergunta",
+    "pergunta": "Onde tiro meu titulo de editor?",
+    "id_orientacao": 6,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 4.3
+  },
+  {
+    "data": "2026-11-18 10:57:18",
+    "origem": "pergunta",
+    "pergunta": "Como tirar RG e CPF?",
+    "id_orientacao": 4,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 13.0
+  },
+  {
+    "data": "2026-11-18 11:11:36",
+    "origem": "pergunta",
+    "pergunta": "Onde pego remédio gratuito?",
+    "id_orientacao": null,
+    "encontrou": false,
+    "ajudou": false,
+    "tentativas": 1,
+    "tempo": 4.1,
+    "nota_facilidade": 4
+  },
+  {
+    "data": "2026-11-18 11:24:51",
+    "origem": "pergunta",
+    "pergunta": "Como tirar primeira via do CPF?",
+    "id_orientacao": 5,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 4.1
+  },
+  {
+    "data": "2026-11-18 11:38:12",
+    "origem": "pergunta",
+    "pergunta": "Como ppego seguro desemprego?",
+    "id_orientacao": 15,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 4.7
+  },
+  {
+    "data": "2026-11-18 11:49:04",
+    "origem": "pergunta",
+    "pergunta": "como tirar cartao do sus",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 4.6,
+    "nota_facilidade": 5
+  },
+  {
+    "data": "2026-11-18 11:56:47",
+    "origem": "pergunta",
+    "pergunta": "como tiro o cartao do sus?",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 10.8,
+    "nota_facilidade": 5
+  }
+]```
+
 ## Testes
 
 ```bash
