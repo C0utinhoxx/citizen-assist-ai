@@ -588,18 +588,6 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
 - [`testes_usuarios/protocolo_rapido.md`](testes_usuarios/protocolo_rapido.md) — versão reduzida (5 pessoas, 6 tarefas, 15–20 min).
 - [`testes_usuarios/relatorio.md`](testes_usuarios/relatorio.md) — modelo do relatório do teste com usuários, pronto para preencher.
 
-## Pendências antes da entrega
-
-1. Fazer a **conferência manual** de uma amostra (formulário em `avaliacao/conferencia_manual.md`).
-2. Executar o teste com **≥5 pessoas externas** (IA), **≥3 pessoas / 10 atendimentos** (PCP) e **≥3 pessoas** (SERS), preenchendo as planilhas anônimas.
-3. Gravar o **vídeo técnico (PCP)** e publicar como **não listado**:
-   - **Técnico (PCP):** 5 a 8 minutos, com o roteiro obrigatório (JSON, classes, `normalizar()`/`pontuar()`, execução, alteração ao vivo no JSON, histórico/CSV e uma decisão técnica + uma limitação).
-4. Revisar o resultado do juiz LLM (24/26; o parcial é o caso 24 e a falha é o 25) e registrar a análise final.
-5. Preencher os quatro textos de portal na pasta externa `Entregas_GS_2026_2` (`PCP.txt`, `IA.txt`, `SERS.txt` e `DSA.txt`) e entregar nos respectivos espaços até 19/11, 23h59.
-
-Já está pronto: as fichas oficiais foram importadas, o juiz LLM foi executado com `gpt-4o-mini`, o pitch SERS está publicado em https://youtu.be/r_cDeVWeedo, o repositório público está em https://github.com/C0utinhoxx/citizen-assist-ai e a base usa o nome/campos do enunciado. Os documentos de submissão ficam fora do repositório.
-
-
 ## Licença
 
 Projeto educacional desenvolvido para a Global Solution 2026.2. Uso restrito ao contexto acadêmico.
