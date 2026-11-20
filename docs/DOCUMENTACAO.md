@@ -386,7 +386,7 @@ Legenda: `n` = quantidade de registros; `m` = tamanho dos textos comparados; `r`
 Comando:
 
 ```bash
-cd Jun
+cd citizen-assist-ai
 python3 -m unittest discover -s testes -t . -v
 ```
 
@@ -414,7 +414,7 @@ Distribuição dos 81 testes originais:
 A versão mobile tem testes próprios, executados com Node.js:
 
 ```bash
-cd Jun/mobile
+cd citizen-assist-ai/mobile
 node teste-logica.js
 ```
 
@@ -529,7 +529,7 @@ Jun/
 Pré-requisito: Python 3.8 ou superior. O projeto usa apenas a biblioteca padrão.
 
 ```bash
-cd Jun
+cd citizen-assist-ai
 python3 main.py
 ```
 

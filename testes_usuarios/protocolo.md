@@ -35,8 +35,8 @@ Esses critérios servem apenas para o **recrutamento**. Não registrar idade, pr
 
 ## 3. Preparação
 
-1. Abrir o terminal na pasta `Jun`.
-2. Executar o agente no terminal a partir da pasta `Jun` com `python3 main_agente.py`.
+1. Abrir o terminal na raiz do repositório (`citizen-assist-ai`).
+2. Executar o agente no terminal com `python3 main_agente.py`.
    Confirme que as respostas apresentam ficha, data de verificação e aviso de canal não oficial.
 3. Aumentar a fonte do terminal.
 4. Deixar o roteiro de tarefas impresso ou em outra tela.

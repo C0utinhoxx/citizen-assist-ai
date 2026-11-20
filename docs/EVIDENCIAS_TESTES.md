@@ -24,7 +24,7 @@ pelo grafo. O fallback sequencial continua existindo e é testado.
 ## 2. Suíte Python — com LangGraph 0.6.11
 
 ```bash
-cd Jun
+cd citizen-assist-ai
 python3 -m unittest discover -s testes -t .
 ```
 
@@ -274,7 +274,7 @@ A chave do provedor fica apenas em `agente/.env`, que é ignorado pelo Git.
 ## 18. Como reproduzir
 
 ```bash
-cd Jun
+cd citizen-assist-ai
 python3 -m unittest discover -s testes -t . -v
 node mobile/teste-logica.js
 python3 -m avaliacao.executar --modo ambos --juiz deterministico --agente extrativo
