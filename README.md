@@ -2,6 +2,7 @@
 
 **Equipe:** Bruno Riquelme Coutinho Pereira (RM 569619) · Eduardo Bigoli Portela (RM 569897) · Gustavo Fondato de Souza (RM 573651)  
 **Turma:** 1CCPX · **Repositório:** https://github.com/C0utinhoxx/citizen-assist-ai
+**Video:** https://youtu.be/NSX5ynmDjiI
 
 > **Documentos de submissão:** mantidos fora do repositório, na pasta local `Entregas_GS_2026_2`, com um documento e um texto de portal para cada disciplina.
 
