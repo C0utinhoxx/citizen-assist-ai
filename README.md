@@ -85,7 +85,7 @@ Teste realizado em 18/11/2026 com 4 pessoas de fora da equipe (P01 a P04), soman
 
 ## Vídeo técnico (PCP)
 
-COLE_AQUI_O_LINK_DO_VIDEO
+(https://youtu.be/NSX5ynmDjiI)
 
 ## Funcionalidades
 
