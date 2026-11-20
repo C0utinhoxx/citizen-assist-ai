@@ -49,16 +49,21 @@
       "posto de saude",
       "agendar",
       "dentista",
-      "medico"
+      "medico",
+      "remedio",
+      "remedio gratuito",
+      "farmacia popular"
     ],
-    "resposta": "Para marcar consulta médica ou odontológica, procure a UBS do seu bairro com documento com foto e Cartão SUS. Para atendimento com dentista, informe o motivo na UBS: a equipe poderá agendar avaliação odontológica ou encaminhar para o serviço adequado. Em caso de urgência, procure o serviço de saúde mais próximo.",
+    "resposta": "Para marcar consulta médica ou odontológica, procure a UBS do seu bairro com documento com foto e Cartão SUS. Para atendimento com dentista, informe o motivo na UBS: a equipe poderá agendar avaliação odontológica ou encaminhar para o serviço adequado. Para receber medicamentos gratuitos indicados pelo Programa Farmácia Popular, procure uma farmácia credenciada, com receita válida e documento com foto e CPF. Em caso de urgência, procure o serviço de saúde mais próximo.",
     "documentos": [
       "Documento com foto",
       "Cartão SUS",
-      "Comprovante de residência"
+      "Comprovante de residência",
+      "Receita válida (para medicamentos do Programa Farmácia Popular)",
+      "CPF (para medicamentos do Programa Farmácia Popular)"
     ],
-    "onde": "UBS do seu bairro",
-    "fonte": "https://www.gov.br/saude/pt-br/assuntos/atencao-primaria",
+    "onde": "UBS do seu bairro; farmácia credenciada do Programa Farmácia Popular",
+    "fonte": "https://www.gov.br/saude/farmaciapopular",
     "verificado_em": "2026-11-19"
   },
   {

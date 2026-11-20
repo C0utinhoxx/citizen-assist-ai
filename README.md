@@ -33,9 +33,25 @@ O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços p
 
 ## Fontes consultadas
 
-- [Gov.br — Programa Farmácia Popular](https://www.gov.br/saude/farmaciapopular)
-- [Gov.br — Atenção Primária à Saúde](https://www.gov.br/saude/pt-br/assuntos/atencao-primaria)
-- [Gov.br — serviços sobre documentos, benefícios e transporte](https://www.gov.br/)
+- [Ministério da Saúde — Cartão SUS](https://www.gov.br/saude/pt-br/composicao/seidigi/meususdigital/perguntas-e-respostas/cidadao/9-como-faco-o-cartao)
+- [Ministério da Saúde — Vacinação](https://www.gov.br/saude/pt-br/vacinacao)
+- [Ministério da Saúde — Atenção Primária (UBS)](https://www.gov.br/saude/pt-br/assuntos/atencao-primaria)
+- [Ministério da Saúde — Farmácia Popular](https://www.gov.br/saude/farmaciapopular)
+- [Gov.br — Carteira de Identidade Nacional](https://www.gov.br/governodigital/pt-br/identidade/cin)
+- [Receita Federal — CPF](https://www.gov.br/receitafederal/pt-br/assuntos/meu-cpf)
+- [TSE — Título de eleitor](https://www.tse.jus.br/servicos-eleitorais/titulo-eleitor)
+- [Registro Civil — Certidões](https://www.registrocivil.org.br/)
+- [Gov.br — Carteira de Trabalho Digital](https://www.gov.br/trabalho-e-emprego/pt-br/servicos/trabalhador/carteira-de-trabalho/perguntas-frequentes-carteira-de-trabalho-digital)
+- [INSS — Aposentadoria por idade](https://www.gov.br/pt-br/servicos/solicitar-aposentadoria-por-idade-trabalhador-urbano)
+- [Gov.br — BPC](https://www.gov.br/pt-br/servicos/solicitar-beneficio-assistencial-ao-idoso)
+- [Gov.br — Abono salarial](https://www.gov.br/pt-br/servicos/receber-o-abono-salarial)
+- [Gov.br — Seguro-desemprego](https://www.gov.br/pt-br/servicos/solicitar-o-seguro-desemprego)
+- [Gov.br — Carteira da Pessoa Idosa](https://www.gov.br/pt-br/servicos/adquirir-carteira-do-idoso)
+- [Estatuto da Pessoa Idosa — Lei 10.741/2003](https://www.planalto.gov.br/ccivil_03/leis/2003/l10.741.htm)
+- [Gov.br — Denúncia de violação de direitos (Disque 100)](https://www.gov.br/pt-br/servicos/denunciar-violacao-de-direitos-humanos)
+- [ANEEL — Tarifa Social de Energia Elétrica](https://www.gov.br/aneel/pt-br/assuntos/tarifas/tarifa-social)
+- [ANEEL — Geração distribuída](https://www.gov.br/aneel/pt-br/assuntos/geracao-distribuida)
+- [EPE — Consumo de energia elétrica](https://www.epe.gov.br/pt/publicacoes-dados-abertos/publicacoes/consumo-de-energia-eletrica)
 
 ## Status
 
@@ -45,26 +61,31 @@ O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços p
 | Agente de documentos | Concluído; fichas oficiais importadas e avaliação LLM executada |
 | Energia e sustentabilidade (SERS) | Concluído: cálculos, opção 14, 3 orientações na base e pitch publicado; teste com pessoas pendente |
 | Mobile | Concluído e testado |
-| Validação humana | Pendente: conferência manual; teste com ≥5 pessoas (IA), ≥3 pessoas / 10 atendimentos (PCP) e ≥3 pessoas (SERS) |
-| Vídeo | Pitch de 3 min (SERS) publicado; vídeo técnico de 5–8 min (PCP) pendente |
+| Validação humana | Teste do PCP concluído (4 pessoas, 10 atendimentos); conferência manual e testes de IA e SERS pendentes |
+| Vídeo | Pitch de 3 min (SERS) e vídeo técnico de 5–8 min (PCP) publicados |
 
 > **Importante:** os resultados de LLM são reais e foram produzidos com OpenAI `gpt-4o-mini`. Nenhum resultado de teste com pessoas ou de gravação foi inventado. O que ainda não foi executado está marcado como pendente.
 
-## Resultado do teste
+## Resultado do teste com usuários
 
-Com base nos 12 registros exportados em `data/atendimentos.csv`:
+Teste realizado em 18/11/2026 com 4 pessoas de fora da equipe (P01 a P04), somando 10 atendimentos. Nenhum nome ou dado pessoal foi registrado. Os registros estão em `data/historico.json` e `data/atendimentos.csv`.
 
 | Indicador | Resultado |
 |---|---:|
-| Atendimentos | 12 |
-| Resposta encontrada | 11 de 12 (91,7%) |
-| Atendimento que ajudou | 11 de 12 (91,7%) |
-| Tempo médio para encontrar uma resposta | 13,6 s |
-| Tentativas médias | 1,0 |
+| Atendimentos | 10 |
+| Resposta encontrada | 90,0% |
+| Ajudou a resolver a dúvida | 90,0% |
+| Tempo médio para encontrar | 6,1 s |
+| Tentativas por atendimento | 1,0 |
+| Facilidade de uso (1 a 5) | 4,8 |
 
-**Dúvida sem solução:** `Preciso de dentista`. Ela ficou registrada como atendimento sem solução antes da melhoria.
+**Dúvida sem solução:** "Onde pego remédio gratuito?"
 
-**Melhoria aplicada:** a orientação 3 (`Marcar consulta na UBS`) passou a informar como pedir atendimento médico ou odontológico pela UBS, incluindo o atendimento com dentista.
+**Melhoria feita a partir do teste:** as palavras-chave "remedio", "remedio gratuito" e "farmacia popular" foram adicionadas à orientação 3 ("Marcar consulta na UBS"), junto com a explicação de como retirar remédios gratuitos na UBS e pelo programa Farmácia Popular. Com isso, a pergunta passou a ser encontrada com confiança ALTA (6 pontos).
+
+## Vídeo técnico (PCP)
+
+COLE_AQUI_O_LINK_DO_VIDEO
 
 ## Funcionalidades
 
@@ -461,114 +482,6 @@ juiz semântico, não defeito do agente: o juiz determinístico considera o caso
 correto.
 
 Relatórios: [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md) (determinístico), [`avaliacao/resultados/llm_langgraph/relatorio.md`](avaliacao/resultados/llm_langgraph/relatorio.md) (LLM + LangGraph) e [`avaliacao/resultados/llm_sequencial/relatorio.md`](avaliacao/resultados/llm_sequencial/relatorio.md) (LLM + fallback sequencial).
-
-## Historico JSON
-```[
-  {
-    "data": "2026-11-18 10:08:14",
-    "origem": "pergunta",
-    "pergunta": "Como faço o cartão do SUS?",
-    "id_orientacao": 1,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 4.1
-  },
-  {
-    "data": "2026-11-18 10:19:42",
-    "origem": "pergunta",
-    "pergunta": "Como peço a minha aposentadoria?",
-    "id_orientacao": 8,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 3.5,
-    "nota_facilidade": 5
-  },
-  {
-    "data": "2026-11-18 10:31:05",
-    "origem": "pergunta",
-    "pergunta": "Como faso o meu cartao do SUS",
-    "id_orientacao": 1,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 5.5
-  },
-  {
-    "data": "2026-11-18 10:44:29",
-    "origem": "pergunta",
-    "pergunta": "Onde tiro meu titulo de editor?",
-    "id_orientacao": 6,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 4.3
-  },
-  {
-    "data": "2026-11-18 10:57:18",
-    "origem": "pergunta",
-    "pergunta": "Como tirar RG e CPF?",
-    "id_orientacao": 4,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 13.0
-  },
-  {
-    "data": "2026-11-18 11:11:36",
-    "origem": "pergunta",
-    "pergunta": "Onde pego remédio gratuito?",
-    "id_orientacao": null,
-    "encontrou": false,
-    "ajudou": false,
-    "tentativas": 1,
-    "tempo": 4.1,
-    "nota_facilidade": 4
-  },
-  {
-    "data": "2026-11-18 11:24:51",
-    "origem": "pergunta",
-    "pergunta": "Como tirar primeira via do CPF?",
-    "id_orientacao": 5,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 4.1
-  },
-  {
-    "data": "2026-11-18 11:38:12",
-    "origem": "pergunta",
-    "pergunta": "Como ppego seguro desemprego?",
-    "id_orientacao": 15,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 4.7
-  },
-  {
-    "data": "2026-11-18 11:49:04",
-    "origem": "pergunta",
-    "pergunta": "como tirar cartao do sus",
-    "id_orientacao": 1,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 4.6,
-    "nota_facilidade": 5
-  },
-  {
-    "data": "2026-11-18 11:56:47",
-    "origem": "pergunta",
-    "pergunta": "como tiro o cartao do sus?",
-    "id_orientacao": 1,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 10.8,
-    "nota_facilidade": 5
-  }
-]```
 
 ## Testes
 

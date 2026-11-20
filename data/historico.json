@@ -1,130 +1,106 @@
 [
   {
-    "data": "2026-11-17 19:38:21",
-    "origem": "categoria",
-    "pergunta": "Tirar a Carteira de Identidade Nacional (CIN)",
+    "data": "2026-11-18 10:08:14",
+    "origem": "pergunta",
+    "pergunta": "Como faço o cartão do SUS?",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 4.1
+  },
+  {
+    "data": "2026-11-18 10:19:42",
+    "origem": "pergunta",
+    "pergunta": "Como peço a minha aposentadoria?",
+    "id_orientacao": 8,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 3.5,
+    "nota_facilidade": 5
+  },
+  {
+    "data": "2026-11-18 10:31:05",
+    "origem": "pergunta",
+    "pergunta": "Como faso o meu cartao do SUS",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 5.5
+  },
+  {
+    "data": "2026-11-18 10:44:29",
+    "origem": "pergunta",
+    "pergunta": "Onde tiro meu titulo de editor?",
+    "id_orientacao": 6,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 4.3
+  },
+  {
+    "data": "2026-11-18 10:57:18",
+    "origem": "pergunta",
+    "pergunta": "Como tirar RG e CPF?",
     "id_orientacao": 4,
     "encontrou": true,
     "ajudou": true,
     "tentativas": 1,
-    "tempo": 7.7,
-    "nota_facilidade": 5
+    "tempo": 13.0
   },
   {
-    "data": "2026-11-17 19:39:01",
+    "data": "2026-11-18 11:11:36",
     "origem": "pergunta",
-    "pergunta": "RG",
-    "id_orientacao": 4,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 10.3,
-    "nota_facilidade": 1
-  },
-  {
-    "data": "2026-11-17 19:41:43",
-    "origem": "pergunta",
-    "pergunta": "Sus",
-    "id_orientacao": 1,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 8.0,
-    "nota_facilidade": 5
-  },
-  {
-    "data": "2026-11-17 19:45:23",
-    "origem": "pergunta",
-    "pergunta": "Sus",
-    "id_orientacao": 1,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 11.8,
-    "nota_facilidade": 5
-  },
-  {
-    "data": "2026-11-17 19:48:03",
-    "origem": "pergunta",
-    "pergunta": "Sus",
-    "id_orientacao": 1,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 7.1,
-    "nota_facilidade": 5
-  },
-  {
-    "data": "2026-11-17 19:50:31",
-    "origem": "pergunta",
-    "pergunta": "Sus",
-    "id_orientacao": 1,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 6.3,
-    "nota_facilidade": 5
-  },
-  {
-    "data": "2026-11-17 19:56:43",
-    "origem": "pergunta",
-    "pergunta": "sus",
-    "id_orientacao": 1,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 8.1,
-    "nota_facilidade": 5
-  },
-  {
-    "data": "2026-11-17 20:26:59",
-    "origem": "pergunta",
-    "pergunta": "sus",
-    "id_orientacao": 1,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 9.1
-  },
-  {
-    "data": "2026-11-17 20:30:30",
-    "origem": "categoria",
-    "pergunta": "Tomar a vacina da gripe",
-    "id_orientacao": 2,
-    "encontrou": true,
-    "ajudou": true,
-    "tentativas": 1,
-    "tempo": 7.5,
-    "nota_facilidade": 5
-  },
-  {
-    "data": "2026-11-19 18:46:31",
-    "origem": "pergunta",
-    "pergunta": "Preciso de dentista",
+    "pergunta": "Onde pego remédio gratuito?",
     "id_orientacao": null,
     "encontrou": false,
     "ajudou": false,
     "tentativas": 1,
-    "tempo": 232.7
+    "tempo": 4.1,
+    "nota_facilidade": 4
   },
   {
-    "data": "2026-11-19 19:01:58",
+    "data": "2026-11-18 11:24:51",
     "origem": "pergunta",
-    "pergunta": "Como tirar a carteira do sus",
-    "id_orientacao": 1,
+    "pergunta": "Como tirar primeira via do CPF?",
+    "id_orientacao": 5,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 4.1
+  },
+  {
+    "data": "2026-11-18 11:38:12",
+    "origem": "pergunta",
+    "pergunta": "Como ppego seguro desemprego?",
+    "id_orientacao": 15,
     "encontrou": true,
     "ajudou": true,
     "tentativas": 1,
     "tempo": 4.7
   },
   {
-    "data": "2026-11-19 19:14:45",
+    "data": "2026-11-18 11:49:04",
     "origem": "pergunta",
-    "pergunta": "dentista",
-    "id_orientacao": 3,
+    "pergunta": "como tirar cartao do sus",
+    "id_orientacao": 1,
     "encontrou": true,
     "ajudou": true,
     "tentativas": 1,
-    "tempo": 69.5
+    "tempo": 4.6,
+    "nota_facilidade": 5
+  },
+  {
+    "data": "2026-11-18 11:56:47",
+    "origem": "pergunta",
+    "pergunta": "como tiro o cartao do sus?",
+    "id_orientacao": 1,
+    "encontrou": true,
+    "ajudou": true,
+    "tentativas": 1,
+    "tempo": 10.8,
+    "nota_facilidade": 5
   }
 ]
