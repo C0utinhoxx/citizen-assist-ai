@@ -1,8 +1,8 @@
 # Conferência manual de amostra
 
-**Status:** CONCLUÍDO — conferência manual realizada por integrante da equipe.
+**Status:** PENDENTE de conferência humana.
 
-> Esta folha reúne a amostra de casos com a resposta observada do agente e a conferência manual realizada por um integrante do grupo, comparando cada resposta com a rubrica e a ficha oficial.
+> Esta folha foi pré-preenchida automaticamente com a resposta observada e a nota do juiz determinístico. O preenchimento técnico não substitui a conferência manual por um integrante do grupo. Marque cada caso e assine no final.
 
 > Para regenerar: `python3 -m avaliacao.gerar_conferencia`.
 
@@ -37,7 +37,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -69,7 +69,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -116,7 +116,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -156,7 +156,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -183,7 +183,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -214,7 +214,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -242,7 +242,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -267,7 +267,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -306,7 +306,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -318,16 +318,16 @@ ______________________________________________________________________
 
 | Item | Resultado |
 |---|---|
-| Casos conferidos | 9 / 9 |
-| Conferem | 9 |
-| Parciais | 0 |
-| Não conferem | 0 |
-| Divergências encontradas | 0 |
+| Casos conferidos | ____ / 9 |
+| Conferem | ____ |
+| Parciais | ____ |
+| Não conferem | ____ |
+| Divergências encontradas | ____ |
 
-**Conferido por (integrante):** Bruno Riquelme Coutinho Pereira (RM 569619)
+**Conferido por (integrante):** ______________________________
 
-**Data:** 19/11/2026
+**Data:** ____/____/______
 
-**Assinatura:** Bruno Riquelme Coutinho Pereira
+**Assinatura:** ______________________________
 
 > Se houver divergência, registre o caso e a correção necessária. Não altere a resposta esperada para “fazer passar”.

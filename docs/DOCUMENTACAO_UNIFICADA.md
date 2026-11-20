@@ -48,7 +48,7 @@ A solução tem quatro camadas:
 3. **Módulo SERS de energia** — comparação entre redução de consumo e solar fotovoltaico, com premissas, cálculos, custos, payback e impacto ambiental.
 4. **Avaliação** — Golden Dataset com as 26 mensagens originais, juiz determinístico, pipeline LLM as a Judge e comparação antes/depois.
 
-**Estado real da entrega:** o núcleo DSA está concluído e testado; a arquitetura do agente está concluída e testada; as fichas oficiais foram importadas e o juiz LLM foi executado com OpenAI `gpt-4o-mini` e LangGraph 0.6.11; o módulo SERS está implementado, integrado ao menu e coberto por testes. A conferência manual e o teste com usuários da IA estão realizados e documentados, restando apenas os vídeos técnicos pendentes.
+**Estado real da entrega:** o núcleo DSA está concluído e testado; a arquitetura do agente está concluída e testada; as fichas oficiais foram importadas e o juiz LLM foi executado com OpenAI `gpt-4o-mini` e LangGraph 0.6.11; o módulo SERS está implementado, integrado ao menu e coberto por testes. A conferência manual, os testes com pessoas e os vídeos ainda dependem de execução humana. Essas pendências estão explicitadas ao longo do documento e no checklist final.
 
 ---
 
@@ -649,7 +649,7 @@ correto. É variação de juiz semântico, não defeito do agente.
 
 ### Conferência manual
 
-O formulário `avaliacao/conferencia_manual.md` prepara uma amostra de 9 casos (escopo, fora do escopo, inválida, PII, injection e aviso). Ele foi regenerado com as fichas oficiais e preenchido por integrante do grupo, comparando a resposta esperada com a observada. A conferência humana foi concluída com 100% de conformidade com as rubricas.
+O formulário `avaliacao/conferencia_manual.md` prepara uma amostra de 9 casos (escopo, fora do escopo, inválida, PII, injection e aviso). Ele foi regenerado com as fichas oficiais e pode ser recriado com `python3 -m avaliacao.gerar_conferencia`. Deve ser preenchido por um integrante do grupo, comparando a resposta esperada com a observada. **A conferência humana ainda não foi feita**; o que existe é a conferência técnica automática.
 
 ---
 
@@ -708,7 +708,9 @@ média de clareza; as demais são comentários qualitativos.
 
 ### Status
 
-O teste com usuários foi executado com 5 participantes externos e 50 tarefas (10 por participante). Os registros detalhados constam em `testes_usuarios/planilha.csv`, `testes_usuarios/questionario.csv` e no relatório consolidado em `testes_usuarios/relatorio.md`. A conferência manual de 9 casos da avaliação também foi realizada e validada em `avaliacao/conferencia_manual.md`.
+O protocolo, o formulário, o questionário, a planilha e o **modelo de relatório**
+(`testes_usuarios/relatorio.md`) estão prontos em `testes_usuarios/`. **A execução
+com 5 pessoas ainda não ocorreu**; nenhum resultado foi inventado.
 
 ---
 
@@ -743,8 +745,8 @@ python3 main_agente.py
 | Golden Dataset — extrativo (juiz LLM) | 23/26 exatos, 3 parciais, 94,2% |
 | Cliente HTTP OpenAI-compatível | teste local aprovado |
 | Juiz LLM | **executado com OpenAI `gpt-4o-mini`** |
-| Teste com 5 pessoas (IA) | **concluído** (5 participantes, 50 tarefas) |
-| Conferência manual | **concluída** (9 casos conferidos e assinados) |
+| Teste com 5 pessoas | pendente |
+| Conferência manual | pendente |
 | Vídeo | Pitch SERS **publicado**; vídeo técnico PCP pendente |
 
 ### Cobertura dos testes do agente
@@ -871,13 +873,13 @@ Conta base: 150 kWh × R$ 0,90 = **R$ 135,00/mês**; 1.800 kWh/ano.
 
 1. **Fichas oficiais fictícias.** A “Central do Cidadão de Aurora” é um cenário didático; os valores e prazos não valem para órgãos reais.
 2. **Juiz LLM com um único modelo.** A execução usou `gpt-4o-mini`; outro modelo ou outra execução pode variar a nota.
-3. **Sem teste com pessoas no módulo SERS.** O protocolo SERS está pronto; o teste do agente de IA já foi executado.
+3. **Sem teste com pessoas.** O protocolo está pronto; a execução não.
 4. **Sem vídeo.** O roteiro está pronto; a gravação não.
 5. **Busca lexical.** Sinônimos não previstos podem falhar.
 6. **Cobertura de PII por regex.** Formatos incomuns podem passar.
 7. **Um agente só.** Não há multiagente; a separação é por nós.
 8. **Sem integração com sistemas oficiais.** O agente não consulta bases do governo.
-9. **Conferência manual.** A conferência manual de 9 casos foi realizada e registrada em `avaliacao/conferencia_manual.md`.
+9. **Conferência manual pendente.** O formulário foi regenerado com as fichas oficiais, mas ainda não foi preenchido por uma pessoa.
 
 ### Riscos
 
@@ -936,8 +938,8 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 | P3 — antes/depois | Entregue com juiz determinístico |
 | P3 — LLM as a Judge | **Executado** com `gpt-4o-mini` + LangGraph: 24/26 exatos, 94,2% |
 | P3 — análise de erros | Entregue (baseline) |
-| P3 — conferência manual de amostra | **Concluída** (9 casos conferidos e assinados em `avaliacao/conferencia_manual.md`) |
-| P3 — teste com 5 pessoas | **Concluído** (5 pessoas, 50 tarefas em `testes_usuarios/relatorio.md`) |
+| P3 — conferência manual de amostra | Formulário pronto; **execução humana pendente** |
+| P3 — teste com 5 pessoas | Protocolo pronto; **execução pendente** |
 | P3 — documentação | Entregue |
 | P4 — vídeo até 3 min | **Publicado:** https://youtu.be/r_cDeVWeedo |
 | P4 — análise de energia com duas alternativas | Entregue em `sers/` e `SERS_RELATORIO.md` |
@@ -956,12 +958,12 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 ### Antes de entregar
 
 1. Conferir os nomes/RMs e a turma (**1CCPX**) no topo deste documento e no `README.md`.
-2. Conferência manual de 9 casos concluída em `avaliacao/conferencia_manual.md`.
-3. Teste com 5 pessoas da IA concluído e registrado em `testes_usuarios/relatorio.md`.
+2. Preencher a conferência manual de 9 casos em `avaliacao/conferencia_manual.md`.
+3. Executar os testes com pessoas: 5 na IA, ≥3 pessoas / 10 atendimentos no PCP e ≥3 no SERS; preencher planilhas e relatórios.
 4. Gravar o vídeo técnico (PCP) e, se aplicável, os vídeos de IA e DSA; publicar como não listado e colar os links em `pitch/link_video.txt` e nos arquivos `PCP.txt`, `IA.txt` e `DSA.txt` da pasta externa `Entregas_GS_2026_2`. O link do SERS já está preenchido em `SERS.txt`. Usar `pitch/descricao_youtube.md` para a descrição e o comentário.
 5. Rodar novamente `python3 -m unittest discover -s testes -t .`, `node mobile/teste-logica.js` e `python3 -m sers`.
 6. Confirmar que o repositório público abre sem login e que os arquivos de dados estão versionados.
 7. Revisar o resultado do juiz LLM (24/26; o parcial é o caso 24 e a falha é o 25) e registrar a análise final.
 8. Aplicar o protocolo SERS com pelo menos 3 pessoas e registrar os resultados em `testes_usuarios/`.
 
-> **Nota final:** os resultados de LLM são reais e reproduzíveis; os testes com usuários da IA e a conferência manual foram documentados conforme os protocolos definidos.
+> **Nota final:** este documento não declara concluído o que está pendente. Os resultados de LLM são reais; os resultados de teste com pessoas e de vídeo só devem ser preenchidos depois de executados.

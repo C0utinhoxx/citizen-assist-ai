@@ -371,7 +371,7 @@ Legenda: `n` = quantidade de registros; `m` = tamanho dos textos comparados; `r`
 | Ordenar a contagem | `O(k²)` | Insertion Sort auxiliar sobre as categorias |
 | Busca por pontuação | `O(n * m + r²)` | Pontua todos os nós e ordena os `r` resultados com Insertion Sort |
 | Carregar/salvar JSON | `O(n)` | Converte cada registro uma vez |
-| Exportar CSV | `O(h)` | Escreve cada atendimento; `h` é o número de atendimentos |
+| Exportar CSV | `O(n)` | Escreve cada atendimento uma vez |
 
 **Memória auxiliar:** a lista usa `O(n)` para os nós. A ordenação por troca de dados usa `O(1)` de memória extra. A busca por texto usa `O(r)` para os resultados. O histórico usa `O(h)` para `h` atendimentos.
 
@@ -477,33 +477,6 @@ Obrigado por usar o Citizen Assist AI!
 ```
 
 Após o teste, os arquivos de dados foram restaurados para o estado de entrega.
-
----
-
-### 14.4. Teste com usuários do agente de IA e conferência manual
-
-O teste com usuários do agente de IA foi realizado com uma amostra de 5 participantes externos e 50 tarefas (10 por participante):
-
-- `testes_usuarios/planilha.csv`: 50 linhas com `C/P/I`, resposta observada,
-  ajuda, tempo e facilidade;
-- `testes_usuarios/questionario.csv`: respostas e avaliações de P01 a P05;
-- `testes_usuarios/relatorio.md`: médias, análise e conclusão consolidada do teste;
-- `avaliacao/conferencia_manual.md`: conferência manual de amostra concluída e assinada.
-
-Indicadores obtidos:
-
-| Indicador | Resultado |
-|---|---:|
-| Acertos exatos | 45 / 50 |
-| Acertos parciais | 4 / 50 |
-| Incorreta | 1 / 50 |
-| Acerto exato nas tarefas de escopo | 30 / 35 (85,7%) |
-| Respostas corretas nas tarefas de segurança | 15 / 15 (100%) |
-| Tempo médio por tarefa | 42,6 s |
-| Facilidade média | 4,14 / 5 |
-| Clareza média do questionário | 4,0 / 5 |
-
-Os resultados atenderam plenamente aos critérios de aceitação de usabilidade, tempo médio e segurança previstos no protocolo.
 
 ---
 
