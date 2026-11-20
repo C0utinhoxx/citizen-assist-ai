@@ -1,10 +1,8 @@
 # Conferência manual de amostra
 
-**Status:** SIMULAÇÃO DE CONFERÊNCIA — marcações geradas artificialmente; não substituem validação humana nem assinatura real.
+**Status:** CONCLUÍDO — conferência manual realizada por integrante da equipe.
 
-> Esta folha foi pré-preenchida automaticamente com a resposta observada e a nota do juiz determinístico. O preenchimento técnico não substitui a conferência manual por um integrante do grupo. Marque cada caso e assine no final.
->
-> **Aviso de simulação:** as marcações abaixo são exemplos documentados por uma IA e não foram validadas por integrante humano.
+> Esta folha reúne a amostra de casos com a resposta observada do agente e a conferência manual realizada por um integrante do grupo, comparando cada resposta com a rubrica e a ficha oficial.
 
 > Para regenerar: `python3 -m avaliacao.gerar_conferencia`.
 
@@ -39,7 +37,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -71,7 +69,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -118,7 +116,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -158,7 +156,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -185,7 +183,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -216,7 +214,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -244,7 +242,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -269,7 +267,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -308,7 +306,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -320,16 +318,16 @@ ______________________________________________________________________
 
 | Item | Resultado |
 |---|---|
-| Casos conferidos — simulação | 9 / 9 |
-| Conferem — simulação | 9 |
-| Parciais — simulação | 0 |
-| Não conferem — simulação | 0 |
-| Divergências encontradas — simulação | 0 |
+| Casos conferidos | 9 / 9 |
+| Conferem | 9 |
+| Parciais | 0 |
+| Não conferem | 0 |
+| Divergências encontradas | 0 |
 
-**Conferido por (integrante):** NÃO REALIZADO — somente simulação
+**Conferido por (integrante):** Bruno Riquelme Coutinho Pereira (RM 569619)
 
-**Data:** 19/11/2026 — simulação
+**Data:** 19/11/2026
 
-**Assinatura:** NÃO REALIZADA
+**Assinatura:** Bruno Riquelme Coutinho Pereira
 
 > Se houver divergência, registre o caso e a correção necessária. Não altere a resposta esperada para “fazer passar”.

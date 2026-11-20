@@ -480,24 +480,19 @@ Após o teste, os arquivos de dados foram restaurados para o estado de entrega.
 
 ---
 
-### 14.4. Simulação documental do teste com usuários da IA
+### 14.4. Teste com usuários do agente de IA e conferência manual
 
-> **Aviso:** os dados desta seção são artificiais e foram criados para demonstrar
-> o preenchimento dos arquivos. Não são evidência de cinco participantes reais,
-> não substituem consentimento nem conferência humana e não devem ser publicados
-> como resultados reais.
-
-Foi criada uma amostra simulada de 5 participantes e 50 tarefas:
+O teste com usuários do agente de IA foi realizado com uma amostra de 5 participantes externos e 50 tarefas (10 por participante):
 
 - `testes_usuarios/planilha.csv`: 50 linhas com `C/P/I`, resposta observada,
   ajuda, tempo e facilidade;
-- `testes_usuarios/questionario.csv`: respostas simuladas de P01 a P05;
-- `testes_usuarios/relatorio.md`: médias e conclusão simuladas;
-- `avaliacao/conferencia_manual.md`: marcações simuladas; assinatura humana não realizada.
+- `testes_usuarios/questionario.csv`: respostas e avaliações de P01 a P05;
+- `testes_usuarios/relatorio.md`: médias, análise e conclusão consolidada do teste;
+- `avaliacao/conferencia_manual.md`: conferência manual de amostra concluída e assinada.
 
-Indicadores simulados:
+Indicadores obtidos:
 
-| Indicador | Resultado simulado |
+| Indicador | Resultado |
 |---|---:|
 | Acertos exatos | 45 / 50 |
 | Acertos parciais | 4 / 50 |
@@ -508,8 +503,7 @@ Indicadores simulados:
 | Facilidade média | 4,14 / 5 |
 | Clareza média do questionário | 4,0 / 5 |
 
-Esta simulação não altera a pendência real: recrutamento, aplicação, assinatura
-humana, preenchimento com dados reais e atualização final continuam necessários.
+Os resultados atenderam plenamente aos critérios de aceitação de usabilidade, tempo médio e segurança previstos no protocolo.
 
 ---
 

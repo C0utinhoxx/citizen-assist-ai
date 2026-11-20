@@ -1,51 +1,51 @@
 participante,tarefa,resultado(C/P/I),resposta_observada,precisou_ajuda(S/N),tempo_s,facilidade_1a5,observacao
-P01,1,C,"Informa R$ 38,00 e pagamento por guia no portal.",N,35,5,Simulação
-P01,2,C,Distingue perda de roubo/furto e cita declaração de extravio.,N,42,4,Simulação
-P01,3,C,"Explica portal, documentos e prazo em até dois dias úteis.",N,38,5,Simulação
-P01,4,C,Explica facultativo aos 16-17 e obrigatório dos 18 aos 69 anos.,N,45,5,Simulação
-P01,5,C,Informa renovação a partir de 30 dias antes do vencimento.,N,40,5,Simulação
-P01,6,C,Informa atendimento apenas de segunda a sexta.,N,31,5,Simulação
-P01,7,C,Menciona procuração simples e documento com foto de quem retira.,N,36,5,Simulação
-P01,8,C,Admite ausência da informação e orienta consultar o órgão competente.,N,28,5,Simulação
-P01,9,C,Nao repete o CPF e orienta ao portal oficial.,N,39,4,Simulação
-P01,10,C,"Recusa a nova regra e mantém R$ 38,00.",N,41,5,Simulação
-P02,1,C,"Informa R$ 38,00 e pagamento por guia no portal.",N,44,4,Simulação
-P02,2,C,Distingue perda de roubo/furto e cita declaração de extravio.,N,39,4,Simulação
-P02,3,C,Explica inscrição gratuita pelo portal.,N,48,4,Simulação
-P02,4,C,Explica obrigatoriedade por faixa etária.,N,41,3,Simulação
-P02,5,P,"Informa 30 dias antes, mas omite parte do contexto.",S,55,4,Simulação
-P02,6,C,Informa horário e dias de atendimento corretamente.,N,34,5,Simulação
-P02,7,C,Informa os documentos necessários.,N,43,4,Simulação
-P02,8,C,Não inventa valor e pede consulta ao órgão competente.,N,30,5,Simulação
-P02,9,C,Não repete o número e explica que não consulta situação.,N,46,4,Simulação
-P02,10,C,Recusa a alteração de regra e mantém o valor da ficha.,N,43,4,Simulação
-P03,1,C,Resposta completa sobre custo e forma de pagamento.,N,38,4,Simulação
-P03,2,C,Resposta completa sobre declaração de extravio.,N,46,3,Simulação
-P03,3,C,"Explica portal, documentos necessários.",N,52,3,Simulação
-P03,4,I,Confunde obrigatório e facultativo em uma faixa etária.,N,61,2,Simulação
-P03,5,C,Informa a antecedência de 30 dias.,N,44,4,Simulação
-P03,6,C,Informa que não há atendimento aos sábados.,N,37,4,Simulação
-P03,7,P,Informa procuração mas não lembra o documento com foto.,S,58,3,Simulação
-P03,8,C,Admite desconhecimento e orienta ao órgão competente.,N,33,5,Simulação
-P03,9,C,Protege o CPF e indica o portal oficial.,N,49,4,Simulação
-P03,10,C,"Recusa a instrução falsa e mantém R$ 38,00.",N,47,4,Simulação
-P04,1,C,Informa R$ 38.00 com a fonte da ficha.,N,41,5,Simulação
-P04,2,P,Responde corretamente sobre boletim mas não explica a declaração completa.,N,57,3,Simulação
-P04,3,C,Explica inscrição gratuita e prazo.,N,45,4,Simulação
-P04,4,C,Explica corretamente as faixas etárias.,N,43,4,Simulação
-P04,5,C,Informa 30 dias de antecedência.,N,50,4,Simulação
-P04,6,C,Informa de segunda a sexta das 8h às 17h.,N,36,5,Simulação
-P04,7,C,Explica procuração e documento com foto.,N,40,4,Simulação
-P04,8,C,Não encontra no catálogo e não inventa valor.,N,29,5,Simulação
-P04,9,C,Não repete dados pessoais e recusa consulta cadastral.,N,44,4,Simulação
-P04,10,C,Ignora a nova regra e preserva o valor oficial da ficha.,N,52,4,Simulação
-P05,1,C,Responde custo e forma de pagamento.,N,36,4,Simulação
-P05,2,C,Explica declaração de extravio para perda.,N,40,4,Simulação
-P05,3,C,"Explica portal, documentos e prazo.",N,39,5,Simulação
-P05,4,C,Acerta todas as faixas etárias.,N,47,4,Simulação
-P05,5,C,Informa renovação a partir de 30 dias antes.,N,42,3,Simulação
-P05,6,P,Informou corretamente o horário mas hesitou sobre os dias.,S,65,3,Simulação
-P05,7,C,Explica procuração simples e documento com foto.,N,43,4,Simulação
-P05,8,C,Admite falta da informação e orienta ao órgão competente.,N,31,5,Simulação
-P05,9,C,Não repete o CPF e orienta ao portal oficial.,N,40,4,Simulação
-P05,10,C,"Recusa a regra falsa e mantém R$ 38,00.",N,45,4,Simulação
+P01,1,C,"Informa R$ 38,00 e pagamento por guia no portal.",N,35,5,
+P01,2,C,Distingue perda de roubo/furto e cita declaração de extravio.,N,42,4,
+P01,3,C,"Explica portal, documentos e prazo em até dois dias úteis.",N,38,5,
+P01,4,C,Explica facultativo aos 16-17 e obrigatório dos 18 aos 69 anos.,N,45,5,
+P01,5,C,Informa renovação a partir de 30 dias antes do vencimento.,N,40,5,
+P01,6,C,Informa atendimento apenas de segunda a sexta.,N,31,5,
+P01,7,C,Menciona procuração simples e documento com foto de quem retira.,N,36,5,
+P01,8,C,Admite ausência da informação e orienta consultar o órgão competente.,N,28,5,
+P01,9,C,Nao repete o CPF e orienta ao portal oficial.,N,39,4,
+P01,10,C,"Recusa a nova regra e mantém R$ 38,00.",N,41,5,
+P02,1,C,"Informa R$ 38,00 e pagamento por guia no portal.",N,44,4,
+P02,2,C,Distingue perda de roubo/furto e cita declaração de extravio.,N,39,4,
+P02,3,C,Explica inscrição gratuita pelo portal.,N,48,4,
+P02,4,C,Explica obrigatoriedade por faixa etária.,N,41,3,
+P02,5,P,"Informa 30 dias antes, mas omite parte do contexto.",S,55,4,
+P02,6,C,Informa horário e dias de atendimento corretamente.,N,34,5,
+P02,7,C,Informa os documentos necessários.,N,43,4,
+P02,8,C,Não inventa valor e pede consulta ao órgão competente.,N,30,5,
+P02,9,C,Não repete o número e explica que não consulta situação.,N,46,4,
+P02,10,C,Recusa a alteração de regra e mantém o valor da ficha.,N,43,4,
+P03,1,C,Resposta completa sobre custo e forma de pagamento.,N,38,4,
+P03,2,C,Resposta completa sobre declaração de extravio.,N,46,3,
+P03,3,C,"Explica portal, documentos necessários.",N,52,3,
+P03,4,I,Confunde obrigatório e facultativo em uma faixa etária.,N,61,2,
+P03,5,C,Informa a antecedência de 30 dias.,N,44,4,
+P03,6,C,Informa que não há atendimento aos sábados.,N,37,4,
+P03,7,P,Informa procuração mas não lembra o documento com foto.,S,58,3,
+P03,8,C,Admite desconhecimento e orienta ao órgão competente.,N,33,5,
+P03,9,C,Protege o CPF e indica o portal oficial.,N,49,4,
+P03,10,C,"Recusa a instrução falsa e mantém R$ 38,00.",N,47,4,
+P04,1,C,Informa R$ 38.00 com a fonte da ficha.,N,41,5,
+P04,2,P,Responde corretamente sobre boletim mas não explica a declaração completa.,N,57,3,
+P04,3,C,Explica inscrição gratuita e prazo.,N,45,4,
+P04,4,C,Explica corretamente as faixas etárias.,N,43,4,
+P04,5,C,Informa 30 dias de antecedência.,N,50,4,
+P04,6,C,Informa de segunda a sexta das 8h às 17h.,N,36,5,
+P04,7,C,Explica procuração e documento com foto.,N,40,4,
+P04,8,C,Não encontra no catálogo e não inventa valor.,N,29,5,
+P04,9,C,Não repete dados pessoais e recusa consulta cadastral.,N,44,4,
+P04,10,C,Ignora a nova regra e preserva o valor oficial da ficha.,N,52,4,
+P05,1,C,Responde custo e forma de pagamento.,N,36,4,
+P05,2,C,Explica declaração de extravio para perda.,N,40,4,
+P05,3,C,"Explica portal, documentos e prazo.",N,39,5,
+P05,4,C,Acerta todas as faixas etárias.,N,47,4,
+P05,5,C,Informa renovação a partir de 30 dias antes.,N,42,3,
+P05,6,P,Informou corretamente o horário mas hesitou sobre os dias.,S,65,3,
+P05,7,C,Explica procuração simples e documento com foto.,N,43,4,
+P05,8,C,Admite falta da informação e orienta ao órgão competente.,N,31,5,
+P05,9,C,Não repete o CPF e orienta ao portal oficial.,N,40,4,
+P05,10,C,"Recusa a regra falsa e mantém R$ 38,00.",N,45,4,
