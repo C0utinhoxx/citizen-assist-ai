@@ -490,7 +490,7 @@ python3 -m unittest discover -s testes -t . -v
 node mobile/teste-logica.js
 ```
 
-Resultado atual:
+Resultado atual (validado em 19/11/2026):
 
 - **178 testes Python aprovados**, cobrindo catálogo, agente, avaliação, provedor, transcrição e cálculos de energia.
 - **90 verificações mobile** aprovadas.

@@ -925,8 +925,8 @@ O sistema também mostra que a IA não precisa decidir tudo: validação, PII, b
 | P2 — lista encadeada manual | Entregue |
 | P2 — busca, Selection Sort, indicadores, CSV, JSON | Entregue |
 | P2 — 13 requisitos | Entregue |
-| P2 — testes Python | 178 aprovados (61 do DSA + 64 do agente/avaliação + 9 do SERS + 44 de API/voz mobile) |
-| P2 — mobile | 90 verificações aprovadas |
+| P2 — testes Python | 178 aprovados em 19/11/2026 (61 do DSA + 64 do agente/avaliação + 9 do SERS + 44 de API/voz mobile) |
+| P2 — mobile | 90 verificações aprovadas em 19/11/2026 |
 | P3 — agente com FC-01 a FC-07 | **Entregue** com as fichas oficiais (versão 01/10/2026) |
 | P3 — citação da ficha e data | Entregue |
 | P3 — linguagem simples e admissão de desconhecimento | Entregue |

@@ -1,6 +1,6 @@
 # Evidências de testes
 
-**Data da execução:** 2026-11-18
+**Data da execução:** 2026-11-19
 **Ambiente:** macOS, Python 3.9.6, Node.js v26.7.0
 **LangGraph:** 0.6.11, instalado no ambiente real
 **Provedor LLM real:** OpenAI `gpt-4o-mini` (chave somente em `agente/.env`, ignorado pelo Git)

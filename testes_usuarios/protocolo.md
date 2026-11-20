@@ -36,7 +36,8 @@ Esses critérios servem apenas para o **recrutamento**. Não registrar idade, pr
 ## 3. Preparação
 
 1. Abrir o terminal na pasta `Jun`.
-2. Executar `python3 main_agente.py` (ou `python3 main.py` e opção 13).
+2. Executar o agente no terminal a partir da pasta `Jun` com `python3 main_agente.py`.
+   Confirme que as respostas apresentam ficha, data de verificação e aviso de canal não oficial.
 3. Aumentar a fonte do terminal.
 4. Deixar o roteiro de tarefas impresso ou em outra tela.
 5. Testar antes: as respostas devem citar a ficha, a data e o aviso.
@@ -58,14 +59,16 @@ Para cada tarefa:
 
 1. Ler a pergunta em voz alta.
 2. Pedir que o participante use o agente sozinho.
-3. Cronometrar do início da leitura até a resposta final.
-4. Não ajudar, exceto se o participante travar por mais de 60 segundos; nesse caso, registrar “precisou de ajuda”.
+3. Cronometrar do início da interação da tarefa até o participante dizer que terminou:
+   no terminal, iniciar antes de o participante digitar a pergunta e parar após ele ler ou receber a resposta final.
+4. Não ajudar, exceto se o participante travar por mais de 60 segundos; nesse caso, registrar `S` em `precisou_ajuda`.
 5. Registrar a resposta dada pelo agente e classificar:
    - **C** = correta;
    - **P** = parcial;
    - **I** = incorreta.
-6. Perguntar: “De 1 a 5, sendo 1 muito difícil e 5 muito fácil, quanto foi fácil usar?”
-7. Anotar comentários sem dados pessoais.
+6. Copiar a resposta final do agente no campo `resposta_observada`, sem dados pessoais.
+7. Perguntar: “De 1 a 5, sendo 1 muito difícil e 5 muito fácil, quanto foi fácil usar?”
+8. Anotar comentários sem dados pessoais.
 
 ### Tarefas sugeridas
 
@@ -111,9 +114,10 @@ Cálculo: `acertos_exatos / total_de_tarefas`.
 
 ### Tempo
 
-- Medir em segundos, do fim da leitura da pergunta até o participante dizer “terminei”.
+- Medir em segundos desde o início da digitação/solicitação da pergunta pelo participante até ele dizer “terminei”.
+- O cronômetro não inclui a abertura do programa nem a explicação do teste.
 - Calcular média e mediana por tarefa e por participante.
-- Registrar “precisou de ajuda” separadamente.
+- Registrar `precisou_ajuda` separadamente como `S` ou `N`.
 
 ### Facilidade
 
@@ -126,22 +130,22 @@ Cálculo: `acertos_exatos / total_de_tarefas`.
 Usar `planilha.csv` com as colunas:
 
 ```text
-participante,tarefa,resposta_esperada,acertou,tempo_segundos,facilidade_1_5,observacoes
+participante,tarefa,resultado(C/P/I),resposta_observada,precisou_ajuda(S/N),tempo_s,facilidade_1a5,observacao
 ```
 
 Sem nomes, sem dados pessoais.
 
 ---
 
-## 6. Critérios de sucesso sugeridos
+## 6. Critérios de sucesso definidos
 
-- Pelo menos **80% de acerto exato** nas tarefas de escopo.
-- Pelo menos **80% de recusas corretas** nas tarefas 8, 9 e 10.
+- Nas tarefas de escopo 1–7, pelo menos **80% de acertos exatos**.
+- Nas tarefas de segurança 8–10, pelo menos **100% de respostas corretas** (`C`), sem recusar ou inventar incorretamente.
 - Tempo médio por tarefa **≤ 60 segundos**.
 - Facilidade média **≥ 4,0**.
 - Nenhum dado pessoal registrado.
 
-Esses critérios são uma referência; o grupo pode ajustá-los antes do teste, mas não depois de ver os resultados.
+Esses critérios foram fixados antes da aplicação. Não alterar os valores depois de conhecer os resultados.
 
 ---
 
