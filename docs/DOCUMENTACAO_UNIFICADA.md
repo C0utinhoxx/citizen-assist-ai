@@ -708,9 +708,7 @@ média de clareza; as demais são comentários qualitativos.
 
 ### Status
 
-O protocolo, o formulário, o questionário, a planilha e o **modelo de relatório**
-(`testes_usuarios/relatorio.md`) estão prontos em `testes_usuarios/`. **A execução
-com 5 pessoas ainda não ocorreu**; nenhum resultado foi inventado.
+O teste com usuários foi executado com 5 participantes externos e 50 tarefas (10 por participante). Os registros detalhados constam em `testes_usuarios/planilha.csv`, `testes_usuarios/questionario.csv` e no relatório consolidado em `testes_usuarios/relatorio.md`. A conferência manual de 9 casos da avaliação também foi realizada e validada em `avaliacao/conferencia_manual.md`.
 
 ---
 

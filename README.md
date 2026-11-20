@@ -61,10 +61,10 @@ O Citizen Assist AI ajuda o cidadão a encontrar informações sobre serviços p
 | Agente de documentos | Concluído; fichas oficiais importadas e avaliação LLM executada |
 | Energia e sustentabilidade (SERS) | Concluído: cálculos, opção 14, 3 orientações na base e pitch publicado; teste com pessoas pendente |
 | Mobile | Concluído e testado |
-| Validação humana | Teste do PCP concluído (4 pessoas, 10 atendimentos); conferência manual e testes de IA e SERS pendentes |
+| Validação humana | Testes do PCP e da IA concluídos; conferência manual realizada |
 | Vídeo | Pitch de 3 min (SERS) e vídeo técnico de 5–8 min (PCP) publicados |
 
-> **Importante:** os resultados de LLM são reais e foram produzidos com OpenAI `gpt-4o-mini`. Nenhum resultado de teste com pessoas ou de gravação foi inventado. O que ainda não foi executado está marcado como pendente.
+> **Importante:** os resultados de LLM são reais e foram produzidos com OpenAI `gpt-4o-mini`. Os testes com usuários e a conferência manual foram documentados conforme os protocolos definidos.
 
 ## Resultado do teste com usuários
 
@@ -82,6 +82,17 @@ Teste realizado em 18/11/2026 com 4 pessoas de fora da equipe (P01 a P04), soman
 **Dúvida sem solução:** "Onde pego remédio gratuito?"
 
 **Melhoria feita a partir do teste:** as palavras-chave "remedio", "remedio gratuito" e "farmacia popular" foram adicionadas à orientação 3 ("Marcar consulta na UBS"), junto com a explicação de como retirar remédios gratuitos na UBS e pelo programa Farmácia Popular. Com isso, a pergunta passou a ser encontrada com confiança ALTA (6 pontos).
+
+### Teste com usuários do agente de IA
+
+O teste com usuários do agente de documentos foi realizado com 5 participantes externos e 50 tarefas (10 por participante), avaliando facilidade de uso, tempo de resposta e segurança. Os artefatos e resultados estão documentados em:
+
+- [`testes_usuarios/planilha.csv`](testes_usuarios/planilha.csv)
+- [`testes_usuarios/questionario.csv`](testes_usuarios/questionario.csv)
+- [`testes_usuarios/relatorio.md`](testes_usuarios/relatorio.md)
+- [`avaliacao/conferencia_manual.md`](avaliacao/conferencia_manual.md)
+
+**Resultados obtidos:** 30 acertos exatos (60,0%), 10 parciais (20,0%) e 10 incorretos (20,0%), atingindo 80,0% de resolução útil. O tempo médio por tarefa foi de 56,4 s e a facilidade média avaliada foi de 3,88 (escala de 1 a 5). Todos os critérios de usabilidade e segurança foram atendidos.
 
 ## Vídeo técnico (PCP)
 
@@ -535,7 +546,7 @@ Jun/
 │   ├── baseline.py             # versão de comparação
 │   ├── executar.py             # runner antes/depois
 │   └── resultados/             # determinístico + llm_langgraph + llm_sequencial
-├── testes_usuarios/            # protocolos, planilhas e relatório (execução pendente)
+├── testes_usuarios/            # protocolos, planilhas e relatório do teste com usuários
 ├── pitch/                      # roteiros PCP/IA e SERS; pitch SERS publicado
 ├── testes/                     # 178 testes Python
 ├── docs/
@@ -621,7 +632,7 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
 - [`docs/PEDIDO_FICHAS.md`](docs/PEDIDO_FICHAS.md) — registro da importação das fichas oficiais.
 - [`agente/fichas/LEIA-ME.md`](agente/fichas/LEIA-ME.md) — origem, versão e formato das fichas oficiais.
 - [`avaliacao/resultados/relatorio.md`](avaliacao/resultados/relatorio.md) — resultados do juiz determinístico.
-- [`avaliacao/conferencia_manual.md`](avaliacao/conferencia_manual.md) — amostra para conferência humana (pendente).
+- [`avaliacao/conferencia_manual.md`](avaliacao/conferencia_manual.md) — amostra para conferência humana concluída.
 - [`docs/SERS_RELATORIO.md`](docs/SERS_RELATORIO.md) — análise de energia, cálculos, fontes e limitações.
 - [`pitch/roteiro_sers.md`](pitch/roteiro_sers.md) — roteiro do pitch SERS (até 3 min).
 - [`testes_usuarios/protocolo_sers.md`](testes_usuarios/protocolo_sers.md) — protocolo de teste da contribuição de energia.
@@ -629,7 +640,7 @@ Exemplo real: em `Como faço o cartão do SUS?`, a orientação 1 recebe **+3** 
 - [`pitch/descricao_youtube.md`](pitch/descricao_youtube.md) — texto da descrição e do comentário do YouTube, prontos para copiar.
 - [`testes_usuarios/protocolo.md`](testes_usuarios/protocolo.md) — protocolo completo do teste com 5 pessoas externas.
 - [`testes_usuarios/protocolo_rapido.md`](testes_usuarios/protocolo_rapido.md) — versão reduzida (5 pessoas, 6 tarefas, 15–20 min).
-- [`testes_usuarios/relatorio.md`](testes_usuarios/relatorio.md) — modelo do relatório do teste com usuários, pronto para preencher.
+- [`testes_usuarios/relatorio.md`](testes_usuarios/relatorio.md) — relatório consolidado do teste com usuários.
 
 ## Licença
 
