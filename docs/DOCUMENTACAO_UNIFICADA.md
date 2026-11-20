@@ -712,6 +712,13 @@ O protocolo, o formulário, o questionário, a planilha e o **modelo de relatór
 (`testes_usuarios/relatorio.md`) estão prontos em `testes_usuarios/`. **A execução
 com 5 pessoas ainda não ocorreu**; nenhum resultado foi inventado.
 
+**Simulação documental:** foi criada uma amostra artificial de 5 participantes
+e 50 tarefas apenas para demonstrar o preenchimento dos arquivos. Ela está
+identificada como simulação em `testes_usuarios/planilha.csv`,
+`testes_usuarios/questionario.csv`, `testes_usuarios/relatorio.md` e
+`avaliacao/conferencia_manual.md`. Os números simulados não são evidência real
+e não substituem recrutamento, consentimento, aplicação nem assinatura humana.
+
 ---
 
 ## 14. Testes técnicos e evidências

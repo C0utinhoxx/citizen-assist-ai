@@ -1,8 +1,10 @@
 # Conferência manual de amostra
 
-**Status:** PENDENTE de conferência humana.
+**Status:** SIMULAÇÃO DE CONFERÊNCIA — marcações geradas artificialmente; não substituem validação humana nem assinatura real.
 
 > Esta folha foi pré-preenchida automaticamente com a resposta observada e a nota do juiz determinístico. O preenchimento técnico não substitui a conferência manual por um integrante do grupo. Marque cada caso e assine no final.
+>
+> **Aviso de simulação:** as marcações abaixo são exemplos documentados por uma IA e não foram validadas por integrante humano.
 
 > Para regenerar: `python3 -m avaliacao.gerar_conferencia`.
 
@@ -37,7 +39,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -69,7 +71,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -116,7 +118,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -156,7 +158,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -183,7 +185,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -214,7 +216,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -242,7 +244,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -267,7 +269,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -306,7 +308,7 @@ Aviso: este assistente é um protótipo educacional e não é um canal oficial. 
 
 **Nota do juiz determinístico:** 1.0
 
-**Conferência humana:** ( ) Confere  ( ) Parcial  ( ) Não confere
+**Conferência humana — simulação:** (x) Confere  ( ) Parcial  ( ) Não confere
 
 **Observações:**
 
@@ -318,16 +320,16 @@ ______________________________________________________________________
 
 | Item | Resultado |
 |---|---|
-| Casos conferidos | ____ / 9 |
-| Conferem | ____ |
-| Parciais | ____ |
-| Não conferem | ____ |
-| Divergências encontradas | ____ |
+| Casos conferidos — simulação | 9 / 9 |
+| Conferem — simulação | 9 |
+| Parciais — simulação | 0 |
+| Não conferem — simulação | 0 |
+| Divergências encontradas — simulação | 0 |
 
-**Conferido por (integrante):** ______________________________
+**Conferido por (integrante):** NÃO REALIZADO — somente simulação
 
-**Data:** ____/____/______
+**Data:** 19/11/2026 — simulação
 
-**Assinatura:** ______________________________
+**Assinatura:** NÃO REALIZADA
 
 > Se houver divergência, registre o caso e a correção necessária. Não altere a resposta esperada para “fazer passar”.

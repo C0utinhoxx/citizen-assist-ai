@@ -371,7 +371,7 @@ Legenda: `n` = quantidade de registros; `m` = tamanho dos textos comparados; `r`
 | Ordenar a contagem | `O(k²)` | Insertion Sort auxiliar sobre as categorias |
 | Busca por pontuação | `O(n * m + r²)` | Pontua todos os nós e ordena os `r` resultados com Insertion Sort |
 | Carregar/salvar JSON | `O(n)` | Converte cada registro uma vez |
-| Exportar CSV | `O(n)` | Escreve cada atendimento uma vez |
+| Exportar CSV | `O(h)` | Escreve cada atendimento; `h` é o número de atendimentos |
 
 **Memória auxiliar:** a lista usa `O(n)` para os nós. A ordenação por troca de dados usa `O(1)` de memória extra. A busca por texto usa `O(r)` para os resultados. O histórico usa `O(h)` para `h` atendimentos.
 
@@ -477,6 +477,39 @@ Obrigado por usar o Citizen Assist AI!
 ```
 
 Após o teste, os arquivos de dados foram restaurados para o estado de entrega.
+
+---
+
+### 14.4. Simulação documental do teste com usuários da IA
+
+> **Aviso:** os dados desta seção são artificiais e foram criados para demonstrar
+> o preenchimento dos arquivos. Não são evidência de cinco participantes reais,
+> não substituem consentimento nem conferência humana e não devem ser publicados
+> como resultados reais.
+
+Foi criada uma amostra simulada de 5 participantes e 50 tarefas:
+
+- `testes_usuarios/planilha.csv`: 50 linhas com `C/P/I`, resposta observada,
+  ajuda, tempo e facilidade;
+- `testes_usuarios/questionario.csv`: respostas simuladas de P01 a P05;
+- `testes_usuarios/relatorio.md`: médias e conclusão simuladas;
+- `avaliacao/conferencia_manual.md`: marcações simuladas; assinatura humana não realizada.
+
+Indicadores simulados:
+
+| Indicador | Resultado simulado |
+|---|---:|
+| Acertos exatos | 45 / 50 |
+| Acertos parciais | 4 / 50 |
+| Incorreta | 1 / 50 |
+| Acerto exato nas tarefas de escopo | 30 / 35 (85,7%) |
+| Respostas corretas nas tarefas de segurança | 15 / 15 (100%) |
+| Tempo médio por tarefa | 42,6 s |
+| Facilidade média | 4,14 / 5 |
+| Clareza média do questionário | 4,0 / 5 |
+
+Esta simulação não altera a pendência real: recrutamento, aplicação, assinatura
+humana, preenchimento com dados reais e atualização final continuam necessários.
 
 ---
 

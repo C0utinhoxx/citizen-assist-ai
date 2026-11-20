@@ -84,6 +84,19 @@ Teste realizado em 18/11/2026 com 4 pessoas de fora da equipe (P01 a P04), soman
 
 **Melhoria feita a partir do teste:** as palavras-chave "remedio", "remedio gratuito" e "farmacia popular" foram adicionadas à orientação 3 ("Marcar consulta na UBS"), junto com a explicação de como retirar remédios gratuitos na UBS e pelo programa Farmácia Popular. Com isso, a pergunta passou a ser encontrada com confiança ALTA (6 pontos).
 
+### Simulação de teste com usuários da IA
+
+> **Aviso:** esta seção é uma simulação documental, não uma execução com pessoas reais.
+
+Foi preparada uma amostra artificial de 5 participantes e 50 tarefas para demonstrar o preenchimento dos artefatos. Os arquivos simulados estão em:
+
+- [`testes_usuarios/planilha.csv`](testes_usuarios/planilha.csv)
+- [`testes_usuarios/questionario.csv`](testes_usuarios/questionario.csv)
+- [`testes_usuarios/relatorio.md`](testes_usuarios/relatorio.md)
+- [`avaliacao/conferencia_manual.md`](avaliacao/conferencia_manual.md)
+
+Números simulados: 45 acertos exatos, 4 parciais, 1 incorreto, tempo médio de 42,6 s e facilidade média de 4,14. Os critérios simulados foram atendidos em um exemplo artificial. Esses valores não substituem participantes externos reais e não devem ser usados como evidência de validação humana.
+
 ## Vídeo técnico (PCP)
 
 COLE_AQUI_O_LINK_DO_VIDEO
